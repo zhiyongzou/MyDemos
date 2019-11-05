@@ -20,27 +20,26 @@
 {
     _copyEnabled = copyEnabled;
     
+    // 确保 UILabel 可交互
     self.userInteractionEnabled = copyEnabled;
-    if (copyEnabled) {
-        if (!self.longPressGR) {
-            self.longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-            [self addGestureRecognizer:self.longPressGR];
-        }
-    } else {
-        if (self.longPressGR) {
-            [self removeGestureRecognizer:self.longPressGR];
-        }
+    
+    if (copyEnabled && !self.longPressGR) {
+        self.longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                         action:@selector(handleLongPressGesture:)];
+        [self addGestureRecognizer:self.longPressGR];
+    }
+    
+    if (self.longPressGR) {
+        self.longPressGR.enabled = copyEnabled;
     }
 }
 
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGR
 {
     if (longPressGR.state == UIGestureRecognizerStateBegan) {
-        UIMenuController *menuController = [UIMenuController sharedMenuController];
-        UIMenuItem *copyItem = [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copy:)];
-        [menuController setMenuItems:@[copyItem]];
-        [menuController setTargetRect:self.frame inView:self.superview];
-        [menuController setMenuVisible:YES animated:YES];
+        [self becomeFirstResponder];
+        [[UIMenuController sharedMenuController] setTargetRect:self.frame inView:self.superview];
+        [[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
     }
 }
 
@@ -51,9 +50,9 @@
     return YES;
 }
 
-//自定义响应UIMenuItem Action，例如你可以过滤掉多余的系统自带功能（剪切，选择等），只保留复制功能。
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
+    // 自定义响应UIMenuItem Action，例如你可以过滤掉多余的系统自带功能（剪切，选择等），只保留复制功能。
     return (action == @selector(copy:));
 }
 

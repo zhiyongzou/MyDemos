@@ -13,7 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet YYCopyLabel *myCopyLabel;
 
-
 @end
 
 @implementation ViewController
@@ -21,13 +20,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.myCopyLabel.copyEnabled = YES;
 }
 
-
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    [super touchesBegan:touches withEvent:event];
+    
     [self.view endEditing:YES];
 }
 
