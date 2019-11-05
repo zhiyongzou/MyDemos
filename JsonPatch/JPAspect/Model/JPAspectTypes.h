@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 
 #ifdef DEBUG
-    #define JPAspectLog(...) do { NSLog(__VA_ARGS__); }while(0)
+    #define JPAspectLog(fmt, ...) do { NSLog((@"%s %d: " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #else
     #define JPAspectLog(...)
 #endif

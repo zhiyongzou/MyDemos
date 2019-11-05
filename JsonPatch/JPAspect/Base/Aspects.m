@@ -12,8 +12,8 @@
 #import "AspectInfo.h"
 
 #ifdef DEBUG
-    #define AspectLog(...) do { NSLog(__VA_ARGS__); }while(0)
-    #define AspectLogError(...) do { NSLog(__VA_ARGS__); }while(0)
+    #define AspectLog(fmt, ...) do { NSLog((@"%s %d: " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
+    #define AspectLogError(fmt, ...) do { NSLog((@"%s %d: " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #else
     #define AspectLog(...)
     #define AspectLogError(...)

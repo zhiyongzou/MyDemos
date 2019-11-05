@@ -20,7 +20,7 @@
 #define JPAspectBaseLogInfo(_aspectInfo) [NSString stringWithFormat:@"[%@ %@]", NSStringFromClass([_aspectInfo.instance class]), [NSStringFromSelector(_aspectInfo.originalInvocation.selector) substringFromIndex:9]]
 
 /// Aspect Class List
-static NSArray<NSString *> *JPAspectClassDefineList;
+static NSArray<NSString *> *JPAspectDefineClassList;
 /// Super Alias Selector List
 static NSMutableDictionary *JPSuperAliasSelectorList = nil;
 /// Original method return value key
@@ -28,9 +28,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
 
 @implementation JPAspect
 
-+ (void)setupAspectClassDefineList:(NSArray<NSString *> *)classList
++ (void)setupAspectDefineClassList:(NSArray<NSString *> *)classList
 {
-    JPAspectClassDefineList = classList;
+    JPAspectDefineClassList = classList;
 }
 
 + (void)hookMethodWithAspectDictionary:(NSDictionary *)aspectDictionary
@@ -1067,7 +1067,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         if (0 == idx) {
             
             isCallSuper = NO;
-            if ([JPAspectClassDefineList containsObject:component]) {
+            if ([JPAspectDefineClassList containsObject:component]) {
                 
                 currentTarget = NSClassFromString(component);
                 if (currentTarget == nil) {
@@ -1129,7 +1129,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
                 
             } else {
                 
-                NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] JPAspectClassDefineList can not find current class:[%@]", component];
+                NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] JPAspectDefineClassList can not find current class:[%@]", component];
                 JPAspectLog(@"%@", errorMsg);
                 NSAssert(NO, errorMsg);
                 break;
