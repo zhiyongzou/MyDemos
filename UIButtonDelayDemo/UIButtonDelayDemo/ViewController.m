@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "MyButton.h"
 
-@interface ViewController ()
+@interface ViewController () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet MyButton *aButton;
 
@@ -30,6 +30,8 @@
     self.aView.layer.cornerRadius = self.aView.frame.size.width * 0.5;
     
     self.doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDoubleTap:)];
+//    self.doubleTapGesture.delaysTouchesEnded = NO;
+//    self.doubleTapGesture.delegate = self;
     self.doubleTapGesture.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:self.doubleTapGesture];
 }
@@ -63,6 +65,17 @@
             self.isAnimating = NO;
         }];
     }];
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([touch.view isEqual:self.aButton]) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end
