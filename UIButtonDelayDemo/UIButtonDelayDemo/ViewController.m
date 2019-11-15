@@ -39,7 +39,7 @@
     NSLog(@"%s", __func__);
 }
 
-- (IBAction)onButton1Clicked:(MyButton *)sender
+- (IBAction)onButtonClicked:(MyButton *)sender
 {
     NSLog(@"%s", __func__);
     
@@ -48,6 +48,11 @@
     }
     self.isAnimating = YES;
     
+    [self startAnimation];
+}
+
+- (void)startAnimation
+{
     self.aView.transform = CGAffineTransformIdentity;
     [UIView animateWithDuration:0.5 animations:^{
         self.aView.transform = CGAffineTransformMakeScale(1.3, 1.3);

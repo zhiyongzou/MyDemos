@@ -26,7 +26,7 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button-1"/>
                                 <connections>
-                                    <action selector="onButton1Clicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FbS-U2-yMQ"/>
+                                    <action selector="onButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w2j-WK-Pex"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIr-6M-IYI">
@@ -47,7 +47,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="aButton" destination="XCb-9S-D9w" id="1zc-Hf-ECP"/>
+                        <outlet property="aButton" destination="XCb-9S-D9w" id="1DY-gE-yHn"/>
                         <outlet property="aView" destination="yIr-6M-IYI" id="NTK-A3-caf"/>
                     </connections>
                 </viewController>
