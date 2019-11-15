@@ -47,8 +47,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="aButton" destination="XCb-9S-D9w" id="1zc-Hf-ECP"/>
                         <outlet property="aView" destination="yIr-6M-IYI" id="NTK-A3-caf"/>
-                        <outlet property="btn_1" destination="XCb-9S-D9w" id="BxB-H1-S7u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
