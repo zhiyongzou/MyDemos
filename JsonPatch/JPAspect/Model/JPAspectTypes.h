@@ -44,15 +44,14 @@ typedef NS_ENUM(NSUInteger, JPAspectHookType) {
     
     JPAspectHookUnknown              = 0, // Unknown
     JPAspectHookNullImp              = 1, // Instead with empty IMP
-    JPAspectHookReturnModify         = 2, // Return value modify
-    JPAspectHookCustomInvokeBefore   = 3, // Custom code invoke before original
-    JPAspectHookCustomInvokeAfter    = 4, // Custom code invoke after original
-    JPAspectHookCustomInvokeInstead  = 5  // Custom code invoke instead original
+    JPAspectHookCustomInvokeBefore   = 2, // Custom function invoke before original
+    JPAspectHookCustomInvokeAfter    = 3, // Custom function invoke after original
+    JPAspectHookCustomInvokeInstead  = 4  // Custom function invoke instead original
 };
 
 typedef NS_ENUM(NSUInteger, JPAspectMessageType) {
     
-    JPAspectMessageTypeDefault       = 0, // 常规调用
+    JPAspectMessageTypeFunction      = 0, // 方法调用
     JPAspectMessageTypeReturn        = 1, // 返回语句
     JPAspectMessageTypeAssign        = 2  // 赋值语句
 };

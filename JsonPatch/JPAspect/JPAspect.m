@@ -86,23 +86,10 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
 
 + (void)handleHookSelectorWithAspectInfo:(id<AspectInfoProtocol>)aspectInfo aspectModel:(JPAspectModel *)aspectModel
 {
-    switch (aspectModel.hookType) {
-        case JPAspectHookNullImp: {
-
-            JPAspectLog(@"%@", [NSString stringWithFormat:@"%@ replace to empty IMP", JPAspectBaseLogInfo(aspectInfo)]);
-        }
-            break;
-        case JPAspectHookCustomInvokeAfter:
-        case JPAspectHookCustomInvokeBefore:
-        case JPAspectHookCustomInvokeInstead: {
-            
-            [self handleAspectCustomInvokeWithAspectInfo:aspectInfo aspectModel:aspectModel];
-        }
-            break;
-            
-        default:
-            JPAspectLog(@"[JPAspect] Aspect hook type is unknown");
-            break;
+    if (JPAspectHookNullImp == aspectModel.hookType) {
+        JPAspectLog(@"%@", [NSString stringWithFormat:@"%@ replace to empty IMP", JPAspectBaseLogInfo(aspectInfo)]);
+    } else {
+        [self handleAspectCustomInvokeWithAspectInfo:aspectInfo aspectModel:aspectModel];
     }
 }
 
