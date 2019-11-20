@@ -16,9 +16,9 @@
     
     if ([messageDic isKindOfClass:[NSDictionary class]]) {
         message.message = [messageDic objectForKey:@"message"];
-        message.parameters = [messageDic objectForKey:@"parameters"];
-        if (message.parameters.count > 0) {
-            message.aspectArgumentParameters = [NSMutableDictionary dictionaryWithCapacity:message.parameters.count];
+        message.arguments = [messageDic objectForKey:@"arguments"];
+        if (message.arguments.count > 0) {
+            message.argumentCache = [NSMutableDictionary dictionaryWithCapacity:message.arguments.count];
         }
         message.messageType = [[messageDic objectForKey:@"messageType"] unsignedIntegerValue];
         message.invokeCondition = [messageDic objectForKey:@"invokeCondition"];

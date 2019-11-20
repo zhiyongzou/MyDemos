@@ -121,7 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) JPAspectMessageType messageType;
 
 /*
- 消息参数
+ 方法参数
  
  参数：
      index ：参数位置
@@ -142,9 +142,9 @@ NS_ASSUME_NONNULL_BEGIN
      ]
  }
  **/
-@property (nonatomic, strong) NSDictionary<NSString *, NSArray<NSDictionary *> *> *parameters;
+@property (nonatomic, strong) NSDictionary<NSString *, NSArray<NSDictionary *> *> *arguments;
 /// 参数 Model 缓存
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSArray<JPAspectArgument *> *> *aspectArgumentParameters;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSArray<JPAspectArgument *> *> *argumentCache;
 
 /*
  局部变量索引: 赋值、判断

@@ -1122,13 +1122,13 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
                 break;
             }
         } else {
-            NSMutableArray<JPAspectArgument *> *arguments = [[message.aspectArgumentParameters objectForKey:component] mutableCopy];
+            NSMutableArray<JPAspectArgument *> *arguments = [[message.argumentCache objectForKey:component] mutableCopy];
             if (arguments.count == 0) {
-                NSArray<NSDictionary *> *cureentSelParameters = [message.parameters objectForKey:component];
-                if (cureentSelParameters.count > 0) {
-                    arguments = [[NSMutableArray alloc] initWithCapacity:cureentSelParameters.count];
+                NSArray<NSDictionary *> *cureentSelArguments = [message.arguments objectForKey:component];
+                if (cureentSelArguments.count > 0) {
+                    arguments = [[NSMutableArray alloc] initWithCapacity:cureentSelArguments.count];
                     
-                    [cureentSelParameters enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull parameter, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [cureentSelArguments enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull parameter, NSUInteger idx, BOOL * _Nonnull stop) {
                         
                         JPAspectArgument *argument = nil;
                         JPAspectInstance *localInstance = [localVariables objectForKey:parameter[@"value"]];
@@ -1137,7 +1137,12 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
                             argument.value = localInstance.value;
                             argument.index = [parameter[@"index"] unsignedIntegerValue] + JPAspectMethodDefaultArgumentsCount;
                             argument.type = [parameter[@"type"] unsignedIntegerValue];
-                        } else {
+                        } else if ([parameter[@"value"] isEqualToString:@"self"]) {
+                            argument = [[JPAspectArgument alloc] init];
+                            argument.value = aspectInfo.originalInvocation.target;
+                            argument.index = [parameter[@"index"] unsignedIntegerValue] + JPAspectMethodDefaultArgumentsCount;
+                            argument.type = [parameter[@"type"] unsignedIntegerValue];
+                        }  else {
                             if ([aspectModel.argumentNames containsObject:parameter[@"value"]]) {
                                 argument = [JPAspect getArgumentWithInvocation:aspectInfo.originalInvocation atIndex:[aspectModel.argumentNames indexOfObject:parameter[@"value"]] shouldSetValue:YES];
                             } else {
@@ -1147,8 +1152,8 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
                         [arguments addObject:argument];
                     }];
                     
-                    if ([message.aspectArgumentParameters objectForKey:component] == nil) {
-                        [message.aspectArgumentParameters setObject:arguments forKey:component];
+                    if ([message.argumentCache objectForKey:component] == nil) {
+                        [message.argumentCache setObject:arguments forKey:component];
                     }
                 }
             }
