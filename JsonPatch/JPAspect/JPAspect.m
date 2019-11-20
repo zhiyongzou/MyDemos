@@ -803,57 +803,57 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
             [operator isEqualToString:@"||"] ||
             [operator isEqualToString:@"&&"]) {
             
-            NSNumber *target_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
-            if (target_1 == nil) {
+            NSNumber *vaule_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
+            if (vaule_1 == nil) {
                 if ([aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
                                                                          atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
                                                                   shouldSetValue:YES];
-                    target_1 = argument.value;
+                    vaule_1 = argument.value;
                 } else {
-                    target_1 = @([conditionComponents.firstObject doubleValue]);
+                    vaule_1 = @([conditionComponents.firstObject doubleValue]);
                 }
             }
             
-            NSNumber *target_2 = [[localVariables objectForKey:conditionComponents.lastObject] value];
-            if (target_2 == nil) {
+            NSNumber *vaule_2 = [[localVariables objectForKey:conditionComponents.lastObject] value];
+            if (vaule_2 == nil) {
                 if ([aspectModel.argumentNames containsObject:conditionComponents.lastObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
                                                                          atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]
                                                                   shouldSetValue:YES];
-                    target_2 = argument.value;
+                    vaule_2 = argument.value;
                 } else {
-                    target_2 = @([conditionComponents.lastObject doubleValue]);
+                    vaule_2 = @([conditionComponents.lastObject doubleValue]);
                 }
             }
             
-            if ([operator isEqualToString:@">"] && NSOrderedDescending == [target_1 compare:target_2]) {
+            if ([operator isEqualToString:@">"] && NSOrderedDescending == [vaule_1 compare:vaule_2]) {
                 shouldInvoke = YES;
                 break;
             }
             
-            if ([operator isEqualToString:@">="] && (NSOrderedDescending == [target_1 compare:target_2] || NSOrderedSame == [target_1 compare:target_2])) {
+            if ([operator isEqualToString:@">="] && (NSOrderedDescending == [vaule_1 compare:vaule_2] || NSOrderedSame == [vaule_1 compare:vaule_2])) {
                 shouldInvoke = YES;
                 break;
             }
             
-            if ([operator isEqualToString:@"<"] && NSOrderedAscending == [target_1 compare:target_2]) {
+            if ([operator isEqualToString:@"<"] && NSOrderedAscending == [vaule_1 compare:vaule_2]) {
                 shouldInvoke = YES;
                 break;
             }
             
-            if ([operator isEqualToString:@"<="] &&( NSOrderedAscending == [target_1 compare:target_2] || NSOrderedSame == [target_1 compare:target_2])) {
+            if ([operator isEqualToString:@"<="] &&( NSOrderedAscending == [vaule_1 compare:vaule_2] || NSOrderedSame == [vaule_1 compare:vaule_2])) {
                 shouldInvoke = YES;
                 break;
             }
             
             if ([operator isEqualToString:@"||"]) {
-                shouldInvoke = target_1.boolValue || target_2.boolValue;
+                shouldInvoke = vaule_1.boolValue || vaule_2.boolValue;
                 break;
             }
             
             if ([operator isEqualToString:@"&&"]) {
-                shouldInvoke = target_1.boolValue && target_2.boolValue;
+                shouldInvoke = vaule_1.boolValue && vaule_2.boolValue;
                 break;
             }
             
@@ -861,75 +861,92 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
             
             if ([conditionComponents.lastObject isEqualToString:@"nil"]) {
                 
-                id target_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
+                id vaule_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
                 
-                if (target_1 == nil && [aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
+                if (vaule_1 == nil && [aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
                                                                          atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
                                                                   shouldSetValue:YES];
-                    target_1 = argument.value;
+                    vaule_1 = argument.value;
                 }
                 
-                if (target_1 == nil) {
+                if (vaule_1 == nil) {
                     shouldInvoke = YES;
                 }
             } else {
-                NSNumber *target_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
-                if (target_1 == nil) {
+                NSNumber *vaule_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
+                if (vaule_1 == nil) {
                     if ([aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                         JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
                                                                              atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
                                                                       shouldSetValue:YES];
-                        target_1 = argument.value;
+                        vaule_1 = argument.value;
                     } else {
-                        target_1 = @([conditionComponents.firstObject doubleValue]);
+                        vaule_1 = @([conditionComponents.firstObject doubleValue]);
                     }
                 }
                 
-                NSNumber *target_2 = [[localVariables objectForKey:conditionComponents.lastObject] value];
-                if (target_2 == nil) {
+                NSNumber *vaule_2 = [[localVariables objectForKey:conditionComponents.lastObject] value];
+                if (vaule_2 == nil) {
                     if ([aspectModel.argumentNames containsObject:conditionComponents.lastObject]) {
                         JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
                                                                              atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]
                                                                       shouldSetValue:YES];
-                        target_2 = argument.value;
+                        vaule_2 = argument.value;
                     } else {
-                        target_2 = @([conditionComponents.lastObject doubleValue]);
+                        vaule_2 = @([conditionComponents.lastObject doubleValue]);
                     }
                 }
                 
-                if (NSOrderedSame == [target_1 compare:target_2]) {
+                if (NSOrderedSame == [vaule_1 compare:vaule_2]) {
                     shouldInvoke = YES;
                 }
             }
             
         } else if ([operator isEqualToString:@"!="]) {
-            NSNumber *target_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
-            if (target_1 == nil) {
-                if ([aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
+            
+            if ([conditionComponents.lastObject isEqualToString:@"nil"]) {
+                
+                id vaule_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
+                
+                if (vaule_1 == nil && [aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
                                                                          atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
                                                                   shouldSetValue:YES];
-                    target_1 = argument.value;
-                } else {
-                    target_1 = @([conditionComponents.firstObject doubleValue]);
+                    vaule_1 = argument.value;
                 }
-            }
-            
-            NSNumber *target_2 = [[localVariables objectForKey:conditionComponents.lastObject] value];
-            if (target_2 == nil) {
-                if ([aspectModel.argumentNames containsObject:conditionComponents.lastObject]) {
-                    JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]
-                                                                  shouldSetValue:YES];
-                    target_2 = argument.value;
-                } else {
-                    target_2 = @([conditionComponents.lastObject doubleValue]);
+                
+                if (vaule_1 != nil) {
+                    shouldInvoke = YES;
                 }
-            }
-            
-            if (NSOrderedSame != [target_1 compare:target_2]) {
-                shouldInvoke = YES;
+            } else {
+                NSNumber *vaule_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
+                if (vaule_1 == nil) {
+                    if ([aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
+                        JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
+                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
+                                                                      shouldSetValue:YES];
+                        vaule_1 = argument.value;
+                    } else {
+                        vaule_1 = @([conditionComponents.firstObject doubleValue]);
+                    }
+                }
+                
+                NSNumber *vaule_2 = [[localVariables objectForKey:conditionComponents.lastObject] value];
+                if (vaule_2 == nil) {
+                    if ([aspectModel.argumentNames containsObject:conditionComponents.lastObject]) {
+                        JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
+                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]
+                                                                      shouldSetValue:YES];
+                        vaule_2 = argument.value;
+                    } else {
+                        vaule_2 = @([conditionComponents.lastObject doubleValue]);
+                    }
+                }
+                
+                if (NSOrderedSame != [vaule_1 compare:vaule_2]) {
+                    shouldInvoke = YES;
+                }
             }
         } else {
             NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Message:[%@] operator:[%@] type is unknown", message.message, operator];
