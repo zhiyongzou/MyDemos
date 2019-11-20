@@ -12,7 +12,7 @@
 
 + (instancetype)modelWithMessageDictionary:(NSDictionary *)messageDic
 {
-    JPAspectMessage *message = [[JPAspectMessage alloc] init];
+    JPAspectMessage *message = [[self alloc] init];
     
     if ([messageDic isKindOfClass:[NSDictionary class]]) {
         message.message = [messageDic objectForKey:@"message"];

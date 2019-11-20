@@ -16,7 +16,7 @@ NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
 
 + (instancetype)modelWithArgumentDictionary:(NSDictionary *)argumentDic
 {
-    JPAspectArgument *aspectArgument = [[JPAspectArgument alloc] init];
+    JPAspectArgument *aspectArgument = [[self alloc] init];
     
     aspectArgument.index = [[argumentDic objectForKey:@"index"] unsignedIntegerValue] + JPAspectMethodDefaultArgumentsCount;
     aspectArgument.type = [[argumentDic objectForKey:@"type"] unsignedIntegerValue];

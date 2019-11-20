@@ -637,7 +637,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
     BOOL shouldReturn = NO;
     BOOL shouldInvoke = YES;
     
-    for (JPAspectMessage *message in aspectModel.customInvokeMessages) {
+    for (JPAspectMessage *message in aspectModel.customMessages) {
         
         shouldInvoke = YES;
         if (message.invokeCondition != nil) {
@@ -805,9 +805,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
             
             NSNumber *target_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
             if (target_1 == nil) {
-                if ([aspectModel.parameterNames containsObject:conditionComponents.firstObject]) {
+                if ([aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                         atIndex:[aspectModel.parameterNames indexOfObject:conditionComponents.firstObject]
+                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
                                                                   shouldSetValue:YES];
                     target_1 = argument.value;
                 } else {
@@ -817,9 +817,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
             
             NSNumber *target_2 = [[localVariables objectForKey:conditionComponents.lastObject] value];
             if (target_2 == nil) {
-                if ([aspectModel.parameterNames containsObject:conditionComponents.lastObject]) {
+                if ([aspectModel.argumentNames containsObject:conditionComponents.lastObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                         atIndex:[aspectModel.parameterNames indexOfObject:conditionComponents.lastObject]
+                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]
                                                                   shouldSetValue:YES];
                     target_2 = argument.value;
                 } else {
@@ -863,9 +863,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
                 
                 id target_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
                 
-                if (target_1 == nil && [aspectModel.parameterNames containsObject:conditionComponents.firstObject]) {
+                if (target_1 == nil && [aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                         atIndex:[aspectModel.parameterNames indexOfObject:conditionComponents.firstObject]
+                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
                                                                   shouldSetValue:YES];
                     target_1 = argument.value;
                 }
@@ -876,9 +876,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
             } else {
                 NSNumber *target_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
                 if (target_1 == nil) {
-                    if ([aspectModel.parameterNames containsObject:conditionComponents.firstObject]) {
+                    if ([aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                         JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                             atIndex:[aspectModel.parameterNames indexOfObject:conditionComponents.firstObject]
+                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
                                                                       shouldSetValue:YES];
                         target_1 = argument.value;
                     } else {
@@ -888,9 +888,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
                 
                 NSNumber *target_2 = [[localVariables objectForKey:conditionComponents.lastObject] value];
                 if (target_2 == nil) {
-                    if ([aspectModel.parameterNames containsObject:conditionComponents.lastObject]) {
+                    if ([aspectModel.argumentNames containsObject:conditionComponents.lastObject]) {
                         JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                             atIndex:[aspectModel.parameterNames indexOfObject:conditionComponents.lastObject]
+                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]
                                                                       shouldSetValue:YES];
                         target_2 = argument.value;
                     } else {
@@ -906,9 +906,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         } else if ([operator isEqualToString:@"!="]) {
             NSNumber *target_1 = [[localVariables objectForKey:conditionComponents.firstObject] value];
             if (target_1 == nil) {
-                if ([aspectModel.parameterNames containsObject:conditionComponents.firstObject]) {
+                if ([aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                         atIndex:[aspectModel.parameterNames indexOfObject:conditionComponents.firstObject]
+                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
                                                                   shouldSetValue:YES];
                     target_1 = argument.value;
                 } else {
@@ -918,9 +918,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
             
             NSNumber *target_2 = [[localVariables objectForKey:conditionComponents.lastObject] value];
             if (target_2 == nil) {
-                if ([aspectModel.parameterNames containsObject:conditionComponents.lastObject]) {
+                if ([aspectModel.argumentNames containsObject:conditionComponents.lastObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                         atIndex:[aspectModel.parameterNames indexOfObject:conditionComponents.lastObject]
+                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]
                                                                   shouldSetValue:YES];
                     target_2 = argument.value;
                 } else {
@@ -964,9 +964,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         return;
     }
     
-    if ([aspectModel.parameterNames containsObject:msgComponents.firstObject]) {
+    if ([aspectModel.argumentNames containsObject:msgComponents.firstObject]) {
         
-        NSUInteger argumentIndex = [aspectModel.parameterNames indexOfObject:msgComponents.firstObject]  + JPAspectMethodDefaultArgumentsCount;
+        NSUInteger argumentIndex = [aspectModel.argumentNames indexOfObject:msgComponents.firstObject]  + JPAspectMethodDefaultArgumentsCount;
         JPAspectArgument *argument = [[JPAspectArgument alloc] init];
         argument.type = [instanceValues.firstObject integerValue];
         argument.index = argumentIndex;
@@ -1094,9 +1094,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
                 
                 currentTarget = [[localVariables objectForKey:component] value];
                 
-            } else if ([aspectModel.parameterNames containsObject:component]) {
+            } else if ([aspectModel.argumentNames containsObject:component]) {
                 
-                NSUInteger idxOfParamter = [aspectModel.parameterNames indexOfObject:component];
+                NSUInteger idxOfParamter = [aspectModel.argumentNames indexOfObject:component];
                 JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation atIndex:idxOfParamter shouldSetValue:YES];
                 
                 if (argument == nil || argument.type == JPArgumentTypeUnknown) {
@@ -1138,8 +1138,8 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
                             argument.index = [parameter[@"index"] unsignedIntegerValue] + JPAspectMethodDefaultArgumentsCount;
                             argument.type = [parameter[@"type"] unsignedIntegerValue];
                         } else {
-                            if ([aspectModel.parameterNames containsObject:parameter[@"value"]]) {
-                                argument = [JPAspect getArgumentWithInvocation:aspectInfo.originalInvocation atIndex:[aspectModel.parameterNames indexOfObject:parameter[@"value"]] shouldSetValue:YES];
+                            if ([aspectModel.argumentNames containsObject:parameter[@"value"]]) {
+                                argument = [JPAspect getArgumentWithInvocation:aspectInfo.originalInvocation atIndex:[aspectModel.argumentNames indexOfObject:parameter[@"value"]] shouldSetValue:YES];
                             } else {
                                 argument = [JPAspectArgument modelWithArgumentDictionary:parameter];
                             }

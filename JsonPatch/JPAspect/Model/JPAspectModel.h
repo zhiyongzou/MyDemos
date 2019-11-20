@@ -17,12 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *className;
 @property (nonatomic, strong) NSString *selName;
 /// 必须按照方法参数顺序
-@property (nonatomic, strong, nullable) NSArray<NSString *> *parameterNames;
+@property (nonatomic, strong, nullable) NSArray<NSString *> *argumentNames;
 @property (nonatomic, assign) JPAspectHookType hookType;
+/// 自定义方法
+@property (nonatomic, strong, nullable) NSArray<JPAspectMessage *> *customMessages;
 
-@property (nonatomic, strong, nullable) NSArray<JPAspectMessage *> *customInvokeMessages;
-
-+ (nullable instancetype)modelWithAspectDictionary:(NSDictionary *)aspectDictionary;
++ (nullable instancetype)modelWithAspectDictionary:(NSDictionary *)dictionary;
 
 @end
 

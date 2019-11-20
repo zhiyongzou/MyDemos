@@ -46,7 +46,7 @@
     [self setupAspectDefineClassList:[patchDic objectForKey:@"AspectDefineClassList"]];
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
     
-    NSArray<NSDictionary *> *patchs = [patchDic objectForKey:@"Patchs"];
+    NSArray<NSDictionary *> *patchs = [patchDic objectForKey:@"Aspects"];
     [patchs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull patch, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray *applySystemVersions = patch[@"ApplySystemVersions"];
         if ((applySystemVersions == nil) || [self shouldRunPatchWithApplySystemVersions:applySystemVersions currentSystemVersion:systemVersion]) {

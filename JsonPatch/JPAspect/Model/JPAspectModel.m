@@ -12,42 +12,38 @@
 
 @implementation JPAspectModel
 
-+ (nullable instancetype)modelWithAspectDictionary:(NSDictionary *)aspectDictionary
++ (nullable instancetype)modelWithAspectDictionary:(NSDictionary *)dictionary
 {
     JPAspectModel *aspectModel = nil;
     do {
-        if (![aspectDictionary isKindOfClass:[NSDictionary class]]) {
+        if (![dictionary isKindOfClass:[NSDictionary class]]) {
             NSAssert(0, @"[JPAspectModel] aspectDictionary class must be NSDictionary");
             break;
         }
         
-        NSString *className = [aspectDictionary objectForKey:@"className"];
-        NSString *selName = [aspectDictionary objectForKey:@"selName"];
+        NSString *className = [dictionary objectForKey:@"className"];
+        NSString *selName = [dictionary objectForKey:@"selName"];
         if (!className || !selName || ![className isKindOfClass:[NSString class]] || ![selName isKindOfClass:[NSString class]]) {
             break;
         }
         
-        aspectModel = [[JPAspectModel alloc] init];
+        aspectModel = [[self alloc] init];
         aspectModel.className = className;
         aspectModel.selName = selName;
-        aspectModel.hookType = [[aspectDictionary objectForKey:@"hookType"] unsignedIntegerValue];
-        aspectModel.parameterNames = [aspectDictionary objectForKey:@"parameterNames"];
+        aspectModel.hookType = [[dictionary objectForKey:@"hookType"] unsignedIntegerValue];
+        aspectModel.argumentNames = [dictionary objectForKey:@"argumentNames"];
         
-        NSArray<NSDictionary *> *customInvokeMessages = [aspectDictionary objectForKey:@"customInvokeMessages"];
-        if ([customInvokeMessages isKindOfClass:[NSArray class]] && customInvokeMessages.count > 0) {
-            NSMutableArray<JPAspectMessage *> *messages = [NSMutableArray arrayWithCapacity:customInvokeMessages.count];
+        NSArray<NSDictionary *> *customMessages = [dictionary objectForKey:@"customMessages"];
+        if ([customMessages isKindOfClass:[NSArray class]] && customMessages.count > 0) {
+            NSMutableArray<JPAspectMessage *> *messages = [NSMutableArray arrayWithCapacity:customMessages.count];
             
-            [customInvokeMessages enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [customMessages enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-                JPAspectMessage *message = [JPAspectMessage modelWithMessageDictionary:obj];
-                if (message) {
-                    [messages addObject:message];
-                }
+                [messages addObject:[JPAspectMessage modelWithMessageDictionary:obj]];
             }];
             
-            aspectModel.customInvokeMessages = messages;
+            aspectModel.customMessages = messages;
         }
-        
         
     } while (0);
     
