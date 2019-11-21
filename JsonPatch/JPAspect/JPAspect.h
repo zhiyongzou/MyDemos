@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JPAspect : NSObject
 
-+ (void)setupAspectDefineClassList:(NSArray<NSString *> *)classList;
+/// 设置使用到的 OC 类
++ (void)setupAspectDefineClass:(NSArray<NSString *> *)classList;
 
 + (void)hookMethodWithAspectDictionary:(NSDictionary *)aspectDictionary;
 

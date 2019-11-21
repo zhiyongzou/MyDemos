@@ -43,7 +43,7 @@
         return;
     }
     
-    [self setupAspectDefineClassList:[patchDic objectForKey:@"AspectDefineClassList"]];
+    [self setupAspectDefineClass:[patchDic objectForKey:@"AspectDefineClass"]];
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
     
     NSArray<NSDictionary *> *patchs = [patchDic objectForKey:@"Aspects"];

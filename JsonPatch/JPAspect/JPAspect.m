@@ -20,7 +20,7 @@
 #define JPAspectBaseLogInfo(_aspectInfo) [NSString stringWithFormat:@"[%@ %@]", NSStringFromClass([_aspectInfo.instance class]), [NSStringFromSelector(_aspectInfo.originalInvocation.selector) substringFromIndex:9]]
 
 /// Aspect Class List
-static NSArray<NSString *> *JPAspectDefineClassList;
+static NSArray<NSString *> *JPAspectDefineClass = nil;
 /// Super Alias Selector List
 static NSMutableDictionary *JPSuperAliasSelectorList = nil;
 /// Original method return value key
@@ -30,9 +30,9 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
 
 @implementation JPAspect
 
-+ (void)setupAspectDefineClassList:(NSArray<NSString *> *)classList
++ (void)setupAspectDefineClass:(NSArray<NSString *> *)classList
 {
-    JPAspectDefineClassList = classList;
+    JPAspectDefineClass = classList;
 }
 
 + (void)hookMethodWithAspectDictionary:(NSDictionary *)aspectDictionary
@@ -1079,7 +1079,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         if (0 == idx) {
             
             isCallSuper = NO;
-            if ([JPAspectDefineClassList containsObject:component]) {
+            if ([JPAspectDefineClass containsObject:component]) {
                 
                 currentTarget = NSClassFromString(component);
                 if (currentTarget == nil) {
