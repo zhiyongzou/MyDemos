@@ -8,9 +8,6 @@
 
 #import "JPAspectTypes.h"
 
-/// Argument 0 is self, argument 1 is SEL
-extern NSUInteger const JPAspectMethodDefaultArgumentsCount;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JPAspectArgument : NSObject

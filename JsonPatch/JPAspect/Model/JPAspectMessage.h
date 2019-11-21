@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary *invokeCondition;
 
 /*
- 消息类型，默认：JPAspectMessageTypeDefault
+ 方法类型，默认：JPAspectMessageTypeFunction
  
 //======JPAspectMessageTypeReturn======//
  

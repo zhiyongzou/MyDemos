@@ -10,15 +10,13 @@
 #import <UIKit/UIGeometry.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
-
 @implementation JPAspectArgument
 
 + (instancetype)modelWithArgumentDictionary:(NSDictionary *)argumentDic
 {
     JPAspectArgument *aspectArgument = [[self alloc] init];
     
-    aspectArgument.index = [[argumentDic objectForKey:@"index"] unsignedIntegerValue] + JPAspectMethodDefaultArgumentsCount;
+    aspectArgument.index = [[argumentDic objectForKey:@"index"] unsignedIntegerValue];
     aspectArgument.type = [[argumentDic objectForKey:@"type"] unsignedIntegerValue];
     
     if (aspectArgument.type == JPArgumentTypeUnknown) {

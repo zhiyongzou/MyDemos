@@ -25,6 +25,8 @@ static NSArray<NSString *> *JPAspectDefineClassList;
 static NSMutableDictionary *JPSuperAliasSelectorList = nil;
 /// Original method return value key
 static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalMethodReturnValueKey";
+/// Argument 0 is self, argument 1 is SEL
+static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
 
 @implementation JPAspect
 
@@ -95,6 +97,8 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
 
 + (void)setArgumentValue:(JPAspectArgument *)aspectArgument invocation:(NSInvocation *)invocation
 {
+    NSUInteger argumentIndex = aspectArgument.index + JPAspectMethodDefaultArgumentsCount;
+    
     if (aspectArgument.index >= invocation.methodSignature.numberOfArguments) {
         JPAspectLog(@"%@", [NSString stringWithFormat:@"[JPAspect] Argument index(%zd) is out of bounds [0, %zd)", aspectArgument.index, invocation.methodSignature.numberOfArguments]);
         NSAssert(NO, @"");
@@ -102,7 +106,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
     }
     
     // index 0 is self, index 1 is SEL by default
-    if (aspectArgument.index < 2) {
+    if (argumentIndex < JPAspectMethodDefaultArgumentsCount) {
         NSAssert(NO, @"");
         return;
     }
@@ -116,92 +120,92 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
     if (aspectArgument.type == JPArgumentTypeObject) {
         
         id value = aspectArgument.value;
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeClass) {
         
         Class value = aspectArgument.value;
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeSEL) {
         
         SEL value = NSSelectorFromString(aspectArgument.value);
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeCGRect) {
         
         CGRect value = [aspectArgument.value CGRectValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeUIEdgeInsets) {
         
         UIEdgeInsets value = [aspectArgument.value UIEdgeInsetsValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeCGPoint) {
         
         CGPoint value = [aspectArgument.value CGPointValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeCGSize) {
         
         CGSize value = [aspectArgument.value CGSizeValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeInt) {
         
         int value = [aspectArgument.value intValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeUnsignedInt) {
         
         unsigned int value = [aspectArgument.value unsignedIntValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeShort) {
         
         short value = [aspectArgument.value shortValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeUnsignedShort) {
         
         unsigned short value = [aspectArgument.value unsignedShortValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeLong) {
         
         long value = [aspectArgument.value longValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeUnsignedLong) {
         
         unsigned long value = [aspectArgument.value unsignedLongValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeLongLong) {
         
         long long value = [aspectArgument.value longLongValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeUnsignedLongLong) {
         
         unsigned long long value = [aspectArgument.value unsignedLongLongValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeFloat) {
         
         float value = [aspectArgument.value floatValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeDouble) {
         
         double value = [aspectArgument.value doubleValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else if (aspectArgument.type == JPArgumentTypeBool) {
         
         BOOL value = [aspectArgument.value boolValue];
-        [invocation setArgument:&value atIndex:aspectArgument.index];
+        [invocation setArgument:&value atIndex:argumentIndex];
         
     } else {
         JPAspectLog(@"%@", [NSString stringWithFormat:@"[JPAspect] Argument type:[%zd] is unknown", aspectArgument.type]);
@@ -210,9 +214,9 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
 
 + (nullable JPAspectArgument *)getArgumentWithInvocation:(NSInvocation *)invocation atIndex:(NSUInteger)index shouldSetValue:(BOOL)shouldSetValue
 {
-    index += JPAspectMethodDefaultArgumentsCount;
+    NSUInteger argumentIndex = index + JPAspectMethodDefaultArgumentsCount;
     
-    if (index >= invocation.methodSignature.numberOfArguments) {
+    if (argumentIndex >= invocation.methodSignature.numberOfArguments) {
         JPAspectLog(@"%@", [NSString stringWithFormat:@"[JPAspect] Argument index(%zd) is out of bounds [0, %zd)", index, invocation.methodSignature.numberOfArguments]);
         NSAssert(NO, @"");
         return nil;
@@ -221,13 +225,13 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
     JPAspectArgument *aspectArgument = [[JPAspectArgument alloc] init];
     aspectArgument.index = index;
     
-    const char *argType = [invocation.methodSignature getArgumentTypeAtIndex:index];
+    const char *argType = [invocation.methodSignature getArgumentTypeAtIndex:argumentIndex];
     
     if (strcmp(argType, @encode(id)) == 0) {
         
         if (shouldSetValue) {
             __unsafe_unretained id argumentValue = nil;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = argumentValue;
         }
         aspectArgument.type = JPArgumentTypeObject;
@@ -236,7 +240,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             long argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeLong;
@@ -245,7 +249,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             unsigned long argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeUnsignedLong;
@@ -254,7 +258,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             long long argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeLongLong;
@@ -263,7 +267,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             unsigned long long argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeUnsignedLongLong;
@@ -272,7 +276,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             int argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeInt;
@@ -281,7 +285,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             unsigned int argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeUnsignedInt;
@@ -290,7 +294,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             short argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeShort;
@@ -299,7 +303,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             unsigned short argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeUnsignedShort;
@@ -308,7 +312,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             float argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeFloat;
@@ -317,7 +321,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             BOOL argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeBool;
@@ -326,7 +330,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             double argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = @(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeDouble;
@@ -335,7 +339,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             CGRect argumentValue;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = [NSValue valueWithCGRect:argumentValue];
         }
         aspectArgument.type = JPArgumentTypeCGRect;
@@ -344,7 +348,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             UIEdgeInsets argumentValue;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = [NSValue valueWithUIEdgeInsets:argumentValue];
         }
         aspectArgument.type = JPArgumentTypeUIEdgeInsets;
@@ -353,7 +357,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             CGSize argumentValue;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = [NSValue valueWithCGSize:argumentValue];
         }
         aspectArgument.type = JPArgumentTypeCGSize;
@@ -362,7 +366,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             CGPoint argumentValue;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = [NSValue valueWithCGPoint:argumentValue];
         }
         aspectArgument.type = JPArgumentTypeCGPoint;
@@ -371,7 +375,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             SEL argumentValue;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = NSStringFromSelector(argumentValue);
         }
         aspectArgument.type = JPArgumentTypeSEL;
@@ -380,7 +384,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
         
         if (shouldSetValue) {
             Class argumentValue;
-            [invocation getArgument:&argumentValue atIndex:index];
+            [invocation getArgument:&argumentValue atIndex:argumentIndex];
             aspectArgument.value = argumentValue;
         }
         aspectArgument.type = JPArgumentTypeClass;
@@ -983,7 +987,7 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
     
     if ([aspectModel.argumentNames containsObject:msgComponents.firstObject]) {
         
-        NSUInteger argumentIndex = [aspectModel.argumentNames indexOfObject:msgComponents.firstObject]  + JPAspectMethodDefaultArgumentsCount;
+        NSUInteger argumentIndex = [aspectModel.argumentNames indexOfObject:msgComponents.firstObject];
         JPAspectArgument *argument = [[JPAspectArgument alloc] init];
         argument.type = [instanceValues.firstObject integerValue];
         argument.index = argumentIndex;
@@ -1152,12 +1156,12 @@ static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalM
                         if (localInstance) {
                             argument = [[JPAspectArgument alloc] init];
                             argument.value = localInstance.value;
-                            argument.index = [parameter[@"index"] unsignedIntegerValue] + JPAspectMethodDefaultArgumentsCount;
+                            argument.index = [parameter[@"index"] unsignedIntegerValue];
                             argument.type = [parameter[@"type"] unsignedIntegerValue];
                         } else if ([parameter[@"value"] isEqualToString:@"self"]) {
                             argument = [[JPAspectArgument alloc] init];
                             argument.value = aspectInfo.originalInvocation.target;
-                            argument.index = [parameter[@"index"] unsignedIntegerValue] + JPAspectMethodDefaultArgumentsCount;
+                            argument.index = [parameter[@"index"] unsignedIntegerValue];
                             argument.type = [parameter[@"type"] unsignedIntegerValue];
                         }  else {
                             if ([aspectModel.argumentNames containsObject:parameter[@"value"]]) {
