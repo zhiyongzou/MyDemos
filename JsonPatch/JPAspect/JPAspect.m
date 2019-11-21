@@ -541,12 +541,16 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         return instance;
     }
     
+    instance = [[localVariables objectForKey:contentString] value];
+    if (instance != nil) {
+        return instance;
+    }
+    
     if (type == JPArgumentTypeObject) {
         
-        instance = [[localVariables objectForKey:contentString] value];
-        if (instance == nil) {
-            instance = contentString;
-        }
+        // only support NSString
+        instance = contentString;
+        
     } else if (type == JPArgumentTypeClass) {
         
         instance = NSClassFromString(contentString);
