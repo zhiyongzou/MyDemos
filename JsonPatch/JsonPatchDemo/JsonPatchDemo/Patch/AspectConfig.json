@@ -1,0 +1,205 @@
+{
+    "AspectClassDefineList" : ["UIColor"],
+    "Aspects": [
+        {
+            "selName": "viewWillDisappear:",
+            "hookType": 5,
+            "className": "CCAspectDebugViewController",
+            "parameterNames": ["animated"],
+            "customInvokeMessages" : [
+                {
+                    "message" : "super.viewWillDisappear:",
+                    "parameters" : {
+                        "viewWillDisappear:" : [{
+                            "index" : 0,
+                            "value" : "animated",
+                            "type"  : 3
+                        }]
+                    }
+                }
+            ]
+        },
+        {
+            "selName": "msg_parser_serial_queue",
+            "hookType": 2,
+            "className": "CCChatRoomMessageParser",
+            "returnModify" : {
+                "expectValueForObject" : "dispatch_get_main_queue"
+            }
+        },
+        {
+            "selName": "nilArgument:",
+            "hookType": 3,
+            "className": "CCAspectDebugViewController",
+            "parameterNames": ["nilStr"],
+            "customInvokeMessages" : [
+                {
+                    "message" : "return",
+                    "messageType":1,
+                    "invokeCondition": {"condition":"nilStr==nil","operator":"=="}
+                }
+            ]
+        },
+        {
+            "selName": "classNilArgument:",
+            "hookType": 3,
+            "className": "CCAspectDebugViewController",
+            "parameterNames": ["nilStr"],
+            "customInvokeMessages" : [
+                {
+                    "message" : "return",
+                    "messageType":1,
+                    "invokeCondition": {"condition":"nilStr==nil","operator":"=="}
+                }
+            ]
+        },
+        {
+            "selName": "cellRect",
+            "hookType": 5,
+            "className": "CCAspectDebugViewController",
+            "customInvokeMessages" : [
+                {
+                    "message" : "return=17:1.2,1,1,1",
+                    "messageType":1
+                }
+            ]
+        },
+        {
+            "selName": "cellHeight",
+            "hookType": 5,
+            "className": "CCAspectDebugViewController",
+            "customInvokeMessages" : [
+                {
+                    "message" : "return=11:66.66",
+                    "messageType":1
+                }
+            ]
+        },
+        {
+            "selName": "cellColor",
+            "hookType": 5,
+            "className": "CCAspectDebugViewController",
+            "customInvokeMessages" : [
+                {
+                    "message" : "UIColor.redColor",
+                    "localInstanceKey" : "redColor"
+                },
+                {
+                    "message" : "return=1:redColor",
+                    "messageType":1
+                }
+            ],
+            "ApplySystemVersions": [
+                "*"
+            ]
+        },
+        {
+            "selName": "cellColorWithCondition",
+            "hookType": 5,
+            "className": "CCAspectDebugViewController",
+            "customInvokeMessages" : [
+                {
+                    "message" : "self.nilString",
+                    "localInstanceKey" : "nilString"
+                },
+                {
+                    "message" : "UIColor.orangeColor",
+                    "localInstanceKey" : "orangeColor",
+                    "invokeCondition": {"condition":"nilString==nil","operator":"=="}
+                },
+                {
+                    "message" : "return=1:orangeColor",
+                    "messageType":1,
+                    "invokeCondition": {"condition":"nilString==nil","operator":"=="}
+                },
+                {
+                    "message" : "UIColor.greenColor",
+                    "localInstanceKey" : "greenColor"
+                },
+                {
+                    "message" : "return=1:greenColor",
+                    "messageType":1
+                }
+            ],
+            "ApplySystemVersions": [
+                "*"
+            ]
+        },
+        {
+            "selName": "cellColorWithException",
+            "hookType": 3,
+            "className": "CCAspectDebugViewController",
+            "customInvokeMessages" : [
+                {
+                    "message" : "self.nilNumber",
+                    "localInstanceKey" : "nilNumber"
+                },
+                {
+                    "message" : "UIColor.blueColor",
+                    "localInstanceKey" : "blueColor",
+                    "invokeCondition": {"condition":"nilNumber==nil","operator":"=="}
+                },
+                {
+                    "message" : "return=1:blueColor",
+                    "messageType":1,
+                    "invokeCondition": {"condition":"nilNumber==nil","operator":"=="}
+                }
+            ]
+        },
+        {
+            "selName": "outOfBounceException:",
+            "hookType": 3,
+            "parameterNames": ["index"],
+            "className": "CCAspectDebugViewController",
+            "customInvokeMessages" : [
+                {
+                    "message" : "self.testInfoList.count",
+                    "localInstanceKey" : "infoListCount"
+                },
+                {
+                    "message" : "return",
+                    "messageType":1,
+                    "invokeCondition": {"condition":"index>=infoListCount","operator":">="}
+                }
+            ]
+        },
+        {
+            "selName": "cellTitle:",
+            "hookType": 3,
+            "parameterNames": ["title"],
+            "className": "CCAspectDebugViewController",
+            "customInvokeMessages" : [
+                
+                {
+                    "message" : "title=1:666",
+                    "messageType":2
+                }
+            ]
+        },
+        {
+            "selName": "andOperatorTest",
+            "hookType": 5,
+            "className": "CCAspectDebugViewController",
+            "customInvokeMessages" : [
+                {
+                    "message":"self.nilString",
+                    "localInstanceKey" : "nilString"
+                },
+                {
+                    "message":"self.nilString2",
+                    "localInstanceKey" : "nilString2"
+                },
+                {
+                    "invokeCondition": {"condition":"nilString==nil","operator":"==","conditionKey":"nilString_c"}
+                },
+                {
+                    "invokeCondition": {"condition":"nilString2==nil","operator":"==","conditionKey":"nilString2_c"}
+                },
+                {
+                    "message":"self.printAndOperator",
+                    "invokeCondition": {"condition":"nilString_c&&nilString2_c","operator":"&&"}
+                }
+            ]
+        }
+    ]
+}

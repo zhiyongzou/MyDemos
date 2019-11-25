@@ -25,6 +25,7 @@
 		8186C5762371A04D000C3560 /* JPAspectInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5712371A04D000C3560 /* JPAspectInstance.m */; };
 		8186C5772371A04D000C3560 /* JPAspectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5722371A04D000C3560 /* JPAspectModel.m */; };
 		8186C5782371A04D000C3560 /* JPAspectMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5732371A04D000C3560 /* JPAspectMessage.m */; };
+		8189ECB0238C0FB7004793B1 /* AspectConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 8189ECAF238C0FB7004793B1 /* AspectConfig.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		8186C5722371A04D000C3560 /* JPAspectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAspectModel.m; sourceTree = "<group>"; };
 		8186C5732371A04D000C3560 /* JPAspectMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAspectMessage.m; sourceTree = "<group>"; };
 		8186C5742371A04D000C3560 /* JPAspectMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAspectMessage.h; sourceTree = "<group>"; };
+		8189ECAF238C0FB7004793B1 /* AspectConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AspectConfig.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		8186C42623716D3D000C3560 /* JsonPatchDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8189ECAE238C0FA3004793B1 /* Patch */,
 				8186C51D23719FFC000C3560 /* JPAspect */,
 				8186C42723716D3D000C3560 /* AppDelegate.h */,
 				8186C42823716D3D000C3560 /* AppDelegate.m */,
@@ -209,6 +212,14 @@
 				8186C56E2371A04D000C3560 /* JPAspectTypes.h */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8189ECAE238C0FA3004793B1 /* Patch */ = {
+			isa = PBXGroup;
+			children = (
+				8189ECAF238C0FB7004793B1 /* AspectConfig.json */,
+			);
+			path = Patch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,6 +328,7 @@
 				8186C43423716D3E000C3560 /* LaunchScreen.storyboard in Resources */,
 				8186C43123716D3E000C3560 /* Assets.xcassets in Resources */,
 				8186C42F23716D3D000C3560 /* Main.storyboard in Resources */,
+				8189ECB0238C0FB7004793B1 /* AspectConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
