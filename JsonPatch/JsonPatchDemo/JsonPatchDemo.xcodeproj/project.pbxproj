@@ -112,6 +112,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		811BF135238D4C4E00045464 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8186C43623716D3E000C3560 /* main.m */,
+				8186C42723716D3D000C3560 /* AppDelegate.h */,
+				8186C42823716D3D000C3560 /* AppDelegate.m */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		8186C41B23716D3D000C3560 = {
 			isa = PBXGroup;
 			children = (
@@ -135,17 +145,15 @@
 		8186C42623716D3D000C3560 /* JsonPatchDemo */ = {
 			isa = PBXGroup;
 			children = (
+				811BF135238D4C4E00045464 /* App */,
 				8189ECAE238C0FA3004793B1 /* Patch */,
 				8186C51D23719FFC000C3560 /* JPAspect */,
-				8186C42723716D3D000C3560 /* AppDelegate.h */,
-				8186C42823716D3D000C3560 /* AppDelegate.m */,
 				8186C42A23716D3D000C3560 /* ViewController.h */,
 				8186C42B23716D3D000C3560 /* ViewController.m */,
 				8186C42D23716D3D000C3560 /* Main.storyboard */,
 				8186C43023716D3E000C3560 /* Assets.xcassets */,
 				8186C43223716D3E000C3560 /* LaunchScreen.storyboard */,
 				8186C43523716D3E000C3560 /* Info.plist */,
-				8186C43623716D3E000C3560 /* main.m */,
 			);
 			path = JsonPatchDemo;
 			sourceTree = "<group>";

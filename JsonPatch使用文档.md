@@ -14,42 +14,43 @@
 
 ### JSON 脚本字段说明
 #### 1. 示例脚本
-在 `- (void)viewWillDisappear:` 方法调用后增加自定义 `self.view.backgroundColor = [UIColor redColor]` 	方法调用; 该方法执行的条件是：**`animated == YES`**
+在 `- (void)viewWillDisappear:` 方法调用后增加自定义 `self.view.backgroundColor = [UIColor redColor]` 	方法调用; 该方法执行的条件是：**`animated == NO`**
 
-```
+```objc
 {
-    "AspectClassDefineList" : ["UIColor"],
+    "AspectDefineClass" : ["UIColor"],
     "Aspects": [
         {
-            "selName" : "viewWillDisappear:",
-            "hookType" : 4,
-            "className" : "ViewController",
-            "parameterNames" : ["animated"],
-            "customInvokeMessages" : [
+            "selName": "viewWillAppear:",
+            "hookType": 3,
+            "className": "ViewController",
+            "argumentNames": ["animated"],
+            "customMessages" : [
                 {
                     "message" : "UIColor.redColor",
                     "messageType" : 0,
                     "localInstanceKey" : "redColor",
                     "invokeCondition": {
-                    						"condition" : "animated==1",
-                    						"operator" : "==",
-                    						"conditionKey" : "isAnimated"
-                    					}
+                        "condition" : "animated==0",
+                        "operator" : "==",
+                        "conditionKey" : "isAnimated"
+                    }
                 },
                 {
                     "message" : "self.view.setBackgroundColor:",
                     "messageType" : 0,
-                    "parameters" : {
+                    "arguments" : {
                         "setBackgroundColor:" : [{
                             "index" : 0,
                             "value" : "redColor",
                             "type"  : 1
-                        }],
+                        }]
+                    },
                     "invokeCondition": {
-                    						"conditionKey" : "isAnimated"
-                    				   }
+                        "conditionKey" : "isAnimated"
                     }
                 }
+
             ],
             "ApplySystemVersions": [
                 "*"
@@ -61,7 +62,7 @@
 
 #### 2. 主要字段说明
 
-##### AspectClassDefineList ---> [ "Class", "Class2", ... ]
+##### AspectDefineClass ---> [ "Class", "Class2", ... ]
 	Objective-C 所使用到类，可选字段，如有使用到OC类，那么必须先定义后使用；多个类使用 “,” 分隔
 
 ##### Aspects ---> [ {dictionary}, {dictionary2}, ... ]
@@ -78,14 +79,14 @@
  
 > **hookType**：
 
-	方法替换类型，必选字段；例如：CCAspectHookNullImp、CCAspectHookCustomInvokeBefore等，具体看 CCAspectHookType
+	方法替换类型，必选字段；例如：JPAspectHookNullImp、JPAspectHookCustomInvokeBefore等，具体看 JPAspectHookType
  
-> **parameterNames**：
+> **argumentNames**：
 
 	方法参数列表，可选字段，无参数可不填；如果方法有多个参数，那么参数列表的顺序和个数必须跟方法的参数一致。
 	例如：`- (id)performSelector:(SEL)aSelector withObject:(id)object` 的参数列表为: ["aSelector", "object"]
  
-> **customInvokeMessages**：
+> **customMessages**：
 
 	自定义方法调用列表，必选字段
 
@@ -101,19 +102,19 @@
  
 > **messageType**：
 
-	方法类型，必选字段，默认 CCAspectMessageTypeDefault；有以下3种 CCAspectMessageType：
+	方法类型，必选字段，默认 JPAspectMessageTypeFunction；有以下3种 JPAspectMessageType：
 	
-	* 方法调用（ CCAspectMessageTypeDefault = 0 ）
-	* 返回语句（ CCAspectMessageTypeReturn  = 1 ）
-	* 赋值语句（ CCAspectMessageTypeAssign  = 2 ）
+	* 方法调用（ JPAspectMessageTypeFunction = 0 ）
+	* 返回语句（ JPAspectMessageTypeReturn   = 1 ）
+	* 赋值语句（ JPAspectMessageTypeAssign   = 2 ）
 
-> **parameters**：
+> **arguments**：
 
 	方法参数；可选字段，无参数不用填写。格式为：{"方法名(SEL)" : [{参数},  ...], {"方法名1(SEL1)" : [{参数1},  ...], ...}
 	参数有以下3个字段：
 	
 	* index ：参数位置，index 起始计数为 0
-	* type  ：参数类型（具体可参考：CCArgumentType）
+	* type  ：参数类型（具体可参考：JPArgumentType）
 	* value ：参数值
    
 > **localInstanceKey**：
@@ -232,7 +233,7 @@ self.view.backgroundColor = [UIColor redColor];
 ```
 
 #### Get 方法替换 
-* **完全替换**：CCAspectHookCustomInvokeInstead
+* **完全替换**：JPAspectHookCustomInvokeInstead
 
 ```objc
 // OC
@@ -303,7 +304,7 @@ self.view.backgroundColor = [UIColor redColor];
 }
 ```
 
-* **方法调用前进行赋值，适用于已自定义 get 方法**：CCAspectHookCustomInvokeBefore
+* **方法调用前进行赋值，适用于已自定义 get 方法**：JPAspectHookCustomInvokeBefore
 
 ```objc
 // OC
@@ -357,27 +358,27 @@ self.view.backgroundColor = [UIColor redColor];
 目前已支持参数类型如下
 
 ```objc
-typedef NS_ENUM(NSUInteger, CCArgumentType) {
+typedef NS_ENUM(NSUInteger, JPArgumentType) {
     
-    CCArgumentTypeUnknown           = 0,
-    CCArgumentTypeObject            = 1, // id
-    CCArgumentTypeClass             = 2,
-    CCArgumentTypeBool              = 3,
-    CCArgumentTypeLong              = 4, // NSInteger
-    CCArgumentTypeUnsignedLong      = 5, // NSUInteger
-    CCArgumentTypeShort             = 6,
-    CCArgumentTypeUnsignedShort     = 7,
-    CCArgumentTypeLongLong          = 8,
-    CCArgumentTypeUnsignedLongLong  = 9,
-    CCArgumentTypeFloat             = 10,
-    CCArgumentTypeDouble            = 11, // CGFolat
-    CCArgumentTypeInt               = 12,
-    CCArgumentTypeUnsignedInt       = 13,
-    CCArgumentTypeSEL               = 14,
-    CCArgumentTypeCGSize            = 15,
-    CCArgumentTypeCGPoint           = 16,
-    CCArgumentTypeCGRect            = 17,
-    CCArgumentTypeUIEdgeInsets      = 18
+    JPArgumentTypeUnknown           = 0,
+    JPArgumentTypeObject            = 1, // id
+    JPArgumentTypeClass             = 2,
+    JPArgumentTypeBool              = 3,
+    JPArgumentTypeLong              = 4, // NSInteger
+    JPArgumentTypeUnsignedLong      = 5, // NSUInteger
+    JPArgumentTypeShort             = 6,
+    JPArgumentTypeUnsignedShort     = 7,
+    JPArgumentTypeLongLong          = 8,
+    JPArgumentTypeUnsignedLongLong  = 9,
+    JPArgumentTypeFloat             = 10,
+    JPArgumentTypeDouble            = 11, // CGFolat
+    JPArgumentTypeInt               = 12,
+    JPArgumentTypeUnsignedInt       = 13,
+    JPArgumentTypeSEL               = 14,
+    JPArgumentTypeCGSize            = 15,
+    JPArgumentTypeCGPoint           = 16,
+    JPArgumentTypeCGRect            = 17,
+    JPArgumentTypeUIEdgeInsets      = 18
 };
 ```
 
@@ -390,7 +391,7 @@ typedef NS_ENUM(NSUInteger, CCArgumentType) {
 // JSON
 {
 	"index" : 0,
-	"type"  : 1, //CCArgumentTypeObject
+	"type"  : 1, //JPArgumentTypeObject
 	"value" : "Hello World!"
 }
 ```
@@ -403,7 +404,7 @@ NSAttributedString
 //JSON
 {
 	"index" : 0,
-	"type"  : 2, //CCArgumentTypeClass
+	"type"  : 2, //JPArgumentTypeClass
 	"value" : "NSAttributedString"
 }
 ```
@@ -416,7 +417,7 @@ NSAttributedString
 //JSON
 {
 	"index" : 0,
-	"type"  : 14, //CCArgumentTypeSEL
+	"type"  : 14, //JPArgumentTypeSEL
 	"value" : "initWithString:"
 }
 ```
@@ -430,7 +431,7 @@ int a = 1;
 // JSON
 {
 	"index" : 0,
-	"type"  : 12, //CCArgumentTypeInt
+	"type"  : 12, //JPArgumentTypeInt
 	"value" : 1
 }
 ```
@@ -444,7 +445,7 @@ CGRectMake(0, 0, 1, 1.1);
 // JSON
 {
 	"index" : 0,
-	"type"  : 17, //CCArgumentTypeCGRect
+	"type"  : 17, //JPArgumentTypeCGRect
 	"value" : "0,0,1,1.1"
 }
 ```
@@ -464,7 +465,7 @@ CGRectMake(0, 0, 1, 1.1);
 }，
 {
 	"index" : 0,
-	"type"  : 1, //CCArgumentTypeObject
+	"type"  : 1, //JPArgumentTypeObject
 	"value" : "redColor" // 使用 redColor 索引取值
 }
 ```
@@ -477,7 +478,7 @@ CGRectMake(0, 0, 1, 1.1);
 #### 2. 返回语句格式
 * 无返回值：`return`
 * 有返回值：`return=type:value`
-	* `type`  ：变量类型。具体定义看：**`CCArgumentType`**
+	* `type`  ：变量类型。具体定义看：**`JPArgumentType`**
 	* `value` ：返回值。支持字符串、基本类型（int, long, float, ...）、局部变量（localInstanceKey）
 
 #### 3. 使用示例
@@ -489,7 +490,7 @@ return;
 
 // JSON
 "mesage" : "return",
-"messageType" : 1 // CCAspectMessageTypeReturn
+"messageType" : 1 // JPAspectMessageTypeReturn
 ```
 
 * 基本类型返回值
@@ -500,7 +501,7 @@ return YES;
 
 // JSON
 "mesage" : "return=3:1",
-"messageType" : 1 // CCAspectMessageTypeReturn
+"messageType" : 1 // JPAspectMessageTypeReturn
 ```
 
 * UI布局类型返回值
@@ -511,7 +512,7 @@ return CGRectMake(0, 0, 1, 1.1);
 
 // JSON
 "mesage" : "return=17:0,0,1,1.1",
-"messageType" : 1 // CCAspectMessageTypeReturn
+"messageType" : 1 // JPAspectMessageTypeReturn
 ```
 
 * 局部变量返回值
@@ -529,7 +530,7 @@ return [UIColor redColor];
 }，
 {
 	"mesage" : "return=1:redColor",
-	"messageType" : 1 // CCAspectMessageTypeReturn
+	"messageType" : 1 // JPAspectMessageTypeReturn
 }
 ```
 
@@ -556,7 +557,7 @@ if (animated) {
 #### 2. 赋值语句格式
 * `instanceName=type:value`
 	* `instanceName` ：变量名：方法参数名、局部变量名（localInstanceKey）
-	* `type`  ：变量类型。具体定义看：**`CCArgumentType`**
+	* `type`  ：变量类型。具体定义看：**`JPArgumentType`**
 	* `value` ：变量值。支持字符串、基本类型（int, long, float, ...）、局部变量（localInstanceKey）
 
 #### 3. 使用示例
@@ -574,7 +575,7 @@ if (animated) {
 // JSON
 {
     "selName" : "viewWillDisappear:",
-    "hookType" : 3, // CCAspectHookCustomInvokeBefore
+    "hookType" : 3, // JPAspectHookCustomInvokeBefore
     "className" : "ViewController",
     "parameterNames" : ["animated"],
     "customInvokeMessages" : [

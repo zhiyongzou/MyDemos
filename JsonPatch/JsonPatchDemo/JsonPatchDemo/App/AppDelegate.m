@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "JPAspect+PatchLoad.h"
 
 @interface AppDelegate ()
 
@@ -15,8 +16,13 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     // Override point for customization after application launch.
+    
+    NSString *patchPath = [[NSBundle mainBundle] pathForResource:@"AspectConfig" ofType:@"json"];
+    [JPAspect loadJsonPatchWithPath:patchPath];
+    
     return YES;
 }
 
