@@ -112,7 +112,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     BOOL isClassMethod = NO;
     if ([targetCls respondsToSelector:targetSel]) {
         isClassMethod = YES;
-        targetCls = objc_getMetaClass([aspectModel.className UTF8String]);
+        targetCls = object_getClass(targetCls);
     }
     
     NSError *aspectError = nil;

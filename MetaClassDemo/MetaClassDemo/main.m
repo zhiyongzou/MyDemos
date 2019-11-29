@@ -20,7 +20,7 @@ void reportFunction(id self, SEL _cmd)
     Class currentClass = [self class];
     for (int i = 1; i < 5; i++)
     {
-        NSLog(@"Following the isa pointer %d times gives %p", i, currentClass);
+        NSLog(@"Following the isa pointer %d times gives %p %@", i, currentClass, NSStringFromClass(currentClass));
         currentClass = object_getClass(currentClass);
     }
     

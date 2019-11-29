@@ -379,22 +379,10 @@ static Class aspect_hookClass(NSObject *self, NSError **error) {
         // Already subclassed
 		return baseClass;
         
-    } else if (class_isMetaClass(statedClass)) {
-        
-        // Hook class method
-        NSString *metaClassName = [NSString stringWithFormat:@"%@_%@", className, NSStringFromClass(statedClass)];
-        _aspect_modifySwizzledClasses(^(NSMutableSet *swizzledClasses) {
-            if (![swizzledClasses containsObject:metaClassName]) {
-                aspect_swizzleForwardInvocation(statedClass);
-                [swizzledClasses addObject:metaClassName];
-            }
-        });
-        return statedClass;
-        
     } else if (class_isMetaClass(baseClass)) {
         
         // We swizzle a class object, not a single object.
-        return aspect_swizzleClassInPlace((Class)self);
+        return aspect_swizzleClassInPlace(statedClass);
         
     } else if (statedClass != baseClass) {
         
@@ -472,7 +460,7 @@ static void _aspect_modifySwizzledClasses(void (^block)(NSMutableSet *swizzledCl
 
 static Class aspect_swizzleClassInPlace(Class klass) {
     NSCParameterAssert(klass);
-    NSString *className = NSStringFromClass(klass);
+    NSString *className = [NSString stringWithFormat:@"%@_%p", NSStringFromClass(klass), klass];
 
     _aspect_modifySwizzledClasses(^(NSMutableSet *swizzledClasses) {
         if (![swizzledClasses containsObject:className]) {
@@ -485,7 +473,7 @@ static Class aspect_swizzleClassInPlace(Class klass) {
 
 static void aspect_undoSwizzleClassInPlace(Class klass) {
     NSCParameterAssert(klass);
-    NSString *className = NSStringFromClass(klass);
+    NSString *className = [NSString stringWithFormat:@"%@_%p", NSStringFromClass(klass), klass];
 
     _aspect_modifySwizzledClasses(^(NSMutableSet *swizzledClasses) {
         if ([swizzledClasses containsObject:className]) {
