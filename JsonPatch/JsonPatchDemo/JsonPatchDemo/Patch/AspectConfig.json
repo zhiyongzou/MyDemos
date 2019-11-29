@@ -36,6 +36,60 @@
             "ApplySystemVersions": [
                 "*"
             ]
+        },
+        
+        {
+            "selName": "arrayAddNilException:",
+            "hookType": 2,
+            "className": "ViewController",
+            "argumentNames": ["nilObject"],
+            "customMessages" : [
+                {
+                    "message" : "return",
+                    "messageType" : 1,
+                    "invokeCondition": {
+                        "condition" : "nilObject==nil",
+                        "operator" : "=="
+                    }
+                }
+            ]
+        },
+        
+        {
+            "selName": "ruturnModify",
+            "hookType": 4,
+            "className": "ViewController",
+            "customMessages" : [
+                {
+                    "message" : "UIColor.lightGrayColor",
+                    "localInstanceKey" : "lightGrayColor"
+                },
+                {
+                    "message" : "return=1:lightGrayColor",
+                    "messageType" : 1
+                }
+            ]
+        },
+        
+        {
+            "selName": "outOfBoundsException:",
+            "hookType": 2,
+            "argumentNames": ["index"],
+            "className": "ViewController",
+            "customMessages" : [
+                {
+                    "message" : "self.testList.count",
+                    "localInstanceKey" : "listCount"
+                },
+                {
+                    "message" : "return",
+                    "messageType" : 1,
+                    "invokeCondition": {
+                        "condition" : "index>=listCount",
+                        "operator" : ">="
+                    }
+                }
+            ]
         }
     ]
 }

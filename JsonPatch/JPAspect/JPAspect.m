@@ -25,7 +25,7 @@
 static NSArray<NSString *> *JPAspectDefineClass = nil;
 /// Super Alias Selector List
 static NSMutableDictionary *JPSuperAliasSelectorList = nil;
-/// Aspected Class List
+/// Aspect Token List
 static NSMutableDictionary<NSString *, id<AspectTokenProtocol>> *JPAspectTokenList = nil;
 /// Original method return value key
 static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalMethodReturnValueKey";
@@ -58,17 +58,25 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         return;
     }
     
-    id<AspectTokenProtocol> token = [JPAspectTokenList objectForKey:JPAspectTokenKey(className, selName, isClassMethod)];
+    NSString *tokenKey = JPAspectTokenKey(className, selName, isClassMethod);
+    id<AspectTokenProtocol> token = [JPAspectTokenList objectForKey:tokenKey];
     if (token) {
         [token remove];
+        [JPAspectTokenList removeObjectForKey:tokenKey];
     }
 }
 
 + (void)removeAllHooks
 {
+    if (JPAspectTokenList.count == 0) {
+        return;
+    }
+    
     [JPAspectTokenList.allValues enumerateObjectsUsingBlock:^(id<AspectTokenProtocol>  _Nonnull token, NSUInteger idx, BOOL * _Nonnull stop) {
         [token remove];
     }];
+    
+    [JPAspectTokenList removeAllObjects];
 }
 
 #pragma mark - Private

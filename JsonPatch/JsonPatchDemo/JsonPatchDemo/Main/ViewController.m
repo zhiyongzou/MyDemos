@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "JPCommonTypes.h"
+#import "JPAspect+PatchLoad.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -35,7 +36,7 @@
 {
     [super viewDidLayoutSubviews];
     
-    self.tableView.frame = self.view.bounds;;
+    self.tableView.frame = self.view.bounds;
 }
 
 #pragma mark - Action
@@ -44,11 +45,12 @@
 {
     [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:kDisableAspect];
     
-    UIApplication *app = [UIApplication sharedApplication];
-    if ([app respondsToSelector:@selector(suspend)]) {
-        [app performSelector:@selector(suspend)];
+    if (sender.isOn) {
+        [JPAspect removeAllHooks];
+    } else {
+        NSString *patchPath = [[NSBundle mainBundle] pathForResource:@"AspectConfig" ofType:@"json"];
+        [JPAspect loadJsonPatchWithPath:patchPath];
     }
-    exit(0);
 }
 
 #pragma mark - Private
@@ -71,9 +73,9 @@
     if (_testList == nil) {
         _testList = @[
                       
-            @{@"name":@"- (void)NilException", @"sel":@"-arrayAddNilException"},
-            @{@"name":@"+ (void)NilException", @"sel":@"+arrayAddNilException"},
-            @{@"name":@"NSArray NSRangeException", @"sel":@"outOfBounceException"}
+            @{@"name":@"Nil 异常", @"sel":@"arrayAddNilException"},
+            @{@"name":@"返回值改为 lightGrayColor", @"sel":@"ruturnModify"},
+            @{@"name":@"数组越界", @"sel":@"outOfBounceException"}
         ];
     }
     
@@ -113,13 +115,14 @@
     NSDictionary *testInfo = [self.testList objectAtIndex:indexPath.row];
     NSString *selName = testInfo[@"sel"];
     
-    if ([selName isEqualToString:@"-arrayAddNilException"]) {
+    if ([selName isEqualToString:@"arrayAddNilException"]) {
         
         [self arrayAddNilException:nil];
         
-    } else if ([selName isEqualToString:@"+arrayAddNilException"]) {
+    } else if ([selName isEqualToString:@"ruturnModify"]) {
         
-        [ViewController arrayAddNilException:nil];
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.backgroundColor = [ViewController ruturnModify];
         
     } else if ([selName isEqualToString:@"outOfBounceException"]) {
         
@@ -131,18 +134,30 @@
 
 - (void)arrayAddNilException:(id)nilObject
 {
+    // fix code
+//    if (nilObject == nil) {
+//        return;
+//    }
+    
     NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:1];
     [tempArray addObject:nilObject];
 }
 
-+ (void)arrayAddNilException:(id)nilObject
++ (UIColor *)ruturnModify
 {
-    NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:1];
-    [tempArray addObject:nilObject];
+    // fix code
+//    return [UIColor lightGrayColor];
+    
+    return [UIColor whiteColor];
 }
 
 - (void)outOfBoundsException:(NSUInteger)index
 {
+    // fix code
+//    if (index >= self.testList.count) {
+//        return;
+//    }
+    
     [self.testList objectAtIndex:index];
 }
 
