@@ -12,20 +12,32 @@
 
 + (instancetype)modelWithMessageDictionary:(NSDictionary *)messageDic
 {
-    JPAspectMessage *message = [[self alloc] init];
+    JPAspectMessage *aspectMessage = [[self alloc] init];
     
     if ([messageDic isKindOfClass:[NSDictionary class]]) {
-        message.message = [messageDic objectForKey:@"message"];
-        message.arguments = [messageDic objectForKey:@"arguments"];
-        if (message.arguments.count > 0) {
-            message.argumentCache = [NSMutableDictionary dictionaryWithCapacity:message.arguments.count];
+        aspectMessage.message = [messageDic objectForKey:@"message"];
+#ifdef DEBUG
+        NSString *message = [aspectMessage.message stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (message && ![aspectMessage.message isEqualToString:message]) {
+            NSAssert(NO, @"Message has whitespace character");
         }
-        message.messageType = [[messageDic objectForKey:@"messageType"] unsignedIntegerValue];
-        message.invokeCondition = [messageDic objectForKey:@"invokeCondition"];
-        message.localInstanceKey = [messageDic objectForKey:@"localInstanceKey"];
+#endif
+        aspectMessage.arguments = [messageDic objectForKey:@"arguments"];
+        if (aspectMessage.arguments.count > 0) {
+            aspectMessage.argumentCache = [NSMutableDictionary dictionaryWithCapacity:aspectMessage.arguments.count];
+        }
+        aspectMessage.messageType = [[messageDic objectForKey:@"messageType"] unsignedIntegerValue];
+        aspectMessage.invokeCondition = [messageDic objectForKey:@"invokeCondition"];
+#ifdef DEBUG
+        NSString *condition = [aspectMessage.invokeCondition[@"condition"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (condition && ![condition isEqualToString:aspectMessage.invokeCondition[@"condition"]]) {
+            NSAssert(NO, @"Condition has whitespace character");
+        }
+#endif
+        aspectMessage.localInstanceKey = [messageDic objectForKey:@"localInstanceKey"];
     }
     
-    return message;
+    return aspectMessage;
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "JPCommonTypes.h"
 #import "JPAspect+PatchLoad.h"
 
 @interface AppDelegate ()
@@ -20,8 +21,10 @@
 {
     // Override point for customization after application launch.
     
-    NSString *patchPath = [[NSBundle mainBundle] pathForResource:@"AspectConfig" ofType:@"json"];
-    [JPAspect loadJsonPatchWithPath:patchPath];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kDisableAspect]) {
+        NSString *patchPath = [[NSBundle mainBundle] pathForResource:@"AspectConfig" ofType:@"json"];
+        [JPAspect loadJsonPatchWithPath:patchPath];
+    }
     
     return YES;
 }

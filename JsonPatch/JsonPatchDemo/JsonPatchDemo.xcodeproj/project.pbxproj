@@ -46,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		811BF13E238FFA5F00045464 /* JPCommonTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPCommonTypes.h; sourceTree = "<group>"; };
 		8186C42423716D3D000C3560 /* JsonPatchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JsonPatchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8186C42723716D3D000C3560 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8186C42823716D3D000C3560 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -122,6 +123,26 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		811BF13C238FF21B00045464 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8186C42A23716D3D000C3560 /* ViewController.h */,
+				8186C42B23716D3D000C3560 /* ViewController.m */,
+				811BF13E238FFA5F00045464 /* JPCommonTypes.h */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		811BF13D238FF22E00045464 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8186C42D23716D3D000C3560 /* Main.storyboard */,
+				8186C43023716D3E000C3560 /* Assets.xcassets */,
+				8186C43223716D3E000C3560 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		8186C41B23716D3D000C3560 = {
 			isa = PBXGroup;
 			children = (
@@ -145,14 +166,11 @@
 		8186C42623716D3D000C3560 /* JsonPatchDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8186C51D23719FFC000C3560 /* JPAspect */,
 				811BF135238D4C4E00045464 /* App */,
 				8189ECAE238C0FA3004793B1 /* Patch */,
-				8186C51D23719FFC000C3560 /* JPAspect */,
-				8186C42A23716D3D000C3560 /* ViewController.h */,
-				8186C42B23716D3D000C3560 /* ViewController.m */,
-				8186C42D23716D3D000C3560 /* Main.storyboard */,
-				8186C43023716D3E000C3560 /* Assets.xcassets */,
-				8186C43223716D3E000C3560 /* LaunchScreen.storyboard */,
+				811BF13C238FF21B00045464 /* Main */,
+				811BF13D238FF22E00045464 /* Resources */,
 				8186C43523716D3E000C3560 /* Info.plist */,
 			);
 			path = JsonPatchDemo;
@@ -546,6 +564,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JsonPatchDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,6 +581,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JsonPatchDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

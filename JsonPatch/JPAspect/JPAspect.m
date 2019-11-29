@@ -19,10 +19,14 @@
 
 #define JPAspectBaseLogInfo(_aspectInfo) [NSString stringWithFormat:@"[%@ %@]", NSStringFromClass([_aspectInfo.instance class]), [NSStringFromSelector(_aspectInfo.originalInvocation.selector) substringFromIndex:9]]
 
+#define JPAspectTokenKey(_className, _selName, _isClassMethod) [JPAspect aspectTokenKeyWithClassName:_className selName:_selName isClassMethod:_isClassMethod]
+
 /// Aspect Class List
 static NSArray<NSString *> *JPAspectDefineClass = nil;
 /// Super Alias Selector List
 static NSMutableDictionary *JPSuperAliasSelectorList = nil;
+/// Aspected Class List
+static NSMutableDictionary<NSString *, id<AspectTokenProtocol>> *JPAspectTokenList = nil;
 /// Original method return value key
 static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalMethodReturnValueKey";
 /// Argument 0 is self, argument 1 is SEL
@@ -35,10 +39,39 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     JPAspectDefineClass = classList;
 }
 
-+ (void)hookMethodWithAspectDictionary:(NSDictionary *)aspectDictionary
++ (void)hookSelectorWithAspectDictionary:(NSDictionary *)aspectDictionary
 {
     [self hookMethodWithAspectModel:[JPAspectModel modelWithAspectDictionary:aspectDictionary]];
 }
+
++ (void)removeHookWithClassName:(NSString *)className selName:(NSString *)selName isClassMethod:(BOOL)isClassMethod
+{
+    if (className == nil) {
+        JPAspectLog(@"[JPAspect] className is nil");
+        NSAssert(NO, @"");
+        return;
+    }
+    
+    if (selName == nil) {
+        JPAspectLog(@"[JPAspect] selName is nil");
+        NSAssert(NO, @"");
+        return;
+    }
+    
+    id<AspectTokenProtocol> token = [JPAspectTokenList objectForKey:JPAspectTokenKey(className, selName, isClassMethod)];
+    if (token) {
+        [token remove];
+    }
+}
+
++ (void)removeAllHooks
+{
+    [JPAspectTokenList.allValues enumerateObjectsUsingBlock:^(id<AspectTokenProtocol>  _Nonnull token, NSUInteger idx, BOOL * _Nonnull stop) {
+        [token remove];
+    }];
+}
+
+#pragma mark - Private
 
 + (void)hookMethodWithAspectModel:(JPAspectModel *)aspectModel
 {
@@ -68,23 +101,40 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     }
     
     // Class method
+    BOOL isClassMethod = NO;
     if ([targetCls respondsToSelector:targetSel]) {
+        isClassMethod = YES;
         targetCls = objc_getMetaClass([aspectModel.className UTF8String]);
     }
     
     NSError *aspectError = nil;
     __weak typeof(self) weakSelf = self;
-    [targetCls aspect_hookSelector:targetSel withOptions:AspectPositionInstead usingBlock:^(id<AspectInfoProtocol> aspectInfo) {
+    id<AspectTokenProtocol> aspectToken = [targetCls aspect_hookSelector:targetSel withOptions:AspectPositionInstead usingBlock:^(id<AspectInfoProtocol> aspectInfo) {
         [weakSelf handleHookSelectorWithAspectInfo:aspectInfo aspectModel:aspectModel];
     } error:&aspectError];
     
     if (aspectError) {
         JPAspectLog(@"[JPAspect] %@ %@ Hook error:%@", aspectModel.className, aspectModel.selName, aspectError);
         NSAssert(NO, @"");
+    } else {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            JPAspectTokenList = [[NSMutableDictionary alloc] init];
+        });
+        if (aspectToken) {
+            [JPAspectTokenList setObject:aspectToken forKey:JPAspectTokenKey(aspectModel.className, aspectModel.selName, isClassMethod)];
+        }
     }
 }
 
-#pragma mark - Private
++ (NSString *)aspectTokenKeyWithClassName:(NSString *)className selName:(NSString *)selName isClassMethod:(BOOL)isClassMethod
+{
+    if (isClassMethod) {
+        return [NSString stringWithFormat:@"%@+%@", className, selName];
+    } else {
+        return [className stringByAppendingString:selName];
+    }
+}
 
 + (void)handleHookSelectorWithAspectInfo:(id<AspectInfoProtocol>)aspectInfo aspectModel:(JPAspectModel *)aspectModel
 {

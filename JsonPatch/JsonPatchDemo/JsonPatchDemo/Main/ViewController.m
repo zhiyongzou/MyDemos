@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "JPCommonTypes.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSDictionary *> *testList;
+@property (weak, nonatomic) IBOutlet UISwitch *aspectSwitch;
 
 @end
 
@@ -36,10 +38,25 @@
     self.tableView.frame = self.view.bounds;;
 }
 
+#pragma mark - Action
+
+- (IBAction)didClickSwitch:(UISwitch *)sender
+{
+    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:kDisableAspect];
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    if ([app respondsToSelector:@selector(suspend)]) {
+        [app performSelector:@selector(suspend)];
+    }
+    exit(0);
+}
+
 #pragma mark - Private
 
 - (void)setupSubviews
 {
+    self.aspectSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:kDisableAspect];
+    
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -56,15 +73,7 @@
                       
             @{@"name":@"- (void)NilException", @"sel":@"-arrayAddNilException"},
             @{@"name":@"+ (void)NilException", @"sel":@"+arrayAddNilException"},
-            @{@"name":@"NSArray NSRangeException", @"sel":@"outOfBoundsException"},
-            @{@"name":@"Return Modify CGFloat", @"sel":@"returnModifyCGRect"},
-            @{@"name":@"Return Modify CGColor", @"sel":@""},
-            @{@"name":@"Return Modify CGRect", @"sel":@""},
-            @{@"name":@"Return Modify CGSize", @"sel":@""},
-            @{@"name":@"Return Modify CGPoint", @"sel":@""},
-            @{@"name":@"Return Modify UIEdgeInsets", @"sel":@""},
-            @{@"name":@"Return Modify Class", @"sel":@""},
-            @{@"name":@"Return Modify SEL", @"sel":@""}
+            @{@"name":@"NSArray NSRangeException", @"sel":@"outOfBounceException"}
         ];
     }
     
@@ -115,39 +124,6 @@
     } else if ([selName isEqualToString:@"outOfBounceException"]) {
         
         [self outOfBoundsException:self.testList.count];
-
-    } else if ([selName isEqualToString:@"cellHeight"]) {
-        
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        
-    } else if ([selName isEqualToString:@"cellColor"]) {
-        
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        
-    } else if ([selName isEqualToString:@"cellColorWithException"]) {
-        
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        
-    } else if ([selName isEqualToString:@"outOfBounceException"]) {
-        
-        
-    } else if ([selName isEqualToString:@"cellColorWithCondition"]) {
-        
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        
-    } else if ([selName isEqualToString:@"cellTitle"]) {
-        
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        
-    } else if ([selName isEqualToString:@"andOperatorTest"]) {
-        
-        
-        
     }
 }
 
@@ -168,11 +144,6 @@
 - (void)outOfBoundsException:(NSUInteger)index
 {
     [self.testList objectAtIndex:index];
-}
-
-- (CGRect)returnModifyCGRect
-{
-    return CGRectZero;
 }
 
 @end

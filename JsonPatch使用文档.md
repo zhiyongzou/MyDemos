@@ -353,6 +353,7 @@ self.view.backgroundColor = [UIColor redColor];
 }
 ```
 
+
 ### 二、方法参数
 
 目前已支持参数类型如下
@@ -382,17 +383,17 @@ typedef NS_ENUM(NSUInteger, JPArgumentType) {
 };
 ```
 
-#### 1. NSString
+#### 1. self
 ```objc
 // OC
 
-@"Hello World!";
+self;
 
 // JSON
 {
 	"index" : 0,
 	"type"  : 1, //JPArgumentTypeObject
-	"value" : "Hello World!"
+	"value" : "self"
 }
 ```
 #### 2. Class
@@ -467,6 +468,19 @@ CGRectMake(0, 0, 1, 1.1);
 	"index" : 0,
 	"type"  : 1, //JPArgumentTypeObject
 	"value" : "redColor" // 使用 redColor 索引取值
+}
+```
+#### 7. NSString
+```objc
+// OC
+
+@"Hello World!";
+
+// JSON
+{
+	"index" : 0,
+	"type"  : 1, //JPArgumentTypeObject
+	"value" : "Hello World!"
 }
 ```
 

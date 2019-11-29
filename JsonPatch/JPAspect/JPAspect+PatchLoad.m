@@ -50,7 +50,7 @@
     [patchs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull patch, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray *applySystemVersions = patch[@"ApplySystemVersions"];
         if ((applySystemVersions == nil) || [self shouldRunPatchWithApplySystemVersions:applySystemVersions currentSystemVersion:systemVersion]) {
-            [self hookMethodWithAspectDictionary:patch];
+            [self hookSelectorWithAspectDictionary:patch];
             JPAspectLog(@"Run Patch %@", [NSString stringWithFormat:@"[%@ %@]", patch[@"className"], patch[@"selName"]]);
         }
     }];
