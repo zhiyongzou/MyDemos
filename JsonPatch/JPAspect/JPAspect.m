@@ -264,7 +264,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     }
 }
 
-+ (nullable JPAspectArgument *)getArgumentWithInvocation:(NSInvocation *)invocation atIndex:(NSUInteger)index shouldSetValue:(BOOL)shouldSetValue
++ (nullable JPAspectArgument *)getArgumentWithInvocation:(NSInvocation *)invocation atIndex:(NSUInteger)index
 {
     NSUInteger argumentIndex = index + JPAspectMethodDefaultArgumentsCount;
     
@@ -281,164 +281,128 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     
     if (strcmp(argType, @encode(id)) == 0) {
         
-        if (shouldSetValue) {
-            __unsafe_unretained id argumentValue = nil;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = argumentValue;
-        }
+        __unsafe_unretained id argumentValue = nil;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = argumentValue;
         aspectArgument.type = JPArgumentTypeObject;
         
     } else if (strcmp(argType, @encode(long)) == 0) {
         
-        if (shouldSetValue) {
-            long argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        long argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeLong;
         
     } else if (strcmp(argType, @encode(unsigned long)) == 0) {
         
-        if (shouldSetValue) {
-            unsigned long argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        unsigned long argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeUnsignedLong;
         
     } else if (strcmp(argType, @encode(long long)) == 0) {
         
-        if (shouldSetValue) {
-            long long argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        long long argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeLongLong;
         
     } else if (strcmp(argType, @encode(unsigned long long)) == 0) {
         
-        if (shouldSetValue) {
-            unsigned long long argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        unsigned long long argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeUnsignedLongLong;
         
     } else if (strcmp(argType, @encode(int)) == 0) {
         
-        if (shouldSetValue) {
-            int argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        int argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeInt;
         
     } else if (strcmp(argType, @encode(unsigned int)) == 0) {
         
-        if (shouldSetValue) {
-            unsigned int argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        unsigned int argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeUnsignedInt;
         
     } else if (strcmp(argType, @encode(short)) == 0) {
         
-        if (shouldSetValue) {
-            short argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        short argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeShort;
         
     } else if (strcmp(argType, @encode(unsigned short)) == 0) {
         
-        if (shouldSetValue) {
-            unsigned short argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        unsigned short argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeUnsignedShort;
         
     } else if (strcmp(argType, @encode(float)) == 0) {
         
-        if (shouldSetValue) {
-            float argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        float argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeFloat;
         
     } else if (strcmp(argType, @encode(BOOL)) == 0) {
         
-        if (shouldSetValue) {
-            BOOL argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        BOOL argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeBool;
         
     } else if (strcmp(argType, @encode(double)) == 0) {
         
-        if (shouldSetValue) {
-            double argumentValue = 0;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = @(argumentValue);
-        }
+        double argumentValue = 0;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = @(argumentValue);
         aspectArgument.type = JPArgumentTypeDouble;
         
     } else if (strcmp(argType, @encode(CGRect)) == 0) {
         
-        if (shouldSetValue) {
-            CGRect argumentValue;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = [NSValue valueWithCGRect:argumentValue];
-        }
+        CGRect argumentValue;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = [NSValue valueWithCGRect:argumentValue];
         aspectArgument.type = JPArgumentTypeCGRect;
         
     } else if (strcmp(argType, @encode(UIEdgeInsets)) == 0) {
         
-        if (shouldSetValue) {
-            UIEdgeInsets argumentValue;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = [NSValue valueWithUIEdgeInsets:argumentValue];
-        }
+        UIEdgeInsets argumentValue;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = [NSValue valueWithUIEdgeInsets:argumentValue];
         aspectArgument.type = JPArgumentTypeUIEdgeInsets;
         
     } else if (strcmp(argType, @encode(CGSize)) == 0) {
         
-        if (shouldSetValue) {
-            CGSize argumentValue;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = [NSValue valueWithCGSize:argumentValue];
-        }
+        CGSize argumentValue;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = [NSValue valueWithCGSize:argumentValue];
         aspectArgument.type = JPArgumentTypeCGSize;
         
     } else if (strcmp(argType, @encode(CGPoint)) == 0) {
         
-        if (shouldSetValue) {
-            CGPoint argumentValue;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = [NSValue valueWithCGPoint:argumentValue];
-        }
+        CGPoint argumentValue;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = [NSValue valueWithCGPoint:argumentValue];
         aspectArgument.type = JPArgumentTypeCGPoint;
         
     } else if (strcmp(argType, @encode(SEL)) == 0) {
         
-        if (shouldSetValue) {
-            SEL argumentValue;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = NSStringFromSelector(argumentValue);
-        }
+        SEL argumentValue;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = NSStringFromSelector(argumentValue);
         aspectArgument.type = JPArgumentTypeSEL;
         
     } else if (strcmp(argType, @encode(Class)) == 0) {
         
-        if (shouldSetValue) {
-            Class argumentValue;
-            [invocation getArgument:&argumentValue atIndex:argumentIndex];
-            aspectArgument.value = argumentValue;
-        }
+        Class argumentValue;
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = argumentValue;
         aspectArgument.type = JPArgumentTypeClass;
         
     } else {
@@ -871,8 +835,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
             if (vaule_1 == nil) {
                 if ([aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
-                                                                  shouldSetValue:YES];
+                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]];
                     vaule_1 = argument.value;
                 } else {
                     vaule_1 = @([conditionComponents.firstObject doubleValue]);
@@ -883,8 +846,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
             if (vaule_2 == nil) {
                 if ([aspectModel.argumentNames containsObject:conditionComponents.lastObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]
-                                                                  shouldSetValue:YES];
+                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]];
                     vaule_2 = argument.value;
                 } else {
                     vaule_2 = @([conditionComponents.lastObject doubleValue]);
@@ -929,8 +891,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 
                 if (vaule_1 == nil && [aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
-                                                                  shouldSetValue:YES];
+                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]];
                     vaule_1 = argument.value;
                 }
                 
@@ -942,8 +903,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 if (vaule_1 == nil) {
                     if ([aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                         JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
-                                                                      shouldSetValue:YES];
+                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]];
                         vaule_1 = argument.value;
                     } else {
                         vaule_1 = @([conditionComponents.firstObject doubleValue]);
@@ -954,8 +914,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 if (vaule_2 == nil) {
                     if ([aspectModel.argumentNames containsObject:conditionComponents.lastObject]) {
                         JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]
-                                                                      shouldSetValue:YES];
+                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]];
                         vaule_2 = argument.value;
                     } else {
                         vaule_2 = @([conditionComponents.lastObject doubleValue]);
@@ -975,8 +934,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 
                 if (vaule_1 == nil && [aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                     JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
-                                                                  shouldSetValue:YES];
+                                                                         atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]];
                     vaule_1 = argument.value;
                 }
                 
@@ -988,8 +946,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 if (vaule_1 == nil) {
                     if ([aspectModel.argumentNames containsObject:conditionComponents.firstObject]) {
                         JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]
-                                                                      shouldSetValue:YES];
+                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.firstObject]];
                         vaule_1 = argument.value;
                     } else {
                         vaule_1 = @([conditionComponents.firstObject doubleValue]);
@@ -1000,8 +957,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 if (vaule_2 == nil) {
                     if ([aspectModel.argumentNames containsObject:conditionComponents.lastObject]) {
                         JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]
-                                                                      shouldSetValue:YES];
+                                                                             atIndex:[aspectModel.argumentNames indexOfObject:conditionComponents.lastObject]];
                         vaule_2 = argument.value;
                     } else {
                         vaule_2 = @([conditionComponents.lastObject doubleValue]);
@@ -1178,7 +1134,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
             } else if ([aspectModel.argumentNames containsObject:component]) {
                 
                 NSUInteger idxOfParamter = [aspectModel.argumentNames indexOfObject:component];
-                JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation atIndex:idxOfParamter shouldSetValue:YES];
+                JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation atIndex:idxOfParamter];
                 
                 if (argument == nil || argument.type == JPArgumentTypeUnknown) {
                     NSString *errorMsg = @"[JPAspect] Message parameter is nil";
@@ -1228,8 +1184,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                             argument.type = argumentType;
                         }  else if ([aspectModel.argumentNames containsObject:parameter[@"value"]]) {
                             argument = [JPAspect getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                   atIndex:[aspectModel.argumentNames indexOfObject:parameter[@"value"]]
-                                                            shouldSetValue:YES];
+                                                                   atIndex:[aspectModel.argumentNames indexOfObject:parameter[@"value"]]];
                             argument.index = argumentIndex;
                         } else {
                             argument = [[JPAspectArgument alloc] init];
