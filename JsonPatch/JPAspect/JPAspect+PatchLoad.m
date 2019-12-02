@@ -14,6 +14,11 @@
 
 + (void)loadJsonPatchWithPath:(NSString *)filePath
 {
+    if (filePath == nil) {
+        NSAssert(NO, @"FilePath is nil");
+        return;
+    }
+    
     NSError *error = nil;
     NSData *jsonData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingMappedIfSafe error:&error];
     if (error) {

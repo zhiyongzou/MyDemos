@@ -618,7 +618,10 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         } else {
             instance = [NSValue valueWithCGPoint:CGPointZero];
         }
-    } else if (type == JPArgumentTypeInt) {
+    } else if (type == JPArgumentTypeInt ||
+               type == JPArgumentTypeShort ||
+               type == JPArgumentTypeUnsignedShort ||
+               type == JPArgumentTypeUnsignedInt) {
         
         instance = @([contentString intValue]);
         
@@ -630,7 +633,8 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         
         instance = @([contentString doubleValue]);
         
-    } else if (type == JPArgumentTypeLongLong) {
+    } else if (type == JPArgumentTypeLongLong ||
+               type == JPArgumentTypeUnsignedLongLong) {
         
         instance = @([contentString longLongValue]);
         

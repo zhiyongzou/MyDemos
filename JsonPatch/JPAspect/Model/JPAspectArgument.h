@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) JPArgumentType type;
 @property (nonatomic, strong, nullable) id value;
 
-+ (instancetype)modelWithArgumentDictionary:(NSDictionary *)argumentDic;
-
 @end
 
 NS_ASSUME_NONNULL_END
