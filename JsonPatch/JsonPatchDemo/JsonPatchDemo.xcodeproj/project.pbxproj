@@ -13,7 +13,6 @@
 		8186C43123716D3E000C3560 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8186C43023716D3E000C3560 /* Assets.xcassets */; };
 		8186C43423716D3E000C3560 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8186C43223716D3E000C3560 /* LaunchScreen.storyboard */; };
 		8186C43723716D3E000C3560 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C43623716D3E000C3560 /* main.m */; };
-		8186C44123716D3E000C3560 /* JsonPatchDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C44023716D3E000C3560 /* JsonPatchDemoTests.m */; };
 		8186C44C23716D3E000C3560 /* JsonPatchDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C44B23716D3E000C3560 /* JsonPatchDemoUITests.m */; };
 		8186C5462371A020000C3560 /* JPAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5402371A020000C3560 /* JPAspect.m */; };
 		8186C5472371A020000C3560 /* JPAspect+CustomInvokeInstead.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5422371A020000C3560 /* JPAspect+CustomInvokeInstead.m */; };
@@ -27,8 +26,9 @@
 		8186C5782371A04D000C3560 /* JPAspectMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5732371A04D000C3560 /* JPAspectMessage.m */; };
 		8189ECB0238C0FB7004793B1 /* AspectConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 8189ECAF238C0FB7004793B1 /* AspectConfig.json */; };
 		818A2A1E2394FEF400DB75D2 /* JPTestA.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A1D2394FEF400DB75D2 /* JPTestA.m */; };
-		818A2A2123950B8500DB75D2 /* AspectConfigTestArgument.json in Resources */ = {isa = PBXBuildFile; fileRef = 818A2A2023950B8500DB75D2 /* AspectConfigTestArgument.json */; };
+		818A2A2123950B8500DB75D2 /* AspectConfigTestArgumentType.json in Resources */ = {isa = PBXBuildFile; fileRef = 818A2A2023950B8500DB75D2 /* AspectConfigTestArgumentType.json */; };
 		818A2A2423950DAE00DB75D2 /* JPTestB.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A2323950DAE00DB75D2 /* JPTestB.m */; };
+		818A2A2623953B4600DB75D2 /* JsonPatchArgumentTypeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A2523953B4600DB75D2 /* JsonPatchArgumentTypeTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +61,6 @@
 		8186C43523716D3E000C3560 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8186C43623716D3E000C3560 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8186C43C23716D3E000C3560 /* JsonPatchDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JsonPatchDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8186C44023716D3E000C3560 /* JsonPatchDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JsonPatchDemoTests.m; sourceTree = "<group>"; };
 		8186C44223716D3E000C3560 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8186C44723716D3E000C3560 /* JsonPatchDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JsonPatchDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8186C44B23716D3E000C3560 /* JsonPatchDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JsonPatchDemoUITests.m; sourceTree = "<group>"; };
@@ -91,9 +90,10 @@
 		8189ECAF238C0FB7004793B1 /* AspectConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AspectConfig.json; sourceTree = "<group>"; };
 		818A2A1C2394FEF400DB75D2 /* JPTestA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPTestA.h; sourceTree = "<group>"; };
 		818A2A1D2394FEF400DB75D2 /* JPTestA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPTestA.m; sourceTree = "<group>"; };
-		818A2A2023950B8500DB75D2 /* AspectConfigTestArgument.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AspectConfigTestArgument.json; sourceTree = "<group>"; };
+		818A2A2023950B8500DB75D2 /* AspectConfigTestArgumentType.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AspectConfigTestArgumentType.json; sourceTree = "<group>"; };
 		818A2A2223950DAE00DB75D2 /* JPTestB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPTestB.h; sourceTree = "<group>"; };
 		818A2A2323950DAE00DB75D2 /* JPTestB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPTestB.m; sourceTree = "<group>"; };
+		818A2A2523953B4600DB75D2 /* JsonPatchArgumentTypeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JsonPatchArgumentTypeTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				818A2A1F2394FEF800DB75D2 /* TestClass */,
-				8186C44023716D3E000C3560 /* JsonPatchDemoTests.m */,
+				818A2A2523953B4600DB75D2 /* JsonPatchArgumentTypeTests.m */,
 				8186C44223716D3E000C3560 /* Info.plist */,
 			);
 			path = JsonPatchDemoTests;
@@ -253,7 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				8189ECAF238C0FB7004793B1 /* AspectConfig.json */,
-				818A2A2023950B8500DB75D2 /* AspectConfigTestArgument.json */,
+				818A2A2023950B8500DB75D2 /* AspectConfigTestArgumentType.json */,
 			);
 			path = Patch;
 			sourceTree = "<group>";
@@ -374,7 +374,7 @@
 			files = (
 				8186C43423716D3E000C3560 /* LaunchScreen.storyboard in Resources */,
 				8186C43123716D3E000C3560 /* Assets.xcassets in Resources */,
-				818A2A2123950B8500DB75D2 /* AspectConfigTestArgument.json in Resources */,
+				818A2A2123950B8500DB75D2 /* AspectConfigTestArgumentType.json in Resources */,
 				8186C42F23716D3D000C3560 /* Main.storyboard in Resources */,
 				8189ECB0238C0FB7004793B1 /* AspectConfig.json in Resources */,
 			);
@@ -421,7 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8186C44123716D3E000C3560 /* JsonPatchDemoTests.m in Sources */,
+				818A2A2623953B4600DB75D2 /* JsonPatchArgumentTypeTests.m in Sources */,
 				818A2A1E2394FEF400DB75D2 /* JPTestA.m in Sources */,
 				818A2A2423950DAE00DB75D2 /* JPTestB.m in Sources */,
 			);

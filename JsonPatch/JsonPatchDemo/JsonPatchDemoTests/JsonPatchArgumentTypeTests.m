@@ -1,8 +1,8 @@
 //
-//  JsonPatchDemoTests.m
+//  JsonPatchArgumentTypeTests.m
 //  JsonPatchDemoTests
 //
-//  Created by zzyong on 2019/11/5.
+//  Created by zzyong on 2019/12/2.
 //  Copyright © 2019 zzyong. All rights reserved.
 //
 
@@ -11,13 +11,13 @@
 #import <XCTest/XCTest.h>
 #import "JPAspect+PatchLoad.h"
 
-@interface JsonPatchDemoTests : XCTestCase
+@interface JsonPatchArgumentTypeTests : XCTestCase
 
 @property (nonatomic, strong) JPTestA *testA;
 
 @end
 
-@implementation JsonPatchDemoTests
+@implementation JsonPatchArgumentTypeTests
 
 /// Put setup code here. This method is called before the invocation of each test method in the class.
 - (void)setUp
@@ -51,7 +51,7 @@
 - (void)testModifyMethodArgument
 {
     // load json patch
-    NSString *patchPath = [[NSBundle mainBundle] pathForResource:@"AspectConfigTestArgument" ofType:@"json"];
+    NSString *patchPath = [[NSBundle mainBundle] pathForResource:@"AspectConfigTestArgumentType" ofType:@"json"];
     [JPAspect loadJsonPatchWithPath:patchPath];
     
     self.testA.name = @"aa";
@@ -106,8 +106,8 @@
     isEqual = (self.testA.myUnsignedInt == 22);
     XCTAssertTrue(isEqual, @"Must equal");
     
-    self.testA.selector = @selector(testSelA);
-    isEqual = ([NSStringFromSelector(self.testA.selector) isEqualToString:@"testSelB"]);
+    self.testA.selector = @selector(selA);
+    isEqual = ([NSStringFromSelector(self.testA.selector) isEqualToString:@"selB"]);
     XCTAssertTrue(isEqual, @"Must equal");
     
     self.testA.size = CGSizeZero;

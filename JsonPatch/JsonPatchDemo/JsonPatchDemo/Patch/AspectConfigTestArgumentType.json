@@ -190,7 +190,7 @@
             "argumentNames": ["selector"],
             "customMessages" : [
                 {
-                    "message" : "selector=14:testSelB",
+                    "message" : "selector=14:selB",
                     "messageType" : 2
                 }
             ]

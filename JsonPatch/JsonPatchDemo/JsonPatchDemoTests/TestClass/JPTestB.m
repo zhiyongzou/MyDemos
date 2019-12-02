@@ -10,12 +10,12 @@
 
 @implementation JPTestB
 
-- (void)testSelA
+- (void)selA
 {
     
 }
 
-- (void)testSelB
+- (void)selB
 {
     
 }

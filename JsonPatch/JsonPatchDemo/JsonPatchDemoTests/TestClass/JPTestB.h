@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JPTestB : NSObject
 
-- (void)testSelA;
+- (void)selA;
 
-- (void)testSelB;
+- (void)selB;
 
 @end
 
