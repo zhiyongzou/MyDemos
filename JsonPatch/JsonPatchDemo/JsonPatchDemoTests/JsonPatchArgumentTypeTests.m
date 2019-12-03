@@ -22,7 +22,7 @@
 /// Put setup code here. This method is called before the invocation of each test method in the class.
 - (void)setUp
 {
-    [self commonSetup];
+    self.testA = [[JPTestA alloc] init];
 }
 
 /// Put teardown code here. This method is called after the invocation of each test method in the class.
@@ -37,13 +37,6 @@
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
-}
-
-#pragma mark - Setup
-
-- (void)commonSetup
-{
-    self.testA = [[JPTestA alloc] init];
 }
 
 #pragma mark - Tests

@@ -1122,11 +1122,20 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 SEL superAliasSel = NSSelectorFromString(jp_superAliasSelString(aspectModel.selName));
                 
                 if (![aspectInfo.originalInvocation.target respondsToSelector:superAliasSel]) {
-                    Class superCls = [aspectInfo.originalInvocation.target superclass];
+                    
+                    Class superCls = nil;
+                    Class targetCls = nil;
+                    if (object_isClass(aspectInfo.originalInvocation.target)) {
+                        targetCls = object_getClass(aspectInfo.originalInvocation.target);
+                        superCls = [targetCls superclass];
+                    } else {
+                        superCls = [aspectInfo.originalInvocation.target superclass];
+                        targetCls = [aspectInfo.originalInvocation.target class];
+                    }
                     Method superMethod = class_getInstanceMethod(superCls, superSel);
                     IMP superIMP = method_getImplementation(superMethod);
-                    Class targetCls = object_isClass(aspectInfo.originalInvocation.target) ? aspectInfo.originalInvocation.target : [aspectInfo.originalInvocation.target class];
-                    class_addMethod(targetCls, superAliasSel, superIMP, method_getTypeEncoding(superMethod));
+                    BOOL addMethodSuccess = class_addMethod(targetCls, superAliasSel, superIMP, method_getTypeEncoding(superMethod));
+                    JPAspectLog(@"Add Super Method Success: %d", addMethodSuccess);
                 }
                 currentTarget = aspectInfo.originalInvocation.target;
                 isCallSuper = YES;

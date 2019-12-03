@@ -29,6 +29,10 @@
 		818A2A2123950B8500DB75D2 /* AspectConfigTestArgumentType.json in Resources */ = {isa = PBXBuildFile; fileRef = 818A2A2023950B8500DB75D2 /* AspectConfigTestArgumentType.json */; };
 		818A2A2423950DAE00DB75D2 /* JPTestB.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A2323950DAE00DB75D2 /* JPTestB.m */; };
 		818A2A2623953B4600DB75D2 /* JsonPatchArgumentTypeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A2523953B4600DB75D2 /* JsonPatchArgumentTypeTests.m */; };
+		818A2A2823953D7300DB75D2 /* AspectConfigTestCommon.json in Resources */ = {isa = PBXBuildFile; fileRef = 818A2A2723953D7300DB75D2 /* AspectConfigTestCommon.json */; };
+		818A2A2923953D7300DB75D2 /* AspectConfigTestCommon.json in Resources */ = {isa = PBXBuildFile; fileRef = 818A2A2723953D7300DB75D2 /* AspectConfigTestCommon.json */; };
+		818A2A2B23953DBE00DB75D2 /* JsonPatchCommonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A2A23953DBE00DB75D2 /* JsonPatchCommonTests.m */; };
+		818A2A2E23953F7C00DB75D2 /* JPTestC.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A2D23953F7C00DB75D2 /* JPTestC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +98,10 @@
 		818A2A2223950DAE00DB75D2 /* JPTestB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPTestB.h; sourceTree = "<group>"; };
 		818A2A2323950DAE00DB75D2 /* JPTestB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPTestB.m; sourceTree = "<group>"; };
 		818A2A2523953B4600DB75D2 /* JsonPatchArgumentTypeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JsonPatchArgumentTypeTests.m; sourceTree = "<group>"; };
+		818A2A2723953D7300DB75D2 /* AspectConfigTestCommon.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AspectConfigTestCommon.json; sourceTree = "<group>"; };
+		818A2A2A23953DBE00DB75D2 /* JsonPatchCommonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JsonPatchCommonTests.m; sourceTree = "<group>"; };
+		818A2A2C23953F7C00DB75D2 /* JPTestC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPTestC.h; sourceTree = "<group>"; };
+		818A2A2D23953F7C00DB75D2 /* JPTestC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPTestC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				818A2A1F2394FEF800DB75D2 /* TestClass */,
+				818A2A2A23953DBE00DB75D2 /* JsonPatchCommonTests.m */,
 				818A2A2523953B4600DB75D2 /* JsonPatchArgumentTypeTests.m */,
 				8186C44223716D3E000C3560 /* Info.plist */,
 			);
@@ -254,6 +263,7 @@
 			children = (
 				8189ECAF238C0FB7004793B1 /* AspectConfig.json */,
 				818A2A2023950B8500DB75D2 /* AspectConfigTestArgumentType.json */,
+				818A2A2723953D7300DB75D2 /* AspectConfigTestCommon.json */,
 			);
 			path = Patch;
 			sourceTree = "<group>";
@@ -265,6 +275,8 @@
 				818A2A1D2394FEF400DB75D2 /* JPTestA.m */,
 				818A2A2223950DAE00DB75D2 /* JPTestB.h */,
 				818A2A2323950DAE00DB75D2 /* JPTestB.m */,
+				818A2A2C23953F7C00DB75D2 /* JPTestC.h */,
+				818A2A2D23953F7C00DB75D2 /* JPTestC.m */,
 			);
 			path = TestClass;
 			sourceTree = "<group>";
@@ -372,6 +384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				818A2A2823953D7300DB75D2 /* AspectConfigTestCommon.json in Resources */,
 				8186C43423716D3E000C3560 /* LaunchScreen.storyboard in Resources */,
 				8186C43123716D3E000C3560 /* Assets.xcassets in Resources */,
 				818A2A2123950B8500DB75D2 /* AspectConfigTestArgumentType.json in Resources */,
@@ -384,6 +397,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				818A2A2923953D7300DB75D2 /* AspectConfigTestCommon.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,9 +435,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				818A2A2E23953F7C00DB75D2 /* JPTestC.m in Sources */,
 				818A2A2623953B4600DB75D2 /* JsonPatchArgumentTypeTests.m in Sources */,
 				818A2A1E2394FEF400DB75D2 /* JPTestA.m in Sources */,
 				818A2A2423950DAE00DB75D2 /* JPTestB.m in Sources */,
+				818A2A2B23953DBE00DB75D2 /* JsonPatchCommonTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

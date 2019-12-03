@@ -1,0 +1,26 @@
+{
+    "AspectDefineClass" : ["UIColor"],
+    "Aspects": [
+        {
+            "className": "JPTestC",
+            "selName": "willInitTestObject",
+            "hookType": 2,
+            "customMessages" : [
+                {
+                    "message" : "super.willInitTestObject"
+                }
+            ]
+        },
+        
+        {
+            "className": "JPTestC",
+            "selName": "willInitClassTestObject",
+            "hookType": 3,
+            "customMessages" : [
+                {
+                    "message" : "super.willInitClassTestObject"
+                }
+            ]
+        }
+    ]
+}
