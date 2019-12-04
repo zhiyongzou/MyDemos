@@ -3,7 +3,7 @@
     "Aspects": [
         {
             "selName": "viewWillAppear:",
-            "hookType": 3,
+            "hookType": 2,
             "className": "ViewController",
             "argumentNames": ["animated"],
             "customMessages" : [
@@ -40,7 +40,7 @@
         
         {
             "selName": "arrayAddNilException:",
-            "hookType": 2,
+            "hookType": 1,
             "className": "ViewController",
             "argumentNames": ["nilObject"],
             "customMessages" : [
@@ -57,7 +57,7 @@
         
         {
             "selName": "ruturnModify",
-            "hookType": 4,
+            "hookType": 3,
             "className": "ViewController",
             "customMessages" : [
                 {
@@ -73,7 +73,7 @@
         
         {
             "selName": "outOfBoundsException:",
-            "hookType": 2,
+            "hookType": 1,
             "argumentNames": ["index"],
             "className": "ViewController",
             "customMessages" : [

@@ -44,4 +44,9 @@ static BOOL jp_isCallClassSuper = NO;
     NSLog(@"%s", __func__);
 }
 
+- (NSString *)contentWithCustomString:(NSString *)string
+{
+    return [NSString stringWithFormat:@"jp_%@", string];
+}
+
 @end

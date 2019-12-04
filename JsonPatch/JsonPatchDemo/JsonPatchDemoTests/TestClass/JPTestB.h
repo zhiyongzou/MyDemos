@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)willInitClassTestObject;
 
+- (NSString *)contentWithCustomString:(NSString *)string;
+
 @end
 
 NS_ASSUME_NONNULL_END

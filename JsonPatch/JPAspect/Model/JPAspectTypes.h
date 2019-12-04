@@ -43,10 +43,9 @@ typedef NS_ENUM(NSUInteger, JPArgumentType) {
 typedef NS_ENUM(NSUInteger, JPAspectHookType) {
     
     JPAspectHookUnknown              = 0, // Unknown
-    JPAspectHookNullImp              = 1, // Instead with empty IMP
-    JPAspectHookCustomInvokeBefore   = 2, // Custom function invoke before original
-    JPAspectHookCustomInvokeAfter    = 3, // Custom function invoke after original
-    JPAspectHookCustomInvokeInstead  = 4  // Custom function invoke instead original
+    JPAspectHookCustomInvokeBefore   = 1, // Custom function invoke before original
+    JPAspectHookCustomInvokeAfter    = 2, // Custom function invoke after original
+    JPAspectHookCustomInvokeInstead  = 3  // Custom function invoke instead original
 };
 
 typedef NS_ENUM(NSUInteger, JPAspectMessageType) {

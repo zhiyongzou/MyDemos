@@ -14,8 +14,8 @@
 #import "JPAspectArgument.h"
 #import "JPAspectInstance.h"
 #import <UIKit/UIGeometry.h>
+#import "JPAspect+HookInstead.h"
 #import <CoreGraphics/CoreGraphics.h>
-#import "JPAspect+CustomInvokeInstead.h"
 
 #define JPAspectBaseLogInfo(_aspectInfo) [NSString stringWithFormat:@"[%@ %@]", NSStringFromClass([_aspectInfo.instance class]), [NSStringFromSelector(_aspectInfo.originalInvocation.selector) substringFromIndex:9]]
 
@@ -118,7 +118,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     NSError *aspectError = nil;
     __weak typeof(self) weakSelf = self;
     id<AspectTokenProtocol> aspectToken = [targetCls aspect_hookSelector:targetSel withOptions:AspectPositionInstead usingBlock:^(id<AspectInfoProtocol> aspectInfo) {
-        [weakSelf handleHookSelectorWithAspectInfo:aspectInfo aspectModel:aspectModel];
+        [weakSelf handleAspectCustomInvokeWithAspectInfo:aspectInfo aspectModel:aspectModel];
     } error:&aspectError];
     
     if (aspectError) {
@@ -141,15 +141,6 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         return [NSString stringWithFormat:@"%@+%@", className, selName];
     } else {
         return [className stringByAppendingString:selName];
-    }
-}
-
-+ (void)handleHookSelectorWithAspectInfo:(id<AspectInfoProtocol>)aspectInfo aspectModel:(JPAspectModel *)aspectModel
-{
-    if (JPAspectHookNullImp == aspectModel.hookType) {
-        JPAspectLog(@"%@", [NSString stringWithFormat:@"%@ replace to empty IMP", JPAspectBaseLogInfo(aspectInfo)]);
-    } else {
-        [self handleAspectCustomInvokeWithAspectInfo:aspectInfo aspectModel:aspectModel];
     }
 }
 
@@ -435,7 +426,9 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     }
     
     if (!signature) {
-        JPAspectLog(@"[JPAspect] Target:[%@] method signature must not be nil. selName:%@", target, selName);
+        NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Target:[%@] method signature must not be nil. selName:%@", target, selName];
+        JPAspectLog(@"%@", errorMsg);
+        NSAssert(NO, errorMsg);
         return instance;
     }
     
@@ -729,7 +722,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     } else  if (shouldReturn || aspectModel.hookType == JPAspectHookCustomInvokeInstead) {
         JPAspectInstance *returnInstance = [localVariables objectForKey:kAspectOriginalMethodReturnValueKey];
         if (returnInstance) {
-            id target = object_isClass(aspectInfo.originalInvocation.target) ? [JPAspect class] : [[JPAspect alloc] init];
+            id target = object_isClass(aspectInfo.instance) ? [JPAspect class] : [[JPAspect alloc] init];
             aspectInfo.originalInvocation.target = target;
             if (returnInstance.type == JPArgumentTypeObject) {
                 
@@ -1107,7 +1100,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 
             } else if ([component isEqualToString:@"self"]) {
                 
-                currentTarget = aspectInfo.originalInvocation.target;
+                currentTarget = aspectInfo.instance;
                 
             } else if ([component isEqualToString:@"super"]) {
                 
@@ -1121,23 +1114,23 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 SEL superSel = NSSelectorFromString(aspectModel.selName);
                 SEL superAliasSel = NSSelectorFromString(jp_superAliasSelString(aspectModel.selName));
                 
-                if (![aspectInfo.originalInvocation.target respondsToSelector:superAliasSel]) {
+                if (![aspectInfo.instance respondsToSelector:superAliasSel]) {
                     
                     Class superCls = nil;
                     Class targetCls = nil;
-                    if (object_isClass(aspectInfo.originalInvocation.target)) {
-                        targetCls = object_getClass(aspectInfo.originalInvocation.target);
+                    if (object_isClass(aspectInfo.instance)) {
+                        targetCls = object_getClass(aspectInfo.instance);
                         superCls = [targetCls superclass];
                     } else {
-                        superCls = [aspectInfo.originalInvocation.target superclass];
-                        targetCls = [aspectInfo.originalInvocation.target class];
+                        superCls = [aspectInfo.instance superclass];
+                        targetCls = [aspectInfo.instance class];
                     }
                     Method superMethod = class_getInstanceMethod(superCls, superSel);
                     IMP superIMP = method_getImplementation(superMethod);
                     BOOL addMethodSuccess = class_addMethod(targetCls, superAliasSel, superIMP, method_getTypeEncoding(superMethod));
                     JPAspectLog(@"Add Super Method Success: %d", addMethodSuccess);
                 }
-                currentTarget = aspectInfo.originalInvocation.target;
+                currentTarget = aspectInfo.instance;
                 isCallSuper = YES;
                 
             } else if ([localVariables objectForKey:component]) {
@@ -1179,7 +1172,11 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                     arguments = [[NSMutableArray alloc] initWithCapacity:cureentSelArguments.count];
                     
                     [cureentSelArguments enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull parameter, NSUInteger idx, BOOL * _Nonnull stop) {
-                        
+#ifdef DEBUG
+                        if (![parameter[@"value"] isKindOfClass:[NSString class]]) {
+                            NSAssert(NO, @"Value must be NSString");
+                        }
+#endif
                         JPAspectArgument *argument = nil;
                         JPAspectInstance *localInstance = [localVariables objectForKey:parameter[@"value"]];
                         NSUInteger argumentType = [parameter[@"type"] unsignedIntegerValue];
@@ -1192,7 +1189,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                             argument.type = argumentType;
                         } else if ([parameter[@"value"] isEqualToString:@"self"]) {
                             argument = [[JPAspectArgument alloc] init];
-                            argument.value = aspectInfo.originalInvocation.target;
+                            argument.value = aspectInfo.instance;
                             argument.index = argumentIndex;
                             argument.type = argumentType;
                         }  else if ([aspectModel.argumentNames containsObject:parameter[@"value"]]) {

@@ -34,43 +34,36 @@
     self.testC = nil;
 }
 
-- (void)testCallInstanceSuper
+- (void)testCallSuperInstanceMethod
 {
     [self.testC willInitTestObject];
     
     XCTAssertTrue(self.testC.isCallInstanceSuper);
 }
 
-- (void)testCallClassSuper
+- (void)testCallSuperClassMethod
 {
     [JPTestC willInitClassTestObject];
     
     XCTAssertTrue(self.testC.isCallClassSuper);
 }
 
-- (void)testHookInstanceMethod
+- (void)testCallSuperInstanceMethodWithArgument
 {
-    
-}
-
-- (void)testHookClassMethod
-{
-    
-}
-
-- (void)testCallSingleArgumentMethod
-{
-    
+    NSString *content = [self.testC contentWithCustomString:@"JPTestC"];
+    XCTAssertEqualObjects(content, @"jp_JPTestC");
 }
 
 - (void)testCallMultiArgumentMethod
 {
-    
+    NSString *content = [self.testC multiArgumentMethodTest];
+    XCTAssertEqualObjects(content, @"JPTestC_1_0");
 }
 
-- (void)testHookGetterMethod
+- (void)testHookIsEqualToNumberMethod
 {
-    
+    NSNumber *nilNumber = nil;
+    XCTAssertTrue([@(1) isEqualToNumber:nilNumber]);
 }
 
 @end

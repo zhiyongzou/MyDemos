@@ -15,7 +15,7 @@
 		8186C43723716D3E000C3560 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C43623716D3E000C3560 /* main.m */; };
 		8186C44C23716D3E000C3560 /* JsonPatchDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C44B23716D3E000C3560 /* JsonPatchDemoUITests.m */; };
 		8186C5462371A020000C3560 /* JPAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5402371A020000C3560 /* JPAspect.m */; };
-		8186C5472371A020000C3560 /* JPAspect+CustomInvokeInstead.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5422371A020000C3560 /* JPAspect+CustomInvokeInstead.m */; };
+		8186C5472371A020000C3560 /* JPAspect+HookInstead.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5422371A020000C3560 /* JPAspect+HookInstead.m */; };
 		8186C5482371A020000C3560 /* JPAspect+PatchLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5442371A020000C3560 /* JPAspect+PatchLoad.m */; };
 		8186C55B2371A037000C3560 /* NSInvocation+Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5542371A037000C3560 /* NSInvocation+Aspects.m */; };
 		8186C55C2371A037000C3560 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5552371A037000C3560 /* Aspects.m */; };
@@ -71,8 +71,8 @@
 		8186C44D23716D3E000C3560 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8186C5402371A020000C3560 /* JPAspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAspect.m; sourceTree = "<group>"; };
 		8186C5412371A020000C3560 /* JPAspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAspect.h; sourceTree = "<group>"; };
-		8186C5422371A020000C3560 /* JPAspect+CustomInvokeInstead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JPAspect+CustomInvokeInstead.m"; sourceTree = "<group>"; };
-		8186C5432371A020000C3560 /* JPAspect+CustomInvokeInstead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JPAspect+CustomInvokeInstead.h"; sourceTree = "<group>"; };
+		8186C5422371A020000C3560 /* JPAspect+HookInstead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JPAspect+HookInstead.m"; sourceTree = "<group>"; };
+		8186C5432371A020000C3560 /* JPAspect+HookInstead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JPAspect+HookInstead.h"; sourceTree = "<group>"; };
 		8186C5442371A020000C3560 /* JPAspect+PatchLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JPAspect+PatchLoad.m"; sourceTree = "<group>"; };
 		8186C5452371A020000C3560 /* JPAspect+PatchLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JPAspect+PatchLoad.h"; sourceTree = "<group>"; };
 		8186C5542371A037000C3560 /* NSInvocation+Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Aspects.m"; sourceTree = "<group>"; };
@@ -221,8 +221,8 @@
 				8186C5402371A020000C3560 /* JPAspect.m */,
 				8186C5452371A020000C3560 /* JPAspect+PatchLoad.h */,
 				8186C5442371A020000C3560 /* JPAspect+PatchLoad.m */,
-				8186C5432371A020000C3560 /* JPAspect+CustomInvokeInstead.h */,
-				8186C5422371A020000C3560 /* JPAspect+CustomInvokeInstead.m */,
+				8186C5432371A020000C3560 /* JPAspect+HookInstead.h */,
+				8186C5422371A020000C3560 /* JPAspect+HookInstead.m */,
 			);
 			name = JPAspect;
 			path = ../../JPAspect;
@@ -423,7 +423,7 @@
 				8186C5482371A020000C3560 /* JPAspect+PatchLoad.m in Sources */,
 				8186C43723716D3E000C3560 /* main.m in Sources */,
 				8186C42923716D3D000C3560 /* AppDelegate.m in Sources */,
-				8186C5472371A020000C3560 /* JPAspect+CustomInvokeInstead.m in Sources */,
+				8186C5472371A020000C3560 /* JPAspect+HookInstead.m in Sources */,
 				8186C5762371A04D000C3560 /* JPAspectInstance.m in Sources */,
 				8186C55B2371A037000C3560 /* NSInvocation+Aspects.m in Sources */,
 				8186C5462371A020000C3560 /* JPAspect.m in Sources */,

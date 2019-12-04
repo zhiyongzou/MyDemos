@@ -20,4 +20,19 @@
     NSLog(@"%s", __func__);
 }
 
+- (NSString *)contentWithCustomString:(NSString *)string
+{
+    return nil;
+}
+
+- (NSString *)multiArgumentMethod:(NSString *)aString index:(NSUInteger)index flag:(BOOL)flag
+{
+    return [NSString stringWithFormat:@"%@_%@_%@", aString, @(index), @(flag)];
+}
+
+- (NSString *)multiArgumentMethodTest
+{
+    return nil;
+}
+
 @end

@@ -1,5 +1,5 @@
 //
-//  JPAspect+CustomInvokeInstead.m
+//  JPAspect+HookInstead.m
 //  JPAspect
 //
 //  Created by zzyong on 2019/5/9.
@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIGeometry.h>
+#import "JPAspect+HookInstead.h"
 #import <CoreGraphics/CoreGraphics.h>
-#import "JPAspect+CustomInvokeInstead.h"
 
-@implementation JPAspect (CustomInvokeInstead)
+@implementation JPAspect (HookInstead)
 
 + (id)returnObject
 {

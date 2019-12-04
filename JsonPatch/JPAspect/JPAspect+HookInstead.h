@@ -1,5 +1,5 @@
 //
-//  JPAspect+CustomInvokeInstead.h
+//  JPAspect+HookInstead.h
 //  JPAspect
 //
 //  Created by zzyong on 2019/5/9.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JPAspect (CustomInvokeInstead)
+@interface JPAspect (HookInstead)
 
 + (id)returnObject;
 - (id)returnObject;
