@@ -33,6 +33,9 @@
 		818A2A2923953D7300DB75D2 /* AspectConfigTestCommon.json in Resources */ = {isa = PBXBuildFile; fileRef = 818A2A2723953D7300DB75D2 /* AspectConfigTestCommon.json */; };
 		818A2A2B23953DBE00DB75D2 /* JsonPatchCommonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A2A23953DBE00DB75D2 /* JsonPatchCommonTests.m */; };
 		818A2A2E23953F7C00DB75D2 /* JPTestC.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A2D23953F7C00DB75D2 /* JPTestC.m */; };
+		818A2A52239A4E8A00DB75D2 /* AspectConfigTestReturn.json in Resources */ = {isa = PBXBuildFile; fileRef = 818A2A51239A4E8A00DB75D2 /* AspectConfigTestReturn.json */; };
+		818A2A55239A4EC100DB75D2 /* JPTestD.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A54239A4EC100DB75D2 /* JPTestD.m */; };
+		818A2A57239A4EF400DB75D2 /* JsonPatchReturnTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A56239A4EF400DB75D2 /* JsonPatchReturnTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +105,10 @@
 		818A2A2A23953DBE00DB75D2 /* JsonPatchCommonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JsonPatchCommonTests.m; sourceTree = "<group>"; };
 		818A2A2C23953F7C00DB75D2 /* JPTestC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPTestC.h; sourceTree = "<group>"; };
 		818A2A2D23953F7C00DB75D2 /* JPTestC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPTestC.m; sourceTree = "<group>"; };
+		818A2A51239A4E8A00DB75D2 /* AspectConfigTestReturn.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AspectConfigTestReturn.json; sourceTree = "<group>"; };
+		818A2A53239A4EC100DB75D2 /* JPTestD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPTestD.h; sourceTree = "<group>"; };
+		818A2A54239A4EC100DB75D2 /* JPTestD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPTestD.m; sourceTree = "<group>"; };
+		818A2A56239A4EF400DB75D2 /* JsonPatchReturnTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JsonPatchReturnTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				818A2A1F2394FEF800DB75D2 /* TestClass */,
+				818A2A56239A4EF400DB75D2 /* JsonPatchReturnTests.m */,
 				818A2A2A23953DBE00DB75D2 /* JsonPatchCommonTests.m */,
 				818A2A2523953B4600DB75D2 /* JsonPatchArgumentTypeTests.m */,
 				8186C44223716D3E000C3560 /* Info.plist */,
@@ -264,6 +272,7 @@
 				8189ECAF238C0FB7004793B1 /* AspectConfig.json */,
 				818A2A2023950B8500DB75D2 /* AspectConfigTestArgumentType.json */,
 				818A2A2723953D7300DB75D2 /* AspectConfigTestCommon.json */,
+				818A2A51239A4E8A00DB75D2 /* AspectConfigTestReturn.json */,
 			);
 			path = Patch;
 			sourceTree = "<group>";
@@ -277,6 +286,8 @@
 				818A2A2323950DAE00DB75D2 /* JPTestB.m */,
 				818A2A2C23953F7C00DB75D2 /* JPTestC.h */,
 				818A2A2D23953F7C00DB75D2 /* JPTestC.m */,
+				818A2A53239A4EC100DB75D2 /* JPTestD.h */,
+				818A2A54239A4EC100DB75D2 /* JPTestD.m */,
 			);
 			path = TestClass;
 			sourceTree = "<group>";
@@ -389,6 +400,7 @@
 				8186C43123716D3E000C3560 /* Assets.xcassets in Resources */,
 				818A2A2123950B8500DB75D2 /* AspectConfigTestArgumentType.json in Resources */,
 				8186C42F23716D3D000C3560 /* Main.storyboard in Resources */,
+				818A2A52239A4E8A00DB75D2 /* AspectConfigTestReturn.json in Resources */,
 				8189ECB0238C0FB7004793B1 /* AspectConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,7 +449,9 @@
 			files = (
 				818A2A2E23953F7C00DB75D2 /* JPTestC.m in Sources */,
 				818A2A2623953B4600DB75D2 /* JsonPatchArgumentTypeTests.m in Sources */,
+				818A2A55239A4EC100DB75D2 /* JPTestD.m in Sources */,
 				818A2A1E2394FEF400DB75D2 /* JPTestA.m in Sources */,
+				818A2A57239A4EF400DB75D2 /* JsonPatchReturnTests.m in Sources */,
 				818A2A2423950DAE00DB75D2 /* JPTestB.m in Sources */,
 				818A2A2B23953DBE00DB75D2 /* JsonPatchCommonTests.m in Sources */,
 			);

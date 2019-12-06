@@ -66,4 +66,22 @@
     XCTAssertTrue([@(1) isEqualToNumber:nilNumber]);
 }
 
+- (void)testModifyGetterMethod
+{
+    NSString *content = self.testC.modifyGetter;
+    XCTAssertEqualObjects(content, @"Hello World!");
+}
+
+- (void)testInsteadGetterMethod
+{
+    NSString *content = self.testC.insteadGetter;
+    XCTAssertEqualObjects(content, @"Hello World!!!");
+}
+
+- (void)testSelfArgument
+{
+    BOOL success = [self.testC modifySelfArgument:nil];
+    XCTAssertTrue(success);
+}
+
 @end

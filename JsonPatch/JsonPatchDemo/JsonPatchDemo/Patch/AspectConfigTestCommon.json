@@ -98,6 +98,114 @@
                     }
                 }
             ]
+        },
+        
+        {
+            "className": "JPTestC",
+            "selName": "modifyGetter",
+            "hookType": 1,
+            "customMessages" : [
+                {
+                    "message" : "self.valueForKey:",
+                    "arguments" : {
+                        "valueForKey:" : [{
+                            "index" : 0,
+                            "value" : "_modifyGetter",
+                            "type"  : 1
+                        }]
+                    },
+                    "localInstanceKey" : "modifyGetterValue"
+                },
+                
+                {
+                    "message" : "self.setValue:forKey:",
+                    "arguments" : {
+                        "setValue:forKey:" : [{
+                            "index" : 0,
+                            "value" : "Hello World!",
+                            "type"  : 1
+                        },
+                        {
+                            "index" : 1,
+                            "value" : "_modifyGetter",
+                            "type"  : 1
+                        }]
+                    },
+                    "invokeCondition": {
+                        "condition" : "modifyGetterValue==nil",
+                        "operator" : "=="
+                    }
+                }
+            ]
+        },
+        
+        {
+            "className": "JPTestC",
+            "selName": "insteadGetter",
+            "hookType": 3,
+            "customMessages" : [
+                {
+                    "message" : "self.valueForKey:",
+                    "arguments" : {
+                        "valueForKey:" : [{
+                            "index" : 0,
+                            "value" : "_insteadGetter",
+                            "type"  : 1
+                        }]
+                    },
+                    "localInstanceKey" : "insteadGetterValue"
+                },
+                
+                {
+                    "message" : "self.setValue:forKey:",
+                    "arguments" : {
+                        "setValue:forKey:" : [{
+                            "index" : 0,
+                            "value" : "Hello World!!!",
+                            "type"  : 1
+                        },
+                        {
+                            "index" : 1,
+                            "value" : "_insteadGetter",
+                            "type"  : 1
+                        }]
+                    },
+                    "invokeCondition": {
+                        "condition" : "insteadGetterValue==nil",
+                        "operator" : "=="
+                    }
+                },
+                
+                {
+                    "message" : "self.valueForKey:",
+                    "arguments" : {
+                        "valueForKey:" : [{
+                            "index" : 0,
+                            "value" : "_insteadGetter",
+                            "type"  : 1
+                        }]
+                    },
+                    "localInstanceKey" : "insteadGetterValue"
+                },
+                
+                {
+                    "message" : "return=1:insteadGetterValue",
+                    "messageType" : 1
+                }
+            ]
+        },
+        
+        {
+            "className": "JPTestC",
+            "selName": "modifySelfArgument:",
+            "argumentNames": ["testC"],
+            "hookType": 1,
+            "customMessages" : [
+                {
+                    "message" : "testC=1:self",
+                    "messageType" : 2
+                }
+            ]
         }
     ]
 }

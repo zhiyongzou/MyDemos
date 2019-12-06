@@ -560,7 +560,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     return instance;
 }
 
-+ (id)aspectInstanceValueWithType:(JPArgumentType)type contentString:(NSString *)contentString localVariables:(NSDictionary<NSString *, JPAspectInstance *> *)localVariables
++ (id)aspectInstanceValueWithType:(JPArgumentType)type contentString:(NSString *)contentString localVariables:(NSDictionary<NSString *, JPAspectInstance *> *)localVariables aspectInfo:(id<AspectInfoProtocol>)aspectInfo
 {
     id instance = nil;
     
@@ -577,6 +577,8 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         
         if ([contentString isEqualToString:@"nil"]) {
             return instance;
+        } else if ([contentString isEqualToString:@"self"]) {
+            instance = aspectInfo.instance;
         } else {
             // only support NSString
             instance = contentString;
@@ -1045,7 +1047,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         JPAspectArgument *argument = [[JPAspectArgument alloc] init];
         argument.type = [instanceValues.firstObject integerValue];
         argument.index = argumentIndex;
-        argument.value = [JPAspect aspectInstanceValueWithType:argument.type contentString:instanceValues.lastObject localVariables:localVariables];
+        argument.value = [JPAspect aspectInstanceValueWithType:argument.type contentString:instanceValues.lastObject localVariables:localVariables aspectInfo:aspectInfo];
         [JPAspect setArgumentValue:argument invocation:aspectInfo.originalInvocation];
         
     } else {
@@ -1058,7 +1060,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
             [localVariables setObject:instance forKey:msgComponents.firstObject];
         }
         
-        instance.value = [JPAspect aspectInstanceValueWithType:instance.type contentString:instanceValues.lastObject localVariables:localVariables];
+        instance.value = [JPAspect aspectInstanceValueWithType:instance.type contentString:instanceValues.lastObject localVariables:localVariables aspectInfo:aspectInfo];
     }
 }
 
@@ -1087,7 +1089,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
             [localVariables setObject:instance forKey:kAspectOriginalMethodReturnValueKey];
         }
         
-        instance.value = [JPAspect aspectInstanceValueWithType:instance.type contentString:returnValues.lastObject localVariables:localVariables];
+        instance.value = [JPAspect aspectInstanceValueWithType:instance.type contentString:returnValues.lastObject localVariables:localVariables aspectInfo:aspectInfo];
         
     } else {
         NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Return Message:[%@] format is error", message.message];
@@ -1228,12 +1230,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                             argument.value = localInstance.value;
                             argument.index = argumentIndex;
                             argument.type = argumentType;
-                        } else if ([parameter[@"value"] isEqualToString:@"self"]) {
-                            argument = [[JPAspectArgument alloc] init];
-                            argument.value = aspectInfo.instance;
-                            argument.index = argumentIndex;
-                            argument.type = argumentType;
-                        }  else if ([aspectModel.argumentNames containsObject:parameter[@"value"]]) {
+                        } else if ([aspectModel.argumentNames containsObject:parameter[@"value"]]) {
                             argument = [JPAspect getArgumentWithInvocation:aspectInfo.originalInvocation
                                                                    atIndex:[aspectModel.argumentNames indexOfObject:parameter[@"value"]]];
                             argument.index = argumentIndex;
@@ -1241,7 +1238,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                             argument = [[JPAspectArgument alloc] init];
                             argument.index = argumentIndex;
                             argument.type = argumentType;
-                            argument.value = [JPAspect aspectInstanceValueWithType:argumentType contentString:parameter[@"value"] localVariables:localVariables];
+                            argument.value = [JPAspect aspectInstanceValueWithType:argumentType contentString:parameter[@"value"] localVariables:localVariables aspectInfo:aspectInfo];
                         }
                         [arguments addObject:argument];
                     }];

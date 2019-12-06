@@ -35,4 +35,18 @@
     return nil;
 }
 
+- (NSString *)modifyGetter
+{
+    if (_modifyGetter == nil) {
+        _modifyGetter = @"JPTestC";
+    }
+    
+    return _modifyGetter;
+}
+
+- (BOOL)modifySelfArgument:(nullable JPTestC *)testC
+{
+    return [testC isKindOfClass:[JPTestC class]];
+}
+
 @end
