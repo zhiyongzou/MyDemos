@@ -62,12 +62,32 @@
     return UIEdgeInsetsZero;
 }
 
++ (NSRange)returnRange
+{
+    return NSMakeRange(0, 0);
+}
+
+- (NSRange)returnRange
+{
+    return NSMakeRange(0, 0);
+}
+
 + (long)returnLong
 {
     return 0;
 }
 
 - (long)returnLong
+{
+    return 0;
+}
+
++ (int)returnInt
+{
+    return 0;
+}
+
+- (int)returnInt
 {
     return 0;
 }

@@ -37,7 +37,8 @@ typedef NS_ENUM(NSUInteger, JPArgumentType) {
     JPArgumentTypeCGSize            = 15,
     JPArgumentTypeCGPoint           = 16,
     JPArgumentTypeCGRect            = 17,
-    JPArgumentTypeUIEdgeInsets      = 18
+    JPArgumentTypeUIEdgeInsets      = 18,
+    JPArgumentTypeNSRange           = 19
 };
 
 typedef NS_ENUM(NSUInteger, JPAspectHookType) {

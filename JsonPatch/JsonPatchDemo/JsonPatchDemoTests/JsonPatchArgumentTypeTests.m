@@ -118,6 +118,10 @@
     self.testA.edgeInsets = UIEdgeInsetsZero;
     isEqual = UIEdgeInsetsEqualToEdgeInsets(self.testA.edgeInsets, UIEdgeInsetsMake(0, 0, 1, 1.1));
     XCTAssertTrue(isEqual, @"Must equal");
+    
+    self.testA.range = NSMakeRange(0, 0);
+    isEqual = NSEqualRanges(self.testA.range, NSMakeRange(1, 1.1));
+    XCTAssertTrue(isEqual, @"Must equal");
 }
 
 @end

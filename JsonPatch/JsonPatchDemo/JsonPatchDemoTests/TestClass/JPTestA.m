@@ -95,4 +95,9 @@
     _edgeInsets = edgeInsets;
 }
 
+- (void)setRange:(NSRange)range
+{
+    _range = range;
+}
+
 @end

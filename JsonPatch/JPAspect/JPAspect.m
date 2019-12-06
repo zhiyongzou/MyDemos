@@ -250,6 +250,11 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         BOOL value = [aspectArgument.value boolValue];
         [invocation setArgument:&value atIndex:argumentIndex];
         
+    } else if (aspectArgument.type == JPArgumentTypeNSRange) {
+        
+        NSRange value = [aspectArgument.value rangeValue];
+        [invocation setArgument:&value atIndex:argumentIndex];
+        
     } else {
         JPAspectLog(@"%@", [NSString stringWithFormat:@"[JPAspect] Argument type:[%zd] is unknown", aspectArgument.type]);
     }
@@ -356,28 +361,28 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         
     } else if (strcmp(argType, @encode(CGRect)) == 0) {
         
-        CGRect argumentValue;
+        CGRect argumentValue = CGRectZero;
         [invocation getArgument:&argumentValue atIndex:argumentIndex];
         aspectArgument.value = [NSValue valueWithCGRect:argumentValue];
         aspectArgument.type = JPArgumentTypeCGRect;
         
     } else if (strcmp(argType, @encode(UIEdgeInsets)) == 0) {
         
-        UIEdgeInsets argumentValue;
+        UIEdgeInsets argumentValue = UIEdgeInsetsZero;
         [invocation getArgument:&argumentValue atIndex:argumentIndex];
         aspectArgument.value = [NSValue valueWithUIEdgeInsets:argumentValue];
         aspectArgument.type = JPArgumentTypeUIEdgeInsets;
         
     } else if (strcmp(argType, @encode(CGSize)) == 0) {
         
-        CGSize argumentValue;
+        CGSize argumentValue = CGSizeZero;
         [invocation getArgument:&argumentValue atIndex:argumentIndex];
         aspectArgument.value = [NSValue valueWithCGSize:argumentValue];
         aspectArgument.type = JPArgumentTypeCGSize;
         
     } else if (strcmp(argType, @encode(CGPoint)) == 0) {
         
-        CGPoint argumentValue;
+        CGPoint argumentValue = CGPointZero;
         [invocation getArgument:&argumentValue atIndex:argumentIndex];
         aspectArgument.value = [NSValue valueWithCGPoint:argumentValue];
         aspectArgument.type = JPArgumentTypeCGPoint;
@@ -395,6 +400,13 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         [invocation getArgument:&argumentValue atIndex:argumentIndex];
         aspectArgument.value = argumentValue;
         aspectArgument.type = JPArgumentTypeClass;
+        
+    } else if (strcmp(argType, @encode(NSRange)) == 0) {
+        
+        NSRange argumentValue = NSMakeRange(0, 0);
+        [invocation getArgument:&argumentValue atIndex:argumentIndex];
+        aspectArgument.value = [NSValue valueWithRange:argumentValue];
+        aspectArgument.type = JPArgumentTypeNSRange;
         
     } else {
         aspectArgument.type = JPArgumentTypeUnknown;
@@ -505,36 +517,42 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         
     } else if (strcmp(methodReturnType, @encode(CGSize)) == 0) {
         
-        CGSize result;
+        CGSize result = CGSizeZero;
         [invocation getReturnValue:&result];
         instance.value = [NSValue valueWithCGSize:result];
         instance.type = JPArgumentTypeCGSize;
         
     } else if (strcmp(methodReturnType, @encode(CGPoint)) == 0) {
         
-        CGPoint result;
+        CGPoint result = CGPointZero;
         [invocation getReturnValue:&result];
         instance.value = [NSValue valueWithCGPoint:result];
         instance.type = JPArgumentTypeCGPoint;
         
     } else if (strcmp(methodReturnType, @encode(CGRect)) == 0) {
         
-        CGRect result;
+        CGRect result = CGRectZero;
         [invocation getReturnValue:&result];
         instance.value = [NSValue valueWithCGRect:result];
         instance.type = JPArgumentTypeCGRect;
     } else if (strcmp(methodReturnType, @encode(UIEdgeInsets)) == 0) {
         
-        UIEdgeInsets result;
+        UIEdgeInsets result = UIEdgeInsetsZero;
         [invocation getReturnValue:&result];
         instance.value = [NSValue valueWithUIEdgeInsets:result];
         instance.type = JPArgumentTypeUIEdgeInsets;
     } else if (strcmp(methodReturnType, @encode(Class)) == 0) {
         
-        Class result;
+        Class result = nil;
         [invocation getReturnValue:&result];
         instance.value = result;
         instance.type = JPArgumentTypeClass;
+    } else if (strcmp(methodReturnType, @encode(NSRange)) == 0) {
+        
+        NSRange result = NSMakeRange(0, 0);
+        [invocation getReturnValue:&result];
+        instance.value = [NSValue valueWithRange:result];
+        instance.type = JPArgumentTypeNSRange;
     }
     
     invocation.target = nil;
@@ -610,6 +628,15 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
             instance = [NSValue valueWithCGPoint:point];
         } else {
             instance = [NSValue valueWithCGPoint:CGPointZero];
+        }
+    } else if (type == JPArgumentTypeNSRange) {
+        
+        NSArray *rangeComponents = [contentString componentsSeparatedByString:@","];
+        if (rangeComponents.count == 2) {
+            NSRange range = NSMakeRange([rangeComponents[0] doubleValue], [rangeComponents[1] doubleValue]);
+            instance = [NSValue valueWithRange:range];
+        } else {
+            instance = [NSValue valueWithRange:NSMakeRange(0, 0)];
         }
     } else if (type == JPArgumentTypeInt ||
                type == JPArgumentTypeShort ||
@@ -773,6 +800,13 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 double expectValue = [(NSNumber *)returnInstance.value doubleValue];
                 [aspectInfo.originalInvocation setReturnValue:&expectValue];
                 
+            } else if (returnInstance.type == JPArgumentTypeInt) {
+                
+                aspectInfo.originalInvocation.selector = @selector(returnInt);
+                [aspectInfo.originalInvocation invoke];
+                int expectValue = [(NSNumber *)returnInstance.value intValue];
+                [aspectInfo.originalInvocation setReturnValue:&expectValue];
+                
             } else if (returnInstance.type == JPArgumentTypeUnsignedLong) {
                 
                 aspectInfo.originalInvocation.selector = @selector(returnUnsignedLong);
@@ -785,6 +819,13 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 aspectInfo.originalInvocation.selector = @selector(returnBool);
                 [aspectInfo.originalInvocation invoke];
                 BOOL expectValue = [(NSNumber *)returnInstance.value boolValue];
+                [aspectInfo.originalInvocation setReturnValue:&expectValue];
+                
+            } else if (returnInstance.type == JPArgumentTypeNSRange) {
+                
+                aspectInfo.originalInvocation.selector = @selector(returnRange);
+                [aspectInfo.originalInvocation invoke];
+                NSRange expectValue = [(NSValue *)returnInstance.value rangeValue];
                 [aspectInfo.originalInvocation setReturnValue:&expectValue];
                 
             }

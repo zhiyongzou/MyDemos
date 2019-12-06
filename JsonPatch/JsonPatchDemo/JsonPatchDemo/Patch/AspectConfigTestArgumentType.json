@@ -246,6 +246,19 @@
                     "messageType" : 2
                 }
             ]
+        },
+        
+        {
+            "className": "JPTestA",
+            "selName": "setRange:",
+            "hookType": 1,
+            "argumentNames": ["range"],
+            "customMessages" : [
+                {
+                    "message" : "range=19:1,1.1",
+                    "messageType" : 2
+                }
+            ]
         }
     ]
 }

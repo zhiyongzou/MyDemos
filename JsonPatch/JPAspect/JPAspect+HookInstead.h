@@ -27,8 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIEdgeInsets)returnEdgeInsets;
 - (UIEdgeInsets)returnEdgeInsets;
 
++ (NSRange)returnRange;
+- (NSRange)returnRange;
+
 + (long)returnLong;
 - (long)returnLong;
+
++ (int)returnInt;
+- (int)returnInt;
 
 + (unsigned long)returnUnsignedLong;
 - (unsigned long)returnUnsignedLong;

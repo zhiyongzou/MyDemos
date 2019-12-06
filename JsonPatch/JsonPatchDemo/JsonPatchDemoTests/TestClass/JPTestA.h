@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGPoint point;
 @property (nonatomic, assign) CGRect rect;
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
+@property (nonatomic, assign) NSRange range;
 
 @end
 
