@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)modifySelfArgument:(nullable JPTestC *)testC;
 
+- (NSString *)modifyArgumentToNil:(nullable NSString *)string;
+
 @end
 
 NS_ASSUME_NONNULL_END

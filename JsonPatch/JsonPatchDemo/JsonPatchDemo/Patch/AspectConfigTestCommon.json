@@ -207,6 +207,19 @@
                     "messageType" : 2
                 }
             ]
+        },
+        
+        {
+            "className": "JPTestC",
+            "selName": "modifyArgumentToNil:",
+            "argumentNames": ["string"],
+            "hookType": 1,
+            "customMessages" : [
+                {
+                    "message" : "string=1:nil",
+                    "messageType" : 2
+                }
+            ]
         }
     ]
 }

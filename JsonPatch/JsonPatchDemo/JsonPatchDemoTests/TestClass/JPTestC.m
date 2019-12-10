@@ -49,4 +49,9 @@
     return [testC isKindOfClass:[JPTestC class]];
 }
 
+- (NSString *)modifyArgumentToNil:(nullable NSString *)string
+{
+    return string;
+}
+
 @end

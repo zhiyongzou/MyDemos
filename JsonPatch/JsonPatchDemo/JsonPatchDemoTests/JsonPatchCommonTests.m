@@ -84,4 +84,10 @@
     XCTAssertTrue(success);
 }
 
+- (void)testNilArgument
+{
+    NSString *content = [self.testC modifyArgumentToNil:@"Hello World!!!"];
+    XCTAssertNil(content);
+}
+
 @end
