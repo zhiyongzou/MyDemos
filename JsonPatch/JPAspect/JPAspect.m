@@ -109,9 +109,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     }
     
     // Class method
-    BOOL isClassMethod = NO;
-    if ([targetCls respondsToSelector:targetSel]) {
-        isClassMethod = YES;
+    if (aspectModel.isClassMethod) {
         targetCls = object_getClass(targetCls);
     }
     
@@ -130,7 +128,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
             JPAspectTokenList = [[NSMutableDictionary alloc] init];
         });
         if (aspectToken) {
-            [JPAspectTokenList setObject:aspectToken forKey:JPAspectTokenKey(aspectModel.className, aspectModel.selName, isClassMethod)];
+            [JPAspectTokenList setObject:aspectToken forKey:JPAspectTokenKey(aspectModel.className, aspectModel.selName, aspectModel.isClassMethod)];
         }
     }
 }

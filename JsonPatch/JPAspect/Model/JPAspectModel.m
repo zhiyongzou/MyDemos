@@ -30,6 +30,7 @@
         aspectModel = [[self alloc] init];
         aspectModel.className = className;
         aspectModel.selName = selName;
+        aspectModel.isClassMethod = [[dictionary objectForKey:@"isClassMethod"] boolValue];
         aspectModel.hookType = [[dictionary objectForKey:@"hookType"] unsignedIntegerValue];
         aspectModel.argumentNames = [dictionary objectForKey:@"argumentNames"];
         

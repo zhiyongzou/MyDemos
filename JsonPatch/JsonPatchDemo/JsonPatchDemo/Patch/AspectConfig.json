@@ -59,6 +59,7 @@
             "selName": "ruturnModify",
             "hookType": 3,
             "className": "ViewController",
+            "isClassMethod" : 1,
             "customMessages" : [
                 {
                     "message" : "UIColor.lightGrayColor",

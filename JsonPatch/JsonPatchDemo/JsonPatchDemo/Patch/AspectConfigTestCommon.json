@@ -15,6 +15,7 @@
         {
             "className": "JPTestC",
             "selName": "willInitClassTestObject",
+            "isClassMethod" : 1,
             "hookType": 2,
             "customMessages" : [
                 {
