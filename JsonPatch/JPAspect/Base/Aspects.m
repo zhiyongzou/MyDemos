@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import "AspectInfo.h"
+#import <UIKit/UIGeometry.h>
 
 #ifdef DEBUG
     #define AspectLog(fmt, ...) do { NSLog((@"%s %d: " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
@@ -272,14 +273,18 @@ static IMP aspect_getMsgForwardIMP(NSObject *self, SEL selector) {
     const char *encoding = method_getTypeEncoding(method);
     BOOL methodReturnsStructValue = encoding[0] == _C_STRUCT_B;
     if (methodReturnsStructValue) {
-        @try {
-            NSUInteger valueSize = 0;
-            NSGetSizeAndAlignment(encoding, &valueSize, NULL);
-
-            if (valueSize == 1 || valueSize == 2 || valueSize == 4 || valueSize == 8) {
-                methodReturnsStructValue = NO;
-            }
-        } @catch (__unused NSException *e) {}
+        NSUInteger valueSize = 0;
+        NSGetSizeAndAlignment(encoding, &valueSize, NULL);
+        
+        if (valueSize == 1 || valueSize == 2 || valueSize == 4 || valueSize == 8) {
+            methodReturnsStructValue = NO;
+        }
+        
+#if defined(__LP64__) && __LP64__
+        if (valueSize == 16) {
+            methodReturnsStructValue = NO;
+        }
+#endif
     }
     if (methodReturnsStructValue) {
         msgForwardIMP = (IMP)_objc_msgForward_stret;

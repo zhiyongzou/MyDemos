@@ -86,27 +86,27 @@
     XCTAssertEqual(result, 1);
 }
 
-//- (void)testReturnSize
-//{
-//    CGSize result = [self.testD returnSize];
-//    BOOL isEqual = CGSizeEqualToSize(result, CGSizeMake(1, 1.1));
-//    XCTAssertTrue(isEqual);
-//
-//    result = [JPTestD returnSize];
-//    isEqual = CGSizeEqualToSize(result, CGSizeMake(1, 1.1));
-//    XCTAssertTrue(isEqual);
-//}
-//
-//- (void)testReturnPoint
-//{
-//    CGPoint result = [self.testD returnPoint];
-//    BOOL isEqual = CGPointEqualToPoint(result, CGPointMake(1, 1.1));
-//    XCTAssertTrue(isEqual);
-//
-//    result = [JPTestD returnPoint];
-//    isEqual = CGPointEqualToPoint(result, CGPointMake(1, 1.1));
-//    XCTAssertTrue(isEqual);
-//}
+- (void)testReturnSize
+{
+    CGSize result = [self.testD returnSize];
+    BOOL isEqual = CGSizeEqualToSize(result, CGSizeMake(1, 1.1));
+    XCTAssertTrue(isEqual);
+
+    result = [JPTestD returnSize];
+    isEqual = CGSizeEqualToSize(result, CGSizeMake(1, 1.1));
+    XCTAssertTrue(isEqual);
+}
+
+- (void)testReturnPoint
+{
+    CGPoint result = [self.testD returnPoint];
+    BOOL isEqual = CGPointEqualToPoint(result, CGPointMake(1, 1.1));
+    XCTAssertTrue(isEqual);
+
+    result = [JPTestD returnPoint];
+    isEqual = CGPointEqualToPoint(result, CGPointMake(1, 1.1));
+    XCTAssertTrue(isEqual);
+}
 
 - (void)testReturnRect
 {
@@ -130,15 +130,15 @@
     XCTAssertTrue(isEqual);
 }
 
-//- (void)testReturnRange
-//{
-//    NSRange result = [self.testD returnRange];
-//    BOOL isEqual = NSEqualRanges(result, NSMakeRange(1, 1));
-//    XCTAssertTrue(isEqual);
-//
-//    result = [JPTestD returnRange];
-//    isEqual = NSEqualRanges(result, NSMakeRange(1, 1));
-//    XCTAssertTrue(isEqual);
-//}
+- (void)testReturnRange
+{
+    NSRange result = [self.testD returnRange];
+    BOOL isEqual = NSEqualRanges(result, NSMakeRange(1, 1));
+    XCTAssertTrue(isEqual);
+
+    result = [JPTestD returnRange];
+    isEqual = NSEqualRanges(result, NSMakeRange(1, 1));
+    XCTAssertTrue(isEqual);
+}
 
 @end
