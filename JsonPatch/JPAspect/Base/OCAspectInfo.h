@@ -1,16 +1,16 @@
 //
-//  AspectInfo.h
+//  OCAspectInfo.h
 //  JPAspect
 //
 //  Created by zzyong on 2018/10/23.
 //  Copyright © 2018 zzyong. All rights reserved.
 //
 
-#import "AspectProtocols.h"
+#import "OCAspectProtocols.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AspectInfo : NSObject <AspectInfoProtocol>
+@interface OCAspectInfo : NSObject <AspectInfoProtocol>
 
 - (instancetype)initWithInstance:(__unsafe_unretained id)instance invocation:(NSInvocation *)invocation;
 

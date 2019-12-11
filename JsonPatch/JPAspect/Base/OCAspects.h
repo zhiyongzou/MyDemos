@@ -5,7 +5,7 @@
 //  Copyright (c) 2014 Peter Steinberger. Licensed under the MIT license.
 //
 
-#import "AspectProtocols.h"
+#import "OCAspectProtocols.h"
 
 typedef NS_OPTIONS(NSUInteger, AspectOptions) {
     AspectPositionAfter   = 0,            /// Called after the original implementation (default)
@@ -20,7 +20,7 @@ typedef NS_OPTIONS(NSUInteger, AspectOptions) {
 
  Adding aspects returns an opaque token which can be used to deregister again. All calls are thread safe.
  */
-@interface NSObject (Aspects)
+@interface NSObject (OCAspects)
 
 /// Adds a block of code before/instead/after the current `selector` for a specific class.
 ///
@@ -45,16 +45,6 @@ typedef NS_OPTIONS(NSUInteger, AspectOptions) {
 @end
 
 
-typedef NS_ENUM(NSUInteger, AspectErrorCode) {
-    AspectErrorSelectorBlacklisted,                   /// Selectors like release, retain, autorelease are blacklisted.
-    AspectErrorDoesNotRespondToSelector,              /// Selector could not be found.
-    AspectErrorSelectorDeallocPosition,               /// When hooking dealloc, only AspectPositionBefore is allowed.
-    AspectErrorSelectorAlreadyHookedInClassHierarchy, /// Statically hooking the same method in subclasses is not allowed.
-    AspectErrorFailedToAllocateClassPair,             /// The runtime failed creating a class pair.
-    AspectErrorMissingBlockSignature,                 /// The block misses compile time signature info and can't be called.
-    AspectErrorIncompatibleBlockSignature,            /// The block signature does not match the method or is too large.
 
-    AspectErrorRemoveObjectAlreadyDeallocated = 100   /// (for removing) The object hooked is already deallocated.
-};
 
-extern NSString *const AspectErrorDomain;
+

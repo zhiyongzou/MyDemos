@@ -17,9 +17,9 @@
 		8186C5462371A020000C3560 /* JPAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5402371A020000C3560 /* JPAspect.m */; };
 		8186C5472371A020000C3560 /* JPAspect+HookInstead.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5422371A020000C3560 /* JPAspect+HookInstead.m */; };
 		8186C5482371A020000C3560 /* JPAspect+PatchLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5442371A020000C3560 /* JPAspect+PatchLoad.m */; };
-		8186C55B2371A037000C3560 /* NSInvocation+Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5542371A037000C3560 /* NSInvocation+Aspects.m */; };
-		8186C55C2371A037000C3560 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5552371A037000C3560 /* Aspects.m */; };
-		8186C55D2371A037000C3560 /* AspectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5572371A037000C3560 /* AspectInfo.m */; };
+		8186C55B2371A037000C3560 /* NSInvocation+OCAspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5542371A037000C3560 /* NSInvocation+OCAspects.m */; };
+		8186C55C2371A037000C3560 /* OCAspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5552371A037000C3560 /* OCAspects.m */; };
+		8186C55D2371A037000C3560 /* OCAspectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5572371A037000C3560 /* OCAspectInfo.m */; };
 		8186C5752371A04D000C3560 /* JPAspectArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C56D2371A04D000C3560 /* JPAspectArgument.m */; };
 		8186C5762371A04D000C3560 /* JPAspectInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5712371A04D000C3560 /* JPAspectInstance.m */; };
 		8186C5772371A04D000C3560 /* JPAspectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5722371A04D000C3560 /* JPAspectModel.m */; };
@@ -78,13 +78,13 @@
 		8186C5432371A020000C3560 /* JPAspect+HookInstead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JPAspect+HookInstead.h"; sourceTree = "<group>"; };
 		8186C5442371A020000C3560 /* JPAspect+PatchLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JPAspect+PatchLoad.m"; sourceTree = "<group>"; };
 		8186C5452371A020000C3560 /* JPAspect+PatchLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JPAspect+PatchLoad.h"; sourceTree = "<group>"; };
-		8186C5542371A037000C3560 /* NSInvocation+Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Aspects.m"; sourceTree = "<group>"; };
-		8186C5552371A037000C3560 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
-		8186C5562371A037000C3560 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
-		8186C5572371A037000C3560 /* AspectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AspectInfo.m; sourceTree = "<group>"; };
-		8186C5582371A037000C3560 /* AspectProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AspectProtocols.h; sourceTree = "<group>"; };
-		8186C5592371A037000C3560 /* NSInvocation+Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Aspects.h"; sourceTree = "<group>"; };
-		8186C55A2371A037000C3560 /* AspectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AspectInfo.h; sourceTree = "<group>"; };
+		8186C5542371A037000C3560 /* NSInvocation+OCAspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+OCAspects.m"; sourceTree = "<group>"; };
+		8186C5552371A037000C3560 /* OCAspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCAspects.m; sourceTree = "<group>"; };
+		8186C5562371A037000C3560 /* OCAspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCAspects.h; sourceTree = "<group>"; };
+		8186C5572371A037000C3560 /* OCAspectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCAspectInfo.m; sourceTree = "<group>"; };
+		8186C5582371A037000C3560 /* OCAspectProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCAspectProtocols.h; sourceTree = "<group>"; };
+		8186C5592371A037000C3560 /* NSInvocation+OCAspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+OCAspects.h"; sourceTree = "<group>"; };
+		8186C55A2371A037000C3560 /* OCAspectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCAspectInfo.h; sourceTree = "<group>"; };
 		8186C56C2371A04D000C3560 /* JPAspectInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAspectInstance.h; sourceTree = "<group>"; };
 		8186C56D2371A04D000C3560 /* JPAspectArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAspectArgument.m; sourceTree = "<group>"; };
 		8186C56E2371A04D000C3560 /* JPAspectTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAspectTypes.h; sourceTree = "<group>"; };
@@ -239,13 +239,13 @@
 		8186C5492371A029000C3560 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				8186C55A2371A037000C3560 /* AspectInfo.h */,
-				8186C5572371A037000C3560 /* AspectInfo.m */,
-				8186C5582371A037000C3560 /* AspectProtocols.h */,
-				8186C5562371A037000C3560 /* Aspects.h */,
-				8186C5552371A037000C3560 /* Aspects.m */,
-				8186C5592371A037000C3560 /* NSInvocation+Aspects.h */,
-				8186C5542371A037000C3560 /* NSInvocation+Aspects.m */,
+				8186C55A2371A037000C3560 /* OCAspectInfo.h */,
+				8186C5572371A037000C3560 /* OCAspectInfo.m */,
+				8186C5582371A037000C3560 /* OCAspectProtocols.h */,
+				8186C5562371A037000C3560 /* OCAspects.h */,
+				8186C5552371A037000C3560 /* OCAspects.m */,
+				8186C5592371A037000C3560 /* NSInvocation+OCAspects.h */,
+				8186C5542371A037000C3560 /* NSInvocation+OCAspects.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -428,7 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8186C5782371A04D000C3560 /* JPAspectMessage.m in Sources */,
-				8186C55D2371A037000C3560 /* AspectInfo.m in Sources */,
+				8186C55D2371A037000C3560 /* OCAspectInfo.m in Sources */,
 				8186C5772371A04D000C3560 /* JPAspectModel.m in Sources */,
 				8186C42C23716D3D000C3560 /* ViewController.m in Sources */,
 				8186C5752371A04D000C3560 /* JPAspectArgument.m in Sources */,
@@ -437,9 +437,9 @@
 				8186C42923716D3D000C3560 /* AppDelegate.m in Sources */,
 				8186C5472371A020000C3560 /* JPAspect+HookInstead.m in Sources */,
 				8186C5762371A04D000C3560 /* JPAspectInstance.m in Sources */,
-				8186C55B2371A037000C3560 /* NSInvocation+Aspects.m in Sources */,
+				8186C55B2371A037000C3560 /* NSInvocation+OCAspects.m in Sources */,
 				8186C5462371A020000C3560 /* JPAspect.m in Sources */,
-				8186C55C2371A037000C3560 /* Aspects.m in Sources */,
+				8186C55C2371A037000C3560 /* OCAspects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

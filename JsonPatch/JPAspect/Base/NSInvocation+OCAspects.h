@@ -1,5 +1,5 @@
 //
-//  NSInvocation+Aspects.h
+//  NSInvocation+OCAspects.h
 //  JPAspect
 //
 //  Created by zzyong on 2018/10/18.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSInvocation (Aspects)
+@interface NSInvocation (OCAspects)
 
 - (NSArray *)aspects_arguments;
 

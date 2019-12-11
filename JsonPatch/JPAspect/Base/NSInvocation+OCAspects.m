@@ -1,15 +1,15 @@
 //
-//  NSInvocation+Aspects.m
+//  NSInvocation+OCAspects.m
 //  JPAspect
 //
 //  Created by zzyong on 2018/10/18.
 //  Copyright © 2018 zzyong. All rights reserved.
 //
 
-#import "NSInvocation+Aspects.h"
+#import "NSInvocation+OCAspects.h"
 #import <objc/runtime.h>
 
-@implementation NSInvocation (Aspects)
+@implementation NSInvocation (OCAspects)
 
 // Thanks to the ReactiveCocoa team for providing a generic solution for this.
 - (id)aspect_argumentAtIndex:(NSUInteger)index

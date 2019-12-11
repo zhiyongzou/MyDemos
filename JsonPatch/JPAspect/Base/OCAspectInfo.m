@@ -1,15 +1,15 @@
 //
-//  AspectInfo.m
+//  OCAspectInfo.m
 //  JPAspect
 //
 //  Created by zzyong on 2018/10/23.
 //  Copyright © 2018 zzyong. All rights reserved.
 //
 
-#import "AspectInfo.h"
-#import "NSInvocation+Aspects.h"
+#import "OCAspectInfo.h"
+#import "NSInvocation+OCAspects.h"
 
-@implementation AspectInfo
+@implementation OCAspectInfo
 
 @synthesize arguments = _arguments;
 
