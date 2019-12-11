@@ -1,60 +1,64 @@
-## 简介
-### JsonPatch 目前已有功能
-
-* 方法替换为空实现
-* 方法参数修改
-* 方法返回值修改
-* 方法前后插入自定义代码
-	* 支持任意OC方法调用
-	* 支持赋值语句
-	* 支持 if 语句
-	* 支持 super 调用
-	* 支持自定义局部变量
-	* 支持 return 语句
-
+## 基础
 ### JSON 脚本字段说明
 #### 1. 示例脚本
-在 `- (void)viewWillDisappear:` 方法调用后增加自定义 `self.view.backgroundColor = [UIColor redColor]` 	方法调用; 该方法执行的条件是：**`animated == NO`**
+在 `- (void)viewWillDisappear:` 方法调用前增加自定义 `self.view.backgroundColor = [UIColor redColor]` 	方法调用; 该方法执行的条件是：**`animated == NO`**
 
 ```objc
+// OC
+@implementation ViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // custom code
+//    if (!animated) {
+//        self.view.backgroundColor = [UIColor lightGrayColor];
+//    }
+    
+    [super viewWillAppear:animated];
+}
+
+@end
+
+// JSON
 {
     "AspectDefineClass" : ["UIColor"],
     "Aspects": [
         {
-            "selName": "viewWillAppear:",
-            "hookType": 3,
-            "className": "ViewController",
-            "argumentNames": ["animated"],
-            "customMessages" : [
-                {
-                    "message" : "UIColor.redColor",
-                    "messageType" : 0,
-                    "localInstanceKey" : "redColor",
-                    "invokeCondition": {
-                        "condition" : "animated==0",
-                        "operator" : "==",
-                        "conditionKey" : "isAnimated"
-                    }
-                },
-                {
-                    "message" : "self.view.setBackgroundColor:",
-                    "messageType" : 0,
-                    "arguments" : {
-                        "setBackgroundColor:" : [{
-                            "index" : 0,
-                            "value" : "redColor",
-                            "type"  : 1
-                        }]
-                    },
-                    "invokeCondition": {
-                        "conditionKey" : "isAnimated"
-                    }
-                }
-
-            ],
-            "ApplySystemVersions": [
-                "*"
-            ]
+			"className": "ViewController",
+			"selName": "viewWillAppear:",
+			"hookType": 1,
+			"isClassMethod": 0,
+			"argumentNames": ["animated"],
+			"customMessages" : [
+			    {
+			        "message" : "UIColor.redColor",
+			        "messageType" : 0,
+			        "localInstanceKey" : "redColor",
+			        "invokeCondition": {
+			            "condition" : "animated==0",
+			            "operator" : "==",
+			            "conditionKey" : "isAnimated"
+			        }
+			    },
+			    {
+			        "message" : "self.view.setBackgroundColor:",
+			        "messageType" : 0,
+			        "arguments" : {
+			            "setBackgroundColor:" : [{
+			                "index" : 0,
+			                "value" : "redColor",
+			                "type"  : 1
+			            }]
+			        },
+			        "invokeCondition": {
+			            "conditionKey" : "isAnimated"
+			        }
+			    }
+			
+			],
+			"ApplySystemVersions": [
+			    "*"
+			]
         }
     ]
 }
@@ -76,10 +80,19 @@
 > **selName**：
 
 	需要替换的方法名，必选字段；例如：viewWillDisappear:
- 
+	
+> **isClassMethod**：
+
+	是否为类方法，可选字段；默认实例方法
+	 
 > **hookType**：
 
-	方法替换类型，必选字段；例如：JPAspectHookNullImp、JPAspectHookCustomInvokeBefore等，具体看 JPAspectHookType
+	方法替换类型，必选字段；有以下4种 JPAspectHookType
+	
+	JPAspectHookUnknown              = 0, // Unknown
+	JPAspectHookCustomInvokeBefore   = 1, // Custom function invoke before original
+	JPAspectHookCustomInvokeAfter    = 2, // Custom function invoke after original
+	JPAspectHookCustomInvokeInstead  = 3  // Custom function invoke instead original
  
 > **argumentNames**：
 
@@ -98,11 +111,11 @@
 #####  Message 字段说明
 > **message**：
 
-	自定义方法调用，必选字段；例如："self.view.setBackgroundColor:"
+	自定义方法调用，可选字段；例如："self.view.setBackgroundColor:"。如果 nil, 则代表只创建方法调用条件：invokeCondition
  
 > **messageType**：
 
-	方法类型，必选字段，默认 JPAspectMessageTypeFunction；有以下3种 JPAspectMessageType：
+	方法类型，可选字段，默认 JPAspectMessageTypeFunction；有以下3种 JPAspectMessageType：
 	
 	* 方法调用（ JPAspectMessageTypeFunction = 0 ）
 	* 返回语句（ JPAspectMessageTypeReturn   = 1 ）
@@ -115,7 +128,7 @@
 	
 	* index ：参数位置，index 起始计数为 0
 	* type  ：参数类型（具体可参考：JPArgumentType）
-	* value ：参数值
+	* value ：参数值；（注意：值必须是字符串，值会优先取 localInstanceKey）
    
 > **localInstanceKey**：
 
@@ -125,7 +138,7 @@
 > **invokeCondition**：
 
 	方法执行条件，可选字段；目前支持：==、!=、>、>=、<、<=、||、&&；有以下3个字段：
-	【注意】:如 conditionKey 已存在，那么condition 和 operator 可以不填写
+	【注意】:如 conditionKey 已存在，那么condition 和 operator 可以不填写。此外，invokeCondition 均适用于以上三种语句
 	 
 	* condition ：条件语句
 	* operator  ：运算符
@@ -232,7 +245,7 @@ self.view.backgroundColor = [UIColor redColor];
 }
 ```
 
-#### Get 方法替换 
+#### Get 方法替换 。注意变量名必须带上下滑线 " _ "
 * **完全替换**：JPAspectHookCustomInvokeInstead
 
 ```objc
@@ -253,7 +266,7 @@ self.view.backgroundColor = [UIColor redColor];
     "parameters" : {
         "valueForKey:" : [{
             "index" : 0,
-            "value" : "aspectTitle",
+            "value" : "_aspectTitle",
             "type"  : 1
         }]
     },
@@ -271,7 +284,7 @@ self.view.backgroundColor = [UIColor redColor];
         },
         {
         	  "index" : 1,
-            "value" : "aspectTitle",
+            "value" : "_aspectTitle",
             "type"  : 1
         }]
     },
@@ -287,7 +300,7 @@ self.view.backgroundColor = [UIColor redColor];
     "parameters" : {
         "valueForKey:" : [{
             "index" : 0,
-            "value" : "aspectTitle",
+            "value" : "_aspectTitle",
             "type"  : 1
         }]
     },
@@ -324,7 +337,7 @@ self.view.backgroundColor = [UIColor redColor];
     "parameters" : {
         "valueForKey:" : [{
             "index" : 0,
-            "value" : "aspectTitle",
+            "value" : "_aspectTitle",
             "type"  : 1
         }]
     },
@@ -379,7 +392,8 @@ typedef NS_ENUM(NSUInteger, JPArgumentType) {
     JPArgumentTypeCGSize            = 15,
     JPArgumentTypeCGPoint           = 16,
     JPArgumentTypeCGRect            = 17,
-    JPArgumentTypeUIEdgeInsets      = 18
+    JPArgumentTypeUIEdgeInsets      = 18,
+    JPArgumentTypeNSRange           = 19
 };
 ```
 
@@ -437,7 +451,7 @@ int a = 1;
 }
 ```
 
-#### 5. UI布局参数：CGRect、CGPoint、CGSize、UIEdgeInsets，使用 “ , ” 符号分割
+#### 5. UI布局参数：CGRect、CGPoint、CGSize、UIEdgeInsets、NSRange，使用 “ , ” 符号分割
 
 ```objc
 // OC
@@ -611,7 +625,6 @@ BOOL isAnimated = YES;
 ```
 
 ## 注意
-1. 执行条件（invokeCondition）均适用于以上三种语句
-2. 替换的方法时需要评估该方法的调用频次，调用频次过高（ >1000/s ）的请考虑替换其他方法
-3. 禁止替换高频次调用的系统方法。例如：`NSNumber` 的 `- (BOOL)isEqualToNumber:(NSNumber *)number;`
-4. 语句（message）中注意不要有多余的空格，例如：`"message" : "isAnimated =3:1"` （ = 号前有多余空格）
+1. 替换的方法时需要评估该方法的调用频次，调用频次过高（ >1000/s ）的请考虑替换其他方法
+2. 禁止替换高频次调用的系统方法。例如：`NSNumber` 的 `- (BOOL)isEqualToNumber:(NSNumber *)number;`
+3. 语句（message）中注意不要有多余的空格，例如：`"message" : "isAnimated =3:1"` （ = 号前有多余空格）

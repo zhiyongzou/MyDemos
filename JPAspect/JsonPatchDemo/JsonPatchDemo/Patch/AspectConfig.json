@@ -3,7 +3,7 @@
     "Aspects": [
         {
             "selName": "viewWillAppear:",
-            "hookType": 2,
+            "hookType": 1,
             "className": "ViewController",
             "argumentNames": ["animated"],
             "customMessages" : [
