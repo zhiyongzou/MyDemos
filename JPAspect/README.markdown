@@ -1,5 +1,5 @@
 # JPAspect
-JPAspect 一款轻量级、无侵入和无审核风险的 iOS 热修复组件。JPAspect 通过下发指定规则的 JSON 即可轻松实现线上 Bug 修复。 
+JPAspect 一款轻量级、无侵入和无审核风险的 iOS 热修复框架。JPAspect 通过下发指定规则的 JSON 即可轻松实现线上 Bug 修复。 
 
 ## 功能
 * 方法替换为空实现
@@ -14,7 +14,9 @@ JPAspect 一款轻量级、无侵入和无审核风险的 iOS 热修复组件。
 	* 支持 return 语句
 
 ## 示例
-### 数组越界崩溃
+### 数组越界
+调用 `[self outOfBoundsException:index`] 时，由于传入 `index > self.testList.count` ，所以该调用会导致数组越界异常。
+
 ```objc
 @implementation ViewController
 
@@ -32,7 +34,10 @@ JPAspect 一款轻量级、无侵入和无审核风险的 iOS 热修复组件。
 ```
 
 ### JSON 脚本
+示例方法存在数组越界崩溃，通过分析，只需增加越界判断保护即可（示例中的注释代码）。JSON 脚本修复：只需要在 `outOfBoundsException:` 调用前增加数组越界保护逻辑即可，具体修复脚本如下所示：
+
 ```objc
+// 该脚本等于 fix code
 {
     "AspectDefineClass" : [],
     "Aspects": [

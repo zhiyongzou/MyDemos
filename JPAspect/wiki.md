@@ -1,7 +1,6 @@
 ## 基础
-### JSON 脚本字段说明
-#### 1. 示例脚本
-在 `- (void)viewWillDisappear:` 方法调用前增加自定义 `self.view.backgroundColor = [UIColor redColor]` 	方法调用; 该方法执行的条件是：**`animated == NO`**
+### 示例脚本
+在 `- (void)viewWillDisappear:` 方法调用前增加自定义 `self.view.backgroundColor = [UIColor redColor]` 方法调用; 该方法执行的条件是：**`animated == NO`**
 
 ```objc
 // OC
@@ -64,85 +63,111 @@
 }
 ```
 
-#### 2. 主要字段说明
+### JSON字段说明
 
-##### AspectDefineClass ---> [ "Class", "Class2", ... ]
-	Objective-C 所使用到类，可选字段，如有使用到OC类，那么必须先定义后使用；多个类使用 “,” 分隔
+#### AspectDefineClass --> [ "Class", "Class2", ... ]
+Objective-C 所使用到类，可选字段，如有使用到OC类，那么必须先定义后使用；多个类使用 “,” 分隔
 
-##### Aspects ---> [ {dictionary}, {dictionary2}, ... ]
-	需要替换的方法，必选字段，数组中的一个 {dictionary}（以下称为 Aspect） 代表一个需要替换的方法
+#### Aspects --> [ {dictionary}, {dictionary2}, ... ]
+需要替换的方法，必选字段，数组中的一个 {dictionary}（以下称为 **Aspect**） 代表一个需要替换的方法
 
-##### Aspect 字段说明
+#### Aspect 字段说明
 > **className**：
 
-	方法所属类名，必选字段；例如：ViewController
+方法所属类名，必选字段；例如：ViewController
  
 > **selName**：
 
-	需要替换的方法名，必选字段；例如：viewWillDisappear:
+需要替换的方法名，必选字段；例如：viewWillDisappear:
 	
 > **isClassMethod**：
 
-	是否为类方法，可选字段；默认实例方法
+是否为类方法，可选字段；默认实例方法
 	 
 > **hookType**：
 
-	方法替换类型，必选字段；有以下4种 JPAspectHookType
+方法替换类型，必选字段；有以下4种 JPAspectHookType
 	
-	JPAspectHookUnknown              = 0, // Unknown
-	JPAspectHookCustomInvokeBefore   = 1, // Custom function invoke before original
-	JPAspectHookCustomInvokeAfter    = 2, // Custom function invoke after original
-	JPAspectHookCustomInvokeInstead  = 3  // Custom function invoke instead original
+- JPAspectHookUnknown              = 0, // Unknown
+- JPAspectHookCustomInvokeBefore   = 1, // Custom function invoke before original
+- JPAspectHookCustomInvokeAfter    = 2, // Custom function invoke after original
+- JPAspectHookCustomInvokeInstead  = 3  // Custom function invoke instead original
  
 > **argumentNames**：
 
-	方法参数列表，可选字段，无参数可不填；如果方法有多个参数，那么参数列表的顺序和个数必须跟方法的参数一致。
-	例如：`- (id)performSelector:(SEL)aSelector withObject:(id)object` 的参数列表为: ["aSelector", "object"]
+方法参数名列表，可选字段，无参数可不填；如果方法有多个参数，那么参数列表的**顺序**和**个数**必须跟方法的参数一致。例如：`- (id)performSelector:(SEL)aSelector withObject:(id)object` 的参数列表为: `["aSelector", "object"]`
  
-> **customMessages**：
-
-	自定义方法调用列表，必选字段
-
 > **ApplySystemVersions**：
 
-	适用系统版本，简单使用 * 跟数字进行组合，可指定多个，可选字段，nil 代表全部版本；例如： ["*"] : 代表全部版本，
-	["8.*"] : 代表适用于 iOS8，[ "8.1.0", "9.*"] : 适用于 iOS8.1.0 和 iOS9
+适用系统版本，简单使用 * 跟数字进行组合，可指定多个，可选字段，nil 代表全部版本；例如： 
+ 
+- `["*"]` : 代表全部版本，
+- `["8.*"]` : 代表适用于 iOS8，
+- `[ "8.1.0", "9.*"]` : 适用于 iOS8.1.0 和 iOS9
 
-#####  Message 字段说明
+> **customMessages：--> [ {Message}, {Message2}, ... ]**
+
+自定义方法调用列表，必选字段; 一个 **{ Message }** 代表一条自定义语句
+
+####  Message 字段说明
 > **message**：
 
-	自定义方法调用，可选字段；例如："self.view.setBackgroundColor:"。如果 nil, 则代表只创建方法调用条件：invokeCondition
+自定义方法调用，可选字段；例如：`"message" : "self.view.setBackgroundColor:"`。如果 **nil**, 则代表只创建方法调用条件：invokeCondition;例如：
+
+```objc
+// 只生成 isAnimated
+"customMessages" : [
+        {
+            "invokeCondition": {
+                "condition" : "animated==0",
+                "operator" : "==",
+                "conditionKey" : "isAnimated"
+            }
+        }
+]
+```
  
 > **messageType**：
 
-	方法类型，可选字段，默认 JPAspectMessageTypeFunction；有以下3种 JPAspectMessageType：
+方法类型，可选字段，默认 JPAspectMessageTypeFunction；有以下3种 JPAspectMessageType：
 	
-	* 方法调用（ JPAspectMessageTypeFunction = 0 ）
-	* 返回语句（ JPAspectMessageTypeReturn   = 1 ）
-	* 赋值语句（ JPAspectMessageTypeAssign   = 2 ）
+* 方法调用（ JPAspectMessageTypeFunction = 0 ）
+* 返回语句（ JPAspectMessageTypeReturn   = 1 ）
+* 赋值语句（ JPAspectMessageTypeAssign   = 2 ）
 
 > **arguments**：
 
-	方法参数；可选字段，无参数不用填写。格式为：{"方法名(SEL)" : [{参数},  ...], {"方法名1(SEL1)" : [{参数1},  ...], ...}
-	参数有以下3个字段：
+方法参数；可选字段，无参数不用填写。格式为：`{"方法名(SEL)" : [{参数},  ...], {"方法名1(SEL1)" : [{参数1},  ...], ...}`，
+argument 有以下3个字段：
 	
-	* index ：参数位置，index 起始计数为 0
-	* type  ：参数类型（具体可参考：JPArgumentType）
-	* value ：参数值；（注意：值必须是字符串，值会优先取 localInstanceKey）
+* **index** ：参数位置，index 起始计数为 **0**
+* **type**  ：参数类型；具体可参考：**JPArgumentType**
+* **value** ：参数值；【注意】：值必须是**字符串**，值会优先取 **localInstanceKey**
+
+```objc
+"arguments" : {
+    "setBackgroundColor:" : [{
+        "index" : 0,
+        "value" : "redColor",
+        "type"  : 1
+    }]
+}
+```
+  
    
 > **localInstanceKey**：
 
-	方法局部变量 Key，可选字段, 如 nil 则表示无需保留该变量; 该局部变量可以作为其他方法的参数、条件判断参数和方法返回值；
-	示例中的`redColor`则为下一个方法调用的参数
+方法局部变量 Key，可选字段, 如 nil 则表示无需保留该变量; 该局部变量可以作为其他方法的参数、条件判断参数和方法返回值；
+示例中的`redColor`则为下一个方法调用的参数
 
 > **invokeCondition**：
 
-	方法执行条件，可选字段；目前支持：==、!=、>、>=、<、<=、||、&&；有以下3个字段：
-	【注意】:如 conditionKey 已存在，那么condition 和 operator 可以不填写。此外，invokeCondition 均适用于以上三种语句
-	 
-	* condition ：条件语句
-	* operator  ：运算符
-	* conditionKey ：运算结果局部变量key，如 nil 则表示无需保留当前结果
+方法执行条件，可选字段；目前支持：**==、!=、>、>=、<、<=、||、&&**，
+如 conditionKey 已存在，那么condition 和 operator 可以不填写。此外，**invokeCondition 均适用于以上三种语句**。invokeCondition 有以下3个字段
+ 
+* **condition** ：条件语句
+* **operator**  ：运算符
+* **conditionKey** ：运算结果局部变量key，如 nil 则表示无需保留当前结果
  
 ## 使用
 ### 一、方法调用
@@ -627,4 +652,4 @@ BOOL isAnimated = YES;
 ## 注意
 1. 替换的方法时需要评估该方法的调用频次，调用频次过高（ >1000/s ）的请考虑替换其他方法
 2. 禁止替换高频次调用的系统方法。例如：`NSNumber` 的 `- (BOOL)isEqualToNumber:(NSNumber *)number;`
-3. 语句（message）中注意不要有多余的空格，例如：`"message" : "isAnimated =3:1"` （ = 号前有多余空格）
+3. 语句（message）中注意不要有多余的空格，例如：`"message" : "isAnimated =3:1"` （ **= 号前有多余空格**）
