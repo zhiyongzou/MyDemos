@@ -162,7 +162,7 @@ argument 有以下3个字段：
 
 > **invokeCondition**：
 
-方法执行条件，可选字段；目前支持：**==、!=、>、>=、<、<=、||、&&**，
+方法执行条件，可选字段；目前支持的运算符：**==、!=、>、>=、<、<=、||、&&**，
 如 conditionKey 已存在，那么condition 和 operator 可以不填写。此外，**invokeCondition 均适用于以上三种语句**。invokeCondition 有以下3个字段
  
 * **condition** ：条件语句
@@ -224,12 +224,12 @@ self.view.backgroundColor = [UIColor redColor];
     "parameters" : {
         "colorWithWhite:alpha:" : [{
             "index" : 0,
-            "value" : 0,
+            "value" : "0",
             "type"  : 11
         },
         {
             "index" : 1,
-            "value" : 0.1,
+            "value" : "0.1",
             "type"  : 11
         }]
     }
@@ -472,7 +472,7 @@ int a = 1;
 {
 	"index" : 0,
 	"type"  : 12, //JPArgumentTypeInt
-	"value" : 1
+	"value" : "1"
 }
 ```
 

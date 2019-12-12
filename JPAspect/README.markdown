@@ -8,14 +8,19 @@ JPAspect 一款轻量级、无侵入和无审核风险的 iOS 热修复框架。
 * 方法调用前后插入自定义代码
 	* 支持任意 OC 方法调用
 	* 支持赋值语句
-	* 支持 if 语句
+	* 支持 if 语句: **==、!=、>、>=、<、<=、||、&&**
 	* 支持 super 调用
 	* 支持自定义局部变量
 	* 支持 return 语句
 
+### 【注意】
+* JPAspect 不支持 Block、struct、enum、循环语句和 C/C++ 函数
+* JPAspect 主要在对目标方法的基础上进行修改，从而实现 bug 修复
+* JPAspect 在方法重写和自定义调用存在一定的局限性。但是用来修复常见 bug 已经足够
+
 ## 示例
-### 数组越界
-调用 `[self outOfBoundsException:index`] 时，由于传入 `index > self.testList.count` ，所以该调用会导致数组越界异常。
+### 数组越界异常
+调用 `[self outOfBoundsException:index`] 时，由于传入 `index >= self.testList.count` ，导致数组越界异常。
 
 ```objc
 @implementation ViewController
