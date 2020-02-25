@@ -1,0 +1,6 @@
+module Pods_iRead {
+  umbrella header "Pods-iRead-umbrella.h"
+
+  export *
+  module * { export * }
+}

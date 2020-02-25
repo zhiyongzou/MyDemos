@@ -1,0 +1,836 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F1FDE09CB0AC6FAC3A145F01F9CE208 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE3CA969D4223C80D17A47EE76D2ED /* Element.swift */; };
+		16196E18C2160A32E3A975481451A947 /* SSZipCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D6A1FA575C624B5B252D09C77D83B89 /* SSZipCommon.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1671BF424769F244848E79060DFB3A89 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C1B6EE1823E728037F857EB58987EB /* SSZipArchive.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		18C90143098C7FAC10A199EFDC8A4B34 /* mz_strm_split.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A77A0EC814234976BC00A4A0C7211E2 /* mz_strm_split.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1E6F5ED3E735990D13923B5B33F7228A /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14AA7D74EE9ECF785B1604F8D7BD81B /* Options.swift */; };
+		338A1B828BC10C75AE61105DB7E48144 /* SSZipArchive-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A7942D75D2128B27A0DDE3902CAE5E /* SSZipArchive-dummy.m */; };
+		3B2218B663C065E90F8F9DF5158F9CF8 /* SSZipArchive-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 996123094F62A1B937457FF87E9998C3 /* SSZipArchive-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3B57D509007761F38E6F12EFBB19BE9C /* mz_zip_rw.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A80775546EA12729C276FB37A4D9EEC /* mz_zip_rw.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3CFABC0C815A68E7CA5AED98188CB0CB /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79A3172C8C486D7EF78A001DEDC03E /* Parser.swift */; };
+		48F35BC969C3F5F6726DF34010133881 /* mz_strm_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CCA8D425EE7AFCC372B95DD76A8D5B4 /* mz_strm_os.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4B659D9BE2202BD2CDED1E247CCA5F20 /* mz_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C15DDCA4D90E9B4008C95588AC461C7 /* mz_os.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		518D9EC74300059730DF68579DD0539E /* mz_compat.c in Sources */ = {isa = PBXBuildFile; fileRef = 293A36C19D08267BE40E3778E569E420 /* mz_compat.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		570D4D50D4B531190638D21BA87020C9 /* mz_zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BA29C760A8978C752C0B9EB7313F73B /* mz_zip.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		6394BE077B1409438AA6A4F52D20A612 /* mz_strm.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FA17FC4045FF77584055DCC488623B4 /* mz_strm.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		75524CA50FB61D870E15B2048D8A4391 /* mz_compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 350AABB023A2F6D70AEE6B135D941EE4 /* mz_compat.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7E2C201D128F811C81252BB5DC47F0A1 /* mz_strm_pkcrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = D3B145A8BA74B95CBF4182EDBE82D682 /* mz_strm_pkcrypt.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		802E5A594A0F484A2E073BBFF06899FB /* AEXML-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B5A22110CC16A44681A1958DCF63CD84 /* AEXML-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		80B779BC994355048CADC86AD198DBF5 /* Pods-iRead-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 49098CCA5D3A73131E95595002C035D6 /* Pods-iRead-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		85E367BF290AFA7D273387657BEE65E5 /* mz_strm_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = 8E251E16968E7D278C68B57F705B66A3 /* mz_strm_mem.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		8850A9FA360E21ACA3AF21CC880AF1D1 /* mz_strm_zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BBDCFB515AE694973B4A0C03C3F6868 /* mz_strm_zlib.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8D1D0B88DA289FFFE38DE910D4111789 /* mz_strm_split.h in Headers */ = {isa = PBXBuildFile; fileRef = 68296B9C9D34BE2AA55C14968D69E3E0 /* mz_strm_split.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8D61693471853F0FA5AF15ECFA0A6E8D /* mz_strm_buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 280E6D784A1F5D985E10D8E23EE2FD2A /* mz_strm_buf.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		924DEC1ADE931E323B804A65EDDE3734 /* mz_strm.h in Headers */ = {isa = PBXBuildFile; fileRef = 600A35BAB58BB2C0CC1C5684DDE9198E /* mz_strm.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9ACB45B93411253A5796AF96912B6945 /* mz_crypt_apple.c in Sources */ = {isa = PBXBuildFile; fileRef = FFE3A79BCEAD13A857B8BFAE9FB1A782 /* mz_crypt_apple.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9C1F41D151E6EB69E2103D9DE3744CBE /* mz_strm_buf.h in Headers */ = {isa = PBXBuildFile; fileRef = 09D22ACD6F5E1B5E364E0825604E332A /* mz_strm_buf.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B2723E070F1180F3409881D144A4C3A6 /* mz_strm_pkcrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DACBFFA5ED1967005C5C1E127DF6307 /* mz_strm_pkcrypt.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B7F718569E74033E5785254A89847656 /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = EEF1808B42E53F87F053E4DEC05156DF /* ZipArchive.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B81B254DC74A3800CE0040BB9EDBE840 /* mz.h in Headers */ = {isa = PBXBuildFile; fileRef = B846CE96AFBFC65EB762D0D09E9E7D3B /* mz.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C3F39BE2E00E6D2FEC6C0C8E2E099E64 /* mz_strm_wzaes.h in Headers */ = {isa = PBXBuildFile; fileRef = D0863537A05D3C01BEFD8AE264489370 /* mz_strm_wzaes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C445153EBD57629DCDBDC8324F9FBF0E /* mz_strm_os_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = CABEA9930D52CEFFAEAE065E00C30E7B /* mz_strm_os_posix.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CF3C4BB1DC249038D6407754F965E91D /* Pods-iRead-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B7F6465CB5934F330ED2BC2AFE98AD /* Pods-iRead-dummy.m */; };
+		D06147953089FA38A398370F3CCD7CC5 /* mz_os.c in Sources */ = {isa = PBXBuildFile; fileRef = 61FE58B28C7E16BDCF2C52AE54D5F72E /* mz_os.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D64DEE67B1273AD9685534653481B50A /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F4FFDEDD3F2F61C5EC44696498E1B8 /* Error.swift */; };
+		DCD022CDDD061D4636564CD29CB8F116 /* mz_strm_mem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A2BA98F031BCA267DB7F9CA17BC7EB5 /* mz_strm_mem.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DD3DE000484553D816B5D34AB704446D /* mz_zip_rw.c in Sources */ = {isa = PBXBuildFile; fileRef = 43394907CBBC98632E55C8D1D210A3F2 /* mz_zip_rw.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DEFF38FEE372F6CC14A050E0D12307B2 /* mz_zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6C5573C9B6F3014773A9AE7B62FCA2 /* mz_zip.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E1A6F69D0CEEB0E433A0B04FE8929B0D /* mz_strm_wzaes.c in Sources */ = {isa = PBXBuildFile; fileRef = EEBA82C599F25277B5C616FC0E095C17 /* mz_strm_wzaes.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E35E081B09FB18543C2F3AAC8079B885 /* mz_os_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = 09062223C3D216EED40DD6ECDA0A3C0B /* mz_os_posix.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E61DFE7C62354AAD8DAF3C98C187E914 /* SSZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = A070B46CFFD7C4E13F67F76066100D3E /* SSZipArchive.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F50224917D97387894C0D56A742E81A2 /* mz_strm_zlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C4ECAD9E92B812B5CC29020B8D8A820 /* mz_strm_zlib.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F77DD2ABF340B98947B7EFFE6D5ACCB6 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E653338DA078A7A4C5570386D845F0 /* Document.swift */; };
+		F79EB09AE85321045D1EDAC557272745 /* mz_crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = A9734E5DCC71CAAE5BB80A65F3E4391B /* mz_crypt.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F8C36B6EF040A07CD3DF502E93BABE04 /* AEXML-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD5EBDF9D0C6EAFAFE01D237BC0135 /* AEXML-dummy.m */; };
+		FDDE633DE8194ACE28B3F47AECEF86AC /* mz_crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 2655395B5250C8DC98ADCD263A8DC075 /* mz_crypt.h */; settings = {ATTRIBUTES = (Project, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		783F758E2518E975A5C6BF20302FE2E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0C3B2890BA25B4203C768E55BB4D4FA;
+			remoteInfo = AEXML;
+		};
+		D92704EC884D65A636D47FC2804A1C68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F60E38364AFF5E1349FF07415B944396;
+			remoteInfo = SSZipArchive;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09062223C3D216EED40DD6ECDA0A3C0B /* mz_os_posix.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_os_posix.c; path = SSZipArchive/minizip/mz_os_posix.c; sourceTree = "<group>"; };
+		09D22ACD6F5E1B5E364E0825604E332A /* mz_strm_buf.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_buf.h; path = SSZipArchive/minizip/mz_strm_buf.h; sourceTree = "<group>"; };
+		0A80775546EA12729C276FB37A4D9EEC /* mz_zip_rw.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_zip_rw.h; path = SSZipArchive/minizip/mz_zip_rw.h; sourceTree = "<group>"; };
+		0B23E23DCEE270AFF0033E2C8F34D9E6 /* AEXML.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AEXML.xcconfig; sourceTree = "<group>"; };
+		0C15DDCA4D90E9B4008C95588AC461C7 /* mz_os.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_os.h; path = SSZipArchive/minizip/mz_os.h; sourceTree = "<group>"; };
+		0C4ECAD9E92B812B5CC29020B8D8A820 /* mz_strm_zlib.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_zlib.c; path = SSZipArchive/minizip/mz_strm_zlib.c; sourceTree = "<group>"; };
+		12B7F6465CB5934F330ED2BC2AFE98AD /* Pods-iRead-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iRead-dummy.m"; sourceTree = "<group>"; };
+		1559B82621F0D769CF2B29E20A3F21C8 /* SSZipArchive.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SSZipArchive.modulemap; sourceTree = "<group>"; };
+		1B6C5573C9B6F3014773A9AE7B62FCA2 /* mz_zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_zip.h; path = SSZipArchive/minizip/mz_zip.h; sourceTree = "<group>"; };
+		1C856EC8C02802DA322D257E2DEF79AA /* SSZipArchive-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SSZipArchive-prefix.pch"; sourceTree = "<group>"; };
+		2655395B5250C8DC98ADCD263A8DC075 /* mz_crypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_crypt.h; path = SSZipArchive/minizip/mz_crypt.h; sourceTree = "<group>"; };
+		280E6D784A1F5D985E10D8E23EE2FD2A /* mz_strm_buf.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_buf.c; path = SSZipArchive/minizip/mz_strm_buf.c; sourceTree = "<group>"; };
+		293A36C19D08267BE40E3778E569E420 /* mz_compat.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_compat.c; path = SSZipArchive/minizip/mz_compat.c; sourceTree = "<group>"; };
+		2CAD5EBDF9D0C6EAFAFE01D237BC0135 /* AEXML-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AEXML-dummy.m"; sourceTree = "<group>"; };
+		2CCA8D425EE7AFCC372B95DD76A8D5B4 /* mz_strm_os.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_os.h; path = SSZipArchive/minizip/mz_strm_os.h; sourceTree = "<group>"; };
+		2D79A3172C8C486D7EF78A001DEDC03E /* Parser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Sources/AEXML/Parser.swift; sourceTree = "<group>"; };
+		30DD961A1EFDAF9F3D697B8971BDA78E /* AEXML-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AEXML-prefix.pch"; sourceTree = "<group>"; };
+		33A7942D75D2128B27A0DDE3902CAE5E /* SSZipArchive-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SSZipArchive-dummy.m"; sourceTree = "<group>"; };
+		350AABB023A2F6D70AEE6B135D941EE4 /* mz_compat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_compat.h; path = SSZipArchive/minizip/mz_compat.h; sourceTree = "<group>"; };
+		36BE3CA969D4223C80D17A47EE76D2ED /* Element.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Element.swift; path = Sources/AEXML/Element.swift; sourceTree = "<group>"; };
+		3FA17FC4045FF77584055DCC488623B4 /* mz_strm.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm.c; path = SSZipArchive/minizip/mz_strm.c; sourceTree = "<group>"; };
+		43394907CBBC98632E55C8D1D210A3F2 /* mz_zip_rw.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_zip_rw.c; path = SSZipArchive/minizip/mz_zip_rw.c; sourceTree = "<group>"; };
+		45CA6261F0F72972B66F46039B5D189E /* Pods-iRead-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iRead-acknowledgements.markdown"; sourceTree = "<group>"; };
+		45F4FFDEDD3F2F61C5EC44696498E1B8 /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Sources/AEXML/Error.swift; sourceTree = "<group>"; };
+		49098CCA5D3A73131E95595002C035D6 /* Pods-iRead-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iRead-umbrella.h"; sourceTree = "<group>"; };
+		4DACBFFA5ED1967005C5C1E127DF6307 /* mz_strm_pkcrypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_pkcrypt.h; path = SSZipArchive/minizip/mz_strm_pkcrypt.h; sourceTree = "<group>"; };
+		55C1B6EE1823E728037F857EB58987EB /* SSZipArchive.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SSZipArchive.m; path = SSZipArchive/SSZipArchive.m; sourceTree = "<group>"; };
+		5A2BA98F031BCA267DB7F9CA17BC7EB5 /* mz_strm_mem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_mem.h; path = SSZipArchive/minizip/mz_strm_mem.h; sourceTree = "<group>"; };
+		5BBDCFB515AE694973B4A0C03C3F6868 /* mz_strm_zlib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_zlib.h; path = SSZipArchive/minizip/mz_strm_zlib.h; sourceTree = "<group>"; };
+		600A35BAB58BB2C0CC1C5684DDE9198E /* mz_strm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm.h; path = SSZipArchive/minizip/mz_strm.h; sourceTree = "<group>"; };
+		61FE58B28C7E16BDCF2C52AE54D5F72E /* mz_os.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_os.c; path = SSZipArchive/minizip/mz_os.c; sourceTree = "<group>"; };
+		68296B9C9D34BE2AA55C14968D69E3E0 /* mz_strm_split.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_split.h; path = SSZipArchive/minizip/mz_strm_split.h; sourceTree = "<group>"; };
+		6D6A1FA575C624B5B252D09C77D83B89 /* SSZipCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSZipCommon.h; path = SSZipArchive/SSZipCommon.h; sourceTree = "<group>"; };
+		7A022D6434EDC0C88367A30E0DED1766 /* Pods-iRead.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iRead.debug.xcconfig"; sourceTree = "<group>"; };
+		7A77A0EC814234976BC00A4A0C7211E2 /* mz_strm_split.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_split.c; path = SSZipArchive/minizip/mz_strm_split.c; sourceTree = "<group>"; };
+		7BA29C760A8978C752C0B9EB7313F73B /* mz_zip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_zip.c; path = SSZipArchive/minizip/mz_zip.c; sourceTree = "<group>"; };
+		86662D6AF4CC39AC3DD63BC8995D58DC /* Pods-iRead-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iRead-acknowledgements.plist"; sourceTree = "<group>"; };
+		88E653338DA078A7A4C5570386D845F0 /* Document.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Document.swift; path = Sources/AEXML/Document.swift; sourceTree = "<group>"; };
+		8E251E16968E7D278C68B57F705B66A3 /* mz_strm_mem.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_mem.c; path = SSZipArchive/minizip/mz_strm_mem.c; sourceTree = "<group>"; };
+		91B23470DEB9A986332BEB5034234BC7 /* libSSZipArchive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSSZipArchive.a; path = libSSZipArchive.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		945DED51B29B6775E4E434BA0A0984AE /* Pods-iRead.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iRead.modulemap"; sourceTree = "<group>"; };
+		996123094F62A1B937457FF87E9998C3 /* SSZipArchive-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SSZipArchive-umbrella.h"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A070B46CFFD7C4E13F67F76066100D3E /* SSZipArchive.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSZipArchive.h; path = SSZipArchive/SSZipArchive.h; sourceTree = "<group>"; };
+		A9734E5DCC71CAAE5BB80A65F3E4391B /* mz_crypt.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_crypt.c; path = SSZipArchive/minizip/mz_crypt.c; sourceTree = "<group>"; };
+		B5A22110CC16A44681A1958DCF63CD84 /* AEXML-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AEXML-umbrella.h"; sourceTree = "<group>"; };
+		B7F452C8575CD760062098924FC3A1D2 /* libAEXML.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAEXML.a; path = libAEXML.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B846CE96AFBFC65EB762D0D09E9E7D3B /* mz.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz.h; path = SSZipArchive/minizip/mz.h; sourceTree = "<group>"; };
+		CABEA9930D52CEFFAEAE065E00C30E7B /* mz_strm_os_posix.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_os_posix.c; path = SSZipArchive/minizip/mz_strm_os_posix.c; sourceTree = "<group>"; };
+		D0863537A05D3C01BEFD8AE264489370 /* mz_strm_wzaes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_wzaes.h; path = SSZipArchive/minizip/mz_strm_wzaes.h; sourceTree = "<group>"; };
+		D14AA7D74EE9ECF785B1604F8D7BD81B /* Options.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Options.swift; path = Sources/AEXML/Options.swift; sourceTree = "<group>"; };
+		D3B145A8BA74B95CBF4182EDBE82D682 /* mz_strm_pkcrypt.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_pkcrypt.c; path = SSZipArchive/minizip/mz_strm_pkcrypt.c; sourceTree = "<group>"; };
+		DA0A34AE90AC3BF7365C932AF084175A /* Pods-iRead.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iRead.release.xcconfig"; sourceTree = "<group>"; };
+		E9923B5D8CD0EBDB7F25BA953E0C2168 /* libPods-iRead.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iRead.a"; path = "libPods-iRead.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEBA82C599F25277B5C616FC0E095C17 /* mz_strm_wzaes.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_wzaes.c; path = SSZipArchive/minizip/mz_strm_wzaes.c; sourceTree = "<group>"; };
+		EEF1808B42E53F87F053E4DEC05156DF /* ZipArchive.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZipArchive.h; path = SSZipArchive/ZipArchive.h; sourceTree = "<group>"; };
+		F79C743FB8E8194F369367D95C00BB32 /* AEXML.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AEXML.modulemap; sourceTree = "<group>"; };
+		FF12A4BBE1D0467F05C438E2F40D3B26 /* SSZipArchive.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SSZipArchive.xcconfig; sourceTree = "<group>"; };
+		FFE3A79BCEAD13A857B8BFAE9FB1A782 /* mz_crypt_apple.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_crypt_apple.c; path = SSZipArchive/minizip/mz_crypt_apple.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1B361AD89661EF252EBB7F271E32D981 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4DCC01B73997D6426D2BA98E4F1D1180 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F113B1B991E847206FAE37200EAF21BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1D3FE76B5D93A40A65348E71BE86F917 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				944BB2A240AFEFDCF8967A66261672A2 /* Pods-iRead */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		388B23FC9002948B37FD2A3E5366C44C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F79C743FB8E8194F369367D95C00BB32 /* AEXML.modulemap */,
+				0B23E23DCEE270AFF0033E2C8F34D9E6 /* AEXML.xcconfig */,
+				2CAD5EBDF9D0C6EAFAFE01D237BC0135 /* AEXML-dummy.m */,
+				30DD961A1EFDAF9F3D697B8971BDA78E /* AEXML-prefix.pch */,
+				B5A22110CC16A44681A1958DCF63CD84 /* AEXML-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AEXML";
+			sourceTree = "<group>";
+		};
+		45F998C106F33D12205B54C26CFBD60D /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				B846CE96AFBFC65EB762D0D09E9E7D3B /* mz.h */,
+				293A36C19D08267BE40E3778E569E420 /* mz_compat.c */,
+				350AABB023A2F6D70AEE6B135D941EE4 /* mz_compat.h */,
+				A9734E5DCC71CAAE5BB80A65F3E4391B /* mz_crypt.c */,
+				2655395B5250C8DC98ADCD263A8DC075 /* mz_crypt.h */,
+				FFE3A79BCEAD13A857B8BFAE9FB1A782 /* mz_crypt_apple.c */,
+				61FE58B28C7E16BDCF2C52AE54D5F72E /* mz_os.c */,
+				0C15DDCA4D90E9B4008C95588AC461C7 /* mz_os.h */,
+				09062223C3D216EED40DD6ECDA0A3C0B /* mz_os_posix.c */,
+				3FA17FC4045FF77584055DCC488623B4 /* mz_strm.c */,
+				600A35BAB58BB2C0CC1C5684DDE9198E /* mz_strm.h */,
+				280E6D784A1F5D985E10D8E23EE2FD2A /* mz_strm_buf.c */,
+				09D22ACD6F5E1B5E364E0825604E332A /* mz_strm_buf.h */,
+				8E251E16968E7D278C68B57F705B66A3 /* mz_strm_mem.c */,
+				5A2BA98F031BCA267DB7F9CA17BC7EB5 /* mz_strm_mem.h */,
+				2CCA8D425EE7AFCC372B95DD76A8D5B4 /* mz_strm_os.h */,
+				CABEA9930D52CEFFAEAE065E00C30E7B /* mz_strm_os_posix.c */,
+				D3B145A8BA74B95CBF4182EDBE82D682 /* mz_strm_pkcrypt.c */,
+				4DACBFFA5ED1967005C5C1E127DF6307 /* mz_strm_pkcrypt.h */,
+				7A77A0EC814234976BC00A4A0C7211E2 /* mz_strm_split.c */,
+				68296B9C9D34BE2AA55C14968D69E3E0 /* mz_strm_split.h */,
+				EEBA82C599F25277B5C616FC0E095C17 /* mz_strm_wzaes.c */,
+				D0863537A05D3C01BEFD8AE264489370 /* mz_strm_wzaes.h */,
+				0C4ECAD9E92B812B5CC29020B8D8A820 /* mz_strm_zlib.c */,
+				5BBDCFB515AE694973B4A0C03C3F6868 /* mz_strm_zlib.h */,
+				7BA29C760A8978C752C0B9EB7313F73B /* mz_zip.c */,
+				1B6C5573C9B6F3014773A9AE7B62FCA2 /* mz_zip.h */,
+				43394907CBBC98632E55C8D1D210A3F2 /* mz_zip_rw.c */,
+				0A80775546EA12729C276FB37A4D9EEC /* mz_zip_rw.h */,
+				A070B46CFFD7C4E13F67F76066100D3E /* SSZipArchive.h */,
+				55C1B6EE1823E728037F857EB58987EB /* SSZipArchive.m */,
+				6D6A1FA575C624B5B252D09C77D83B89 /* SSZipCommon.h */,
+				EEF1808B42E53F87F053E4DEC05156DF /* ZipArchive.h */,
+				BF88AFD19BE7AF17851C108208D2C486 /* Support Files */,
+			);
+			name = SSZipArchive;
+			path = SSZipArchive;
+			sourceTree = "<group>";
+		};
+		5B8E42BDE7B06B10B269B560DEC2AF62 /* AEXML */ = {
+			isa = PBXGroup;
+			children = (
+				88E653338DA078A7A4C5570386D845F0 /* Document.swift */,
+				36BE3CA969D4223C80D17A47EE76D2ED /* Element.swift */,
+				45F4FFDEDD3F2F61C5EC44696498E1B8 /* Error.swift */,
+				D14AA7D74EE9ECF785B1604F8D7BD81B /* Options.swift */,
+				2D79A3172C8C486D7EF78A001DEDC03E /* Parser.swift */,
+				388B23FC9002948B37FD2A3E5366C44C /* Support Files */,
+			);
+			name = AEXML;
+			path = AEXML;
+			sourceTree = "<group>";
+		};
+		944BB2A240AFEFDCF8967A66261672A2 /* Pods-iRead */ = {
+			isa = PBXGroup;
+			children = (
+				945DED51B29B6775E4E434BA0A0984AE /* Pods-iRead.modulemap */,
+				45CA6261F0F72972B66F46039B5D189E /* Pods-iRead-acknowledgements.markdown */,
+				86662D6AF4CC39AC3DD63BC8995D58DC /* Pods-iRead-acknowledgements.plist */,
+				12B7F6465CB5934F330ED2BC2AFE98AD /* Pods-iRead-dummy.m */,
+				49098CCA5D3A73131E95595002C035D6 /* Pods-iRead-umbrella.h */,
+				7A022D6434EDC0C88367A30E0DED1766 /* Pods-iRead.debug.xcconfig */,
+				DA0A34AE90AC3BF7365C932AF084175A /* Pods-iRead.release.xcconfig */,
+			);
+			name = "Pods-iRead";
+			path = "Target Support Files/Pods-iRead";
+			sourceTree = "<group>";
+		};
+		BC8527BB57D9F87DB51EE20EEF9E2703 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5B8E42BDE7B06B10B269B560DEC2AF62 /* AEXML */,
+				45F998C106F33D12205B54C26CFBD60D /* SSZipArchive */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BF88AFD19BE7AF17851C108208D2C486 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1559B82621F0D769CF2B29E20A3F21C8 /* SSZipArchive.modulemap */,
+				FF12A4BBE1D0467F05C438E2F40D3B26 /* SSZipArchive.xcconfig */,
+				33A7942D75D2128B27A0DDE3902CAE5E /* SSZipArchive-dummy.m */,
+				1C856EC8C02802DA322D257E2DEF79AA /* SSZipArchive-prefix.pch */,
+				996123094F62A1B937457FF87E9998C3 /* SSZipArchive-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SSZipArchive";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				BC8527BB57D9F87DB51EE20EEF9E2703 /* Pods */,
+				FDC4296C6D7AA66E1EA1F6A9ECC6CDAD /* Products */,
+				1D3FE76B5D93A40A65348E71BE86F917 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDC4296C6D7AA66E1EA1F6A9ECC6CDAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B7F452C8575CD760062098924FC3A1D2 /* libAEXML.a */,
+				E9923B5D8CD0EBDB7F25BA953E0C2168 /* libPods-iRead.a */,
+				91B23470DEB9A986332BEB5034234BC7 /* libSSZipArchive.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4960322FACF2E1685C929C340525DF59 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80B779BC994355048CADC86AD198DBF5 /* Pods-iRead-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84161997ECA55E6E6C8B19881B5435FB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B81B254DC74A3800CE0040BB9EDBE840 /* mz.h in Headers */,
+				75524CA50FB61D870E15B2048D8A4391 /* mz_compat.h in Headers */,
+				FDDE633DE8194ACE28B3F47AECEF86AC /* mz_crypt.h in Headers */,
+				4B659D9BE2202BD2CDED1E247CCA5F20 /* mz_os.h in Headers */,
+				924DEC1ADE931E323B804A65EDDE3734 /* mz_strm.h in Headers */,
+				9C1F41D151E6EB69E2103D9DE3744CBE /* mz_strm_buf.h in Headers */,
+				DCD022CDDD061D4636564CD29CB8F116 /* mz_strm_mem.h in Headers */,
+				48F35BC969C3F5F6726DF34010133881 /* mz_strm_os.h in Headers */,
+				B2723E070F1180F3409881D144A4C3A6 /* mz_strm_pkcrypt.h in Headers */,
+				8D1D0B88DA289FFFE38DE910D4111789 /* mz_strm_split.h in Headers */,
+				C3F39BE2E00E6D2FEC6C0C8E2E099E64 /* mz_strm_wzaes.h in Headers */,
+				8850A9FA360E21ACA3AF21CC880AF1D1 /* mz_strm_zlib.h in Headers */,
+				DEFF38FEE372F6CC14A050E0D12307B2 /* mz_zip.h in Headers */,
+				3B57D509007761F38E6F12EFBB19BE9C /* mz_zip_rw.h in Headers */,
+				3B2218B663C065E90F8F9DF5158F9CF8 /* SSZipArchive-umbrella.h in Headers */,
+				E61DFE7C62354AAD8DAF3C98C187E914 /* SSZipArchive.h in Headers */,
+				16196E18C2160A32E3A975481451A947 /* SSZipCommon.h in Headers */,
+				B7F718569E74033E5785254A89847656 /* ZipArchive.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD37F160B70D33D8059508DC99F7EC73 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				802E5A594A0F484A2E073BBFF06899FB /* AEXML-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		7770DB10DB82DBA8572B94E51C0D5B82 /* Pods-iRead */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB168BFCEB39C623F320478E2FFD41F0 /* Build configuration list for PBXNativeTarget "Pods-iRead" */;
+			buildPhases = (
+				4960322FACF2E1685C929C340525DF59 /* Headers */,
+				EFE1C14C31BB451E2407809A036F4FD0 /* Sources */,
+				4DCC01B73997D6426D2BA98E4F1D1180 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C5360708E2485D036E885AC94E5E9DF4 /* PBXTargetDependency */,
+				26AD7657629D901AE4F87C38AD70C4C6 /* PBXTargetDependency */,
+			);
+			name = "Pods-iRead";
+			productName = "Pods-iRead";
+			productReference = E9923B5D8CD0EBDB7F25BA953E0C2168 /* libPods-iRead.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D0C3B2890BA25B4203C768E55BB4D4FA /* AEXML */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66B8A14126A0A7E9CB57B61A2CE692E9 /* Build configuration list for PBXNativeTarget "AEXML" */;
+			buildPhases = (
+				DD37F160B70D33D8059508DC99F7EC73 /* Headers */,
+				CD9CAD279C995CABEBF9DE33684F246F /* Sources */,
+				1B361AD89661EF252EBB7F271E32D981 /* Frameworks */,
+				B6E97A85DE50F96C2EA64E012A1542BB /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AEXML;
+			productName = AEXML;
+			productReference = B7F452C8575CD760062098924FC3A1D2 /* libAEXML.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F60E38364AFF5E1349FF07415B944396 /* SSZipArchive */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 068F33D353A74457071956B813CA1D35 /* Build configuration list for PBXNativeTarget "SSZipArchive" */;
+			buildPhases = (
+				84161997ECA55E6E6C8B19881B5435FB /* Headers */,
+				59567E470A1CDC79033FD1903BF4F672 /* Sources */,
+				F113B1B991E847206FAE37200EAF21BD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SSZipArchive;
+			productName = SSZipArchive;
+			productReference = 91B23470DEB9A986332BEB5034234BC7 /* libSSZipArchive.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = FDC4296C6D7AA66E1EA1F6A9ECC6CDAD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0C3B2890BA25B4203C768E55BB4D4FA /* AEXML */,
+				7770DB10DB82DBA8572B94E51C0D5B82 /* Pods-iRead */,
+				F60E38364AFF5E1349FF07415B944396 /* SSZipArchive */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B6E97A85DE50F96C2EA64E012A1542BB /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/AEXML/AEXML.modulemap",
+				"${PODS_ROOT}/Headers/Public/AEXML/AEXML-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/AEXML-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/AEXML/AEXML.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/AEXML/AEXML-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		59567E470A1CDC79033FD1903BF4F672 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				518D9EC74300059730DF68579DD0539E /* mz_compat.c in Sources */,
+				F79EB09AE85321045D1EDAC557272745 /* mz_crypt.c in Sources */,
+				9ACB45B93411253A5796AF96912B6945 /* mz_crypt_apple.c in Sources */,
+				D06147953089FA38A398370F3CCD7CC5 /* mz_os.c in Sources */,
+				E35E081B09FB18543C2F3AAC8079B885 /* mz_os_posix.c in Sources */,
+				6394BE077B1409438AA6A4F52D20A612 /* mz_strm.c in Sources */,
+				8D61693471853F0FA5AF15ECFA0A6E8D /* mz_strm_buf.c in Sources */,
+				85E367BF290AFA7D273387657BEE65E5 /* mz_strm_mem.c in Sources */,
+				C445153EBD57629DCDBDC8324F9FBF0E /* mz_strm_os_posix.c in Sources */,
+				7E2C201D128F811C81252BB5DC47F0A1 /* mz_strm_pkcrypt.c in Sources */,
+				18C90143098C7FAC10A199EFDC8A4B34 /* mz_strm_split.c in Sources */,
+				E1A6F69D0CEEB0E433A0B04FE8929B0D /* mz_strm_wzaes.c in Sources */,
+				F50224917D97387894C0D56A742E81A2 /* mz_strm_zlib.c in Sources */,
+				570D4D50D4B531190638D21BA87020C9 /* mz_zip.c in Sources */,
+				DD3DE000484553D816B5D34AB704446D /* mz_zip_rw.c in Sources */,
+				338A1B828BC10C75AE61105DB7E48144 /* SSZipArchive-dummy.m in Sources */,
+				1671BF424769F244848E79060DFB3A89 /* SSZipArchive.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9CAD279C995CABEBF9DE33684F246F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8C36B6EF040A07CD3DF502E93BABE04 /* AEXML-dummy.m in Sources */,
+				F77DD2ABF340B98947B7EFFE6D5ACCB6 /* Document.swift in Sources */,
+				0F1FDE09CB0AC6FAC3A145F01F9CE208 /* Element.swift in Sources */,
+				D64DEE67B1273AD9685534653481B50A /* Error.swift in Sources */,
+				1E6F5ED3E735990D13923B5B33F7228A /* Options.swift in Sources */,
+				3CFABC0C815A68E7CA5AED98188CB0CB /* Parser.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFE1C14C31BB451E2407809A036F4FD0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF3C4BB1DC249038D6407754F965E91D /* Pods-iRead-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		26AD7657629D901AE4F87C38AD70C4C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SSZipArchive;
+			target = F60E38364AFF5E1349FF07415B944396 /* SSZipArchive */;
+			targetProxy = D92704EC884D65A636D47FC2804A1C68 /* PBXContainerItemProxy */;
+		};
+		C5360708E2485D036E885AC94E5E9DF4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AEXML;
+			target = D0C3B2890BA25B4203C768E55BB4D4FA /* AEXML */;
+			targetProxy = 783F758E2518E975A5C6BF20302FE2E3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0BDF1C3EF2DC1E0C53BA8902BE79CD20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA0A34AE90AC3BF7365C932AF084175A /* Pods-iRead.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-iRead/Pods-iRead.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2F4319589BF8A3691CDB7B6E3723FE4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF12A4BBE1D0467F05C438E2F40D3B26 /* SSZipArchive.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SSZipArchive/SSZipArchive-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/SSZipArchive/SSZipArchive.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SSZipArchive;
+				PRODUCT_NAME = SSZipArchive;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		33833F549904217AC265C71D9735BA93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF12A4BBE1D0467F05C438E2F40D3B26 /* SSZipArchive.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SSZipArchive/SSZipArchive-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/SSZipArchive/SSZipArchive.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SSZipArchive;
+				PRODUCT_NAME = SSZipArchive;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3BB2EFEBEADFA07D362E31623A49B36C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B23E23DCEE270AFF0033E2C8F34D9E6 /* AEXML.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/AEXML/AEXML-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/AEXML/AEXML.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = AEXML;
+				PRODUCT_NAME = AEXML;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8F17DC3A99F99FBAD606CE6963886315 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		916E0404255105F480DC4950B7625F7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		9877C94D1A79D5F4A7BD7ADD8163331B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B23E23DCEE270AFF0033E2C8F34D9E6 /* AEXML.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/AEXML/AEXML-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/AEXML/AEXML.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = AEXML;
+				PRODUCT_NAME = AEXML;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BDD25635F9626ED6408B564C6762DFF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A022D6434EDC0C88367A30E0DED1766 /* Pods-iRead.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-iRead/Pods-iRead.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		068F33D353A74457071956B813CA1D35 /* Build configuration list for PBXNativeTarget "SSZipArchive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33833F549904217AC265C71D9735BA93 /* Debug */,
+				2F4319589BF8A3691CDB7B6E3723FE4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916E0404255105F480DC4950B7625F7A /* Debug */,
+				8F17DC3A99F99FBAD606CE6963886315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66B8A14126A0A7E9CB57B61A2CE692E9 /* Build configuration list for PBXNativeTarget "AEXML" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BB2EFEBEADFA07D362E31623A49B36C /* Debug */,
+				9877C94D1A79D5F4A7BD7ADD8163331B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB168BFCEB39C623F320478E2FFD41F0 /* Build configuration list for PBXNativeTarget "Pods-iRead" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDD25635F9626ED6408B564C6762DFF7 /* Debug */,
+				0BDF1C3EF2DC1E0C53BA8902BE79CD20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
