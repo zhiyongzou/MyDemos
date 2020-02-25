@@ -1,0 +1,20 @@
+PODS:
+  - AEXML (4.5.0)
+  - SSZipArchive (2.2.2)
+
+DEPENDENCIES:
+  - AEXML (~> 4.5.0)
+  - SSZipArchive (~> 2.2.2)
+
+SPEC REPOS:
+  trunk:
+    - AEXML
+    - SSZipArchive
+
+SPEC CHECKSUMS:
+  AEXML: 0e8f1d874fa033ca6b3909452a8bc362faad46e6
+  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
+
+PODFILE CHECKSUM: dec9ff41463284add6ee121f052687261547e294
+
+COCOAPODS: 1.8.4
