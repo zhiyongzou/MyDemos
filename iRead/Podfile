@@ -8,5 +8,8 @@ target 'iRead' do
 
   pod 'AEXML', '~> 4.5.0'
   pod 'SSZipArchive', '~> 2.2.2'
+  pod 'DTCoreText', '~> 1.6.23'
+  pod 'JPAspect', '~> 1.0.0'
+  pod 'FLEX', '~> 2.0', :configurations => ['Debug']
 
 end
