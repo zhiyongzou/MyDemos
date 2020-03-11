@@ -1,0 +1,716 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E8D9079592829C20E21E9CA /* libPods-YYLabelFadeBug-YYLabelFadeBugUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C512FE2E9991F87FE0D7881C /* libPods-YYLabelFadeBug-YYLabelFadeBugUITests.a */; };
+		4F6B6A1D69EC331050E9E2E0 /* libPods-YYLabelFadeBugTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC623C7CF0116D42CA0E27F6 /* libPods-YYLabelFadeBugTests.a */; };
+		6813A73C7AEE21B33551891D /* libPods-YYLabelFadeBug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B740C2E21EA6F4B8B5D340A1 /* libPods-YYLabelFadeBug.a */; };
+		8181E06C2418C72100A3FCEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8181E06B2418C72100A3FCEB /* AppDelegate.m */; };
+		8181E06F2418C72100A3FCEB /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8181E06E2418C72100A3FCEB /* SceneDelegate.m */; };
+		8181E0722418C72100A3FCEB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8181E0712418C72100A3FCEB /* ViewController.m */; };
+		8181E0752418C72100A3FCEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8181E0732418C72100A3FCEB /* Main.storyboard */; };
+		8181E0772418C72500A3FCEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8181E0762418C72500A3FCEB /* Assets.xcassets */; };
+		8181E07A2418C72500A3FCEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8181E0782418C72500A3FCEB /* LaunchScreen.storyboard */; };
+		8181E07D2418C72500A3FCEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8181E07C2418C72500A3FCEB /* main.m */; };
+		8181E0872418C72500A3FCEB /* YYLabelFadeBugTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8181E0862418C72500A3FCEB /* YYLabelFadeBugTests.m */; };
+		8181E0922418C72500A3FCEB /* YYLabelFadeBugUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8181E0912418C72500A3FCEB /* YYLabelFadeBugUITests.m */; };
+		8181E0A12418D21B00A3FCEB /* YYLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8181E0A02418D21B00A3FCEB /* YYLabelCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8181E0832418C72500A3FCEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8181E05F2418C72100A3FCEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8181E0662418C72100A3FCEB;
+			remoteInfo = YYLabelFadeBug;
+		};
+		8181E08E2418C72500A3FCEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8181E05F2418C72100A3FCEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8181E0662418C72100A3FCEB;
+			remoteInfo = YYLabelFadeBug;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		22BBA03A31EA7AE099424CD4 /* Pods-YYLabelFadeBug-YYLabelFadeBugUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YYLabelFadeBug-YYLabelFadeBugUITests.debug.xcconfig"; path = "Target Support Files/Pods-YYLabelFadeBug-YYLabelFadeBugUITests/Pods-YYLabelFadeBug-YYLabelFadeBugUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8181E0672418C72100A3FCEB /* YYLabelFadeBug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYLabelFadeBug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8181E06A2418C72100A3FCEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8181E06B2418C72100A3FCEB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8181E06D2418C72100A3FCEB /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		8181E06E2418C72100A3FCEB /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		8181E0702418C72100A3FCEB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8181E0712418C72100A3FCEB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8181E0742418C72100A3FCEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8181E0762418C72500A3FCEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8181E0792418C72500A3FCEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8181E07B2418C72500A3FCEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8181E07C2418C72500A3FCEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8181E0822418C72500A3FCEB /* YYLabelFadeBugTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YYLabelFadeBugTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8181E0862418C72500A3FCEB /* YYLabelFadeBugTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYLabelFadeBugTests.m; sourceTree = "<group>"; };
+		8181E0882418C72500A3FCEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8181E08D2418C72500A3FCEB /* YYLabelFadeBugUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YYLabelFadeBugUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8181E0912418C72500A3FCEB /* YYLabelFadeBugUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYLabelFadeBugUITests.m; sourceTree = "<group>"; };
+		8181E0932418C72500A3FCEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8181E09F2418D21B00A3FCEB /* YYLabelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYLabelCell.h; sourceTree = "<group>"; };
+		8181E0A02418D21B00A3FCEB /* YYLabelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYLabelCell.m; sourceTree = "<group>"; };
+		A67DEEDA6DF5F361FF8D0BD5 /* Pods-YYLabelFadeBug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YYLabelFadeBug.release.xcconfig"; path = "Target Support Files/Pods-YYLabelFadeBug/Pods-YYLabelFadeBug.release.xcconfig"; sourceTree = "<group>"; };
+		A94D5B18068A4F621E0E3719 /* Pods-YYLabelFadeBugTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YYLabelFadeBugTests.release.xcconfig"; path = "Target Support Files/Pods-YYLabelFadeBugTests/Pods-YYLabelFadeBugTests.release.xcconfig"; sourceTree = "<group>"; };
+		B740C2E21EA6F4B8B5D340A1 /* libPods-YYLabelFadeBug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YYLabelFadeBug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C512FE2E9991F87FE0D7881C /* libPods-YYLabelFadeBug-YYLabelFadeBugUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YYLabelFadeBug-YYLabelFadeBugUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF3ABA4DFE67C7FD17878C4C /* Pods-YYLabelFadeBug-YYLabelFadeBugUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YYLabelFadeBug-YYLabelFadeBugUITests.release.xcconfig"; path = "Target Support Files/Pods-YYLabelFadeBug-YYLabelFadeBugUITests/Pods-YYLabelFadeBug-YYLabelFadeBugUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E3CC948810D6344744A62A12 /* Pods-YYLabelFadeBugTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YYLabelFadeBugTests.debug.xcconfig"; path = "Target Support Files/Pods-YYLabelFadeBugTests/Pods-YYLabelFadeBugTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FC623C7CF0116D42CA0E27F6 /* libPods-YYLabelFadeBugTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YYLabelFadeBugTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF7B3A68C0E80D7C51C6A55B /* Pods-YYLabelFadeBug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YYLabelFadeBug.debug.xcconfig"; path = "Target Support Files/Pods-YYLabelFadeBug/Pods-YYLabelFadeBug.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8181E0642418C72100A3FCEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6813A73C7AEE21B33551891D /* libPods-YYLabelFadeBug.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8181E07F2418C72500A3FCEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F6B6A1D69EC331050E9E2E0 /* libPods-YYLabelFadeBugTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8181E08A2418C72500A3FCEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E8D9079592829C20E21E9CA /* libPods-YYLabelFadeBug-YYLabelFadeBugUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8181E05E2418C72100A3FCEB = {
+			isa = PBXGroup;
+			children = (
+				8181E0692418C72100A3FCEB /* YYLabelFadeBug */,
+				8181E0852418C72500A3FCEB /* YYLabelFadeBugTests */,
+				8181E0902418C72500A3FCEB /* YYLabelFadeBugUITests */,
+				8181E0682418C72100A3FCEB /* Products */,
+				97D4C1FB21744841FBC33325 /* Pods */,
+				D23D457D069AE3003AF2FE8F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8181E0682418C72100A3FCEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8181E0672418C72100A3FCEB /* YYLabelFadeBug.app */,
+				8181E0822418C72500A3FCEB /* YYLabelFadeBugTests.xctest */,
+				8181E08D2418C72500A3FCEB /* YYLabelFadeBugUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8181E0692418C72100A3FCEB /* YYLabelFadeBug */ = {
+			isa = PBXGroup;
+			children = (
+				8181E06A2418C72100A3FCEB /* AppDelegate.h */,
+				8181E06B2418C72100A3FCEB /* AppDelegate.m */,
+				8181E06D2418C72100A3FCEB /* SceneDelegate.h */,
+				8181E06E2418C72100A3FCEB /* SceneDelegate.m */,
+				8181E0702418C72100A3FCEB /* ViewController.h */,
+				8181E0712418C72100A3FCEB /* ViewController.m */,
+				8181E09F2418D21B00A3FCEB /* YYLabelCell.h */,
+				8181E0A02418D21B00A3FCEB /* YYLabelCell.m */,
+				8181E0732418C72100A3FCEB /* Main.storyboard */,
+				8181E0762418C72500A3FCEB /* Assets.xcassets */,
+				8181E0782418C72500A3FCEB /* LaunchScreen.storyboard */,
+				8181E07B2418C72500A3FCEB /* Info.plist */,
+				8181E07C2418C72500A3FCEB /* main.m */,
+			);
+			path = YYLabelFadeBug;
+			sourceTree = "<group>";
+		};
+		8181E0852418C72500A3FCEB /* YYLabelFadeBugTests */ = {
+			isa = PBXGroup;
+			children = (
+				8181E0862418C72500A3FCEB /* YYLabelFadeBugTests.m */,
+				8181E0882418C72500A3FCEB /* Info.plist */,
+			);
+			path = YYLabelFadeBugTests;
+			sourceTree = "<group>";
+		};
+		8181E0902418C72500A3FCEB /* YYLabelFadeBugUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8181E0912418C72500A3FCEB /* YYLabelFadeBugUITests.m */,
+				8181E0932418C72500A3FCEB /* Info.plist */,
+			);
+			path = YYLabelFadeBugUITests;
+			sourceTree = "<group>";
+		};
+		97D4C1FB21744841FBC33325 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FF7B3A68C0E80D7C51C6A55B /* Pods-YYLabelFadeBug.debug.xcconfig */,
+				A67DEEDA6DF5F361FF8D0BD5 /* Pods-YYLabelFadeBug.release.xcconfig */,
+				22BBA03A31EA7AE099424CD4 /* Pods-YYLabelFadeBug-YYLabelFadeBugUITests.debug.xcconfig */,
+				DF3ABA4DFE67C7FD17878C4C /* Pods-YYLabelFadeBug-YYLabelFadeBugUITests.release.xcconfig */,
+				E3CC948810D6344744A62A12 /* Pods-YYLabelFadeBugTests.debug.xcconfig */,
+				A94D5B18068A4F621E0E3719 /* Pods-YYLabelFadeBugTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D23D457D069AE3003AF2FE8F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B740C2E21EA6F4B8B5D340A1 /* libPods-YYLabelFadeBug.a */,
+				C512FE2E9991F87FE0D7881C /* libPods-YYLabelFadeBug-YYLabelFadeBugUITests.a */,
+				FC623C7CF0116D42CA0E27F6 /* libPods-YYLabelFadeBugTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8181E0662418C72100A3FCEB /* YYLabelFadeBug */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8181E0962418C72500A3FCEB /* Build configuration list for PBXNativeTarget "YYLabelFadeBug" */;
+			buildPhases = (
+				F8F2B02308126A5F8529E46F /* [CP] Check Pods Manifest.lock */,
+				8181E0632418C72100A3FCEB /* Sources */,
+				8181E0642418C72100A3FCEB /* Frameworks */,
+				8181E0652418C72100A3FCEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YYLabelFadeBug;
+			productName = YYLabelFadeBug;
+			productReference = 8181E0672418C72100A3FCEB /* YYLabelFadeBug.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8181E0812418C72500A3FCEB /* YYLabelFadeBugTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8181E0992418C72500A3FCEB /* Build configuration list for PBXNativeTarget "YYLabelFadeBugTests" */;
+			buildPhases = (
+				861BC02DBC3C693273FEDF22 /* [CP] Check Pods Manifest.lock */,
+				8181E07E2418C72500A3FCEB /* Sources */,
+				8181E07F2418C72500A3FCEB /* Frameworks */,
+				8181E0802418C72500A3FCEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8181E0842418C72500A3FCEB /* PBXTargetDependency */,
+			);
+			name = YYLabelFadeBugTests;
+			productName = YYLabelFadeBugTests;
+			productReference = 8181E0822418C72500A3FCEB /* YYLabelFadeBugTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8181E08C2418C72500A3FCEB /* YYLabelFadeBugUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8181E09C2418C72500A3FCEB /* Build configuration list for PBXNativeTarget "YYLabelFadeBugUITests" */;
+			buildPhases = (
+				42A65D9D854C2BDD2F0BC518 /* [CP] Check Pods Manifest.lock */,
+				8181E0892418C72500A3FCEB /* Sources */,
+				8181E08A2418C72500A3FCEB /* Frameworks */,
+				8181E08B2418C72500A3FCEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8181E08F2418C72500A3FCEB /* PBXTargetDependency */,
+			);
+			name = YYLabelFadeBugUITests;
+			productName = YYLabelFadeBugUITests;
+			productReference = 8181E08D2418C72500A3FCEB /* YYLabelFadeBugUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8181E05F2418C72100A3FCEB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = zzyong;
+				TargetAttributes = {
+					8181E0662418C72100A3FCEB = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					8181E0812418C72500A3FCEB = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 8181E0662418C72100A3FCEB;
+					};
+					8181E08C2418C72500A3FCEB = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 8181E0662418C72100A3FCEB;
+					};
+				};
+			};
+			buildConfigurationList = 8181E0622418C72100A3FCEB /* Build configuration list for PBXProject "YYLabelFadeBug" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8181E05E2418C72100A3FCEB;
+			productRefGroup = 8181E0682418C72100A3FCEB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8181E0662418C72100A3FCEB /* YYLabelFadeBug */,
+				8181E0812418C72500A3FCEB /* YYLabelFadeBugTests */,
+				8181E08C2418C72500A3FCEB /* YYLabelFadeBugUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8181E0652418C72100A3FCEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8181E07A2418C72500A3FCEB /* LaunchScreen.storyboard in Resources */,
+				8181E0772418C72500A3FCEB /* Assets.xcassets in Resources */,
+				8181E0752418C72100A3FCEB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8181E0802418C72500A3FCEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8181E08B2418C72500A3FCEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		42A65D9D854C2BDD2F0BC518 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YYLabelFadeBug-YYLabelFadeBugUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		861BC02DBC3C693273FEDF22 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YYLabelFadeBugTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8F2B02308126A5F8529E46F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YYLabelFadeBug-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8181E0632418C72100A3FCEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8181E0722418C72100A3FCEB /* ViewController.m in Sources */,
+				8181E06C2418C72100A3FCEB /* AppDelegate.m in Sources */,
+				8181E07D2418C72500A3FCEB /* main.m in Sources */,
+				8181E0A12418D21B00A3FCEB /* YYLabelCell.m in Sources */,
+				8181E06F2418C72100A3FCEB /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8181E07E2418C72500A3FCEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8181E0872418C72500A3FCEB /* YYLabelFadeBugTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8181E0892418C72500A3FCEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8181E0922418C72500A3FCEB /* YYLabelFadeBugUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8181E0842418C72500A3FCEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8181E0662418C72100A3FCEB /* YYLabelFadeBug */;
+			targetProxy = 8181E0832418C72500A3FCEB /* PBXContainerItemProxy */;
+		};
+		8181E08F2418C72500A3FCEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8181E0662418C72100A3FCEB /* YYLabelFadeBug */;
+			targetProxy = 8181E08E2418C72500A3FCEB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8181E0732418C72100A3FCEB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8181E0742418C72100A3FCEB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8181E0782418C72500A3FCEB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8181E0792418C72500A3FCEB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8181E0942418C72500A3FCEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8181E0952418C72500A3FCEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8181E0972418C72500A3FCEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF7B3A68C0E80D7C51C6A55B /* Pods-YYLabelFadeBug.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F24R2G835;
+				INFOPLIST_FILE = YYLabelFadeBug/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.YYLabelFadeBug;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8181E0982418C72500A3FCEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A67DEEDA6DF5F361FF8D0BD5 /* Pods-YYLabelFadeBug.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F24R2G835;
+				INFOPLIST_FILE = YYLabelFadeBug/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.YYLabelFadeBug;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8181E09A2418C72500A3FCEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3CC948810D6344744A62A12 /* Pods-YYLabelFadeBugTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F24R2G835;
+				INFOPLIST_FILE = YYLabelFadeBugTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.YYLabelFadeBugTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YYLabelFadeBug.app/YYLabelFadeBug";
+			};
+			name = Debug;
+		};
+		8181E09B2418C72500A3FCEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A94D5B18068A4F621E0E3719 /* Pods-YYLabelFadeBugTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F24R2G835;
+				INFOPLIST_FILE = YYLabelFadeBugTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.YYLabelFadeBugTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YYLabelFadeBug.app/YYLabelFadeBug";
+			};
+			name = Release;
+		};
+		8181E09D2418C72500A3FCEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22BBA03A31EA7AE099424CD4 /* Pods-YYLabelFadeBug-YYLabelFadeBugUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F24R2G835;
+				INFOPLIST_FILE = YYLabelFadeBugUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.YYLabelFadeBugUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = YYLabelFadeBug;
+			};
+			name = Debug;
+		};
+		8181E09E2418C72500A3FCEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF3ABA4DFE67C7FD17878C4C /* Pods-YYLabelFadeBug-YYLabelFadeBugUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F24R2G835;
+				INFOPLIST_FILE = YYLabelFadeBugUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.YYLabelFadeBugUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = YYLabelFadeBug;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8181E0622418C72100A3FCEB /* Build configuration list for PBXProject "YYLabelFadeBug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8181E0942418C72500A3FCEB /* Debug */,
+				8181E0952418C72500A3FCEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8181E0962418C72500A3FCEB /* Build configuration list for PBXNativeTarget "YYLabelFadeBug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8181E0972418C72500A3FCEB /* Debug */,
+				8181E0982418C72500A3FCEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8181E0992418C72500A3FCEB /* Build configuration list for PBXNativeTarget "YYLabelFadeBugTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8181E09A2418C72500A3FCEB /* Debug */,
+				8181E09B2418C72500A3FCEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8181E09C2418C72500A3FCEB /* Build configuration list for PBXNativeTarget "YYLabelFadeBugUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8181E09D2418C72500A3FCEB /* Debug */,
+				8181E09E2418C72500A3FCEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8181E05F2418C72100A3FCEB /* Project object */;
+}
