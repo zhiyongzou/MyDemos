@@ -1,13 +1,219 @@
-// https://github.com/qianguyihao/Web
+<!--https://github.com/qianguyihao/Web-->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JPConverter</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #F7F7F7;
+        }
+
+        .tabs {
+            width: 400px;
+            margin: 30px auto;
+            background-color: #FFF;
+            border: 1px solid #C0DCC0;
+            box-sizing: border-box;
+        }
+
+        .tabs nav {
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            overflow: hidden;
+            background-color: #C0DCC0;
+            display: flex;
+        }
+
+        nav a {
+            display: block;
+            width: 100px;
+            border-right: 1px solid #FFF;
+            color: #000;
+            text-decoration: none;
+        }
+
+        nav a:last-child {
+            border-right: 0 none;
+        }
+
+        nav a.active {
+            background-color: #9BAF9B;
+        }
+
+        .cont {
+            overflow: hidden;
+            display: none;
+        }
+
+        .cont ol {
+            line-height: 30px;
+        }
+    </style>
+
 </head>
-<body>
+<body link="red" vlink="blue" alink="green" bgcolor="eeeeee">
+
+    <p name="top" id="top">top</p>
+<a href="#">click</a>
+
+    <ul>
+        <li type="circle">1</li>
+        <li type="square">2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
     
+
+<dl>
+    <dt>111</dt>
+        <dd>10</dd>
+        <dd>10</dd>
+        <dd>10</dd>
+        <dd>10</dd>
+    <dt>222</dt>
+        <dd>20</dd>
+        <dd>20</dd>
+
+        <input type="checkbox" name="cb1" id="1">
+
+</dl>
+
+<input type="text" name="11" id="2" size="60">
+
+<a href="#top" title="666">go back top</a>
+<br>
+<div>
+
+    <select name="9" id="9">
+
+        <option value="">JPAspectHookCustomInvokeBefore</option>
+        <option value="">JPAspectHookCustomInvokeAfter</option>
+        <option value="">JPAspectHookCustomInvokeInstead</option>
+    
+    </select>
+
+</div>
+
+<form action="">
+<br>
+<textarea name="" id="" cols="100" rows="20" placeholder="亲，请输入。。。。"></textarea>
+
+</form>
+
+<br>
+<a href="http://baidu.com" target="_blank">Bai Du</a>
+
+<div class="tabs">
+    <nav>
+        <a href="javascript:;" data-cont="local">国内新闻</a>
+        <a href="javascript:;" data-cont="global">国际新闻</a>
+        <a href="javascript:;" data-cont="sports">体育新闻</a>
+        <a href="javascript:;" data-cont="funny">娱乐新闻</a>
+    </nav>
+    <section class="cont" id="local">
+        <ol>
+            <li>国内新闻1</li>
+            <li>国内新闻2</li>
+            <li>国内新闻3</li>
+            <li>国内新闻4</li>
+            <li>国内新闻5</li>
+            <li>国内新闻6</li>
+            <li>国内新闻7</li>
+        </ol>
+    </section>
+    <section class="cont" id="global">
+        <ol>
+            <li>国内新闻1</li>
+            <li>国际新闻2</li>
+            <li>国际新闻3</li>
+            <li>国际新闻4</li>
+            <li>国际新闻5</li>
+            <li>国际新闻6</li>
+        </ol>
+    </section>
+    <section class="cont" id="sports">
+        <ol>
+            <li>体育新闻1</li>
+            <li>体育新闻2</li>
+            <li>体育新闻3</li>
+            <li>体育新闻4</li>
+            <li>体育新闻5</li>
+            <li>体育新闻6</li>
+            <li>体育新闻7</li>
+        </ol>
+    </section>
+    <section class="cont" id="funny">
+        <ol>
+            <li>娱乐新闻1</li>
+            <li>娱乐新闻2</li>
+            <li>娱乐新闻3</li>
+            <li>娱乐新闻4</li>
+            <li>娱乐新闻5</li>
+            <li>娱乐新闻6</li>
+            <li>娱乐新闻7</li>
+        </ol>
+    </section>
+</div>
+
+<script>
+
+
+
+</script>
+
+<script>
+    // 目标： 默认显示一个 当前的样式
+    // 点击导航，实现切换
+    // key 表示的当前显示的是第几个
+
+    (function (key) {
+        // 获取所有的导航
+        var navs = document.querySelectorAll('nav a');
+        // 遍历 给导航 绑定事件，并且添加当前样式
+        for (var i = 0; i < navs.length; i++) {
+            // 如果是用户指定的当前样式
+            if (key == i) {
+                navs[i].classList.add('active');
+                // 拿到要显示内容section的id
+                var secId = navs[i].dataset['cont'];
+                // 获取对应的section标签
+                document.querySelector('#' + secId).style.display = 'block';
+            }
+
+            // 给每一个导航绑定点击事件
+            navs[i].onclick = function () {
+                // 排他
+                // 之前有active样式的清除, 之前显示的section 隐藏
+                var currentNav = document.querySelector('.active');
+                // 获取对应的内容区域 ，让其隐藏
+                var currentId = currentNav.dataset['cont'];
+                // 去掉导航的active 样式
+                currentNav.classList.remove('active');
+                // 对应的内容区域
+                document.querySelector('#' + currentId).style.display = 'none';
+
+                // 突出显示自己 导航添加样式  对应的section 显示
+                // 给自己添加active样式
+                this.classList.add('active');
+                // 对应的section模块显示出来
+                var myId = this.dataset['cont'];
+                document.querySelector('#' + myId).style.display = 'block';
+            }
+        }
+
+    })(0);
+
+
+</script>
+
 </body>
 </html>
