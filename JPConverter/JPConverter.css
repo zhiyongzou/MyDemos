@@ -1,0 +1,50 @@
+/*
+//
+//  JPConverter.css
+//
+//  Created by zzyong on 2020/03/20.
+//  Copyright © 2020 zzyong. All rights reserved.
+//
+*/
+
+body {
+    margin: 0;
+    background-color: white;
+}
+
+.jp_title {
+    height: 80px;
+    background-color: white;
+}
+
+ul.jp_textview_container li {display: inline;}
+
+.objc_code_textview {
+    border: #f7f7f7;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 50%;
+    height: 100%;
+}
+
+.json_code_textview {
+    border: #f7f7f7;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 50%;
+    height: 100%;
+}
+
+.converter_btn {
+    margin-top: 20px;
+    background-color: rgb(66, 157, 209);
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    left: 50%;
+    position: absolute;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    display: inline-block;
+}
