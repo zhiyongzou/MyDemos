@@ -18,18 +18,17 @@
 </head>
 <body>
 
-    <h1 class="jp_title">JPConverter</h1>
-
-    <div class="jp_textview_container">
-        <ul>
-            <li><textarea class="objc_code_textview" id="id_objc_code_textview"></textarea></li>
-            <li><textarea class="json_code_textview" id="id_json_code_textview" readonly></textarea></li>
-        </ul>
+    <div style="border-bottom: #f7f7f7; border-bottom-style: solid; border-bottom-width: 2px;">
+        <h2 style="color: red; margin-left: 40px;">J<span style="color: green;">P</span><span style="color: blue;">Converter</span></h2>
     </div>
+    
+    <div class="jp_code_container">
+        <textarea class="jp_code_textview" id="id_objc_code_textview"></textarea>
+        <textarea class="jp_code_textview" id="id_json_code_textview" readonly></textarea>
+    </div>
+    
 
-    <div>
-        <button class="converter_btn" id="id_converter_btn"> 转换 </button>
-</div>
+    <button class="converter_btn" id="id_converter_btn" onclick=""> 转换 </button>
 
 </body>
 </html>

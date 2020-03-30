@@ -12,27 +12,22 @@ body {
     background-color: white;
 }
 
-.jp_title {
-    height: 80px;
-    background-color: white;
+.jp_code_textarea {
+    display: inline-block;
 }
 
-ul.jp_textview_container li {display: inline;}
+.jp_code_container {
+    text-align: center;
+    align-content: center;
+}
 
-.objc_code_textview {
+.jp_code_textview {
+    margin: 10px;
     border: #f7f7f7;
     border-radius: 5px;
     border: 1px solid #ddd;
-    width: 50%;
-    height: 100%;
-}
-
-.json_code_textview {
-    border: #f7f7f7;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    width: 50%;
-    height: 100%;
+    height: 300px;
+    width: 40%;
 }
 
 .converter_btn {
