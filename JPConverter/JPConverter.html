@@ -18,17 +18,29 @@
 </head>
 <body>
 
-    <div style="border-bottom: #f7f7f7; border-bottom-style: solid; border-bottom-width: 2px;">
+    <div>
         <h2 style="color: red; margin-left: 40px;">J<span style="color: green;">P</span><span style="color: blue;">Converter</span></h2>
+    </div>
+
+    <div class="jp_topbar_container">
+        <div class="jp_topbar_content">
+            <h3>HookType： </h3>
+            <select name="jpHookType" id="jpHookType" style="height: 36px;">
+                <option selected>JPAspectHookCustomInvokeBefore</option>
+                <option>JPAspectHookCustomInvokeAfter</option>
+                <option>JPAspectHookCustomInvokeInstead</option>
+            </select>
+        </div>
     </div>
     
     <div class="jp_code_container">
-        <textarea class="jp_code_textview" id="id_objc_code_textview"></textarea>
+        <textarea class="jp_code_textview" id="id_objc_code_textview" onkeydown="tabKeyClick(this)"></textarea>
         <textarea class="jp_code_textview" id="id_json_code_textview" readonly></textarea>
     </div>
     
-
-    <button class="converter_btn" id="id_converter_btn" onclick=""> 转换 </button>
-
+    <div style="text-align: center;">
+        <input type="button" value="转换" class="converter_btn" id="id_converter_btn" onclick="didConverterButtonClick()">
+    </div>
+    
 </body>
 </html>

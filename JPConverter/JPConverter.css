@@ -8,26 +8,40 @@
 */
 
 body {
-    margin: 0;
+    margin: 0px;
     background-color: white;
 }
 
-.jp_code_textarea {
-    display: inline-block;
+.jp_topbar_container {
+    height: 160px;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    background-color: rgb(245, 245, 245);
+}
+
+.jp_topbar_content {
+    margin-left: 70px;
+    width: calc(100% - 140px);
+    height: 50%;
+    display: flex;
+    align-items: center;
 }
 
 .jp_code_container {
-    text-align: center;
-    align-content: center;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-top: -80px;
+    text-align: left;
 }
 
 .jp_code_textview {
-    margin: 10px;
-    border: #f7f7f7;
+    resize: none;
+    padding: 10px;
+    background-color: #333;
+    color: white;
     border-radius: 5px;
-    border: 1px solid #ddd;
-    height: 300px;
-    width: 40%;
+    width: calc(50% - 25px);/* https://osvaldas.info/imitating-calc-fallback-fixed-width-sidebar-in-responsive-layout */
+    height: 280px;
 }
 
 .converter_btn {
@@ -36,10 +50,7 @@ body {
     border-radius: 5px;
     width: 100px;
     height: 40px;
-    left: 50%;
-    position: absolute;
     color: white;
     text-align: center;
-    font-size: 16px;
-    display: inline-block;
+    font-size: 18px;
 }
