@@ -162,7 +162,7 @@ function addClassAcpset(className, isClassMethod, methodString, Aspects)
   Aspects.push(classAcpset);
 }
 
-function converterMethodToMessage(methodString)
+function getCustomMessages(methodImpString)
 {
   var aspectMessageList = [];
 
