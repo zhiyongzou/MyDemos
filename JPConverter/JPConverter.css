@@ -37,16 +37,22 @@ body {
 .jp_code_textview {
     resize: none;
     padding: 10px;
-    background-color: #333;
+    font-size: 13px;
+    text-align: left;
+    background-color: rgb(41, 43, 54);
     color: white;
     border-radius: 5px;
     width: calc(50% - 25px);/* https://osvaldas.info/imitating-calc-fallback-fixed-width-sidebar-in-responsive-layout */
     height: 280px;
 }
 
+.jp_json_color {
+    color: rgb(208, 59, 64);
+}
+
 .converter_btn {
     margin-top: 20px;
-    background-color: rgb(66, 157, 209);
+    background-color: orange;
     border-radius: 5px;
     width: 100px;
     height: 40px;

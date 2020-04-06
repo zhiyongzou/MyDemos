@@ -34,8 +34,16 @@
     </div>
     
     <div class="jp_code_container">
-        <textarea class="jp_code_textview" id="id_objc_code_textview" onkeydown="tabKeyClick(this)"></textarea>
-        <textarea class="jp_code_textview" id="id_json_code_textview" readonly></textarea>
+        <textarea class="jp_code_textview" id="jp_objc_code_textview" onkeydown="keydownHandler(this)">
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    return YES;
+}
+@end
+        </textarea>
+        <textarea class="jp_code_textview jp_json_color" id="jp_json_code_textview" readonly></textarea>
     </div>
     
     <div style="text-align: center;">
