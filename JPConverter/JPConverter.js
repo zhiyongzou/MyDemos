@@ -119,7 +119,7 @@ function converterCodeToJson(codeString)
         let isClassMethod = (methodBeginStr.indexOf("-") == -1);
 
         if (methodBeginList.length == 1) {
-          classAcpset = addClassAcpset(className, isClassMethod, curMethodContent, JPAspect.Aspects);
+          addClassAcpset(className, isClassMethod, curMethodContent, JPAspect.Aspects);
         } else {
 
           if (idx == 0) {
@@ -128,11 +128,11 @@ function converterCodeToJson(codeString)
 
           let methodIdx =  curMethodContent.indexOf(methodBeginStr);
           let methodString = curMethodContent.substring(0, methodIdx);
-          classAcpset = addClassAcpset(className, isClassMethod, methodString, JPAspect.Aspects);
+          addClassAcpset(className, isClassMethod, methodString, JPAspect.Aspects);
         
           curMethodContent = curMethodContent.substring(methodIdx);
           if (idx == (methodBeginList.length - 1)) {
-            classAcpset = addClassAcpset(className, isClassMethod, curMethodContent, JPAspect.Aspects);
+            addClassAcpset(className, isClassMethod, curMethodContent, JPAspect.Aspects);
           }
         }
       }
