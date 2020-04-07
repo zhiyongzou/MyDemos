@@ -39,15 +39,15 @@ body {
     padding: 10px;
     font-size: 13px;
     text-align: left;
-    background-color: rgb(41, 43, 54);
+    background-color: rgb(35, 38, 46);
     color: white;
     border-radius: 5px;
     width: calc(50% - 25px);/* https://osvaldas.info/imitating-calc-fallback-fixed-width-sidebar-in-responsive-layout */
-    height: 280px;
+    height: 500px;
 }
 
 .jp_json_color {
-    color: rgb(208, 59, 64);
+    color: rgb(227, 57, 66);
 }
 
 .converter_btn {

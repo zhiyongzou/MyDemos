@@ -82,7 +82,7 @@ function converterCodeToJson(codeString)
     "Aspects": [] 
   };
 
-  for (var impIdx = 0; impIdx < impList.length; impIdx++) {
+  for (let impIdx = impList.length - 1; impIdx >= 0; impIdx--) {
 
     var impString = impList[impIdx].trim();
     if (impString.length == 0) {
@@ -105,35 +105,29 @@ function converterCodeToJson(codeString)
 
     // 类的所有方法内容
     let methodContent = impString.substring(firstEnterIdx + enterChar.length);
-    // 方法列表
-    let regularExp = /[-,\+]+\s?\([a-zA-Z]*\s*\**\s*\)/igm;
+    // 方法开头匹配正则
+    let regularExp = /[-,\+]+\s*\(\s*[a-zA-Z]*\s*\**\s*\)/igm;
     let methodBeginList = methodContent.match(regularExp);
 
     if (methodBeginList.length == 0) {
       // 该类没有方法
       continue;
     } else {
+
       var curMethodContent = methodContent;
-      for (let idx = 0; idx < methodBeginList.length; idx++) {
+      for (let idx = (methodBeginList.length - 1); idx >= 0; idx--) {
         let methodBeginStr = methodBeginList[idx];
         let isClassMethod = (methodBeginStr.indexOf("-") == -1);
 
-        if (methodBeginList.length == 1) {
+        if (idx == 0) {
           addClassAcpset(className, isClassMethod, curMethodContent, JPAspect.Aspects);
         } else {
 
-          if (idx == 0) {
-            continue;
-          }
-
-          let methodIdx =  curMethodContent.indexOf(methodBeginStr);
-          let methodString = curMethodContent.substring(0, methodIdx);
+          let methodIdx =  curMethodContent.lastIndexOf(methodBeginStr);
+          let methodString = curMethodContent.substring(methodIdx);
           addClassAcpset(className, isClassMethod, methodString, JPAspect.Aspects);
         
-          curMethodContent = curMethodContent.substring(methodIdx);
-          if (idx == (methodBeginList.length - 1)) {
-            addClassAcpset(className, isClassMethod, curMethodContent, JPAspect.Aspects);
-          }
+          curMethodContent = curMethodContent.substring(0, methodIdx);
         }
       }
     }
@@ -159,7 +153,7 @@ function addClassAcpset(className, isClassMethod, methodString, Aspects)
     customMessages: []
   };
 
-  Aspects.push(classAcpset);
+  Aspects.unshift(classAcpset);
 }
 
 function getCustomMessages(methodImpString)
