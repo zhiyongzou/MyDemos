@@ -106,10 +106,10 @@ function converterCodeToJson(codeString)
     // 类的所有方法内容
     let methodContent = impString.substring(firstEnterIdx + enterChar.length);
     // 方法开头匹配正则
-    let regularExp = /[-,\+]+\s*\(\s*[a-zA-Z]*\s*\**\s*\)/igm;
+    let regularExp = /[-,\+]+\s*\(\s*[a-zA-Z]+\s*\**\s*\)\s*/igm;
     let methodBeginList = methodContent.match(regularExp);
 
-    if (methodBeginList.length == 0) {
+    if (methodBeginList == null) {
       // 该类没有方法
       continue;
     } else {
@@ -120,12 +120,12 @@ function converterCodeToJson(codeString)
         let isClassMethod = (methodBeginStr.indexOf("-") == -1);
 
         if (idx == 0) {
-          addClassAcpset(className, isClassMethod, curMethodContent, JPAspect.Aspects);
+          addClassAcpset(className, isClassMethod, curMethodContent.replace(methodBeginStr, ""), JPAspect.Aspects);
         } else {
 
           let methodIdx =  curMethodContent.lastIndexOf(methodBeginStr);
           let methodString = curMethodContent.substring(methodIdx);
-          addClassAcpset(className, isClassMethod, methodString, JPAspect.Aspects);
+          addClassAcpset(className, isClassMethod, methodString.replace(methodBeginStr, ""), JPAspect.Aspects);
         
           curMethodContent = curMethodContent.substring(0, methodIdx);
         }
@@ -138,7 +138,7 @@ function converterCodeToJson(codeString)
 
 function addClassAcpset(className, isClassMethod, methodString, Aspects)
 {
-  methodString = methodString.trim();
+  methodString = methodString.trim().replace("\n", "");
 
   if (methodString.length == 0) {
     return;
@@ -152,6 +152,46 @@ function addClassAcpset(className, isClassMethod, methodString, Aspects)
     argumentNames: [],
     customMessages: []
   };
+  // { 位置
+  let firstOpenBraceIdx = methodString.indexOf("{");
+
+  // 方法名
+  var selName = "";
+  let methodNameString = methodString.substring(0, firstOpenBraceIdx);
+
+  // 讲方法参数替换为空字符，例如：(BOOL) ---> ""
+  let typeRegExp = /\s*\(\s*[a-zA-Z]+\s*\**\s*\)\s*/igm;
+  methodNameString = methodNameString.replace(typeRegExp, "");
+
+  // 移除 : 前面的空格
+  let colonregExp = /\s*:/igm;
+  methodNameString = methodNameString.replace(colonregExp, ":");
+
+  if (methodNameString.indexOf(":") != -1) {
+
+    let methodNameSplits = methodNameString.split(" ");
+    for (let idx = 0; idx < methodNameSplits.length; idx++) {
+      let element = methodNameSplits[idx];
+      if (element.length == 0) {
+          continue;
+      }
+      let colonIdx = element.indexOf(":");
+      selName = selName + element.substring(0, colonIdx) + ":";
+      let argumentName = element.substring(colonIdx + 1).trim();
+      if (argumentName.length > 0) {
+        classAcpset.argumentNames.push(argumentName);
+      }
+    }
+
+  } else {
+      // 无参数
+      selName = methodNameString.trim();
+  }
+
+  classAcpset.selName = selName;
+
+  // 移除{}的方法实现
+  let methodImpString = methodString.substring(firstOpenBraceIdx + 1, methodString.length - 1);
 
   Aspects.unshift(classAcpset);
 }
