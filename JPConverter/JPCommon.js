@@ -12,6 +12,62 @@ let JPReturnKey             = "return";
 let JPLetfSquareBracket     = "[";
 let JPRightSquareBracket    = "]";
 let JPIfKey                 = "if";
+var JPAspectDefineClass     = [];
+
+/**
+ * message: "",
+ * invokeCondition: {},
+ * messageType: 0,
+ * arguments: {},
+ * localInstanceKey: "",
+ */
+function JPAspectMessage() 
+{
+    var aspectMessage = {
+        message: "",
+        messageType: 0
+    };
+    return aspectMessage;
+}
+
+/**
+ * className
+ * selName
+ * isClassMethod
+ * hookType
+ * argumentNames
+ * customMessages
+ */
+function JPClassAspect(className, isClassMethod)
+{
+    var classAcpset = {
+        className: className,
+        selName: "",
+        isClassMethod: isClassMethod,
+        hookType: 1,
+    };
+    return classAcpset;
+}
+
+/**
+ * 获取圆括号里面的内容,例如从 (BOOL) 获取 BOOL
+ * @param {String} contentString 
+ */
+function getBracketsValue(contentString)
+{
+  if (contentString == null) {
+    return null;
+  }
+
+  contentString = contentString.trim();
+
+  let leftBracketIdx = contentString.indexOf("(");
+  if (leftBracketIdx == -1) {
+    return contentString;
+  }
+
+  return contentString.substring(1, contentString.length - 1);
+}
 
 /**
  * 返回函数返回类型

@@ -18,10 +18,7 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
     return null;
   }
 
-  var aspectMessage = {
-    message: "",
-    messageType: 0,
-  };
+  var aspectMessage = JPAspectMessage();
 
   if (localInstanceKey != null && localInstanceKey.length > 0) {
     aspectMessage["localInstanceKey"] = localInstanceKey;
@@ -44,28 +41,42 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
     if (index == 0) {
       let whiteSpaceIdx = statementComponent.indexOf(" ");
       let firstTarget = statementComponent.substring(0, whiteSpaceIdx);
+      if (firstTarget != "self" && firstTarget != "super" && JPAllInstance[firstTarget] == null) {
+        JPAspectDefineClass.push(firstTarget);
+      }
       JPMessage = JPMessage + firstTarget;
       statementComponent = statementComponent.substring(whiteSpaceIdx).trim();
     }
     
-    let selArgumentComponents = statementComponent.match(/:_*@*\(*"*[a-zA-Z0-9]*\)*"*\(*[0-9]*\.*\,*\)*\s+/igm);
+    var selArgumentComponents = statementComponent.match(/:\s*([a-zA-Z0-9]+|@"*\(*[a-zA-Z0-9]*"*\)*|)\s*/igm);
+    if (selArgumentComponents == null) {
+        // CGRectMake();
+        
+    }
     var selArguments = [];
     if (selArgumentComponents != null) {
       for (let index = 0; index < selArgumentComponents.length; index++) {
-        const argument = selArgumentComponents[index];
+        var argument = selArgumentComponents[index];
         statementComponent = statementComponent.replace(argument, ":");
 
         if (argument.indexOf("nil") != -1 || argument.indexOf("NULL") != -1) {
           continue;
         }
 
+        // 移除 :
+        argument = argument.substring(1).trim();
+
         let argumentType = 0;
         let argumentValue = "";
         if (argument.indexOf("@") != -1) {
-          if (argument.indexOf("(") != -1) {
-            argumentValue = argument.replace("@", "").replace("(", "").replace(")", "").trim();
+          // 移除 @
+          argument = argument.substring(1).trim();
+          if (argument.indexOf("\"") != -1) {
+              // NSString
+            argumentValue = argument.replace(/\"/igm, "");
           } else {
-            argumentValue = argument.replace("@", "").replace("\"", "").trim();
+            // NSNumber
+            argumentValue = argument.replace("(", "").replace(")", "");
           }
           argumentType = 1;
         } else if (argument.indexOf("YES") != -1) {
@@ -75,13 +86,13 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
           argumentType = 3;
           argumentValue = "0";
         } else {
-          argumentValue = argument.trim();
+          argumentValue = argument;
           let JPArgument = JPAllInstance[argumentValue];
           if (JPArgument != null) {
             argumentType = JPArgument["type"];
           }
         }
-        selArguments.push[{"index": index, "value": argumentValue, "type": argumentType}];
+        selArguments.push({"index": index, "value": argumentValue.trim(), "type": argumentType});
       }
     }
     statementComponent = statementComponent.replace(/\s/igm, "");

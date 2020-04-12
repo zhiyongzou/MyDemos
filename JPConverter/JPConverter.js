@@ -8,10 +8,12 @@
 
 function didConverterButtonClick() 
 {
-    var objcCodeTextView = document.getElementById('jp_objc_code_textview');
-    var jsonCodeTextView = document.getElementById("jp_json_code_textview");
+  JPAspectDefineClass = [];
 
-    jsonCodeTextView.value = converterCodeToJson(objcCodeTextView.value);
+  var objcCodeTextView = document.getElementById('jp_objc_code_textview');
+  var jsonCodeTextView = document.getElementById("jp_json_code_textview");
+
+  jsonCodeTextView.value = converterCodeToJson(objcCodeTextView.value);
 }
 
 function converterCodeToJson(codeString)
@@ -22,10 +24,7 @@ function converterCodeToJson(codeString)
     return "";
   }
 
-  let JPAspect = {
-    "AspectDefineClass": [],
-    "Aspects": [] 
-  };
+  let Aspects = [];
 
   for (let impIdx = impList.length - 1; impIdx >= 0; impIdx--) {
 
@@ -67,12 +66,12 @@ function converterCodeToJson(codeString)
         returnType = JPArgumentType(getBracketsValue(methodBeginStr));
 
         if (idx == 0) {
-          addClassAcpset(className, isClassMethod, returnType, curMethodContent.replace(methodBeginStr, ""), JPAspect.Aspects);
+          addClassAcpset(className, isClassMethod, returnType, curMethodContent.replace(methodBeginStr, ""), Aspects);
         } else {
 
           let methodIdx =  curMethodContent.lastIndexOf(methodBeginStr);
           let methodString = curMethodContent.substring(methodIdx);
-          addClassAcpset(className, isClassMethod, returnType, methodString.replace(methodBeginStr, ""), JPAspect.Aspects);
+          addClassAcpset(className, isClassMethod, returnType, methodString.replace(methodBeginStr, ""), Aspects);
         
           curMethodContent = curMethodContent.substring(0, methodIdx);
         }
@@ -80,25 +79,26 @@ function converterCodeToJson(codeString)
     }
   }
 
+  let JPAspect = { };
+  if (JPAspectDefineClass.length > 0) {
+    JPAspect["AspectDefineClass"] = JPAspectDefineClass;
+  }
+  JPAspect["Aspects"] = Aspects;
+
   return JSON.stringify(JPAspect, null, 4);
 }
 
 function addClassAcpset(className, isClassMethod, returnType, methodString, Aspects)
 {
-  methodString = methodString.trim().replace("\n", "");
+  methodString = methodString.replace("\n", "").trim();
 
   if (methodString.length == 0) {
     return;
   }
 
-  var classAcpset = {
-    className: className,
-    selName: "",
-    isClassMethod: isClassMethod,
-    hookType: 1,
-    //argumentNames: [],
-    //customMessages: []
-  };
+  // 使用到的所有局部变量名
+  var JPAllInstance = {};
+  var classAcpset = JPClassAspect(className, isClassMethod);
   // { 位置
   let firstOpenBraceIdx = methodString.indexOf("{");
 
@@ -106,9 +106,15 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
   var selName = "";
   let methodNameString = methodString.substring(0, firstOpenBraceIdx);
 
-  // 讲方法参数替换为空字符，例如：(BOOL) ---> ""
+  // 获取方法参数类型
   let typeRegExp = /\s*\(\s*[a-zA-Z]+\s*\**\s*\)\s*/igm;
-  methodNameString = methodNameString.replace(typeRegExp, "");
+  methodArgumentTypeList = methodNameString.match(typeRegExp);
+  if (methodArgumentTypeList != null) {
+    for (let index = 0; index < methodArgumentTypeList.length; index++) {
+      const element = methodArgumentTypeList[index];
+      methodNameString = methodNameString.replace(element, "");
+    }
+  }
 
   // 移除 : 前面的空格
   let colonregExp = /\s*:/igm;
@@ -132,6 +138,13 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
     }
     if (selArgumentNames.length > 0) {
       classAcpset["argumentNames"] = selArgumentNames;
+
+      if (methodArgumentTypeList != null) {
+        for (let index = 0; index < methodArgumentTypeList.length; index++) {
+          const element = methodArgumentTypeList[index];
+          JPAllInstance[selArgumentNames[index]] = JPArgumentType(getBracketsValue(element));
+        }
+      }
     }
 
   } else {
@@ -143,7 +156,7 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
 
   // 移除{}的方法实现
   let methodImpString = methodString.substring(firstOpenBraceIdx + 1, methodString.length - 1);
-  let aspectCustomMessages = getCustomMessages(returnType, methodImpString);
+  let aspectCustomMessages = getCustomMessages(JPAllInstance, returnType, methodImpString);
   if (aspectCustomMessages.length > 0) {
     classAcpset["customMessages"] = aspectCustomMessages;
   }
@@ -151,11 +164,9 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
   Aspects.unshift(classAcpset);
 }
 
-function getCustomMessages(returnType, methodImpString)
+function getCustomMessages(JPAllInstance, returnType, methodImpString)
 {
   var aspectMessages = [];
-  // 使用到的所有局部变量名
-  var JPAllInstance = {};
 
   do {
     if (methodImpString == null) {
@@ -185,28 +196,17 @@ function getAspectMessage(JPAllInstance, returnType, statement)
     return null;
   }
 
-  statement = statement.trim().replace("\n", "");
+  statement = statement.trim();
   if (statement.length == 0) {
     return null;
   }
 
-  if (statement.indexOf["["] != -1) {
+  // OC 方法调用
+  if (statement.indexOf("[") != -1) {
     return parseObjectiveCMethod(JPAllInstance, null, statement);
   }
 
-  var aspectMessage = {
-    message: "",
-    //invokeCondition: {},
-    messageType: 0,
-    //arguments: {},
-    //localInstanceKey: "",
-  };
-
-  // [UIColor redColor]
-  // [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-  // [[UIView alloc] init]
-
-  
+  var aspectMessage = JPAspectMessage();
 
   let returnIdx = statement.indexOf(JPReturnKey);
   if (returnIdx != -1) {
@@ -226,18 +226,4 @@ function getAspectMessage(JPAllInstance, returnType, statement)
   }
 
   return aspectMessage;
-}
-
-function getBracketsValue(string)
-{
-  if (string == null) {
-    return "";
-  }
-
-  let leftBracketIdx = string.indexOf("(");
-  if (leftBracketIdx == -1) {
-    return string;
-  }
-
-  return string.substring(leftBracketIdx + 1).replace(")", "");
 }
