@@ -9,52 +9,9 @@
 let JPClassBeginTag = "@implementation";
 let JPClassEndTag = "@end";
 let JPReturnKey = "return";
-
-function keydownHandler(textView)
-{
-    // Tab key
-    if (event.keyCode == 9) {
-      var content = textView.value;
-      var focusIndex = textViewCursortPosition(textView);
-      textView.value = insertString(content, focusIndex, "    ");
-      setTextViewFocusPosition(textView, (focusIndex + 4));
-      event.returnValue = false;
-    }
-}
-
-// 设置光标位置
-function setTextViewFocusPosition(textView, pos)
-{
-  if(textView.setSelectionRange) {
-      // IE Support
-      textView.focus();
-      textView.setSelectionRange(pos, pos);
-  }else if (textView.createTextRange) {
-      // Firefox support
-      var range = textView.createTextRange();
-      range.collapse(true);
-      range.moveEnd('character', pos);
-      range.moveStart('character', pos);
-      range.select();
-  }
-}
-
-// 获取光标位置
-function textViewCursortPosition(textView) 
-{
-  var cursorIndex = 0;
-  if (document.selection) {
-      // IE Support
-      textView.focus();
-      var range = document.selection.createRange();
-      range.moveStart('character', -textView.value.length);
-      cursorIndex = range.text.length;
-  } else if (textView.selectionStart || textView.selectionStart==0) {
-      // another support
-      cursorIndex = textView.selectionStart;
-  }
-  return cursorIndex;
-}
+let JPLetfSquareBracket = "[";
+let JPRightSquareBracket = "]";
+let JPIfKey = "if";
 
 function didConverterButtonClick() 
 {
@@ -204,6 +161,8 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
 function getCustomMessages(returnType, methodImpString)
 {
   var aspectMessages = [];
+  // 使用到的所有局部变量名
+  var JPAllInstance = {};
 
   do {
     if (methodImpString == null) {
@@ -217,7 +176,7 @@ function getCustomMessages(returnType, methodImpString)
 
     for (let index = 0; index < methodStatements.length; index++) {
       const element = methodStatements[index];
-      let aspectMessage = getAspectMessage(returnType, element);
+      let aspectMessage = getAspectMessage(JPAllInstance, returnType, element);
       if (aspectMessage != null) {
         aspectMessages.push(aspectMessage);
       }
@@ -227,7 +186,7 @@ function getCustomMessages(returnType, methodImpString)
   return aspectMessages;
 }
 
-function getAspectMessage(returnType, statement)
+function getAspectMessage(JPAllInstance, returnType, statement)
 {
   if (statement == null) {
     return null;
@@ -238,6 +197,10 @@ function getAspectMessage(returnType, statement)
     return null;
   }
 
+  if (statement.indexOf["["] != -1) {
+    return parseObjectiveCMethod(JPAllInstance, null, statement);
+  }
+
   var aspectMessage = {
     message: "",
     //invokeCondition: {},
@@ -245,6 +208,12 @@ function getAspectMessage(returnType, statement)
     //arguments: {},
     //localInstanceKey: "",
   };
+
+  // [UIColor redColor]
+  // [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+  // [[UIView alloc] init]
+
+  
 
   let returnIdx = statement.indexOf(JPReturnKey);
   if (returnIdx != -1) {
