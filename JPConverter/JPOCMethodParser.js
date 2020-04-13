@@ -47,12 +47,29 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
       JPMessage = JPMessage + firstTarget;
       statementComponent = statementComponent.substring(whiteSpaceIdx).trim();
     }
-    
-    var selArgumentComponents = statementComponent.match(/:\s*([a-zA-Z0-9]+|@"*\(*[a-zA-Z0-9]*"*\)*|)\s*/igm);
-    if (selArgumentComponents == null) {
-        // CGRectMake();
-        
+
+    // 先过滤 frame 参数 CGRect CGPoint CGSzie UIEdgeInsets NSRange
+    let structArguments = statementComponent.match(/:\s*[a-zA-Z]*\s*\(.*\)\s*/igm);
+    if (structArguments != null) {
+      for (let index = 0; index < structArguments.length; index++) {
+        let element = structArguments[index];
+        let argument = ":" + element.replace(/\s*/igm, "").substring(2, element.length - 1);
+        statementComponent = statementComponent.replace(element, argument);
+        if (element.index("CGRect") != -1) {
+          JPAllInstance[argument] = JPArgumentType("CGRect");
+        } else if (element.index("CGSize") != -1) {
+          JPAllInstance[argument] = JPArgumentType("CGSize");
+        } else if (element.index("CGPoint") != -1) {
+          JPAllInstance[argument] = JPArgumentType("CGPoint");
+        } else if (element.index("UIEdgeInsets") != -1) {
+          JPAllInstance[argument] = JPArgumentType("UIEdgeInsets");
+        } else if (element.index("NSRange") != -1) {
+          JPAllInstance[argument] = JPArgumentType("NSRange");
+        }
+      }
     }
+
+    var selArgumentComponents = statementComponent.match(/:\s*([a-zA-Z0-9]+|@"*\(*.*"*\)*)\s*/igm);
     var selArguments = [];
     if (selArgumentComponents != null) {
       for (let index = 0; index < selArgumentComponents.length; index++) {
@@ -85,6 +102,9 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
         } else if (argument.indexOf("NO") != -1) {
           argumentType = 3;
           argumentValue = "0";
+        } else if (argument == "self") {
+          argumentType = 1;
+          argumentValue = argument;
         } else {
           argumentValue = argument;
           let JPArgument = JPAllInstance[argumentValue];
