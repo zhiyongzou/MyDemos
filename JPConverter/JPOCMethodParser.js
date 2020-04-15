@@ -48,24 +48,35 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
       statementComponent = statementComponent.substring(whiteSpaceIdx).trim();
     }
 
+    // 参数替身列表
+    var JPArgumentAltList = {};
+
     // 先过滤 frame 参数 CGRect CGPoint CGSzie UIEdgeInsets NSRange
     let structArguments = statementComponent.match(/:\s*[a-zA-Z]*\s*\(.*\)\s*/igm);
     if (structArguments != null) {
       for (let index = 0; index < structArguments.length; index++) {
         let element = structArguments[index];
-        let argument = ":" + element.replace(/\s*/igm, "").substring(2, element.length - 1);
-        statementComponent = statementComponent.replace(element, argument);
-        if (element.index("CGRect") != -1) {
-          JPAllInstance[argument] = JPArgumentType("CGRect");
-        } else if (element.index("CGSize") != -1) {
-          JPAllInstance[argument] = JPArgumentType("CGSize");
-        } else if (element.index("CGPoint") != -1) {
-          JPAllInstance[argument] = JPArgumentType("CGPoint");
-        } else if (element.index("UIEdgeInsets") != -1) {
-          JPAllInstance[argument] = JPArgumentType("UIEdgeInsets");
-        } else if (element.index("NSRange") != -1) {
-          JPAllInstance[argument] = JPArgumentType("NSRange");
+        let JPArgumntAlt = {};
+        let altName = JPArgumentAltPrefix + String(index);
+        let elementValue = element.substring(element.indexOf("(")).replace(/\s*/igm, "");
+        JPArgumntAlt["value"] = elementValue.substring(1, elementValue.length - 1);
+
+        statementComponent = statementComponent.replace(element, ":" + altName);
+        if (element.indexOf("CGRect") != -1) {
+          JPArgumntAlt["type"] = JPArgumentType("CGRect");
+        } else if (element.indexOf("CGSize") != -1) {
+          JPArgumntAlt["type"] = JPArgumentType("CGSize");
+        } else if (element.indexOf("CGPoint") != -1) {
+          JPArgumntAlt["type"] = JPArgumentType("CGPoint");
+        } else if (element.indexOf("UIEdgeInsets") != -1) {
+          JPArgumntAlt["type"] = JPArgumentType("UIEdgeInsets");
+        } else if (element.indexOf("NSRange") != -1) {
+          JPArgumntAlt["type"] = JPArgumentType("NSRange");
+        } else {
+          // 未支持类型
         }
+
+        JPArgumentAltList[altName] = JPArgumntAlt;
       }
     }
 
@@ -106,10 +117,17 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
           argumentType = 1;
           argumentValue = argument;
         } else {
-          argumentValue = argument;
-          let JPArgument = JPAllInstance[argumentValue];
-          if (JPArgument != null) {
-            argumentType = JPArgument["type"];
+
+          let argumntAlt = JPArgumentAltList[argument];
+          if (argumntAlt != null) {
+            argumentValue = argumntAlt["value"];
+            argumentType = argumntAlt["type"];
+          } else {
+            argumentValue = argument;
+            let JPArgument = JPAllInstance[argumentValue];
+            if (JPArgument != null) {
+              argumentType = JPArgument["type"];
+            }
           }
         }
         selArguments.push({"index": index, "value": argumentValue.trim(), "type": argumentType});

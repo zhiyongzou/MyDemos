@@ -201,6 +201,10 @@ function getAspectMessage(JPAllInstance, returnType, statement)
     return null;
   }
 
+  // 赋值语句或点语法 
+  if (statement.indexOf("=") != -1) {
+    
+  }
   // OC 方法调用
   if (statement.indexOf("[") != -1) {
     return parseObjectiveCMethod(JPAllInstance, null, statement);
