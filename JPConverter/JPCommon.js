@@ -185,7 +185,7 @@ function JPArgumentType(typeString)
     } else if (typeString == "NSRange") {
       argumentType = 19;
     } else {
-      JPAlert("不支持该类型" + typeString);
+      JPAlert("不支持该类型: " + typeString);
     }     
 
   } while (0);

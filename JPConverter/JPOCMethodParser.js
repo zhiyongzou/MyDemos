@@ -83,7 +83,7 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
             argumentType = JPTempArgumnt["type"];
 
           } else {
-            JPAlert("[ " + statement + " ]" + JPTempArgumnt + "参数错误");
+            JPAlert("[ " + statement + " ]" + JPTempArgumnt + ": 参数错误");
           }
         }
         selArguments.push({"index": index, "value": argumentValue, "type": argumentType});

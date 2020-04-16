@@ -232,7 +232,7 @@ function getAspectMessage(JPAllInstance, returnType, statement)
           "type": JPInstance["type"]
         };
       } else {
-        JPAlert("[ " + statement + " ]" + argumentValue + "参数类型错误");
+        JPAlert("[ " + statement + " ]" + argumentValue + ": 参数类型错误");
         return null;
       }
       
@@ -313,13 +313,13 @@ function getAspectMessage(JPAllInstance, returnType, statement)
           } else if (typeof JPInstance == "object") {
             aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + JPInstance["vaule"];
           } else {
-            JPAlert("[ " + statement + " ]" + returnValue + "参数类型错误");
+            JPAlert("[ " + statement + " ]" + returnValue + ": 参数类型错误");
             return null;
           }
         }
       }
     } else {
-      JPAlert("不支持该语句类型" + statement);
+      JPAlert("不支持该语句类型: " + statement);
       return null;
     }
   }
