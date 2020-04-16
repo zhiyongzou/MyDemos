@@ -9,6 +9,7 @@
 function didConverterButtonClick() 
 {
   JPAspectDefineClass = [];
+  JPJPLIVNameIndex  = 0;
 
   var objcCodeTextView = document.getElementById('jp_objc_code_textview');
   var jsonCodeTextView = document.getElementById("jp_json_code_textview");
@@ -90,7 +91,7 @@ function converterCodeToJson(codeString)
 
 function addClassAcpset(className, isClassMethod, returnType, methodString, Aspects)
 {
-  methodString = methodString.replace("\n", "").trim();
+  methodString = methodString.replace(/\\n/igm, "").trim();
 
   if (methodString.length == 0) {
     return;
@@ -117,7 +118,7 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
   }
 
   // 移除 : 前面的空格
-  let colonregExp = /\s*:/igm;
+  let colonregExp = /\s*:\s*/igm;
   methodNameString = methodNameString.replace(colonregExp, ":");
 
   if (methodNameString.indexOf(":") != -1) {
@@ -173,6 +174,7 @@ function getCustomMessages(JPAllInstance, returnType, methodImpString)
       break;
     }
 
+    // TODO: 未实现 if 语句
     let methodStatements = methodImpString.split(";");
     if (methodStatements == null) {
       break;
@@ -196,35 +198,104 @@ function getAspectMessage(JPAllInstance, returnType, statement)
     return null;
   }
 
-  statement = statement.trim();
+  // 移除语句所有多余的空格符
+  statement = JPRemoveObjectiveCStatementUnuseWhiteSpace(statement);
+
   if (statement.length == 0) {
     return null;
   }
 
+  let aspectMessage = JPAspectMessage();
+
   // 赋值语句或点语法 
-  if (statement.indexOf("=") != -1) {
+  let equalCharIdx = statement.indexOf("=");
+  if (equalCharIdx != -1) {
     
-  }
-  // OC 方法调用
-  if (statement.indexOf("[") != -1) {
-    return parseObjectiveCMethod(JPAllInstance, null, statement);
-  }
-
-  var aspectMessage = JPAspectMessage();
-
-  let returnIdx = statement.indexOf(JPReturnKey);
-  if (returnIdx != -1) {
-    aspectMessage.messageType = 1;
-    if (statement == JPReturnKey) {
-      aspectMessage.message = JPReturnKey;
+    let varDeclaration = statement.substring(0, equalCharIdx);
+    let lastPointIdx = varDeclaration.lastIndexOf(".");
+    if (lastPointIdx != -1) {
+      let settter = "set" + varDeclaration.substring(lastPointIdx + 1, lastPointIdx + 2).toUpperCase() + varDeclaration.substring(lastPointIdx + 2) + ":";
+      aspectMessage["message"] = varDeclaration.substring(0, lastPointIdx + 1) + settter;
+      let argumentValue = statement.substring(equalCharIdx + 1);
+      let type = JPAllInstance[argumentValue];
+      if (type == null) {
+        JPAlert(argumentValue + "的参数类型未知，需手动确认");
+      }
+      aspectMessage["arguments"] = {
+        "index": 0,
+        "value": argumentValue,
+        "type": type
+      };
     } else {
-      let returnValue = statement.replace(JPReturnKey, "").trim();
-      if (returnValue == "YES") {
-        aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":1";
-      } else if(returnValue == "NO") {
-        aspectMessage.message = JPReturnKey + "="  + String(returnType) + ":0";
+
+      var localInstanceKey = "";
+      let varType = 0;
+
+      let pointerIdx = varDeclaration.indexOf("*");
+      if (pointerIdx != -1) {
+        localInstanceKey = varDeclaration.substring(pointerIdx + 1);
+        varType = 1
       } else {
-        aspectMessage.message = JPReturnKey + "="  + String(returnType) + ":0";
+  
+        let lastWhiteSpaceIdx = varDeclaration.lastIndexOf(" ");
+        localInstanceKey = varDeclaration.substring(lastWhiteSpaceIdx + 1);
+        varType = JPArgumentType(varDeclaration.substring(0, lastWhiteSpaceIdx));
+      }
+  
+      let varValue = statement.substring(equalCharIdx + 1);
+
+      if (varValue.indexOf("[") != -1) {
+
+        aspectMessage = parseObjectiveCMethod(JPAllInstance, localInstanceKey, varValue);
+
+      } else {
+        var argumentValue = null;
+        if (varValue.substring(0,1) == "@") {
+          aspectMessage["messageType"] = 2;
+          
+          if (varValue.indexOf("(") != -1 || varValue.indexOf("\"") != -1) {
+            argumentValue = varValue.substring(2, varValue.length - 1);
+          } else {
+            argumentValue = varValue.substring(1);
+          }
+        } else {
+          aspectMessage["messageType"] = 2;
+          if (varValue == "YES") {
+            argumentValue = "1";
+          } else if (varValue == "NO") {
+            argumentValue = "0";
+          } else {
+            argumentValue = varValue;
+          }
+        }
+
+        JPAllInstance[localInstanceKey] = {
+          "type": varType,
+          "value": argumentValue
+        };
+        aspectMessage["message"] = localInstanceKey + "=" + String(varType) + ":" + argumentValue;
+      }
+    }
+  } else if (statement.indexOf("[") != -1) { 
+    // OC 方法调用
+    aspectMessage = parseObjectiveCMethod(JPAllInstance, null, statement);
+
+  } else {
+
+    let returnIdx = statement.indexOf(JPReturnKey);
+    if (returnIdx != -1) {
+      aspectMessage.messageType = 1;
+      if (statement == JPReturnKey) {
+        aspectMessage.message = JPReturnKey;
+      } else {
+        let returnValue = statement.replace(JPReturnKey, "").trim();
+        if (returnValue == "YES") {
+          aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":1";
+        } else if(returnValue == "NO") {
+          aspectMessage.message = JPReturnKey + "="  + String(returnType) + ":0";
+        } else {
+          aspectMessage.message = JPReturnKey + "="  + String(returnType) + ":0";
+        }
       }
     }
   }

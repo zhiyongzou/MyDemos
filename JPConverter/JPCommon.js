@@ -14,11 +14,67 @@ let JPRightSquareBracket    = "]";
 let JPIfKey                 = "if";
 let JPArgumentAltPrefix     = "JPArgumentAltPrefix";
 var JPAspectDefineClass     = [];
+let JPLIVName               = "JPLIVName"; // locale instance variable name
+var JPJPLIVNameIndex        = 0;
+
+// 弹窗
+function JPAlert(content)
+{
+  alert(content);
+}
+
+// 移除语句所有多余的空格符
+function JPRemoveObjectiveCStatementUnuseWhiteSpace(statement)
+{
+  // 移除开始结尾空格
+  var tempStatement = statement.trim();
+
+  // 移除 = 前后空格
+  if (tempStatement.indexOf("=")) {
+    tempStatement = tempStatement.replace(/\s*=\s*/igm, "=");
+  }
+
+  // 移除 * 前后空格
+  if (tempStatement.indexOf("*")) {
+    tempStatement = tempStatement.replace(/\s*\*\s*/igm, "*");
+  }
+
+  // 移除 [ 前后空格
+  tempStatement = tempStatement.replace(/\s*\[\s*/igm, "[");
+
+  // 移除 ] 前后空格
+  tempStatement = tempStatement.replace(/\s*\]\s*/igm, "]");
+
+  // 移除 : 前后空格
+  tempStatement = tempStatement.replace(/\s*:\s*/igm, ":");
+
+  // 移除 @ 前后空格
+  if (tempStatement.indexOf("@") != -1) {
+    tempStatement = tempStatement.replace(/\s*@\s*/igm, "@");
+  }
+
+  // 移除 " 前后空格
+  if (tempStatement.indexOf("\"") != -1) {
+    tempStatement = tempStatement.replace(/\s*"\s*/igm, "\"");
+  }
+
+  // 移除 ( 前后空格
+  if (tempStatement.indexOf("(") != -1) {
+    tempStatement = tempStatement.replace(/\s*\(\s*/igm, "(");
+  }
+
+  // 移除 ) 前后空格
+  if (tempStatement.indexOf(")") != -1) {
+    tempStatement = tempStatement.replace(/\s*\)\s*/igm, ")");
+  }
+
+  return tempStatement;
+}
 
 /**
  * message: "",
  * invokeCondition: {},
- * messageType: 0,
+ * messageType: 0: 方法调用; 1: 返回语句; 2: 赋值语句
  * arguments: {},
  * localInstanceKey: "",
  */
@@ -84,11 +140,12 @@ function JPArgumentType(typeString)
       break;
     }
 
+    typeString = typeString.trim();
+
     if (typeString == "void") {
       break;
     }
 
-    typeString = typeString.trim();
     if (typeString == "id" || typeString == "instancetype" || typeString.indexOf("*") != -1) {
       argumentType = 1;
     } else if (typeString == "Class") {
