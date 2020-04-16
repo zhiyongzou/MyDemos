@@ -123,7 +123,7 @@ function getBracketsValue(contentString)
     return contentString;
   }
 
-  return contentString.substring(1, contentString.length - 1);
+  return contentString.substring(leftBracketIdx + 1, contentString.indexOf(")"));
 }
 
 /**
@@ -166,7 +166,7 @@ function JPArgumentType(typeString)
       argumentType = 9;
     } else if (typeString == "float") {
       argumentType = 10;
-    } else if (typeString == "double" || typeString == "CGFolat") {
+    } else if (typeString == "double" || typeString == "CGFloat") {
       argumentType = 11;
     } else if (typeString == "int") {
       argumentType = 12;
@@ -184,6 +184,8 @@ function JPArgumentType(typeString)
       argumentType = 18;
     } else if (typeString == "NSRange") {
       argumentType = 19;
+    } else {
+      JPAlert("不支持该类型" + typeString);
     }     
 
   } while (0);

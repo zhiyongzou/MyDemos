@@ -47,6 +47,8 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
       statementComponent = statementComponent.substring(whiteSpaceIdx).trim();
     }
 
+    // 多加一个空格防止出现镜像参数替换错误问题。例如：colorWithRed:green:blue:alpha:alpha
+    statementComponent = statementComponent + " ";
     var selArgumentComponents = statementComponent.match(/:[a-zA-Z0-9]+\s*/igm);
     var selArguments = [];
     if (selArgumentComponents != null) {
@@ -75,19 +77,18 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
             argumentValue = JPTempArgumnt["value"];
             argumentType = JPTempArgumnt["type"];
 
-          } else if (typeof JPTempArgumnt == "string") {
+          } else if (typeof JPTempArgumnt == "number") {
 
             argumentValue = argument;
             argumentType = JPTempArgumnt["type"];
 
           } else {
-            JPAlert("JPTempArgumnt 参数错误");
+            JPAlert("[ " + statement + " ]" + JPTempArgumnt + "参数错误");
           }
         }
         selArguments.push({"index": index, "value": argumentValue, "type": argumentType});
       }
     }
-    statementComponent = statementComponent.replace(/\s/igm, "");
     JPMessage = JPMessage + "." + statementComponent;
     
     if (selArguments.length > 0) {
