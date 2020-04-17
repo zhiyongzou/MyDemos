@@ -204,89 +204,12 @@ function getAspectMessage(JPAllInstance, returnType, statement)
     return null;
   }
 
-  let aspectMessage = JPAspectMessage();
+  let aspectMessage = null;
 
-  // 赋值语句或点语法 
-  let equalCharIdx = statement.indexOf("=");
-  if (equalCharIdx != -1) {
-    
-    let varDeclaration = statement.substring(0, equalCharIdx);
-    let lastPointIdx = varDeclaration.lastIndexOf(".");
-    if (lastPointIdx != -1) {
-      let settter = "set" + varDeclaration.substring(lastPointIdx + 1, lastPointIdx + 2).toUpperCase() + varDeclaration.substring(lastPointIdx + 2) + ":";
-      aspectMessage["message"] = varDeclaration.substring(0, lastPointIdx + 1) + settter;
-      let argumentValue = statement.substring(equalCharIdx + 1);
+  if (statement.indexOf("=") != -1) {
+    // 赋值语句或点语法 
+    aspectMessage = parseAssignStatement(JPAllInstance, statement);
 
-      let JPInstance = JPAllInstance[argumentValue];
-      if (typeof JPInstance == "number") {
-        aspectMessage["arguments"] = {
-          "index": 0,
-          "value": argumentValue,
-          "type": JPInstance
-        };
-      } else if (typeof JPInstance == "object") {
-        aspectMessage["arguments"] = {
-          "index": 0,
-          "value": JPInstance["value"],
-          "type": JPInstance["type"]
-        };
-      } else {
-        JPAlert("[ " + statement + " ]" + argumentValue + ": 参数类型错误");
-        return null;
-      }
-      
-    } else {
-
-      var localInstanceKey = "";
-      let varType = 0;
-
-      let pointerIdx = varDeclaration.indexOf("*");
-      if (pointerIdx != -1) {
-        localInstanceKey = varDeclaration.substring(pointerIdx + 1);
-        varType = 1
-      } else {
-  
-        let lastWhiteSpaceIdx = varDeclaration.lastIndexOf(" ");
-        localInstanceKey = varDeclaration.substring(lastWhiteSpaceIdx + 1);
-        varType = JPArgumentType(varDeclaration.substring(0, lastWhiteSpaceIdx));
-      }
-
-      let varValue = statement.substring(equalCharIdx + 1);
-
-      if (varValue.indexOf("[") != -1) {
-
-        aspectMessage = parseObjectiveCMethod(JPAllInstance, localInstanceKey, varValue);
-        JPAllInstance[localInstanceKey] = varType;
-
-      } else {
-        var argumentValue = null;
-        if (varValue.substring(0,1) == "@") {
-          aspectMessage["messageType"] = 2;
-          
-          if (varValue.indexOf("(") != -1 || varValue.indexOf("\"") != -1) {
-            argumentValue = varValue.substring(2, varValue.length - 1);
-          } else {
-            argumentValue = varValue.substring(1);
-          }
-        } else {
-          aspectMessage["messageType"] = 2;
-          if (varValue == "YES") {
-            argumentValue = "1";
-          } else if (varValue == "NO") {
-            argumentValue = "0";
-          } else {
-            argumentValue = varValue;
-          }
-        }
-
-        JPAllInstance[localInstanceKey] = {
-          "type": varType,
-          "value": argumentValue
-        };
-        // 解析局部变量，无需加入到脚本
-        return null;
-      }
-    }
   } else if (statement.indexOf("[") != -1) { 
     // OC 方法调用
     aspectMessage = parseObjectiveCMethod(JPAllInstance, null, statement);
@@ -295,31 +218,10 @@ function getAspectMessage(JPAllInstance, returnType, statement)
 
     let returnIdx = statement.indexOf(JPReturnKey);
     if (returnIdx != -1) {
-      aspectMessage.messageType = 1;
-      if (statement == JPReturnKey) {
-        aspectMessage.message = JPReturnKey;
-      } else {
-        let returnValue = statement.replace(JPReturnKey, "").trim();
-        if (returnValue == "YES") {
-          aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":1";
-        } else if(returnValue == "NO") {
-          aspectMessage.message = JPReturnKey + "="  + String(returnType) + ":0";
-        } else {
-
-          let JPInstance = JPAllInstance[returnValue];
-          if (typeof JPInstance == "number") {
-            aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + returnValue;
-          } else if (typeof JPInstance == "object") {
-            aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + JPInstance["value"];
-          } else {
-            JPAlert("[ " + statement + " ]" + returnValue + ": 参数类型错误");
-            return null;
-          }
-        }
-      }
+      // return 语句
+      aspectMessage = parseReturnStatement(JPAllInstance, returnType, statement);
     } else {
       JPAlert("不支持该语句类型: " + statement);
-      return null;
     }
   }
 
