@@ -12,7 +12,6 @@ let JPReturnKey             = "return";
 let JPLetfSquareBracket     = "[";
 let JPRightSquareBracket    = "]";
 let JPIfKey                 = "if";
-let JPArgumentAltPrefix     = "JPArgumentAltPrefix";
 var JPAspectDefineClass     = [];
 
 // 弹窗

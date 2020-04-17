@@ -96,8 +96,8 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
     return;
   }
 
-  // 使用到的所有局部变量名
-  var JPAllInstance = {};
+  // JS解析使用到的所有局部变量
+  var JSParseLocalInstanceList = {};
   var classAcpset = JPClassAspect(className, isClassMethod);
   // { 位置
   let firstOpenBraceIdx = methodString.indexOf("{");
@@ -142,7 +142,7 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
       if (methodArgumentTypeList != null) {
         for (let index = 0; index < methodArgumentTypeList.length; index++) {
           const element = methodArgumentTypeList[index];
-          JPAllInstance[selArgumentNames[index]] = JPArgumentType(getBracketsValue(element));
+          JSParseLocalInstanceList[selArgumentNames[index]] = JPArgumentType(getBracketsValue(element));
         }
       }
     }
@@ -156,7 +156,7 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
 
   // 移除{}的方法实现
   let methodImpString = methodString.substring(firstOpenBraceIdx + 1, methodString.length - 1);
-  let aspectCustomMessages = getCustomMessages(JPAllInstance, returnType, methodImpString);
+  let aspectCustomMessages = getCustomMessages(JSParseLocalInstanceList, returnType, methodImpString);
   if (aspectCustomMessages.length > 0) {
     classAcpset["customMessages"] = aspectCustomMessages;
   }
@@ -164,7 +164,7 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
   Aspects.unshift(classAcpset);
 }
 
-function getCustomMessages(JPAllInstance, returnType, methodImpString)
+function getCustomMessages(JSParseLocalInstanceList, returnType, methodImpString)
 {
   var aspectMessages = [];
 
@@ -181,7 +181,7 @@ function getCustomMessages(JPAllInstance, returnType, methodImpString)
 
     for (let index = 0; index < methodStatements.length; index++) {
       const element = methodStatements[index];
-      let aspectMessage = getAspectMessage(JPAllInstance, returnType, element);
+      let aspectMessage = getAspectMessage(JSParseLocalInstanceList, returnType, element);
       if (aspectMessage != null) {
         aspectMessages.push(aspectMessage);
       }
@@ -191,7 +191,7 @@ function getCustomMessages(JPAllInstance, returnType, methodImpString)
   return aspectMessages;
 }
 
-function getAspectMessage(JPAllInstance, returnType, statement)
+function getAspectMessage(JSParseLocalInstanceList, returnType, statement)
 {
   if (statement == null) {
     return null;
@@ -208,18 +208,18 @@ function getAspectMessage(JPAllInstance, returnType, statement)
 
   if (statement.indexOf("=") != -1) {
     // 赋值语句或点语法 
-    aspectMessage = parseAssignStatement(JPAllInstance, statement);
+    aspectMessage = parseAssignStatement(JSParseLocalInstanceList, statement);
 
   } else if (statement.indexOf("[") != -1) { 
     // OC 方法调用
-    aspectMessage = parseObjectiveCMethod(JPAllInstance, null, statement);
+    aspectMessage = parseObjectiveCMethod(JSParseLocalInstanceList, null, statement);
 
   } else {
 
     let returnIdx = statement.indexOf(JPReturnKey);
     if (returnIdx != -1) {
       // return 语句
-      aspectMessage = parseReturnStatement(JPAllInstance, returnType, statement);
+      aspectMessage = parseReturnStatement(JSParseLocalInstanceList, returnType, statement);
     } else {
       JPAlert("不支持该语句类型: " + statement);
     }

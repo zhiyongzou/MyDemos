@@ -7,7 +7,7 @@
 //
 
 // 解析点语法语句
-function parseAssignStatement(JPAllInstance, statement)
+function parseAssignStatement(JSParseLocalInstanceList, statement)
 {
   var aspectMessage = JPAspectMessage();
 
@@ -19,7 +19,7 @@ function parseAssignStatement(JPAllInstance, statement)
     aspectMessage["message"] = varDeclaration.substring(0, lastPointIdx + 1) + settter;
     let argumentValue = statement.substring(equalCharIdx + 1);
 
-    let JPInstance = JPAllInstance[argumentValue];
+    let JPInstance = JSParseLocalInstanceList[argumentValue];
     if (typeof JPInstance == "number") {
       aspectMessage["arguments"] = {
         "index": 0,
@@ -61,14 +61,14 @@ function parseAssignStatement(JPAllInstance, statement)
 
     if (varValue.indexOf("[") != -1) {
 
-      aspectMessage = parseObjectiveCMethod(JPAllInstance, localInstanceKey, varValue);
-      JPAllInstance[localInstanceKey] = varType;
+      aspectMessage = parseObjectiveCMethod(JSParseLocalInstanceList, localInstanceKey, varValue);
+      JSParseLocalInstanceList[localInstanceKey] = varType;
 
     } else if (varValue.indexOf(".") != -1) {
 
       aspectMessage["message"] = varValue;
       aspectMessage["localInstanceKey"] = localInstanceKey;
-      JPAllInstance[localInstanceKey] = varType;
+      JSParseLocalInstanceList[localInstanceKey] = varType;
 
     }  else {
       var argumentValue = null;
@@ -90,7 +90,7 @@ function parseAssignStatement(JPAllInstance, statement)
         }
       }
 
-      JPAllInstance[localInstanceKey] = {
+      JSParseLocalInstanceList[localInstanceKey] = {
         "type": varType,
         "value": argumentValue
       };
@@ -103,7 +103,7 @@ function parseAssignStatement(JPAllInstance, statement)
 }
 
 // 解析 return 语句
-function parseReturnStatement(JPAllInstance, returnType, statement)
+function parseReturnStatement(JSParseLocalInstanceList, returnType, statement)
 {
   var aspectMessage = JPAspectMessage();
   aspectMessage.messageType = 1;
@@ -118,7 +118,7 @@ function parseReturnStatement(JPAllInstance, returnType, statement)
       aspectMessage.message = JPReturnKey + "="  + String(returnType) + ":0";
     } else {
 
-      let JPInstance = JPAllInstance[returnValue];
+      let JPInstance = JSParseLocalInstanceList[returnValue];
       if (typeof JPInstance == "number") {
         aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + returnValue;
       } else if (typeof JPInstance == "object") {
@@ -134,7 +134,7 @@ function parseReturnStatement(JPAllInstance, returnType, statement)
 }
 
 // 解析 OC 方法语句
-function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
+function parseObjectiveCMethod(JSParseLocalInstanceList, localInstanceKey, statement)
 {
   var aspectMessage = JPAspectMessage();
 
@@ -159,7 +159,7 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
     if (index == 0) {
       let whiteSpaceIdx = statementComponent.indexOf(" ");
       let firstTarget = statementComponent.substring(0, whiteSpaceIdx);
-      if (firstTarget != "self" && firstTarget != "super" && JPAllInstance[firstTarget] == null) {
+      if (firstTarget != "self" && firstTarget != "super" && JSParseLocalInstanceList[firstTarget] == null) {
         if (JPAspectDefineClass.indexOf(firstTarget) == -1) {
           JPAspectDefineClass.push(firstTarget);
         }
@@ -192,7 +192,7 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
           argumentValue = argument;
         } else {
 
-          let JPTempArgumnt = JPAllInstance[argument];
+          let JPTempArgumnt = JSParseLocalInstanceList[argument];
           if (typeof JPTempArgumnt == "object") {
 
             argumentValue = JPTempArgumnt["value"];
@@ -210,7 +210,7 @@ function parseObjectiveCMethod(JPAllInstance, localInstanceKey, statement)
         selArguments.push({"index": index, "value": argumentValue, "type": argumentType});
       }
     }
-    JPMessage = JPMessage + "." + statementComponent;
+    JPMessage = JPMessage + "." + statementComponent.trim();
     
     if (selArguments.length > 0) {
       if (aspectMessage.arguments == null) {
