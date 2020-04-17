@@ -228,7 +228,7 @@ function getAspectMessage(JPAllInstance, returnType, statement)
       } else if (typeof JPInstance == "object") {
         aspectMessage["arguments"] = {
           "index": 0,
-          "value": JPInstance["vaule"],
+          "value": JPInstance["value"],
           "type": JPInstance["type"]
         };
       } else {
@@ -300,18 +300,18 @@ function getAspectMessage(JPAllInstance, returnType, statement)
       if (statement == JPReturnKey) {
         aspectMessage.message = JPReturnKey;
       } else {
-        let returnValue = statement.replace(JPReturnKey, "");
+        let returnValue = statement.replace(JPReturnKey, "").trim();
         if (returnValue == "YES") {
           aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":1";
         } else if(returnValue == "NO") {
           aspectMessage.message = JPReturnKey + "="  + String(returnType) + ":0";
         } else {
 
-          let JPInstance = JPAllInstance[argumentValue];
+          let JPInstance = JPAllInstance[returnValue];
           if (typeof JPInstance == "number") {
-            aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + JPInstance;
+            aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + returnValue;
           } else if (typeof JPInstance == "object") {
-            aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + JPInstance["vaule"];
+            aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + JPInstance["value"];
           } else {
             JPAlert("[ " + statement + " ]" + returnValue + ": 参数类型错误");
             return null;
