@@ -9,7 +9,6 @@
 function didConverterButtonClick() 
 {
   JPAspectDefineClass = [];
-  JPJPLIVNameIndex  = 0;
 
   var objcCodeTextView = document.getElementById('jp_objc_code_textview');
   var jsonCodeTextView = document.getElementById("jp_json_code_textview");

@@ -14,8 +14,6 @@ let JPRightSquareBracket    = "]";
 let JPIfKey                 = "if";
 let JPArgumentAltPrefix     = "JPArgumentAltPrefix";
 var JPAspectDefineClass     = [];
-let JPLIVName               = "JPLIVName"; // locale instance variable name
-var JPJPLIVNameIndex        = 0;
 
 // 弹窗
 function JPAlert(content)
