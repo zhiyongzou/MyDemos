@@ -142,7 +142,8 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
       if (methodArgumentTypeList != null) {
         for (let index = 0; index < methodArgumentTypeList.length; index++) {
           const element = methodArgumentTypeList[index];
-          JSParseLocalInstanceList[selArgumentNames[index]] = JPArgumentType(getBracketsValue(element));
+          let selArgumentName = selArgumentNames[index];
+          JSParseLocalInstanceList[selArgumentName] = JSParseInstance(JPArgumentType(getBracketsValue(element)), selArgumentName);
         }
       }
     }

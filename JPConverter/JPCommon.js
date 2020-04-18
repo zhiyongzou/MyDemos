@@ -14,6 +14,25 @@ let JPRightSquareBracket    = "]";
 let JPIfKey                 = "if";
 var JPAspectDefineClass     = [];
 
+// JSParseInstance
+function JSParseInstance(type, value)
+{
+  return {
+    "type": type,
+    "value": value
+  };
+}
+
+// JPArgument
+function JPArgument(index, type, value)
+{
+  return {
+    "index": index,
+    "type": type,
+    "value": value
+  };
+}
+
 // 弹窗
 function JPAlert(content)
 {
