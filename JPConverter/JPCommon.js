@@ -15,6 +15,47 @@ let JPIfKey                 = "if";
 var JPAspectDefineClass     = [];
 var JPConditionIndex        = 0;
 
+// JPFormatCondition
+function JPFormatCondition(JSParseLocalInstanceList, condition)
+{
+  condition = condition.trim();
+  // 替换 YES
+  condition = condition.replace("YES", "1");
+  // 替换 NO
+  condition = condition.replace("NO", "0");
+
+  let JPInstance = null;
+  let noCharidx = condition.indexOf("!");
+  if (noCharidx != -1) {
+    condition = condition.substring(1);
+    JPInstance = JSParseLocalInstanceList[condition];
+  } else {
+    if (JPOperator(condition) == null) {
+      JPInstance = JSParseLocalInstanceList[condition];
+    }
+  }
+
+  if (JPInstance == null) {
+    return condition;
+  }
+
+  if (JPInstance["type"] == 3) {
+    if (noCharidx != -1) {
+      condition = condition + "==0";
+    } else {
+      condition = condition + "==1";
+    }
+  }
+
+  if (JPInstance["type"] == 1) {
+    if (noCharidx == -1) {
+      condition = condition + "!=nil";
+    }
+  }
+
+  return condition;
+}
+
 // JPInvokeCondition
 function JPInvokeCondition(conditionKey, condition)
 {

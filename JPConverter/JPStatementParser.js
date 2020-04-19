@@ -63,7 +63,7 @@ function parseAssignStatement(JSParseLocalInstanceList, statement)
     }  else {
       // 条件语句
       if (JPOperator(varValue) != null) {
-        varValue = varValue.replace("YES", "1").replace("NO", "0");
+        varValue = JPFormatCondition(JSParseLocalInstanceList, varValue);;
         return JPInvokeCondition(localInstanceKey, varValue);
       } else {
         var argumentValue = null;

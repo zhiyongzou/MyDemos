@@ -225,9 +225,9 @@ function parseIfStatement(aspectMessages, JSParseLocalInstanceList, returnType, 
   var ifCondition = statement.substring(statement.indexOf("(") + 1, statement.indexOf(")")).trim();
   var conditionKey = null;
   
+  ifCondition = JPFormatCondition(JSParseLocalInstanceList, ifCondition);
   if (JPOperator(ifCondition) != null) {
     conditionKey = "conditionKey" + String(JPConditionIndex);
-    ifCondition = ifCondition.replace("YES", "1").replace("NO", "0");
     aspectMessages.push(JPInvokeCondition(conditionKey, ifCondition));
     JPConditionIndex ++;
   } else {
