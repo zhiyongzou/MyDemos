@@ -163,6 +163,15 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
     classAcpset["customMessages"] = aspectCustomMessages;
   }
 
+  let hookType = document.getElementById('jpHookType').value;
+  if (hookType == "JPAspectHookCustomInvokeInstead") {
+    classAcpset["hookType"] = 3;
+  } else if (hookType == "JPAspectHookCustomInvokeAfter") {
+    classAcpset["hookType"] = 2;
+  } else {
+    classAcpset["hookType"] = 1;
+  }
+  
   Aspects.unshift(classAcpset);
 }
 
