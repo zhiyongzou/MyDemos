@@ -9,6 +9,7 @@
 function didConverterButtonClick() 
 {
   JPAspectDefineClass = [];
+  JPConditionIndex = 0;
 
   var objcCodeTextView = document.getElementById('jp_objc_code_textview');
   var jsonCodeTextView = document.getElementById("jp_json_code_textview");
@@ -90,7 +91,7 @@ function converterCodeToJson(codeString)
 
 function addClassAcpset(className, isClassMethod, returnType, methodString, Aspects)
 {
-  methodString = methodString.replace(/\\n/igm, "").trim();
+  methodString = methodString.replace(/\n/igm, "").trim();
 
   if (methodString.length == 0) {
     return;
@@ -168,13 +169,24 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
 function getCustomMessages(JSParseLocalInstanceList, returnType, methodImpString)
 {
   var aspectMessages = [];
+  let ifStatementMap = {};
 
   do {
     if (methodImpString == null) {
       break;
     }
 
-    // TODO: 未实现 if 语句
+    // if 语句
+    let ifStatements = methodImpString.match(/if\s*\(.*\)\s*\{.*\}/igm);
+    if (ifStatements != null) {
+      for (let index = 0; index < ifStatements.length; index++) {
+        const element = ifStatements[index];
+        let ifAlt = "jp_if_" + String(index);
+        methodImpString = methodImpString.replace(element, ifAlt + ";");
+        ifStatementMap[ifAlt] = element;
+      }
+    }
+
     let methodStatements = methodImpString.split(";");
     if (methodStatements == null) {
       break;
@@ -182,9 +194,17 @@ function getCustomMessages(JSParseLocalInstanceList, returnType, methodImpString
 
     for (let index = 0; index < methodStatements.length; index++) {
       const element = methodStatements[index];
-      let aspectMessage = getAspectMessage(JSParseLocalInstanceList, returnType, element);
-      if (aspectMessage != null) {
-        aspectMessages.push(aspectMessage);
+
+      let ifStatement = ifStatementMap[element.trim()];
+      // 移除语句所有多余的空格符
+      let statement = JPRemoveObjectiveCStatementUnuseWhiteSpace(ifStatement != null ? ifStatement : element);
+      if (ifStatement != null) {
+        parseIfStatement(aspectMessages, JSParseLocalInstanceList, returnType, statement);
+      } else {
+        let aspectMessage = getAspectMessage(JSParseLocalInstanceList, returnType, statement);
+        if (aspectMessage != null) {
+          aspectMessages.push(aspectMessage);
+        }
       }
     }
   } while (0);
@@ -192,14 +212,54 @@ function getCustomMessages(JSParseLocalInstanceList, returnType, methodImpString
   return aspectMessages;
 }
 
+// 解析 if 语句
+function parseIfStatement(aspectMessages, JSParseLocalInstanceList, returnType, statement)
+{
+  // { 位置
+  let firstOpenBraceIdx = statement.indexOf("{");
+  let ifImpString = statement.substring(firstOpenBraceIdx + 1, statement.length - 1);
+  if (ifImpString.length == 0) {
+    return;
+  }
+
+  var ifCondition = statement.substring(statement.indexOf("(") + 1, statement.indexOf(")")).trim();
+  var conditionKey = null;
+  
+  if (JPOperator(ifCondition) != null) {
+    conditionKey = "conditionKey" + String(JPConditionIndex);
+    ifCondition = ifCondition.replace("YES", "1").replace("NO", "0");
+    aspectMessages.push(JPInvokeCondition(conditionKey, ifCondition));
+    JPConditionIndex ++;
+  } else {
+    JPAlert(ifCondition + ": 必须指定运算符");
+    return;
+  }
+
+  let methodStatements = ifImpString.split(";");
+  if (methodStatements == null) {
+    return;
+  }
+
+  for (let index = 0; index < methodStatements.length; index++) {
+    const element = methodStatements[index];
+
+    // 移除语句所有多余的空格符
+    let statement = JPRemoveObjectiveCStatementUnuseWhiteSpace(element);
+    let aspectMessage = getAspectMessage(JSParseLocalInstanceList, returnType, statement);
+    if (aspectMessage != null) {
+      aspectMessage["invokeCondition"] = {
+        "conditionKey": conditionKey
+      }
+      aspectMessages.push(aspectMessage);
+    }
+  }
+}
+
 function getAspectMessage(JSParseLocalInstanceList, returnType, statement)
 {
   if (statement == null) {
     return null;
   }
-
-  // 移除语句所有多余的空格符
-  statement = JPRemoveObjectiveCStatementUnuseWhiteSpace(statement);
 
   if (statement.length == 0) {
     return null;

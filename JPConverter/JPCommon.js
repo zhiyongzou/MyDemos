@@ -13,6 +13,51 @@ let JPLetfSquareBracket     = "[";
 let JPRightSquareBracket    = "]";
 let JPIfKey                 = "if";
 var JPAspectDefineClass     = [];
+var JPConditionIndex        = 0;
+
+// JPInvokeCondition
+function JPInvokeCondition(conditionKey, condition)
+{
+  let aspectMessage = {
+    "invokeCondition" : {
+      "condition" : condition,
+      "operator" : JPOperator(condition),
+      "conditionKey" : conditionKey
+    }
+  };
+
+  return aspectMessage;
+}
+
+// 运算符
+function JPOperator(condition)
+{
+  if (condition.indexOf(">=") != -1) {
+    return ">=";
+  }
+
+  if (condition.indexOf(">") != -1) {
+    return ">";
+  }
+
+  if (condition.indexOf("<=") != -1) {
+    return "<=";
+  }
+
+  if (condition.indexOf("<") != -1) {
+    return "<";
+  }
+
+  if (condition.indexOf("==") != -1) {
+    return "==";
+  }
+
+  if (condition.indexOf("!=") != -1) {
+    return "!=";
+  }
+
+  return null;
+}
 
 // JSParseInstance
 function JSParseInstance(type, value)

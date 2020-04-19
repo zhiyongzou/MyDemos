@@ -61,28 +61,34 @@ function parseAssignStatement(JSParseLocalInstanceList, statement)
       JSParseLocalInstanceList[localInstanceKey] = JSParseInstance(varType, localInstanceKey);
 
     }  else {
-      var argumentValue = null;
-      if (varValue.substring(0,1) == "@") {
-
-        if (varValue.indexOf("(") != -1 || varValue.indexOf("\"") != -1) {
-          argumentValue = varValue.substring(2, varValue.length - 1);
-        } else {
-          argumentValue = varValue.substring(1);
-        }
+      // 条件语句
+      if (JPOperator(varValue) != null) {
+        varValue = varValue.replace("YES", "1").replace("NO", "0");
+        return JPInvokeCondition(localInstanceKey, varValue);
       } else {
+        var argumentValue = null;
+        if (varValue.substring(0,1) == "@") {
 
-        if (varValue == "YES") {
-          argumentValue = "1";
-        } else if (varValue == "NO") {
-          argumentValue = "0";
+          if (varValue.indexOf("(") != -1 || varValue.indexOf("\"") != -1) {
+            argumentValue = varValue.substring(2, varValue.length - 1);
+          } else {
+            argumentValue = varValue.substring(1);
+          }
         } else {
-          argumentValue = varValue;
+  
+          if (varValue == "YES") {
+            argumentValue = "1";
+          } else if (varValue == "NO") {
+            argumentValue = "0";
+          } else {
+            argumentValue = varValue;
+          }
         }
+  
+        JSParseLocalInstanceList[localInstanceKey] = JSParseInstance(varType, argumentValue);
+        // 解析局部变量，无需加入到脚本
+        return null;
       }
-
-      JSParseLocalInstanceList[localInstanceKey] = JSParseInstance(varType, argumentValue);
-      // 解析局部变量，无需加入到脚本
-      return null;
     }
   }
 
