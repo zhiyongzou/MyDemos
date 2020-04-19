@@ -186,13 +186,34 @@ function getCustomMessages(JSParseLocalInstanceList, returnType, methodImpString
     }
 
     // if 语句
-    let ifStatements = methodImpString.match(/if\s*\(.*\)\s*\{.*\}/igm);
-    if (ifStatements != null) {
-      for (let index = 0; index < ifStatements.length; index++) {
-        const element = ifStatements[index];
-        let ifAlt = "jp_if_" + String(index);
-        methodImpString = methodImpString.replace(element, ifAlt + ";");
-        ifStatementMap[ifAlt] = element;
+    let ifbegins = methodImpString.match(/if\s*\(/igm);
+    if (ifbegins != null) {
+      var ifAltIdx = 0;
+      var curIfContent = methodImpString;
+      let ifRegularExp = /if\s*\(.*\)\s*\{.*\}/igm;
+      for (let idx = (ifbegins.length - 1); idx >= 0; idx--) {
+        const ifBegin = ifbegins[idx];
+
+        var ifStatements = null;
+        if (idx == 0) {
+          ifStatements = curIfContent.match(ifRegularExp);
+        } else {
+
+          let ifIdx =  curIfContent.lastIndexOf(ifBegin);
+          let ifString = curIfContent.substring(ifIdx);
+          ifStatements = ifString.match(ifRegularExp);
+          curIfContent = curIfContent.substring(0, ifIdx);
+        }
+
+        if (ifStatements != null) {
+          for (let index = 0; index < ifStatements.length; index++) {
+            const element = ifStatements[index];
+            let ifAlt = "jp_if_" + String(ifAltIdx);
+            methodImpString = methodImpString.replace(element, ifAlt + ";");
+            ifStatementMap[ifAlt] = element;
+          }
+          ifAltIdx ++;
+        }
       }
     }
 
@@ -236,7 +257,7 @@ function parseIfStatement(aspectMessages, JSParseLocalInstanceList, returnType, 
   
   ifCondition = JPFormatCondition(JSParseLocalInstanceList, ifCondition);
   if (JPOperator(ifCondition) != null) {
-    conditionKey = "conditionKey" + String(JPConditionIndex);
+    conditionKey = "conditionKey_" + String(JPConditionIndex);
     aspectMessages.push(JPInvokeCondition(conditionKey, ifCondition));
     JPConditionIndex ++;
   } else {
