@@ -9,6 +9,7 @@
 function didConverterButtonClick() 
 {
   JPAspectDefineClass = [];
+  JPConditionIndex = 0;
 
   var objcCodeTextView = document.getElementById('jp_objc_code_textview');
   var jsonCodeTextView = document.getElementById("jp_json_code_textview");
@@ -90,7 +91,7 @@ function converterCodeToJson(codeString)
 
 function addClassAcpset(className, isClassMethod, returnType, methodString, Aspects)
 {
-  methodString = methodString.replace(/\\n/igm, "").trim();
+  methodString = methodString.replace(/\n/igm, "").trim();
 
   if (methodString.length == 0) {
     return;
@@ -142,7 +143,8 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
       if (methodArgumentTypeList != null) {
         for (let index = 0; index < methodArgumentTypeList.length; index++) {
           const element = methodArgumentTypeList[index];
-          JSParseLocalInstanceList[selArgumentNames[index]] = JPArgumentType(getBracketsValue(element));
+          let selArgumentName = selArgumentNames[index];
+          JSParseLocalInstanceList[selArgumentName] = JSParseInstance(JPArgumentType(getBracketsValue(element)), selArgumentName);
         }
       }
     }
@@ -161,19 +163,60 @@ function addClassAcpset(className, isClassMethod, returnType, methodString, Aspe
     classAcpset["customMessages"] = aspectCustomMessages;
   }
 
+  let hookType = document.getElementById('jpHookType').value;
+  if (hookType == "JPAspectHookCustomInvokeInstead") {
+    classAcpset["hookType"] = 3;
+  } else if (hookType == "JPAspectHookCustomInvokeAfter") {
+    classAcpset["hookType"] = 2;
+  } else {
+    classAcpset["hookType"] = 1;
+  }
+  
   Aspects.unshift(classAcpset);
 }
 
 function getCustomMessages(JSParseLocalInstanceList, returnType, methodImpString)
 {
   var aspectMessages = [];
+  let ifStatementMap = {};
 
   do {
     if (methodImpString == null) {
       break;
     }
 
-    // TODO: 未实现 if 语句
+    // if 语句
+    let ifbegins = methodImpString.match(/if\s*\(/igm);
+    if (ifbegins != null) {
+      var ifAltIdx = 0;
+      var curIfContent = methodImpString;
+      let ifRegularExp = /if\s*\(.*\)\s*\{.*\}/igm;
+      for (let idx = (ifbegins.length - 1); idx >= 0; idx--) {
+        const ifBegin = ifbegins[idx];
+
+        var ifStatements = null;
+        if (idx == 0) {
+          ifStatements = curIfContent.match(ifRegularExp);
+        } else {
+
+          let ifIdx =  curIfContent.lastIndexOf(ifBegin);
+          let ifString = curIfContent.substring(ifIdx);
+          ifStatements = ifString.match(ifRegularExp);
+          curIfContent = curIfContent.substring(0, ifIdx);
+        }
+
+        if (ifStatements != null) {
+          for (let index = 0; index < ifStatements.length; index++) {
+            const element = ifStatements[index];
+            let ifAlt = "jp_if_" + String(ifAltIdx);
+            methodImpString = methodImpString.replace(element, ifAlt + ";");
+            ifStatementMap[ifAlt] = element;
+          }
+          ifAltIdx ++;
+        }
+      }
+    }
+
     let methodStatements = methodImpString.split(";");
     if (methodStatements == null) {
       break;
@@ -181,9 +224,17 @@ function getCustomMessages(JSParseLocalInstanceList, returnType, methodImpString
 
     for (let index = 0; index < methodStatements.length; index++) {
       const element = methodStatements[index];
-      let aspectMessage = getAspectMessage(JSParseLocalInstanceList, returnType, element);
-      if (aspectMessage != null) {
-        aspectMessages.push(aspectMessage);
+
+      let ifStatement = ifStatementMap[element.trim()];
+      // 移除语句所有多余的空格符
+      let statement = JPRemoveObjectiveCStatementUnuseWhiteSpace(ifStatement != null ? ifStatement : element);
+      if (ifStatement != null) {
+        parseIfStatement(aspectMessages, JSParseLocalInstanceList, returnType, statement);
+      } else {
+        let aspectMessage = getAspectMessage(JSParseLocalInstanceList, returnType, statement);
+        if (aspectMessage != null) {
+          aspectMessages.push(aspectMessage);
+        }
       }
     }
   } while (0);
@@ -191,14 +242,54 @@ function getCustomMessages(JSParseLocalInstanceList, returnType, methodImpString
   return aspectMessages;
 }
 
+// 解析 if 语句
+function parseIfStatement(aspectMessages, JSParseLocalInstanceList, returnType, statement)
+{
+  // { 位置
+  let firstOpenBraceIdx = statement.indexOf("{");
+  let ifImpString = statement.substring(firstOpenBraceIdx + 1, statement.length - 1);
+  if (ifImpString.length == 0) {
+    return;
+  }
+
+  var ifCondition = statement.substring(statement.indexOf("(") + 1, statement.indexOf(")")).trim();
+  var conditionKey = null;
+  
+  ifCondition = JPFormatCondition(JSParseLocalInstanceList, ifCondition);
+  if (JPOperator(ifCondition) != null) {
+    conditionKey = "conditionKey_" + String(JPConditionIndex);
+    aspectMessages.push(JPInvokeCondition(conditionKey, ifCondition));
+    JPConditionIndex ++;
+  } else {
+    JPAlert(ifCondition + ": 必须指定运算符");
+    return;
+  }
+
+  let methodStatements = ifImpString.split(";");
+  if (methodStatements == null) {
+    return;
+  }
+
+  for (let index = 0; index < methodStatements.length; index++) {
+    const element = methodStatements[index];
+
+    // 移除语句所有多余的空格符
+    let statement = JPRemoveObjectiveCStatementUnuseWhiteSpace(element);
+    let aspectMessage = getAspectMessage(JSParseLocalInstanceList, returnType, statement);
+    if (aspectMessage != null) {
+      aspectMessage["invokeCondition"] = {
+        "conditionKey": conditionKey
+      }
+      aspectMessages.push(aspectMessage);
+    }
+  }
+}
+
 function getAspectMessage(JSParseLocalInstanceList, returnType, statement)
 {
   if (statement == null) {
     return null;
   }
-
-  // 移除语句所有多余的空格符
-  statement = JPRemoveObjectiveCStatementUnuseWhiteSpace(statement);
 
   if (statement.length == 0) {
     return null;

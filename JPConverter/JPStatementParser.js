@@ -19,19 +19,9 @@ function parseAssignStatement(JSParseLocalInstanceList, statement)
     aspectMessage["message"] = varDeclaration.substring(0, lastPointIdx + 1) + settter;
     let argumentValue = statement.substring(equalCharIdx + 1);
 
-    let JPInstance = JSParseLocalInstanceList[argumentValue];
-    if (typeof JPInstance == "number") {
-      aspectMessage["arguments"] = {
-        "index": 0,
-        "value": argumentValue,
-        "type": JPInstance
-      };
-    } else if (typeof JPInstance == "object") {
-      aspectMessage["arguments"] = {
-        "index": 0,
-        "value": JPInstance["value"],
-        "type": JPInstance["type"]
-      };
+    let JSParseInstance = JSParseLocalInstanceList[argumentValue];
+    if (typeof JSParseInstance == "object") {
+      aspectMessage["arguments"] = JPArgument(0, JSParseInstance["type"], JSParseInstance["value"]);
     } else {
       JPAlert("[ " + statement + " ] ==> " + argumentValue + " 参数类型未定义，请指定该参数类型");
       return null;
@@ -62,40 +52,43 @@ function parseAssignStatement(JSParseLocalInstanceList, statement)
     if (varValue.indexOf("[") != -1) {
 
       aspectMessage = parseObjectiveCMethod(JSParseLocalInstanceList, localInstanceKey, varValue);
-      JSParseLocalInstanceList[localInstanceKey] = varType;
+      JSParseLocalInstanceList[localInstanceKey] = JSParseInstance(varType, localInstanceKey);
 
     } else if (varValue.indexOf(".") != -1) {
 
       aspectMessage["message"] = varValue;
       aspectMessage["localInstanceKey"] = localInstanceKey;
-      JSParseLocalInstanceList[localInstanceKey] = varType;
+      JSParseLocalInstanceList[localInstanceKey] = JSParseInstance(varType, localInstanceKey);
 
     }  else {
-      var argumentValue = null;
-      if (varValue.substring(0,1) == "@") {
-
-        if (varValue.indexOf("(") != -1 || varValue.indexOf("\"") != -1) {
-          argumentValue = varValue.substring(2, varValue.length - 1);
-        } else {
-          argumentValue = varValue.substring(1);
-        }
+      // 条件语句
+      if (JPOperator(varValue) != null) {
+        varValue = JPFormatCondition(JSParseLocalInstanceList, varValue);
+        return JPInvokeCondition(localInstanceKey, varValue);
       } else {
+        var argumentValue = null;
+        if (varValue.substring(0,1) == "@") {
 
-        if (varValue == "YES") {
-          argumentValue = "1";
-        } else if (varValue == "NO") {
-          argumentValue = "0";
+          if (varValue.indexOf("(") != -1 || varValue.indexOf("\"") != -1) {
+            argumentValue = varValue.substring(2, varValue.length - 1);
+          } else {
+            argumentValue = varValue.substring(1);
+          }
         } else {
-          argumentValue = varValue;
+  
+          if (varValue == "YES") {
+            argumentValue = "1";
+          } else if (varValue == "NO") {
+            argumentValue = "0";
+          } else {
+            argumentValue = varValue;
+          }
         }
+  
+        JSParseLocalInstanceList[localInstanceKey] = JSParseInstance(varType, argumentValue);
+        // 解析局部变量，无需加入到脚本
+        return null;
       }
-
-      JSParseLocalInstanceList[localInstanceKey] = {
-        "type": varType,
-        "value": argumentValue
-      };
-      // 解析局部变量，无需加入到脚本
-      return null;
     }
   }
 
@@ -118,11 +111,9 @@ function parseReturnStatement(JSParseLocalInstanceList, returnType, statement)
       aspectMessage.message = JPReturnKey + "="  + String(returnType) + ":0";
     } else {
 
-      let JPInstance = JSParseLocalInstanceList[returnValue];
-      if (typeof JPInstance == "number") {
-        aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + returnValue;
-      } else if (typeof JPInstance == "object") {
-        aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + JPInstance["value"];
+      let JSParseInstance = JSParseLocalInstanceList[returnValue];
+      if (typeof JSParseInstance == "object") {
+        aspectMessage.message = JPReturnKey + "=" + String(returnType) + ":" + JSParseInstance["value"];
       } else {
         JPAlert("[ " + statement + " ] ==> " + returnValue + " 参数类型未定义，请指定该参数类型");
         return null;
@@ -192,22 +183,17 @@ function parseObjectiveCMethod(JSParseLocalInstanceList, localInstanceKey, state
           argumentValue = argument;
         } else {
 
-          let JPTempArgumnt = JSParseLocalInstanceList[argument];
-          if (typeof JPTempArgumnt == "object") {
+          let JSParseInstance = JSParseLocalInstanceList[argument];
+          if (typeof JSParseInstance == "object") {
 
-            argumentValue = JPTempArgumnt["value"];
-            argumentType = JPTempArgumnt["type"];
-
-          } else if (typeof JPTempArgumnt == "number") {
-
-            argumentValue = argument;
-            argumentType = JPTempArgumnt["type"];
+            argumentValue = JSParseInstance["value"];
+            argumentType = JSParseInstance["type"];
 
           } else {
             JPAlert("[ " + statement + " ] ==> " + argument + " 参数类型未定义，请指定该参数类型");
           }
         }
-        selArguments.push({"index": index, "value": argumentValue, "type": argumentType});
+        selArguments.push(JPArgument(index, argumentType, argumentValue));
       }
     }
     JPMessage = JPMessage + "." + statementComponent.trim();

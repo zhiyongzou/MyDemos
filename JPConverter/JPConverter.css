@@ -43,7 +43,7 @@ body {
     color: white;
     border-radius: 5px;
     width: calc(50% - 25px);/* https://osvaldas.info/imitating-calc-fallback-fixed-width-sidebar-in-responsive-layout */
-    height: 500px;
+    height: 350px;
 }
 
 .jp_json_color {
