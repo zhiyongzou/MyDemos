@@ -9,6 +9,7 @@
 #import "MyClassB.h"
 #import <objc/runtime.h>
 #import <Foundation/Foundation.h>
+#import "NSObject+Runtime.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -23,6 +24,18 @@ int main(int argc, const char * argv[]) {
         NSLog(@"success: %d", addMethodSuccess);
         
         [MyClassB performSelector:superAliasSel];
+        
+        
+        BOOL res1 = [[NSObject class] isKindOfClass:[NSObject class]];
+        BOOL res2 = [[NSObject class] isMemberOfClass:[objc_getMetaClass("NSObject") class]];
+        BOOL res3 = [[MyClassB class] isKindOfClass:[objc_getMetaClass("MyClassB") class]];
+        BOOL res4 = [[MyClassB class] isMemberOfClass:[MyClassB class]];
+        NSLog(@"%@ - %@ - %@ - %@", @(res1), @(res2), @(res3), @(res4));
+        
+        [NSObject hello];
+        [[NSObject new] performSelector:@selector(hello)];
+        
+        
 
     }
     return 0;

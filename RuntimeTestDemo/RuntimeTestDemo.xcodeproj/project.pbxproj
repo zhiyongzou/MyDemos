@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8165ED2324527928002D00A9 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165ED2224527928002D00A9 /* NSObject+Runtime.m */; };
 		818A2A3C239641EF00DB75D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A3B239641EF00DB75D2 /* main.m */; };
 		818A2A452396421700DB75D2 /* MyClassA.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A442396421700DB75D2 /* MyClassA.m */; };
 		818A2A482396422300DB75D2 /* MyClassB.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A2A472396422300DB75D2 /* MyClassB.m */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8165ED2124527928002D00A9 /* NSObject+Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
+		8165ED2224527928002D00A9 /* NSObject+Runtime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
 		818A2A38239641EF00DB75D2 /* RuntimeTestDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RuntimeTestDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		818A2A3B239641EF00DB75D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		818A2A432396421700DB75D2 /* MyClassA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyClassA.h; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 				818A2A442396421700DB75D2 /* MyClassA.m */,
 				818A2A462396422300DB75D2 /* MyClassB.h */,
 				818A2A472396422300DB75D2 /* MyClassB.m */,
+				8165ED2124527928002D00A9 /* NSObject+Runtime.h */,
+				8165ED2224527928002D00A9 /* NSObject+Runtime.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8165ED2324527928002D00A9 /* NSObject+Runtime.m in Sources */,
 				818A2A482396422300DB75D2 /* MyClassB.m in Sources */,
 				818A2A452396421700DB75D2 /* MyClassA.m in Sources */,
 				818A2A3C239641EF00DB75D2 /* main.m in Sources */,
