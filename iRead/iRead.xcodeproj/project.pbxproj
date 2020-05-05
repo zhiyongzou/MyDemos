@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		814171752461AEDC00694536 /* libIRCommonLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 814171722461AE7D00694536 /* libIRCommonLib.a */; };
 		8152F7F0240509B400EAC0D4 /* FRParseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8152F7EF240509B400EAC0D4 /* FRParseError.swift */; };
 		8152F7F424050AF200EAC0D4 /* FRStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8152F7F324050AF200EAC0D4 /* FRStringExtension.swift */; };
 		816DFBB12404D39B0030E55B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816DFBB02404D39B0030E55B /* AppDelegate.swift */; };
@@ -31,6 +32,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		814171712461AE7D00694536 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8141716D2461AE7D00694536 /* IRCommonLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 814171562461ADBE00694536;
+			remoteInfo = IRCommonLib;
+		};
+		814171732461AEC500694536 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8141716D2461AE7D00694536 /* IRCommonLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 814171552461ADBE00694536;
+			remoteInfo = IRCommonLib;
+		};
 		816DFBC42404D3A00030E55B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 816DFBA52404D39B0030E55B /* Project object */;
@@ -51,6 +66,7 @@
 		00DD04FE011F463B67348768 /* Pods-iRead.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRead.release.xcconfig"; path = "Target Support Files/Pods-iRead/Pods-iRead.release.xcconfig"; sourceTree = "<group>"; };
 		3DA102CBABD9ED364C525C64 /* libPods-iRead.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iRead.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B7166AED0711D73236BE22 /* Pods-iRead.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRead.debug.xcconfig"; path = "Target Support Files/Pods-iRead/Pods-iRead.debug.xcconfig"; sourceTree = "<group>"; };
+		8141716D2461AE7D00694536 /* IRCommonLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IRCommonLib.xcodeproj; path = IRCommonLib/IRCommonLib.xcodeproj; sourceTree = "<group>"; };
 		8152F7EF240509B400EAC0D4 /* FRParseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRParseError.swift; sourceTree = "<group>"; };
 		8152F7F324050AF200EAC0D4 /* FRStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRStringExtension.swift; sourceTree = "<group>"; };
 		816DFBAD2404D39B0030E55B /* iRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB303FBF06BE075570EFDA68 /* libPods-iRead.a in Frameworks */,
+				814171752461AEDC00694536 /* libIRCommonLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,9 +130,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8141716E2461AE7D00694536 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				814171722461AE7D00694536 /* libIRCommonLib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		816DFBA42404D39B0030E55B = {
 			isa = PBXGroup;
 			children = (
+				8141716D2461AE7D00694536 /* IRCommonLib.xcodeproj */,
 				816DFBAF2404D39B0030E55B /* iRead */,
 				816DFBC62404D3A00030E55B /* iReadTests */,
 				816DFBD12404D3A00030E55B /* iReadUITests */,
@@ -244,6 +270,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				814171742461AEC500694536 /* PBXTargetDependency */,
 			);
 			name = iRead;
 			productName = iRead;
@@ -320,6 +347,12 @@
 			mainGroup = 816DFBA42404D39B0030E55B;
 			productRefGroup = 816DFBAE2404D39B0030E55B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8141716E2461AE7D00694536 /* Products */;
+					ProjectRef = 8141716D2461AE7D00694536 /* IRCommonLib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				816DFBAC2404D39B0030E55B /* iRead */,
@@ -328,6 +361,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		814171722461AE7D00694536 /* libIRCommonLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libIRCommonLib.a;
+			remoteRef = 814171712461AE7D00694536 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		816DFBAB2404D39B0030E55B /* Resources */ = {
@@ -440,6 +483,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		814171742461AEC500694536 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IRCommonLib;
+			targetProxy = 814171732461AEC500694536 /* PBXContainerItemProxy */;
+		};
 		816DFBC52404D3A00030E55B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 816DFBAC2404D39B0030E55B /* iRead */;
@@ -522,7 +570,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -576,7 +624,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -594,7 +642,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F24R2G835;
 				INFOPLIST_FILE = iRead/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -614,7 +662,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F24R2G835;
 				INFOPLIST_FILE = iRead/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
