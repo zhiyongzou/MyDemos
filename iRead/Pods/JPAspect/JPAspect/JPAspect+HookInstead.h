@@ -47,6 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)returnBool;
 - (BOOL)returnBool;
 
++ (float)returnFloat;
+- (float)returnFloat;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -143,8 +143,6 @@ NS_ASSUME_NONNULL_BEGIN
  }
  **/
 @property (nonatomic, strong) NSDictionary<NSString *, NSArray<NSDictionary *> *> *arguments;
-/// 参数 Model 缓存
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSArray<JPAspectArgument *> *> *argumentCache;
 
 /*
  局部变量索引: 赋值、判断

@@ -29,6 +29,8 @@ static NSMutableDictionary *JPSuperAliasSelectorList = nil;
 static NSMutableDictionary<NSString *, id<AspectTokenProtocol>> *JPAspectTokenList = nil;
 /// Original method return value key
 static NSString * const kAspectOriginalMethodReturnValueKey = @"kAspectOriginalMethodReturnValueKey";
+/// Dealloc
+static NSString * const kAspectDealloc = @"dealloc";
 /// Argument 0 is self, argument 1 is SEL
 static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
 
@@ -47,14 +49,12 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
 + (void)removeHookWithClassName:(NSString *)className selName:(NSString *)selName isClassMethod:(BOOL)isClassMethod
 {
     if (className == nil) {
-        JPAspectLog(@"[JPAspect] className is nil");
-        NSAssert(NO, @"");
+        NSAssert(NO, @"[JPAspect] className is nil");
         return;
     }
     
     if (selName == nil) {
-        JPAspectLog(@"[JPAspect] selName is nil");
-        NSAssert(NO, @"");
+        NSAssert(NO, @"[JPAspect] selName is nil");
         return;
     }
     
@@ -89,22 +89,19 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     }
     
     if (JPAspectHookUnknown == aspectModel.hookType) {
-        JPAspectLog(@"[JPAspect] hook type is unknown");
-        NSAssert(NO, @"");
+        NSAssert(NO, @"[JPAspect] hook type is unknown");
         return;
     }
     
     Class targetCls = NSClassFromString(aspectModel.className);
     if (targetCls == nil) {
-        JPAspectLog(@"[JPAspect] Target class:[%@] is nil", aspectModel.className);
-        NSAssert(NO, @"");
+        NSAssert(NO, @"[JPAspect] Target class:[%@] is nil", aspectModel.className);
         return;
     }
     
     SEL targetSel = NSSelectorFromString(aspectModel.selName);
     if (targetSel == nil) {
-        JPAspectLog(@"[JPAspect] Target selector:[%@] is nil", aspectModel.selName);
-        NSAssert(NO, @"");
+        NSAssert(NO, @"[JPAspect] Target selector:[%@] is nil", aspectModel.selName);
         return;
     }
     
@@ -114,14 +111,14 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     }
     
     NSError *aspectError = nil;
+    AspectOptions aspectOption = [aspectModel.selName isEqualToString:kAspectDealloc] ? AspectPositionBefore : AspectPositionInstead;
     __weak typeof(self) weakSelf = self;
-    id<AspectTokenProtocol> aspectToken = [targetCls aspect_hookSelector:targetSel withOptions:AspectPositionInstead usingBlock:^(id<AspectInfoProtocol> aspectInfo) {
-        [weakSelf handleAspectCustomInvokeWithAspectInfo:aspectInfo aspectModel:aspectModel];
+    id<AspectTokenProtocol> aspectToken = [targetCls aspect_hookSelector:targetSel withOptions:aspectOption usingBlock:^(id<AspectInfoProtocol> aspectInfo) {
+        [weakSelf handleAspectCustomInvokeWithAspectInfo:aspectInfo aspectOptions:aspectOption aspectModel:aspectModel];
     } error:&aspectError];
     
     if (aspectError) {
-        JPAspectLog(@"[JPAspect] %@ %@ Hook error:%@", aspectModel.className, aspectModel.selName, aspectError);
-        NSAssert(NO, @"");
+        NSAssert(NO, @"[JPAspect] %@ %@ Hook error:%@", aspectModel.className, aspectModel.selName, aspectError);
     } else {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -147,14 +144,12 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     NSUInteger argumentIndex = aspectArgument.index + JPAspectMethodDefaultArgumentsCount;
     
     if (aspectArgument.index >= invocation.methodSignature.numberOfArguments) {
-        JPAspectLog(@"%@", [NSString stringWithFormat:@"[JPAspect] Argument index(%zd) is out of bounds [0, %zd)", aspectArgument.index, invocation.methodSignature.numberOfArguments]);
-        NSAssert(NO, @"");
+        NSAssert(NO, @"%@", [NSString stringWithFormat:@"[JPAspect] Argument index(%@) is out of bounds [0, %@)", @(aspectArgument.index), @(invocation.methodSignature.numberOfArguments)]);
         return;
     }
     
     if (aspectArgument.type == JPArgumentTypeUnknown) {
-        JPAspectLog(@"%@", @"[JPAspect] Argument type is JPArgumentTypeUnknown");
-        NSAssert(NO, @"");
+        NSAssert(NO, @"%@", @"[JPAspect] Argument type is JPArgumentTypeUnknown");
         return;
     }
     
@@ -254,7 +249,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         [invocation setArgument:&value atIndex:argumentIndex];
         
     } else {
-        JPAspectLog(@"%@", [NSString stringWithFormat:@"[JPAspect] Argument type:[%zd] is unknown", aspectArgument.type]);
+        NSAssert(NO, @"%@", [NSString stringWithFormat:@"[JPAspect] Argument type:[%@] is unknown", @(aspectArgument.type)]);
     }
 }
 
@@ -263,8 +258,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     NSUInteger argumentIndex = index + JPAspectMethodDefaultArgumentsCount;
     
     if (argumentIndex >= invocation.methodSignature.numberOfArguments) {
-        JPAspectLog(@"%@", [NSString stringWithFormat:@"[JPAspect] Argument index(%zd) is out of bounds [0, %zd)", index, invocation.methodSignature.numberOfArguments]);
-        NSAssert(NO, @"");
+        NSAssert(NO, @"%@", [NSString stringWithFormat:@"[JPAspect] Argument index(%@) is out of bounds [0, %@)", @(index), @(invocation.methodSignature.numberOfArguments)]);
         return nil;
     }
     
@@ -436,9 +430,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     }
     
     if (!signature) {
-        NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Target:[%@] method signature must not be nil. selName:%@", target, selName];
-        JPAspectLog(@"%@", errorMsg);
-        NSAssert(NO, errorMsg);
+        NSAssert(NO, @"[JPAspect] Target:[%@] method signature must not be nil. selName:%@", target, selName);
         return instance;
     }
     
@@ -446,8 +438,10 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     invocation.target = target;
     invocation.selector = selector;
     
-    for (JPAspectArgument *argument in arguments) {
-        [self setArgumentValue:argument invocation:invocation];
+    if (arguments) {
+        for (JPAspectArgument *argument in arguments) {
+            [self setArgumentValue:argument invocation:invocation];
+        }
     }
     
     [invocation invoke];
@@ -671,7 +665,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         instance = @([contentString boolValue]);
         
     } else {
-        JPAspectLog(@"%@", [NSString stringWithFormat:@"[JPAspect] Argument type:[%zd] is unsupport", type]);
+        NSAssert(NO, @"%@", [NSString stringWithFormat:@"[JPAspect] Argument type:[%@] is unsupport", @(type)]);
     }
     
     return instance;
@@ -679,14 +673,138 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
 
 #pragma mark - JPAspectHookCustomInvoke
 
-+ (void)handleAspectCustomInvokeWithAspectInfo:(id<AspectInfoProtocol>)aspectInfo aspectModel:(JPAspectModel *)aspectModel
++ (void)handleAspectCustomInvokeWithAspectInfo:(id<AspectInfoProtocol>)aspectInfo aspectOptions:(AspectOptions)options aspectModel:(JPAspectModel *)aspectModel
 {
+    NSMutableDictionary<NSString *, JPAspectInstance *> *localVariables = [NSMutableDictionary dictionary];
+    
+    if (AspectPositionBefore == options) {
+        [self invokeCustomMessagesWithAspectInfo:aspectInfo aspectModel:aspectModel shouldReturn:NULL localVariables:localVariables];
+        return;
+    }
+    
     if (aspectModel.hookType == JPAspectHookCustomInvokeAfter) {
         [aspectInfo.originalInvocation invoke];
     }
     
-    NSMutableDictionary<NSString *, JPAspectInstance *> *localVariables = [NSMutableDictionary dictionary];
     BOOL shouldReturn = NO;
+    [self invokeCustomMessagesWithAspectInfo:aspectInfo aspectModel:aspectModel shouldReturn:&shouldReturn localVariables:localVariables];
+    
+    if (shouldReturn == NO && aspectModel.hookType == JPAspectHookCustomInvokeBefore) {
+        [aspectInfo.originalInvocation invoke];
+        
+    } else  if (shouldReturn || aspectModel.hookType == JPAspectHookCustomInvokeInstead) {
+        [self setupMethodReturnValueWithAspectInfo:aspectInfo
+                                    returnInstance:[localVariables objectForKey:kAspectOriginalMethodReturnValueKey]
+                                       aspectModel:aspectModel];
+    }
+}
+
++ (void)setupMethodReturnValueWithAspectInfo:(id<AspectInfoProtocol>)aspectInfo
+                              returnInstance:(JPAspectInstance *)returnInstance
+                                 aspectModel:(JPAspectModel *)aspectModel
+{
+    if (returnInstance) {
+        id target = object_isClass(aspectInfo.instance) ? [JPAspect class] : [[JPAspect alloc] init];
+        aspectInfo.originalInvocation.target = target;
+        if (returnInstance.type == JPArgumentTypeObject) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnObject);
+            [aspectInfo.originalInvocation invoke];
+            id expectValue = returnInstance.value;
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeCGRect) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnRect);
+            [aspectInfo.originalInvocation invoke];
+            CGRect expectValue = [(NSValue *)returnInstance.value CGRectValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeUIEdgeInsets) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnEdgeInsets);
+            [aspectInfo.originalInvocation invoke];
+            UIEdgeInsets expectValue = [(NSValue *)returnInstance.value UIEdgeInsetsValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeCGSize) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnSize);
+            [aspectInfo.originalInvocation invoke];
+            CGSize expectValue = [(NSValue *)returnInstance.value CGSizeValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeCGPoint) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnPoint);
+            [aspectInfo.originalInvocation invoke];
+            CGPoint expectValue = [(NSValue *)returnInstance.value CGPointValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeLong) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnLong);
+            [aspectInfo.originalInvocation invoke];
+            long expectValue = [(NSNumber *)returnInstance.value longValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeDouble) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnDouble);
+            [aspectInfo.originalInvocation invoke];
+            double expectValue = [(NSNumber *)returnInstance.value doubleValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeInt) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnInt);
+            [aspectInfo.originalInvocation invoke];
+            int expectValue = [(NSNumber *)returnInstance.value intValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeUnsignedLong) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnUnsignedLong);
+            [aspectInfo.originalInvocation invoke];
+            unsigned long expectValue = [(NSNumber *)returnInstance.value unsignedLongValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeBool) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnBool);
+            [aspectInfo.originalInvocation invoke];
+            BOOL expectValue = [(NSNumber *)returnInstance.value boolValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeNSRange) {
+            
+            aspectInfo.originalInvocation.selector = @selector(returnRange);
+            [aspectInfo.originalInvocation invoke];
+            NSRange expectValue = [(NSValue *)returnInstance.value rangeValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+            
+        } else if (returnInstance.type == JPArgumentTypeFloat) {
+                       
+            aspectInfo.originalInvocation.selector = @selector(returnFloat);
+            [aspectInfo.originalInvocation invoke];
+            float expectValue = [(NSNumber *)returnInstance.value floatValue];
+            [aspectInfo.originalInvocation setReturnValue:&expectValue];
+           
+        }
+        aspectInfo.originalInvocation.target = nil;
+        JPAspectLog(@"[JPAspect] [%@ %@] return type:[%@] value: %@", aspectModel.className, aspectModel.selName, @(returnInstance.type), returnInstance.value);
+    }
+}
+
++ (void)invokeCustomMessagesWithAspectInfo:(id<AspectInfoProtocol>)aspectInfo
+                               aspectModel:(JPAspectModel *)aspectModel
+                              shouldReturn:(BOOL * _Nullable)shouldReturn
+                            localVariables:(NSMutableDictionary<NSString *, JPAspectInstance *> *)localVariables
+{
+    if (aspectModel.customMessages.count == 0) {
+        return;
+    }
+    
     BOOL shouldInvoke = YES;
     
     for (JPAspectMessage *message in aspectModel.customMessages) {
@@ -719,7 +837,9 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
             if (message.messageType == JPAspectMessageTypeReturn) {
                 
                 [self invokeReturnMessage:message aspectModel:aspectModel localVariables:localVariables aspectInfo:aspectInfo];
-                shouldReturn = YES;
+                if (shouldReturn) {
+                    *shouldReturn = YES;
+                }
                 JPAspectLog(@"[JPAspect] Message:[%@ %@] has been return success", aspectModel.className, aspectModel.selName);
                 break;
                 
@@ -728,109 +848,18 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 [self invokeAssignMessage:message aspectModel:aspectModel localVariables:localVariables aspectInfo:aspectInfo];
                 
             } else {
-                JPAspectInstance *localInstance = [self invokeCustomMessage:message aspectModel:aspectModel aspectInfo:aspectInfo localVariables:[localVariables copy]];
+                JPAspectInstance *localInstance = [self invokeMethodMessage:message aspectModel:aspectModel aspectInfo:aspectInfo localVariables:[localVariables copy]];
                 if (message.localInstanceKey.length > 0) {
                     if (localInstance && localInstance.type != JPArgumentTypeUnknown) {
                         [localVariables setObject:localInstance forKey:message.localInstanceKey];
                         JPAspectLog(@"[JPAspect] Message:[%@] invoke success", message.message);
                     } else {
-                        JPAspectLog(@"[JPAspect] Message:[%@] return value is nil", message.message);
+                        NSAssert(NO, @"[JPAspect] Message:[%@] return value is nil", message.message);
                     }
                 } else {
                     JPAspectLog(@"[JPAspect] Message:[%@] invoke success", message.message);
                 }
             }
-        }
-    }
-    
-    if (shouldReturn == NO && aspectModel.hookType == JPAspectHookCustomInvokeBefore) {
-        [aspectInfo.originalInvocation invoke];
-        
-    } else  if (shouldReturn || aspectModel.hookType == JPAspectHookCustomInvokeInstead) {
-        JPAspectInstance *returnInstance = [localVariables objectForKey:kAspectOriginalMethodReturnValueKey];
-        if (returnInstance) {
-            id target = object_isClass(aspectInfo.instance) ? [JPAspect class] : [[JPAspect alloc] init];
-            aspectInfo.originalInvocation.target = target;
-            if (returnInstance.type == JPArgumentTypeObject) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnObject);
-                [aspectInfo.originalInvocation invoke];
-                id expectValue = returnInstance.value;
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            } else if (returnInstance.type == JPArgumentTypeCGRect) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnRect);
-                [aspectInfo.originalInvocation invoke];
-                CGRect expectValue = [(NSValue *)returnInstance.value CGRectValue];
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            } else if (returnInstance.type == JPArgumentTypeUIEdgeInsets) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnEdgeInsets);
-                [aspectInfo.originalInvocation invoke];
-                UIEdgeInsets expectValue = [(NSValue *)returnInstance.value UIEdgeInsetsValue];
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            } else if (returnInstance.type == JPArgumentTypeCGSize) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnSize);
-                [aspectInfo.originalInvocation invoke];
-                CGSize expectValue = [(NSValue *)returnInstance.value CGSizeValue];
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            } else if (returnInstance.type == JPArgumentTypeCGPoint) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnPoint);
-                [aspectInfo.originalInvocation invoke];
-                CGPoint expectValue = [(NSValue *)returnInstance.value CGPointValue];
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            } else if (returnInstance.type == JPArgumentTypeLong) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnLong);
-                [aspectInfo.originalInvocation invoke];
-                long expectValue = [(NSNumber *)returnInstance.value longValue];
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            } else if (returnInstance.type == JPArgumentTypeDouble) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnDouble);
-                [aspectInfo.originalInvocation invoke];
-                double expectValue = [(NSNumber *)returnInstance.value doubleValue];
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            } else if (returnInstance.type == JPArgumentTypeInt) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnInt);
-                [aspectInfo.originalInvocation invoke];
-                int expectValue = [(NSNumber *)returnInstance.value intValue];
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            } else if (returnInstance.type == JPArgumentTypeUnsignedLong) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnUnsignedLong);
-                [aspectInfo.originalInvocation invoke];
-                unsigned long expectValue = [(NSNumber *)returnInstance.value unsignedLongValue];
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            } else if (returnInstance.type == JPArgumentTypeBool) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnBool);
-                [aspectInfo.originalInvocation invoke];
-                BOOL expectValue = [(NSNumber *)returnInstance.value boolValue];
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            } else if (returnInstance.type == JPArgumentTypeNSRange) {
-                
-                aspectInfo.originalInvocation.selector = @selector(returnRange);
-                [aspectInfo.originalInvocation invoke];
-                NSRange expectValue = [(NSValue *)returnInstance.value rangeValue];
-                [aspectInfo.originalInvocation setReturnValue:&expectValue];
-                
-            }
-            aspectInfo.originalInvocation.target = nil;
-            JPAspectLog(@"[JPAspect] [%@ %@] return type:[%zd] value: %@", aspectModel.className, aspectModel.selName, returnInstance.type, returnInstance.value);
         }
     }
 }
@@ -847,18 +876,14 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         NSString *operator = [message.invokeCondition objectForKey:@"operator"];
         
         if (operator == nil) {
-            NSString *errorMsg = @"[JPAspect] Invoke condition operator must not be nil";
-            JPAspectLog(@"%@", errorMsg);
-            NSAssert(NO, errorMsg);
+            NSAssert(NO, @"[JPAspect] Invoke condition operator must not be nil");
             break;
         }
         
         NSArray *conditionComponents = [message.invokeCondition[@"condition"] componentsSeparatedByString:operator];
         
         if (conditionComponents.count != 2) {
-            NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Condition:[%@] components which separated by [%@] must equal to 2", message.invokeCondition[@"condition"], operator];
-            JPAspectLog(@"%@", errorMsg);
-            NSAssert(NO, errorMsg);
+            NSAssert(NO, @"[JPAspect] Condition:[%@] components which separated by [%@] must equal to 2", message.invokeCondition[@"condition"], operator);
             break;
         }
         
@@ -1007,9 +1032,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 }
             }
         } else {
-            NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Message:[%@] operator:[%@] type is unknown", message.message, operator];
-            JPAspectLog(@"%@", errorMsg);
-            NSAssert(NO, errorMsg);
+            NSAssert(NO, @"[JPAspect] Message:[%@] operator:[%@] type is unknown", message.message, operator);
         }
         
     } while (0);
@@ -1025,17 +1048,13 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     NSArray *msgComponents = [message.message componentsSeparatedByString:@"="];
     
     if (msgComponents.count != 2) {
-        NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Message:[%@] components which separated by [=] must equal to 2", message.message];
-        JPAspectLog(@"%@", errorMsg);
-        NSAssert(NO, errorMsg);
+        NSAssert(NO, @"[JPAspect] Message:[%@] components which separated by [=] must equal to 2", message.message);
         return;
     }
     
     NSArray *instanceValues = [msgComponents.lastObject componentsSeparatedByString:@":"];
     if (instanceValues.count != 2) {
-        NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] InstanceValue:[%@] components which separated by [:] must equal to 2", msgComponents.lastObject];
-        JPAspectLog(@"%@", errorMsg);
-        NSAssert(NO, errorMsg);
+        NSAssert(NO, @"[JPAspect] InstanceValue:[%@] components which separated by [:] must equal to 2", msgComponents.lastObject);
         return;
     }
     
@@ -1074,9 +1093,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         NSString *returnValue = [message.message substringFromIndex:7];
         NSArray *returnValues = [returnValue componentsSeparatedByString:@":"];
         if (returnValues.count != 2) {
-            NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] ReturnValue:[%@] components which separated by [:] must equal to 2", returnValue];
-            JPAspectLog(@"%@", errorMsg);
-            NSAssert(NO, errorMsg);
+            NSAssert(NO, @"[JPAspect] ReturnValue:[%@] components which separated by [:] must equal to 2", returnValue);
             return;
         }
         
@@ -1090,13 +1107,12 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
         instance.value = [JPAspect aspectInstanceValueWithType:instance.type contentString:returnValues.lastObject localVariables:localVariables aspectInfo:aspectInfo];
         
     } else {
-        NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Return Message:[%@] format is error", message.message];
-        JPAspectLog(@"%@", errorMsg);
-        NSAssert(NO, errorMsg);
+        NSAssert(NO, @"[JPAspect] Return Message:[%@] format is error", message.message);
     }
 }
 
-+ (JPAspectInstance *)invokeCustomMessage:(JPAspectMessage *)message
+/// invoke oc method
++ (JPAspectInstance *)invokeMethodMessage:(JPAspectMessage *)message
                               aspectModel:(JPAspectModel *)aspectModel
                                aspectInfo:(id<AspectInfoProtocol>)aspectInfo
                            localVariables:(NSDictionary<NSString *, JPAspectInstance *> *)localVariables;
@@ -1104,18 +1120,14 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     JPAspectInstance *localInstance = nil;
     
     if (message.message.length == 0) {
-        NSString *errorMsg = @"[JPAspect] Message is nil";
-        JPAspectLog(@"%@", errorMsg);
-        NSAssert(NO, errorMsg);
+        NSAssert(NO, @"[JPAspect] Message is nil");
         return localInstance;
     }
     
     NSArray<NSString *> *messageComponents = [message.message componentsSeparatedByString:@"."];
     
     if (messageComponents.count <= 1) {
-        NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Message:[%@] is invalid", message.message];
-        JPAspectLog(@"%@", errorMsg);
-        NSAssert(NO, errorMsg);
+        NSAssert(NO, @"[JPAspect] Message:[%@] is invalid", message.message);
         return localInstance;
     }
     
@@ -1133,9 +1145,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 
                 currentTarget = NSClassFromString(component);
                 if (currentTarget == nil) {
-                    NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Message class:[%@] is not exist", component];
-                    JPAspectLog(@"%@", errorMsg);
-                    NSAssert(NO, errorMsg);
+                    NSAssert(NO, @"[JPAspect] Message class:[%@] is not exist", component);
                     break;
                 }
                 
@@ -1146,9 +1156,7 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
             } else if ([component isEqualToString:@"super"]) {
                 
                 if (messageComponents.count > 2) {
-                    NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Message:[%@] super can not contain multiple message invoke", message.message];
-                    JPAspectLog(@"%@", errorMsg);
-                    NSAssert(NO, errorMsg);
+                    NSAssert(NO, @"[JPAspect] Message:[%@] super can not contain multiple message invoke", message.message);
                     break;
                 }
                 
@@ -1168,8 +1176,8 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                     }
                     Method superMethod = class_getInstanceMethod(superCls, superSel);
                     IMP superIMP = method_getImplementation(superMethod);
-                    BOOL addMethodSuccess = class_addMethod(targetCls, superAliasSel, superIMP, method_getTypeEncoding(superMethod));
-                    JPAspectLog(@"Add Super Method Success: %d", addMethodSuccess);
+                    __unused BOOL addMethodSuccess = class_addMethod(targetCls, superAliasSel, superIMP, method_getTypeEncoding(superMethod));
+                    JPAspectLog(@"[JPAspect] Add Super Method Success: %d", addMethodSuccess);
                 }
                 currentTarget = aspectInfo.instance;
                 isCallSuper = YES;
@@ -1184,67 +1192,55 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                 JPAspectArgument *argument = [self getArgumentWithInvocation:aspectInfo.originalInvocation atIndex:idxOfParamter];
                 
                 if (argument == nil || argument.type == JPArgumentTypeUnknown) {
-                    NSString *errorMsg = @"[JPAspect] Message parameter is nil";
-                    JPAspectLog(@"%@", errorMsg);
-                    NSAssert(NO, errorMsg);
+                    NSAssert(NO, @"[JPAspect] Message parameter is nil");
                     break;
                 }
                 
                 if (argument.type != JPArgumentTypeObject) {
-                    NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] Message parameter:[%zd] type must be object", argument.type];
-                    JPAspectLog(@"%@", errorMsg);
-                    NSAssert(NO, errorMsg);
+                    NSAssert(NO, @"[JPAspect] Message parameter:[%@] type must be object", @(argument.type));
                     break;
                 }
                 currentTarget = argument.value;
                 
             } else {
                 
-                NSString *errorMsg = [NSString stringWithFormat:@"[JPAspect] JPAspectDefineClassList can not find current class:[%@]", component];
-                JPAspectLog(@"%@", errorMsg);
-                NSAssert(NO, errorMsg);
+                NSAssert(NO, @"[JPAspect] JPAspectDefineClassList can not find current class:[%@]", component);
                 break;
             }
         } else {
-            NSMutableArray<JPAspectArgument *> *arguments = [[message.argumentCache objectForKey:component] mutableCopy];
-            if (arguments.count == 0) {
-                NSArray<NSDictionary *> *cureentSelArguments = [message.arguments objectForKey:component];
-                if (cureentSelArguments.count > 0) {
-                    arguments = [[NSMutableArray alloc] initWithCapacity:cureentSelArguments.count];
-                    
-                    [cureentSelArguments enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull parameter, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSMutableArray<JPAspectArgument *> *arguments = nil;
+            NSArray<NSDictionary *> *cureentSelArguments = [message.arguments objectForKey:component];
+            if (cureentSelArguments && cureentSelArguments.count > 0) {
+                arguments = [[NSMutableArray alloc] initWithCapacity:cureentSelArguments.count];
+                
+                [cureentSelArguments enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull parameter, NSUInteger idx, BOOL * _Nonnull stop) {
 #ifdef DEBUG
-                        if (![parameter[@"value"] isKindOfClass:[NSString class]]) {
-                            NSAssert(NO, @"Value must be NSString");
-                        }
-#endif
-                        JPAspectArgument *argument = nil;
-                        JPAspectInstance *localInstance = [localVariables objectForKey:parameter[@"value"]];
-                        NSUInteger argumentType = [parameter[@"type"] unsignedIntegerValue];
-                        NSUInteger argumentIndex = [parameter[@"index"] unsignedIntegerValue];
-                        
-                        if (localInstance) {
-                            argument = [[JPAspectArgument alloc] init];
-                            argument.value = localInstance.value;
-                            argument.index = argumentIndex;
-                            argument.type = argumentType;
-                        } else if ([aspectModel.argumentNames containsObject:parameter[@"value"]]) {
-                            argument = [JPAspect getArgumentWithInvocation:aspectInfo.originalInvocation
-                                                                   atIndex:[aspectModel.argumentNames indexOfObject:parameter[@"value"]]];
-                            argument.index = argumentIndex;
-                        } else {
-                            argument = [[JPAspectArgument alloc] init];
-                            argument.index = argumentIndex;
-                            argument.type = argumentType;
-                            argument.value = [JPAspect aspectInstanceValueWithType:argumentType contentString:parameter[@"value"] localVariables:localVariables aspectInfo:aspectInfo];
-                        }
-                        [arguments addObject:argument];
-                    }];
-                    
-                    if ([message.argumentCache objectForKey:component] == nil) {
-                        [message.argumentCache setObject:arguments forKey:component];
+                    if (![parameter[@"value"] isKindOfClass:[NSString class]]) {
+                        NSAssert(NO, @"[JPAspect] Value must be NSString");
                     }
-                }
+#endif
+                    JPAspectArgument *argument = nil;
+                    JPAspectInstance *localInstance = [localVariables objectForKey:parameter[@"value"]];
+                    NSUInteger argumentType = [parameter[@"type"] unsignedIntegerValue];
+                    NSUInteger argumentIndex = [parameter[@"index"] unsignedIntegerValue];
+                    
+                    if (localInstance) {
+                        argument = [[JPAspectArgument alloc] init];
+                        argument.value = localInstance.value;
+                        argument.index = argumentIndex;
+                        argument.type = argumentType;
+                    } else if ([aspectModel.argumentNames containsObject:parameter[@"value"]]) {
+                        argument = [JPAspect getArgumentWithInvocation:aspectInfo.originalInvocation
+                                                               atIndex:[aspectModel.argumentNames indexOfObject:parameter[@"value"]]];
+                        argument.index = argumentIndex;
+                    } else {
+                        argument = [[JPAspectArgument alloc] init];
+                        argument.index = argumentIndex;
+                        argument.type = argumentType;
+                        argument.value = [JPAspect aspectInstanceValueWithType:argumentType contentString:parameter[@"value"] localVariables:localVariables aspectInfo:aspectInfo];
+                    }
+                    [arguments addObject:argument];
+                }];
             }
             
             isClassMethod = object_isClass(currentTarget) ? YES : NO;

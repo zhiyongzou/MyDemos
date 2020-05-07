@@ -120,4 +120,14 @@
     return NO;
 }
 
++ (float)returnFloat
+{
+    return 0;
+}
+
+- (float)returnFloat
+{
+    return 0;
+}
+
 @end
