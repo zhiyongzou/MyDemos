@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <os/signpost.h>
 
 @interface AppDelegate ()
 
@@ -16,6 +17,23 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    const char *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier].UTF8String;
+    os_log_t logger = os_log_create(bundleIdentifier, "performance");
+    os_signpost_id_t signPostId = os_signpost_id_make_with_pointer(logger, NULL);
+    
+    for (int idx = 0; idx < 1000; idx++) {
+        
+        //标记时间段开始
+        os_signpost_interval_begin(logger, signPostId, "Launch", "%{public}d", idx);
+        
+        NSLog(@"%@", [NSString stringWithFormat:@"zzy - %d", idx]);
+        
+        //标记结束
+        os_signpost_interval_end(logger, signPostId, "Launch");
+    }
+    
+    
     // Override point for customization after application launch.
     return YES;
 }
