@@ -17,4 +17,6 @@ open class IRLog: NSObject {
     private func internalFunc() {
         print("internalFunc")
     }
+    
+    
 }

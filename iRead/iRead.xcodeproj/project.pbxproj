@@ -66,6 +66,7 @@
 		00DD04FE011F463B67348768 /* Pods-iRead.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRead.release.xcconfig"; path = "Target Support Files/Pods-iRead/Pods-iRead.release.xcconfig"; sourceTree = "<group>"; };
 		3DA102CBABD9ED364C525C64 /* libPods-iRead.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iRead.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B7166AED0711D73236BE22 /* Pods-iRead.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRead.debug.xcconfig"; path = "Target Support Files/Pods-iRead/Pods-iRead.debug.xcconfig"; sourceTree = "<group>"; };
+		813C380B2464134E002578FD /* iRead-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iRead-Bridging-Header.h"; sourceTree = "<group>"; };
 		8141716D2461AE7D00694536 /* IRCommonLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IRCommonLib.xcodeproj; path = IRCommonLib/IRCommonLib.xcodeproj; sourceTree = "<group>"; };
 		8152F7EF240509B400EAC0D4 /* FRParseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRParseError.swift; sourceTree = "<group>"; };
 		8152F7F324050AF200EAC0D4 /* FRStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRStringExtension.swift; sourceTree = "<group>"; };
@@ -196,6 +197,7 @@
 		816DFBE02404D71C0030E55B /* App */ = {
 			isa = PBXGroup;
 			children = (
+				813C380B2464134E002578FD /* iRead-Bridging-Header.h */,
 				816DFBB02404D39B0030E55B /* AppDelegate.swift */,
 				816DFBBB2404D3A00030E55B /* LaunchScreen.storyboard */,
 			);
@@ -325,6 +327,7 @@
 				TargetAttributes = {
 					816DFBAC2404D39B0030E55B = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1140;
 					};
 					816DFBC22404D3A00030E55B = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -639,6 +642,7 @@
 			baseConfigurationReference = 74B7166AED0711D73236BE22 /* Pods-iRead.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F24R2G835;
 				INFOPLIST_FILE = iRead/Info.plist;
@@ -649,6 +653,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zzyong.iRead;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iRead/App/iRead-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -659,6 +665,7 @@
 			baseConfigurationReference = 00DD04FE011F463B67348768 /* Pods-iRead.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F24R2G835;
 				INFOPLIST_FILE = iRead/Info.plist;
@@ -669,6 +676,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zzyong.iRead;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iRead/App/iRead-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
