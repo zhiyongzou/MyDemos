@@ -1,0 +1,590 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		81AABC9E2468FCCD002532BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AABC9D2468FCCD002532BA /* AppDelegate.m */; };
+		81AABCA12468FCCD002532BA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AABCA02468FCCD002532BA /* SceneDelegate.m */; };
+		81AABCA42468FCCD002532BA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AABCA32468FCCD002532BA /* ViewController.m */; };
+		81AABCA72468FCCD002532BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AABCA52468FCCD002532BA /* Main.storyboard */; };
+		81AABCA92468FCCF002532BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81AABCA82468FCCF002532BA /* Assets.xcassets */; };
+		81AABCAC2468FCCF002532BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AABCAA2468FCCF002532BA /* LaunchScreen.storyboard */; };
+		81AABCAF2468FCCF002532BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AABCAE2468FCCF002532BA /* main.m */; };
+		81AABCB92468FCCF002532BA /* TryCatchMLeakTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AABCB82468FCCF002532BA /* TryCatchMLeakTests.m */; };
+		81AABCC42468FCCF002532BA /* TryCatchMLeakUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AABCC32468FCCF002532BA /* TryCatchMLeakUITests.m */; };
+		81AABCD32468FCF0002532BA /* MyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AABCD22468FCF0002532BA /* MyObject.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		81AABCB52468FCCF002532BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81AABC912468FCCD002532BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81AABC982468FCCD002532BA;
+			remoteInfo = TryCatchMLeak;
+		};
+		81AABCC02468FCCF002532BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81AABC912468FCCD002532BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81AABC982468FCCD002532BA;
+			remoteInfo = TryCatchMLeak;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		81AABC992468FCCD002532BA /* TryCatchMLeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TryCatchMLeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AABC9C2468FCCD002532BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		81AABC9D2468FCCD002532BA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		81AABC9F2468FCCD002532BA /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		81AABCA02468FCCD002532BA /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		81AABCA22468FCCD002532BA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		81AABCA32468FCCD002532BA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		81AABCA62468FCCD002532BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		81AABCA82468FCCF002532BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		81AABCAB2468FCCF002532BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81AABCAD2468FCCF002532BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81AABCAE2468FCCF002532BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		81AABCB42468FCCF002532BA /* TryCatchMLeakTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TryCatchMLeakTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AABCB82468FCCF002532BA /* TryCatchMLeakTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TryCatchMLeakTests.m; sourceTree = "<group>"; };
+		81AABCBA2468FCCF002532BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81AABCBF2468FCCF002532BA /* TryCatchMLeakUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TryCatchMLeakUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AABCC32468FCCF002532BA /* TryCatchMLeakUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TryCatchMLeakUITests.m; sourceTree = "<group>"; };
+		81AABCC52468FCCF002532BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81AABCD12468FCF0002532BA /* MyObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyObject.h; sourceTree = "<group>"; };
+		81AABCD22468FCF0002532BA /* MyObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyObject.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		81AABC962468FCCD002532BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81AABCB12468FCCF002532BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81AABCBC2468FCCF002532BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		81AABC902468FCCD002532BA = {
+			isa = PBXGroup;
+			children = (
+				81AABC9B2468FCCD002532BA /* TryCatchMLeak */,
+				81AABCB72468FCCF002532BA /* TryCatchMLeakTests */,
+				81AABCC22468FCCF002532BA /* TryCatchMLeakUITests */,
+				81AABC9A2468FCCD002532BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		81AABC9A2468FCCD002532BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81AABC992468FCCD002532BA /* TryCatchMLeak.app */,
+				81AABCB42468FCCF002532BA /* TryCatchMLeakTests.xctest */,
+				81AABCBF2468FCCF002532BA /* TryCatchMLeakUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		81AABC9B2468FCCD002532BA /* TryCatchMLeak */ = {
+			isa = PBXGroup;
+			children = (
+				81AABCD12468FCF0002532BA /* MyObject.h */,
+				81AABCD22468FCF0002532BA /* MyObject.m */,
+				81AABC9C2468FCCD002532BA /* AppDelegate.h */,
+				81AABC9D2468FCCD002532BA /* AppDelegate.m */,
+				81AABC9F2468FCCD002532BA /* SceneDelegate.h */,
+				81AABCA02468FCCD002532BA /* SceneDelegate.m */,
+				81AABCA22468FCCD002532BA /* ViewController.h */,
+				81AABCA32468FCCD002532BA /* ViewController.m */,
+				81AABCA52468FCCD002532BA /* Main.storyboard */,
+				81AABCA82468FCCF002532BA /* Assets.xcassets */,
+				81AABCAA2468FCCF002532BA /* LaunchScreen.storyboard */,
+				81AABCAD2468FCCF002532BA /* Info.plist */,
+				81AABCAE2468FCCF002532BA /* main.m */,
+			);
+			path = TryCatchMLeak;
+			sourceTree = "<group>";
+		};
+		81AABCB72468FCCF002532BA /* TryCatchMLeakTests */ = {
+			isa = PBXGroup;
+			children = (
+				81AABCB82468FCCF002532BA /* TryCatchMLeakTests.m */,
+				81AABCBA2468FCCF002532BA /* Info.plist */,
+			);
+			path = TryCatchMLeakTests;
+			sourceTree = "<group>";
+		};
+		81AABCC22468FCCF002532BA /* TryCatchMLeakUITests */ = {
+			isa = PBXGroup;
+			children = (
+				81AABCC32468FCCF002532BA /* TryCatchMLeakUITests.m */,
+				81AABCC52468FCCF002532BA /* Info.plist */,
+			);
+			path = TryCatchMLeakUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		81AABC982468FCCD002532BA /* TryCatchMLeak */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81AABCC82468FCCF002532BA /* Build configuration list for PBXNativeTarget "TryCatchMLeak" */;
+			buildPhases = (
+				81AABC952468FCCD002532BA /* Sources */,
+				81AABC962468FCCD002532BA /* Frameworks */,
+				81AABC972468FCCD002532BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TryCatchMLeak;
+			productName = TryCatchMLeak;
+			productReference = 81AABC992468FCCD002532BA /* TryCatchMLeak.app */;
+			productType = "com.apple.product-type.application";
+		};
+		81AABCB32468FCCF002532BA /* TryCatchMLeakTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81AABCCB2468FCCF002532BA /* Build configuration list for PBXNativeTarget "TryCatchMLeakTests" */;
+			buildPhases = (
+				81AABCB02468FCCF002532BA /* Sources */,
+				81AABCB12468FCCF002532BA /* Frameworks */,
+				81AABCB22468FCCF002532BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81AABCB62468FCCF002532BA /* PBXTargetDependency */,
+			);
+			name = TryCatchMLeakTests;
+			productName = TryCatchMLeakTests;
+			productReference = 81AABCB42468FCCF002532BA /* TryCatchMLeakTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		81AABCBE2468FCCF002532BA /* TryCatchMLeakUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81AABCCE2468FCCF002532BA /* Build configuration list for PBXNativeTarget "TryCatchMLeakUITests" */;
+			buildPhases = (
+				81AABCBB2468FCCF002532BA /* Sources */,
+				81AABCBC2468FCCF002532BA /* Frameworks */,
+				81AABCBD2468FCCF002532BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81AABCC12468FCCF002532BA /* PBXTargetDependency */,
+			);
+			name = TryCatchMLeakUITests;
+			productName = TryCatchMLeakUITests;
+			productReference = 81AABCBF2468FCCF002532BA /* TryCatchMLeakUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		81AABC912468FCCD002532BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = zzyong;
+				TargetAttributes = {
+					81AABC982468FCCD002532BA = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					81AABCB32468FCCF002532BA = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = 81AABC982468FCCD002532BA;
+					};
+					81AABCBE2468FCCF002532BA = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = 81AABC982468FCCD002532BA;
+					};
+				};
+			};
+			buildConfigurationList = 81AABC942468FCCD002532BA /* Build configuration list for PBXProject "TryCatchMLeak" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 81AABC902468FCCD002532BA;
+			productRefGroup = 81AABC9A2468FCCD002532BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81AABC982468FCCD002532BA /* TryCatchMLeak */,
+				81AABCB32468FCCF002532BA /* TryCatchMLeakTests */,
+				81AABCBE2468FCCF002532BA /* TryCatchMLeakUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		81AABC972468FCCD002532BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81AABCAC2468FCCF002532BA /* LaunchScreen.storyboard in Resources */,
+				81AABCA92468FCCF002532BA /* Assets.xcassets in Resources */,
+				81AABCA72468FCCD002532BA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81AABCB22468FCCF002532BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81AABCBD2468FCCF002532BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81AABC952468FCCD002532BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81AABCA42468FCCD002532BA /* ViewController.m in Sources */,
+				81AABC9E2468FCCD002532BA /* AppDelegate.m in Sources */,
+				81AABCAF2468FCCF002532BA /* main.m in Sources */,
+				81AABCA12468FCCD002532BA /* SceneDelegate.m in Sources */,
+				81AABCD32468FCF0002532BA /* MyObject.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81AABCB02468FCCF002532BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81AABCB92468FCCF002532BA /* TryCatchMLeakTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81AABCBB2468FCCF002532BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81AABCC42468FCCF002532BA /* TryCatchMLeakUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		81AABCB62468FCCF002532BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81AABC982468FCCD002532BA /* TryCatchMLeak */;
+			targetProxy = 81AABCB52468FCCF002532BA /* PBXContainerItemProxy */;
+		};
+		81AABCC12468FCCF002532BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81AABC982468FCCD002532BA /* TryCatchMLeak */;
+			targetProxy = 81AABCC02468FCCF002532BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		81AABCA52468FCCD002532BA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81AABCA62468FCCD002532BA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		81AABCAA2468FCCF002532BA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81AABCAB2468FCCF002532BA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		81AABCC62468FCCF002532BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		81AABCC72468FCCF002532BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		81AABCC92468FCCF002532BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TryCatchMLeak/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.TryCatchMLeak;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		81AABCCA2468FCCF002532BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TryCatchMLeak/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.TryCatchMLeak;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		81AABCCC2468FCCF002532BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TryCatchMLeakTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.TryCatchMLeakTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TryCatchMLeak.app/TryCatchMLeak";
+			};
+			name = Debug;
+		};
+		81AABCCD2468FCCF002532BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TryCatchMLeakTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.TryCatchMLeakTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TryCatchMLeak.app/TryCatchMLeak";
+			};
+			name = Release;
+		};
+		81AABCCF2468FCCF002532BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TryCatchMLeakUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.TryCatchMLeakUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TryCatchMLeak;
+			};
+			name = Debug;
+		};
+		81AABCD02468FCCF002532BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TryCatchMLeakUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.TryCatchMLeakUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TryCatchMLeak;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		81AABC942468FCCD002532BA /* Build configuration list for PBXProject "TryCatchMLeak" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81AABCC62468FCCF002532BA /* Debug */,
+				81AABCC72468FCCF002532BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81AABCC82468FCCF002532BA /* Build configuration list for PBXNativeTarget "TryCatchMLeak" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81AABCC92468FCCF002532BA /* Debug */,
+				81AABCCA2468FCCF002532BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81AABCCB2468FCCF002532BA /* Build configuration list for PBXNativeTarget "TryCatchMLeakTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81AABCCC2468FCCF002532BA /* Debug */,
+				81AABCCD2468FCCF002532BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81AABCCE2468FCCF002532BA /* Build configuration list for PBXNativeTarget "TryCatchMLeakUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81AABCCF2468FCCF002532BA /* Debug */,
+				81AABCD02468FCCF002532BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 81AABC912468FCCD002532BA /* Project object */;
+}
