@@ -16,6 +16,7 @@
 		8152B1CA246BA4C50019FA7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8152B1C9246BA4C50019FA7A /* main.m */; };
 		8152B1D4246BA4C60019FA7A /* AppMetricsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8152B1D3246BA4C60019FA7A /* AppMetricsTests.m */; };
 		8152B1DF246BA4C60019FA7A /* AppMetricsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8152B1DE246BA4C60019FA7A /* AppMetricsUITests.m */; };
+		8152B1EF246BA5900019FA7A /* AppMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 8152B1EE246BA5900019FA7A /* AppMetrics.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		8152B1DA246BA4C60019FA7A /* AppMetricsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppMetricsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8152B1DE246BA4C60019FA7A /* AppMetricsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppMetricsUITests.m; sourceTree = "<group>"; };
 		8152B1E0246BA4C60019FA7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8152B1ED246BA5900019FA7A /* AppMetrics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMetrics.h; sourceTree = "<group>"; };
+		8152B1EE246BA5900019FA7A /* AppMetrics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppMetrics.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,7 @@
 		8152B1B6246BA4C30019FA7A /* AppMetrics */ = {
 			isa = PBXGroup;
 			children = (
+				8152B1EC246BA5180019FA7A /* AppMetrics */,
 				8152B1B7246BA4C30019FA7A /* AppDelegate.h */,
 				8152B1B8246BA4C30019FA7A /* AppDelegate.m */,
 				8152B1BA246BA4C30019FA7A /* SceneDelegate.h */,
@@ -135,6 +139,15 @@
 				8152B1E0246BA4C60019FA7A /* Info.plist */,
 			);
 			path = AppMetricsUITests;
+			sourceTree = "<group>";
+		};
+		8152B1EC246BA5180019FA7A /* AppMetrics */ = {
+			isa = PBXGroup;
+			children = (
+				8152B1ED246BA5900019FA7A /* AppMetrics.h */,
+				8152B1EE246BA5900019FA7A /* AppMetrics.m */,
+			);
+			path = AppMetrics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +284,7 @@
 				8152B1B9246BA4C30019FA7A /* AppDelegate.m in Sources */,
 				8152B1CA246BA4C50019FA7A /* main.m in Sources */,
 				8152B1BC246BA4C30019FA7A /* SceneDelegate.m in Sources */,
+				8152B1EF246BA5900019FA7A /* AppMetrics.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
