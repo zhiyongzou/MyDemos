@@ -19,5 +19,24 @@
     // Do any additional setup after loading the view.
 }
 
+void(^block1)(void) = ^(void){
+    
+};
+
+void test()
+{
+    block1();
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self sayHello];
+    test();
+}
+
+- (void)sayHello
+{
+    
+}
 
 @end
