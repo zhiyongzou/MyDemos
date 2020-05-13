@@ -14,27 +14,29 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupSubviews];
 }
 
-void(^block1)(void) = ^(void){
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self doSomething];
+}
+
+- (void)setupSubviews
+{
     
-};
-
-void test()
-{
-    block1();
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self sayHello];
-    test();
-}
-
-- (void)sayHello
+- (void)doSomething
 {
     
 }

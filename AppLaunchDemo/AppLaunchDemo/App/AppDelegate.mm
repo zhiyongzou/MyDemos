@@ -19,6 +19,10 @@
 
 @implementation AppDelegate
 
++ (void)load
+{
+    
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -26,13 +30,15 @@
     // C++ 指定文件设置捕获异常：-fexceptions
     // -fno-exceptions
     // 使用 C++ 异常捕获
-    try {
-        [application removeObserver:self forKeyPath:@"Unknown Name"];
-    } catch (NSException *exception) {
-        NSLog(@"%@", exception);
-    }
+//    try {
+//        [application removeObserver:self forKeyPath:@"Unknown Name"];
+//    } catch (NSException *exception) {
+//        NSLog(@"%@", exception);
+//    }
     
     // Override point for customization after application launch.
+    
+    [self launchDoSomething];
     return YES;
     
     // 查看 Xcode 环境变量
@@ -48,6 +54,10 @@
      */
 }
 
+- (void)launchDoSomething
+{
+    
+}
 
 #pragma mark - UISceneSession lifecycle
 

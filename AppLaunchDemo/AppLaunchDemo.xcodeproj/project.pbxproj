@@ -81,6 +81,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8152B203246BF6C00019FA7A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				815EC9312464FAF400C044C6 /* main.m */,
+				815EC91F2464FAF200C044C6 /* AppDelegate.h */,
+				815EC9202464FAF200C044C6 /* AppDelegate.mm */,
+				815EC9222464FAF200C044C6 /* SceneDelegate.h */,
+				815EC9232464FAF200C044C6 /* SceneDelegate.m */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		815EC9132464FAF200C044C6 = {
 			isa = PBXGroup;
 			children = (
@@ -104,17 +116,13 @@
 		815EC91E2464FAF200C044C6 /* AppLaunchDemo */ = {
 			isa = PBXGroup;
 			children = (
-				815EC91F2464FAF200C044C6 /* AppDelegate.h */,
-				815EC9202464FAF200C044C6 /* AppDelegate.mm */,
-				815EC9222464FAF200C044C6 /* SceneDelegate.h */,
-				815EC9232464FAF200C044C6 /* SceneDelegate.m */,
+				8152B203246BF6C00019FA7A /* App */,
 				815EC9252464FAF200C044C6 /* ViewController.h */,
 				815EC9262464FAF200C044C6 /* ViewController.m */,
 				815EC9282464FAF200C044C6 /* Main.storyboard */,
 				815EC92B2464FAF400C044C6 /* Assets.xcassets */,
 				815EC92D2464FAF400C044C6 /* LaunchScreen.storyboard */,
 				815EC9302464FAF400C044C6 /* Info.plist */,
-				815EC9312464FAF400C044C6 /* main.m */,
 			);
 			path = AppLaunchDemo;
 			sourceTree = "<group>";
@@ -453,7 +461,7 @@
 				);
 				ORDER_FILE = "${PROJECT_DIR}/AppLaunchDemo.order";
 				OTHER_CFLAGS = (
-					"-fsanitize-coverage=trace-pc-guard",
+					"-fsanitize-coverage=func,trace-pc-guard",
 					"-fno-exceptions",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zzyong.AppLaunchDemo;
@@ -480,7 +488,7 @@
 				);
 				ORDER_FILE = "${PROJECT_DIR}/AppLaunchDemo.order";
 				OTHER_CFLAGS = (
-					"-fsanitize-coverage=trace-pc-guard",
+					"-fsanitize-coverage=func,trace-pc-guard",
 					"-fno-exceptions",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zzyong.AppLaunchDemo;
