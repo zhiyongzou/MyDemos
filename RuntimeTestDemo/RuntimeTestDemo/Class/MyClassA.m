@@ -10,6 +10,14 @@
 
 @implementation MyClassA
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.name = self.className;
+    }
+    return self;
+}
+
 + (void)sayHelloWorld
 {
     NSLog(@"MyClassA Hello World !");

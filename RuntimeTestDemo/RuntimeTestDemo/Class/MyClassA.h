@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MyClassA : NSObject
 
+@property (nonatomic, strong) NSString *name;
+
 + (void)sayHelloWorld;
 
 @end
