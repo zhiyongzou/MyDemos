@@ -12,7 +12,12 @@
 
 - (void)hello
 {
-    NSLog(@"%s", __func__);
+    NSLog(@"- hello");
 }
+
+//+ (void)hello
+//{
+//    NSLog(@"+ hello");
+//}
 
 @end
