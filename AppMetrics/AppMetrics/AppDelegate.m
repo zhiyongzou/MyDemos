@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AppMetrics.h"
 
 @interface AppDelegate ()
 
@@ -18,8 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    NSLog(@"%@", [NSRunLoop currentRunLoop]);
-    
+//    NSLog(@"%@", [NSRunLoop currentRunLoop]);
+    [AppMetrics start];
     return YES;
 }
 

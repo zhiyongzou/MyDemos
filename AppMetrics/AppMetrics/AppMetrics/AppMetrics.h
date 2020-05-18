@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AppMetrics : NSObject
 
++ (void)start;
+
 @end
 
 NS_ASSUME_NONNULL_END
