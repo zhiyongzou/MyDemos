@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "815EC91B2464FAF200C044C6"
-               BuildableName = "AppLaunchDemo.app"
-               BlueprintName = "AppLaunchDemo"
-               ReferencedContainer = "container:AppLaunchDemo.xcodeproj">
+               BlueprintIdentifier = "81C81C1C24750F97008DF623"
+               BuildableName = "MyStaticLibA.framework"
+               BlueprintName = "MyStaticLibA"
+               ReferencedContainer = "container:MyStaticLibA.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,26 +32,16 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "815EC9362464FAF400C044C6"
-               BuildableName = "AppLaunchDemoTests.xctest"
-               BlueprintName = "AppLaunchDemoTests"
-               ReferencedContainer = "container:AppLaunchDemo.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "815EC9412464FAF400C044C6"
-               BuildableName = "AppLaunchDemoUITests.xctest"
-               BlueprintName = "AppLaunchDemoUITests"
-               ReferencedContainer = "container:AppLaunchDemo.xcodeproj">
+               BlueprintIdentifier = "81C81C2524750F98008DF623"
+               BuildableName = "MyStaticLibATests.xctest"
+               BlueprintName = "MyStaticLibATests"
+               ReferencedContainer = "container:MyStaticLibA.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       disableMainThreadChecker = "YES"
@@ -61,23 +51,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "815EC91B2464FAF200C044C6"
-            BuildableName = "AppLaunchDemo.app"
-            BlueprintName = "AppLaunchDemo"
-            ReferencedContainer = "container:AppLaunchDemo.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "DYLD_PRINT_STATISTICS"
-            value = "1"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -85,16 +58,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "815EC91B2464FAF200C044C6"
-            BuildableName = "AppLaunchDemo.app"
-            BlueprintName = "AppLaunchDemo"
-            ReferencedContainer = "container:AppLaunchDemo.xcodeproj">
+            BlueprintIdentifier = "81C81C1C24750F97008DF623"
+            BuildableName = "MyStaticLibA.framework"
+            BlueprintName = "MyStaticLibA"
+            ReferencedContainer = "container:MyStaticLibA.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

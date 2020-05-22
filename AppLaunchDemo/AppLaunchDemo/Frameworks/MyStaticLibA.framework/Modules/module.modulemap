@@ -1,0 +1,6 @@
+framework module MyStaticLibA {
+  umbrella header "MyStaticLibA.h"
+
+  export *
+  module * { export * }
+}

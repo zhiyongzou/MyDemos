@@ -16,6 +16,9 @@
 		815EC9322464FAF400C044C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 815EC9312464FAF400C044C6 /* main.m */; };
 		815EC93C2464FAF400C044C6 /* AppLaunchDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 815EC93B2464FAF400C044C6 /* AppLaunchDemoTests.m */; };
 		815EC9472464FAF400C044C6 /* AppLaunchDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 815EC9462464FAF400C044C6 /* AppLaunchDemoUITests.m */; };
+		816E0D772474D49D0063EDF4 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BF47482473CAD5001F1C5E /* JavaScriptCore.framework */; };
+		816E0D7C2474DEB60063EDF4 /* MyClassA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 816E0D7B2474DEB60063EDF4 /* MyClassA1.m */; };
+		81C81C3E24751189008DF623 /* MyStaticLibA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C81C3D24751189008DF623 /* MyStaticLibA.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,19 @@
 			remoteInfo = AppLaunchDemo;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		816E0D762474D2150063EDF4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		815EC91C2464FAF200C044C6 /* AppLaunchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppLaunchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +70,10 @@
 		815EC9422464FAF400C044C6 /* AppLaunchDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppLaunchDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		815EC9462464FAF400C044C6 /* AppLaunchDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppLaunchDemoUITests.m; sourceTree = "<group>"; };
 		815EC9482464FAF400C044C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		816E0D7A2474DEB60063EDF4 /* MyClassA1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyClassA1.h; sourceTree = "<group>"; };
+		816E0D7B2474DEB60063EDF4 /* MyClassA1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyClassA1.m; sourceTree = "<group>"; };
+		81BF47482473CAD5001F1C5E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		81C81C3D24751189008DF623 /* MyStaticLibA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MyStaticLibA.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C81C3E24751189008DF623 /* MyStaticLibA.framework in Frameworks */,
+				816E0D772474D49D0063EDF4 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +122,7 @@
 				815EC93A2464FAF400C044C6 /* AppLaunchDemoTests */,
 				815EC9452464FAF400C044C6 /* AppLaunchDemoUITests */,
 				815EC91D2464FAF200C044C6 /* Products */,
+				81BF47472473CAD5001F1C5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,6 +139,8 @@
 		815EC91E2464FAF200C044C6 /* AppLaunchDemo */ = {
 			isa = PBXGroup;
 			children = (
+				816E0D792474DE990063EDF4 /* Classes */,
+				81BF473B2473C2A7001F1C5E /* Frameworks */,
 				8152B203246BF6C00019FA7A /* App */,
 				815EC9252464FAF200C044C6 /* ViewController.h */,
 				815EC9262464FAF200C044C6 /* ViewController.m */,
@@ -145,6 +170,31 @@
 			path = AppLaunchDemoUITests;
 			sourceTree = "<group>";
 		};
+		816E0D792474DE990063EDF4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				816E0D7A2474DEB60063EDF4 /* MyClassA1.h */,
+				816E0D7B2474DEB60063EDF4 /* MyClassA1.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		81BF473B2473C2A7001F1C5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				81C81C3D24751189008DF623 /* MyStaticLibA.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		81BF47472473CAD5001F1C5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				81BF47482473CAD5001F1C5E /* JavaScriptCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,6 +205,7 @@
 				815EC9182464FAF200C044C6 /* Sources */,
 				815EC9192464FAF200C044C6 /* Frameworks */,
 				815EC91A2464FAF200C044C6 /* Resources */,
+				816E0D762474D2150063EDF4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				815EC9212464FAF200C044C6 /* AppDelegate.mm in Sources */,
+				816E0D7C2474DEB60063EDF4 /* MyClassA1.m in Sources */,
 				815EC9272464FAF200C044C6 /* ViewController.m in Sources */,
 				815EC9322464FAF400C044C6 /* main.m in Sources */,
 				815EC9242464FAF200C044C6 /* SceneDelegate.m in Sources */,
@@ -449,6 +501,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F24R2G835;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AppLaunchDemo/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
 				INFOPLIST_FILE = AppLaunchDemo/Info.plist;
@@ -458,6 +515,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AppLaunchDemo/Frameworks/MyStaticLibA",
 				);
 				ORDER_FILE = "${PROJECT_DIR}/AppLaunchDemo.order";
 				OTHER_CFLAGS = (
@@ -476,6 +537,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F24R2G835;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AppLaunchDemo/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
 				INFOPLIST_FILE = AppLaunchDemo/Info.plist;
@@ -485,6 +551,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AppLaunchDemo/Frameworks/MyStaticLibA",
 				);
 				ORDER_FILE = "${PROJECT_DIR}/AppLaunchDemo.order";
 				OTHER_CFLAGS = (

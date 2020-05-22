@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "MyClassA1.h"
+#import <MyStaticLibA/MyView.h>
 
 @interface ViewController ()
 
@@ -23,6 +25,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [MyClassA1 sayHello];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -33,7 +36,9 @@
 
 - (void)setupSubviews
 {
-    
+    MyView *view = [[MyView alloc] init];
+    view.frame = CGRectMake(100, 100, 100, 100);
+    [self.view addSubview:view];
 }
 
 - (void)doSomething

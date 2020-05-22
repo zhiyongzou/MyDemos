@@ -16,6 +16,7 @@
 		81589EED2455BB83005D33F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81589EEC2455BB83005D33F7 /* main.m */; };
 		81589EF72455BB83005D33F7 /* iOSDebugDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81589EF62455BB83005D33F7 /* iOSDebugDemoTests.m */; };
 		81589F022455BB83005D33F7 /* iOSDebugDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81589F012455BB83005D33F7 /* iOSDebugDemoUITests.m */; };
+		819744872476B99700E3D0D3 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819744862476B99700E3D0D3 /* MyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		81589EFD2455BB83005D33F7 /* iOSDebugDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSDebugDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81589F012455BB83005D33F7 /* iOSDebugDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSDebugDemoUITests.m; sourceTree = "<group>"; };
 		81589F032455BB83005D33F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		819744862476B99700E3D0D3 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
+		819744882476B9CD00E3D0D3 /* iOSDebugDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSDebugDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 				81589EE82455BB83005D33F7 /* LaunchScreen.storyboard */,
 				81589EEB2455BB83005D33F7 /* Info.plist */,
 				81589EEC2455BB83005D33F7 /* main.m */,
+				819744862476B99700E3D0D3 /* MyView.swift */,
+				819744882476B9CD00E3D0D3 /* iOSDebugDemo-Bridging-Header.h */,
 			);
 			path = iOSDebugDemo;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				TargetAttributes = {
 					81589ED62455BB81005D33F7 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 					81589EF12455BB83005D33F7 = {
 						CreatedOnToolsVersion = 11.4.1;
@@ -269,6 +275,7 @@
 			files = (
 				81589EE22455BB81005D33F7 /* ViewController.m in Sources */,
 				81589EDC2455BB81005D33F7 /* AppDelegate.m in Sources */,
+				819744872476B99700E3D0D3 /* MyView.swift in Sources */,
 				81589EED2455BB83005D33F7 /* main.m in Sources */,
 				81589EDF2455BB81005D33F7 /* SceneDelegate.m in Sources */,
 			);
@@ -439,7 +446,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = iOSDebugDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -448,6 +457,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zzyong.iOSDebugDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOSDebugDemo/iOSDebugDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -456,7 +468,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = iOSDebugDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -465,6 +479,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zzyong.iOSDebugDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOSDebugDemo/iOSDebugDemo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -472,6 +488,7 @@
 		81589F0A2455BB83005D33F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = iOSDebugDemoTests/Info.plist;
@@ -491,6 +508,7 @@
 		81589F0B2455BB83005D33F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = iOSDebugDemoTests/Info.plist;
@@ -510,6 +528,7 @@
 		81589F0D2455BB83005D33F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = iOSDebugDemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -527,6 +546,7 @@
 		81589F0E2455BB83005D33F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = iOSDebugDemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
