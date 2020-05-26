@@ -8,9 +8,11 @@
 
 #import "ViewController.h"
 #import "iOSDebugDemo-Swift.h"
+#import "MyView1.h"
 
 @interface ViewController ()
 
+@property (nonatomic, assign) NSUInteger myNumber;
 
 @end
 
@@ -25,7 +27,41 @@
 {
     [super viewDidAppear:animated];
     [self swiftErrorBreakpoint];
-    [self autoLayoutError];
+    [self symbolicBreakpoint];
+    c_func();
+    [self enumerateArray];
+    [self increaseMyNumber];
+    
+    for (int idx = 0; idx < 5; idx++) {
+        [self logMag:[NSString stringWithFormat:@"%@ Say Hello", @(idx)]];
+    }
+}
+
+- (void)logMag:(NSString *)msg
+{
+    __unused NSString *firstChar = [msg substringToIndex:1];
+}
+
+- (void)increaseMyNumber
+{
+    self.myNumber++;
+    
+    static int loop = 0;
+    if (loop < 5) {
+        [self performSelector:@selector(increaseMyNumber) withObject:nil afterDelay:1];
+        loop++;
+    }
+    NSLog(@"myNumber: %@", @(self.myNumber));
+}
+
+- (void)symbolicBreakpoint
+{
+    MyView1 *view = [MyView1 new];
+    [view sayHello];
+    [self.view addSubview:view];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [view removeFromSuperview];
+    });
 }
 
 - (void)swiftErrorBreakpoint
@@ -44,55 +80,16 @@
     [@[] objectAtIndex:1];
 }
 
-- (void)autoLayoutError
+- (void)enumerateArray
 {
-    UIView *redView = [UIView new];
-    redView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:redView];
-    
-    /**
-      Create constraints explicitly.  Constraints are of the form "view1.attr1 = view2.attr2 * multiplier + constant"
-      If your equation does not have a second view and attribute, use nil and NSLayoutAttributeNotAnAttribute.
-      Use of this method is not recommended. Constraints should be created using anchor objects on views and layout guides.
-      
-     + (instancetype)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(nullable id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c API_AVAILABLE(macos(10.7), ios(6.0), tvos(9.0));
-     
-     */
-    
-    // redView.right = self.view.right
-    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:redView
-                                                             attribute:NSLayoutAttributeRight
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.view
-                                                             attribute:NSLayoutAttributeRight
-                                                            multiplier:1
-                                                              constant:0];
-    // width = 100
-    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:redView
-                                                             attribute:NSLayoutAttributeWidth
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:nil
-                                                             attribute:NSLayoutAttributeNotAnAttribute
-                                                            multiplier:0
-                                                              constant:100];
-    // height = 100
-    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:redView
-                                                              attribute:NSLayoutAttributeHeight
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:nil
-                                                              attribute:NSLayoutAttributeNotAnAttribute
-                                                             multiplier:0
-                                                               constant:100];
-    // redView.top = self.view.top
-    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:redView
-                                                           attribute:NSLayoutAttributeTop
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:self.view
-                                                           attribute:NSLayoutAttributeTop
-                                                          multiplier:1
-                                                            constant:0];
-    
-    [self.view addConstraints:@[right, top, width, height]];
+    [@[@1, @2, @3, @4, @5] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@"current obj: %@", obj);
+    }];
+}
+
+void c_func()
+{
+    NSLog(@"%s", __func__);
 }
 
 

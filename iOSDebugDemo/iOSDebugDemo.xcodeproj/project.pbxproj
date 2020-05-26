@@ -17,6 +17,7 @@
 		81589EF72455BB83005D33F7 /* iOSDebugDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81589EF62455BB83005D33F7 /* iOSDebugDemoTests.m */; };
 		81589F022455BB83005D33F7 /* iOSDebugDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81589F012455BB83005D33F7 /* iOSDebugDemoUITests.m */; };
 		819744872476B99700E3D0D3 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819744862476B99700E3D0D3 /* MyView.swift */; };
+		81A366ED247952FD00D27204 /* MyView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A366EC247952FD00D27204 /* MyView1.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		81589F032455BB83005D33F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		819744862476B99700E3D0D3 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
 		819744882476B9CD00E3D0D3 /* iOSDebugDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSDebugDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		81A366EB247952FD00D27204 /* MyView1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyView1.h; sourceTree = "<group>"; };
+		81A366EC247952FD00D27204 /* MyView1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyView1.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,7 @@
 		81589ED92455BB81005D33F7 /* iOSDebugDemo */ = {
 			isa = PBXGroup;
 			children = (
+				81A366EE2479530200D27204 /* Class */,
 				81589EDA2455BB81005D33F7 /* AppDelegate.h */,
 				81589EDB2455BB81005D33F7 /* AppDelegate.m */,
 				81589EDD2455BB81005D33F7 /* SceneDelegate.h */,
@@ -118,7 +122,6 @@
 				81589EE82455BB83005D33F7 /* LaunchScreen.storyboard */,
 				81589EEB2455BB83005D33F7 /* Info.plist */,
 				81589EEC2455BB83005D33F7 /* main.m */,
-				819744862476B99700E3D0D3 /* MyView.swift */,
 				819744882476B9CD00E3D0D3 /* iOSDebugDemo-Bridging-Header.h */,
 			);
 			path = iOSDebugDemo;
@@ -140,6 +143,16 @@
 				81589F032455BB83005D33F7 /* Info.plist */,
 			);
 			path = iOSDebugDemoUITests;
+			sourceTree = "<group>";
+		};
+		81A366EE2479530200D27204 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				819744862476B99700E3D0D3 /* MyView.swift */,
+				81A366EB247952FD00D27204 /* MyView1.h */,
+				81A366EC247952FD00D27204 /* MyView1.m */,
+			);
+			path = Class;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81A366ED247952FD00D27204 /* MyView1.m in Sources */,
 				81589EE22455BB81005D33F7 /* ViewController.m in Sources */,
 				81589EDC2455BB81005D33F7 /* AppDelegate.m in Sources */,
 				819744872476B99700E3D0D3 /* MyView.swift in Sources */,
