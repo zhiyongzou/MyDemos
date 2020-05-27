@@ -15,13 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    let irLog = IRLog.init()
-    
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        irLog.sayHelloWorld()
+        // [Embedding Frameworks In An App]:  https://developer.apple.com/library/archive/technotes/tn2435/_index.html#top
         return true
     }
 

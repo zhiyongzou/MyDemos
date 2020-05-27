@@ -1,0 +1,6 @@
+module Pods_IRCommonLib {
+  umbrella header "Pods-IRCommonLib-umbrella.h"
+
+  export *
+  module * { export * }
+}

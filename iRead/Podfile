@@ -2,19 +2,36 @@ platform :ios, '10.0'
 
 inhibit_all_warnings!
 
+workspace 'iRead.xcworkspace'
+
+
+# debug_pods
 def debug_pods
   pod 'FLEX', '~> 2.0', :configurations => ['Debug']
 end
+
+# common_pods
+def common_pods
+  pod 'AEXML', '~> 4.5.0'
+  pod 'SSZipArchive', '~> 2.2.2'
+end
+
+# common_pods
+common_pods
+
+# ==================================== Targets ==================================== #
 
 target 'iRead' do
 
   # debug pods
   debug_pods
   
-  pod 'AEXML', '~> 4.5.0'
-  pod 'SSZipArchive', '~> 2.2.2'
   pod 'DTCoreText', '~> 1.6.23'
   pod 'JPAspect', '~> 1.0.3'
   
 end
 
+target 'IRCommonLib' do
+  project 'IRCommonLib/IRCommonLib.xcodeproj'
+
+end

@@ -23,7 +23,7 @@ PODS:
     - JPAspect/Model (= 1.0.3)
   - JPAspect/Base (1.0.3)
   - JPAspect/Model (1.0.3)
-  - SSZipArchive (2.2.2)
+  - SSZipArchive (2.2.3)
 
 DEPENDENCIES:
   - AEXML (~> 4.5.0)
@@ -47,8 +47,8 @@ SPEC CHECKSUMS:
   DTFoundation: 25aa19bb7c6e225b1dfae195604fb8cf1da0ab4c
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   JPAspect: 106ef9a94dd8fd9289cf863405fc17ede293644a
-  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
 
-PODFILE CHECKSUM: 52b2bd5a784155f92b1e97cef29c47c4fa1aed4b
+PODFILE CHECKSUM: 5c49988be48b389f256fd401a29e57bdd5be272e
 
 COCOAPODS: 1.8.4
