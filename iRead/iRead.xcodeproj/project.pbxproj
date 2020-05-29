@@ -539,6 +539,8 @@
 				DEVELOPMENT_TEAM = 5F24R2G835;
 				INFOPLIST_FILE = iRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_GENERATE_MAP_FILE = YES;
+				LD_MAP_FILE_PATH = "$(SRCROOT)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,6 +564,7 @@
 				DEVELOPMENT_TEAM = 5F24R2G835;
 				INFOPLIST_FILE = iRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_MAP_FILE_PATH = "$(SRCROOT)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
