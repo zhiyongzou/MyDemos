@@ -7,17 +7,14 @@
 //
 
 import UIKit
-import AEXML
-import IRCommonLib
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        // [Embedding Frameworks In An App]:  https://developer.apple.com/library/archive/technotes/tn2435/_index.html#top
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    {
         return true
     }
 
