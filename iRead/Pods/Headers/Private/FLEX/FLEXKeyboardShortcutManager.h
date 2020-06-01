@@ -1,1 +1,1 @@
-../../../FLEX/Classes/Utility/FLEXKeyboardShortcutManager.h
+../../../FLEX/Classes/Utility/Keyboard/FLEXKeyboardShortcutManager.h

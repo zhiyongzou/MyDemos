@@ -1,1 +1,1 @@
-../../../FLEX/Classes/Utility/FLEXKeyboardHelpViewController.h
+../../../FLEX/Classes/Utility/Keyboard/FLEXKeyboardHelpViewController.h

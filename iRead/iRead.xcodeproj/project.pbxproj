@@ -551,6 +551,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/**";
 			};
 			name = Debug;
 		};
@@ -574,6 +575,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "iRead/App/iRead-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/**";
 			};
 			name = Release;
 		};

@@ -1,1 +1,1 @@
-../../../FLEX/Classes/FLEXManager.h
+../../../FLEX/Classes/Manager/FLEXManager.h

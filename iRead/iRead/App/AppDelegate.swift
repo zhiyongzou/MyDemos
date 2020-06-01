@@ -11,10 +11,19 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+#if DEBUG
+    lazy var flexWindow: UIWindow = {
+        return UIWindow()
+    }()
+#endif
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
+#if DEBUG
+        setupDebugConfig()
+#endif
         return true
     }
 
@@ -39,7 +48,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
+#if DEBUG
+
+extension AppDelegate {
+    
+    func setupDebugConfig() {
+        addFlexDebugView()
+    }
+    
+    func addFlexDebugView() {
+        
+        flexWindow.backgroundColor = .clear
+        flexWindow.rootViewController = .init()
+        flexWindow.windowLevel = UIWindow.Level.statusBar + 50;
+        
+        let flexY = UIApplication.shared.statusBarFrame.maxY
+        let flexW: CGFloat = 30
+        let flexX = (UIScreen.main.bounds.width - flexW) * 0.5
+        flexWindow.frame = CGRect.init(x: flexX, y: flexY, width: flexW, height: 13)
+        
+        flexWindow.makeKeyAndVisible()
+        
+        let flexBtn: UIButton = .init(type: UIButton.ButtonType.custom)
+        flexBtn.titleLabel?.font = .systemFont(ofSize: 12);
+        flexBtn.setTitle("FLEX", for: UIControl.State.normal)
+        flexBtn.setTitleColor(.blue, for: UIControl.State.normal)
+        flexBtn.addTarget(self, action:#selector(AppDelegate.showFlexDebugView), for: UIControl.Event.touchUpInside)
+        flexBtn.frame = flexWindow.bounds
+        flexWindow.addSubview(flexBtn)
+    }
+    
+    @objc func showFlexDebugView() {
+        FLEXManager.shared.showExplorer()
+    }
+}
+
+#endif

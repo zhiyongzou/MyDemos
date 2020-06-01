@@ -1,1 +1,1 @@
-../../../FLEX/Classes/GlobalStateExplorers/FLEXFileBrowserSearchOperation.h
+../../../FLEX/Classes/GlobalStateExplorers/FileBrowser/FLEXFileBrowserSearchOperation.h
