@@ -90,4 +90,23 @@
     XCTAssertNil(content);
 }
 
+- (void)testAndOperator
+{
+     NSString *content = [self.testC andOperatorTest];
+    XCTAssertEqualObjects(content, @"&&");
+}
+
+- (void)testOrOperator
+{
+     NSString *content = [self.testC orOperatorTest];
+    XCTAssertEqualObjects(content, @"||");
+}
+
+- (void)testDealloc
+{
+    @autoreleasepool {
+         __unused JPTestC *test = [[JPTestC alloc] init];
+    }
+}
+
 @end

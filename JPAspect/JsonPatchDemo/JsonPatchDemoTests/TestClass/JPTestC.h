@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)modifyArgumentToNil:(nullable NSString *)string;
 
+- (NSString *)andOperatorTest;
+
+- (NSString *)orOperatorTest;
+
 @end
 
 NS_ASSUME_NONNULL_END

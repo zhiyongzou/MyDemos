@@ -518,7 +518,10 @@ static void __ASPECTS_ARE_BEING_CALLED__(__unsafe_unretained NSObject *self, SEL
     SEL originalSelector = invocation.selector;
 	SEL aliasSelector = aspect_aliasForSelector(invocation.selector);
     invocation.selector = aliasSelector;
-    OCAspectsContainer *objectContainer = objc_getAssociatedObject(self, aliasSelector);
+    OCAspectsContainer *objectContainer = nil;
+    if (!object_isClass(self)) {
+        objectContainer = objc_getAssociatedObject(self, aliasSelector);
+    }
     OCAspectsContainer *classContainer = aspect_getContainerForClass(object_getClass(self), aliasSelector);
     OCAspectInfo *info = [[OCAspectInfo alloc] initWithInstance:self invocation:invocation];
     NSArray *aspectsToRemove = nil;

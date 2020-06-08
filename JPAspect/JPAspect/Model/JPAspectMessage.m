@@ -23,9 +23,6 @@
         }
 #endif
         aspectMessage.arguments = [messageDic objectForKey:@"arguments"];
-        if (aspectMessage.arguments.count > 0) {
-            aspectMessage.argumentCache = [NSMutableDictionary dictionaryWithCapacity:aspectMessage.arguments.count];
-        }
         aspectMessage.messageType = [[messageDic objectForKey:@"messageType"] unsignedIntegerValue];
         aspectMessage.invokeCondition = [messageDic objectForKey:@"invokeCondition"];
 #ifdef DEBUG

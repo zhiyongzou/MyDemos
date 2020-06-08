@@ -6,9 +6,7 @@
 //  Copyright © 2019 zzyong. All rights reserved.
 //
 
-#import <UIKit/UIGeometry.h>
 #import "JPAspect+HookInstead.h"
-#import <CoreGraphics/CoreGraphics.h>
 
 @implementation JPAspect (HookInstead)
 
@@ -120,6 +118,16 @@
 - (BOOL)returnBool
 {
     return NO;
+}
+
++ (float)returnFloat
+{
+    return 0;
+}
+
+- (float)returnFloat
+{
+    return 0;
 }
 
 @end

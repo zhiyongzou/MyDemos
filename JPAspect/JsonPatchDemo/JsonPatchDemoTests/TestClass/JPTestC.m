@@ -10,6 +10,11 @@
 
 @implementation JPTestC
 
+- (void)sayGoodBye
+{
+    NSLog(@"%s", __func__);
+}
+
 - (void)willInitTestObject
 {
     NSLog(@"%s", __func__);
@@ -52,6 +57,46 @@
 - (NSString *)modifyArgumentToNil:(nullable NSString *)string
 {
     return string;
+}
+
+- (NSString *)andOperatorTest
+{
+//    if ([self andCondition1] && [self andCondition2]) {
+//        return @"&&";
+//    }
+    
+    return nil;
+}
+
+- (NSString *)orOperatorTest
+{
+//    if ([self orCondition1] || [self orCondition2]) {
+//        return @"||";
+//    }
+    
+    return nil;
+}
+
+#pragma mark - Private
+
+- (BOOL)andCondition1
+{
+    return YES;
+}
+
+- (BOOL)andCondition2
+{
+    return YES;
+}
+
+- (BOOL)orCondition1
+{
+    return NO;
+}
+
+- (BOOL)orCondition2
+{
+    return YES;
 }
 
 @end
