@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81153756249220A600BE0088 /* MetaClassA.m in Sources */ = {isa = PBXBuildFile; fileRef = 81153755249220A600BE0088 /* MetaClassA.m */; };
+		81153759249220BB00BE0088 /* MetaClassB.m in Sources */ = {isa = PBXBuildFile; fileRef = 81153758249220BB00BE0088 /* MetaClassB.m */; };
 		8196EEAC2382CFA10044006E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8196EEAB2382CFA10044006E /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		81153754249220A600BE0088 /* MetaClassA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetaClassA.h; sourceTree = "<group>"; };
+		81153755249220A600BE0088 /* MetaClassA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetaClassA.m; sourceTree = "<group>"; };
+		81153757249220BB00BE0088 /* MetaClassB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetaClassB.h; sourceTree = "<group>"; };
+		81153758249220BB00BE0088 /* MetaClassB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetaClassB.m; sourceTree = "<group>"; };
 		8196EEA82382CFA10044006E /* MetaClassDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MetaClassDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		8196EEAB2382CFA10044006E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +44,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		811537532492209300BE0088 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				81153754249220A600BE0088 /* MetaClassA.h */,
+				81153755249220A600BE0088 /* MetaClassA.m */,
+				81153757249220BB00BE0088 /* MetaClassB.h */,
+				81153758249220BB00BE0088 /* MetaClassB.m */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
 		8196EE9F2382CFA10044006E = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +74,7 @@
 		8196EEAA2382CFA10044006E /* MetaClassDemo */ = {
 			isa = PBXGroup;
 			children = (
+				811537532492209300BE0088 /* Class */,
 				8196EEAB2382CFA10044006E /* main.m */,
 			);
 			path = MetaClassDemo;
@@ -118,7 +136,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81153759249220BB00BE0088 /* MetaClassB.m in Sources */,
 				8196EEAC2382CFA10044006E /* main.m in Sources */,
+				81153756249220A600BE0088 /* MetaClassA.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
