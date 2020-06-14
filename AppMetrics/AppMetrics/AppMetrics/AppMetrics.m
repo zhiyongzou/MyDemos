@@ -53,15 +53,8 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//        [AppMetrics registerRunLoopObserver];
+        [AppMetrics registerRunLoopObserver];
     });
-    
-    @synchronized (self) {
-           NSLog(@"111");
-           @synchronized (self) {
-               NSLog(@"222");
-           }
-       }
 }
 
 + (void)registerRunLoopObserver
