@@ -299,6 +299,31 @@
                     "messageType" : 1
                 }
             ]
+        },
+        
+        {
+            "selName": "returnFloat",
+            "hookType": 3,
+            "className": "JPTestD",
+            "isClassMethod": 1,
+            "customMessages" : [
+                {
+                    "message" : "return=10:2.11",
+                    "messageType" : 1
+                }
+            ]
+        },
+        
+        {
+            "selName": "returnFloat",
+            "hookType": 3,
+            "className": "JPTestD",
+            "customMessages" : [
+                {
+                    "message" : "return=10:1.11",
+                    "messageType" : 1
+                }
+            ]
         }
     ]
 }

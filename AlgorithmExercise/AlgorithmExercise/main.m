@@ -40,11 +40,69 @@ NSArray * selectSort(NSMutableArray * list)
     return list;
 }
 
+int findDiffSquareElement(NSArray *list)
+{
+    if (list.count == 0) {
+        return 0;;
+    }
+    
+    int num = 0;
+    int current = 0;
+    BOOL hasContinue = NO;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    for (int idx = 0; idx < list.count; idx++) {
+        NSNumber *element = list[idx];
+        
+        if (element.intValue < 0) {
+            [dic setObject:@(0) forKey:@(-element.intValue)];
+        }
+        
+        if (idx == 0) {
+            current = element.intValue;
+            continue;
+        }
+        
+        if (element.intValue > 0 && [dic objectForKey:element]) {
+            
+            if ([[dic objectForKey:element] boolValue]) {
+                num--;
+            }
+            current = element.intValue;
+            [dic removeObjectForKey:element];
+            continue;
+        }
+        
+        if (current == element.intValue) {
+            hasContinue = YES;
+            continue;
+        }
+        
+        current = element.intValue;
+        
+        if (hasContinue) {
+            hasContinue = NO;
+            continue;
+        }
+        
+        num++;
+        
+        if (element.intValue < 0) {
+            [dic setObject:@(1) forKey:@(-element.intValue)];
+        }
+    }
+    
+    return num;
+}
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
        
         NSArray *sortList = @[@1, @2, @23, @3, @33, @222, @90, @9, @79, @8];
         NSLog(@"Select Sort: %@", selectSort([sortList mutableCopy]));
+        
+        NSArray *squareList = @[@-9, @-9, @0, @1, @1, @2, @3, @3, @5, @5, @9, @9, @11, @11, @11, @12];
+        NSLog(@"findDiffSquareElement: %d", findDiffSquareElement(squareList));
     }
     return 0;
 }

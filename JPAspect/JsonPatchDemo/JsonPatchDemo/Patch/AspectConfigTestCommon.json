@@ -3,6 +3,17 @@
     "Aspects": [
         {
             "className": "JPTestC",
+            "selName": "dealloc",
+            "hookType": 1,
+            "customMessages" : [
+                {
+                    "message" : "self.sayGoodBye"
+                }
+            ]
+        },
+        
+        {
+            "className": "JPTestC",
             "selName": "willInitTestObject",
             "hookType": 1,
             "customMessages" : [
@@ -218,6 +229,54 @@
                 {
                     "message" : "string=1:nil",
                     "messageType" : 2
+                }
+            ]
+        },
+        
+        {
+            "className": "JPTestC",
+            "selName": "andOperatorTest",
+            "hookType": 1,
+            "customMessages" : [
+                {
+                    "message" : "self.andCondition1",
+                    "localInstanceKey" : "andCondition1"
+                },
+                {
+                    "message" : "self.andCondition2",
+                    "localInstanceKey" : "andCondition2"
+                },
+                {
+                    "message" : "return=1:&&",
+                    "messageType" : 1,
+                    "invokeCondition": {
+                        "condition":"andCondition1&&andCondition2",
+                        "operator":"&&"
+                    }
+                }
+            ]
+        },
+        
+        {
+            "className": "JPTestC",
+            "selName": "orOperatorTest",
+            "hookType": 1,
+            "customMessages" : [
+                {
+                    "message" : "self.orCondition1",
+                    "localInstanceKey" : "orCondition1"
+                },
+                {
+                    "message" : "self.orCondition2",
+                    "localInstanceKey" : "orCondition2"
+                },
+                {
+                    "message" : "return=1:||",
+                    "messageType" : 1,
+                    "invokeCondition": {
+                        "condition":"orCondition1||orCondition2",
+                        "operator":"||"
+                    }
                 }
             ]
         }

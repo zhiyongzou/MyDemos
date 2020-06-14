@@ -7,6 +7,8 @@
 //
 
 #import "JPAspect.h"
+#import <UIKit/UIGeometry.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -44,6 +46,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)returnBool;
 - (BOOL)returnBool;
+
++ (float)returnFloat;
+- (float)returnFloat;
 
 @end
 

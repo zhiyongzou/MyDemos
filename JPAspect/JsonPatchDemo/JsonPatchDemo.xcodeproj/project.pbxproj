@@ -13,7 +13,6 @@
 		8186C43123716D3E000C3560 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8186C43023716D3E000C3560 /* Assets.xcassets */; };
 		8186C43423716D3E000C3560 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8186C43223716D3E000C3560 /* LaunchScreen.storyboard */; };
 		8186C43723716D3E000C3560 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C43623716D3E000C3560 /* main.m */; };
-		8186C44C23716D3E000C3560 /* JsonPatchDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C44B23716D3E000C3560 /* JsonPatchDemoUITests.m */; };
 		8186C5462371A020000C3560 /* JPAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5402371A020000C3560 /* JPAspect.m */; };
 		8186C5472371A020000C3560 /* JPAspect+HookInstead.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5422371A020000C3560 /* JPAspect+HookInstead.m */; };
 		8186C5482371A020000C3560 /* JPAspect+PatchLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8186C5442371A020000C3560 /* JPAspect+PatchLoad.m */; };
@@ -46,13 +45,6 @@
 			remoteGlobalIDString = 8186C42323716D3D000C3560;
 			remoteInfo = JsonPatchDemo;
 		};
-		8186C44823716D3E000C3560 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8186C41C23716D3D000C3560 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8186C42323716D3D000C3560;
-			remoteInfo = JsonPatchDemo;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -69,9 +61,6 @@
 		8186C43623716D3E000C3560 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8186C43C23716D3E000C3560 /* JsonPatchDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JsonPatchDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8186C44223716D3E000C3560 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8186C44723716D3E000C3560 /* JsonPatchDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JsonPatchDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8186C44B23716D3E000C3560 /* JsonPatchDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JsonPatchDemoUITests.m; sourceTree = "<group>"; };
-		8186C44D23716D3E000C3560 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8186C5402371A020000C3560 /* JPAspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAspect.m; sourceTree = "<group>"; };
 		8186C5412371A020000C3560 /* JPAspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAspect.h; sourceTree = "<group>"; };
 		8186C5422371A020000C3560 /* JPAspect+HookInstead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JPAspect+HookInstead.m"; sourceTree = "<group>"; };
@@ -126,13 +115,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8186C44423716D3E000C3560 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -171,7 +153,6 @@
 			children = (
 				8186C42623716D3D000C3560 /* JsonPatchDemo */,
 				8186C43F23716D3E000C3560 /* JsonPatchDemoTests */,
-				8186C44A23716D3E000C3560 /* JsonPatchDemoUITests */,
 				8186C42523716D3D000C3560 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -181,7 +162,6 @@
 			children = (
 				8186C42423716D3D000C3560 /* JsonPatchDemo.app */,
 				8186C43C23716D3E000C3560 /* JsonPatchDemoTests.xctest */,
-				8186C44723716D3E000C3560 /* JsonPatchDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,15 +189,6 @@
 				8186C44223716D3E000C3560 /* Info.plist */,
 			);
 			path = JsonPatchDemoTests;
-			sourceTree = "<group>";
-		};
-		8186C44A23716D3E000C3560 /* JsonPatchDemoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8186C44B23716D3E000C3560 /* JsonPatchDemoUITests.m */,
-				8186C44D23716D3E000C3560 /* Info.plist */,
-			);
-			path = JsonPatchDemoUITests;
 			sourceTree = "<group>";
 		};
 		8186C51D23719FFC000C3560 /* JPAspect */ = {
@@ -330,24 +301,6 @@
 			productReference = 8186C43C23716D3E000C3560 /* JsonPatchDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8186C44623716D3E000C3560 /* JsonPatchDemoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8186C45623716D3E000C3560 /* Build configuration list for PBXNativeTarget "JsonPatchDemoUITests" */;
-			buildPhases = (
-				8186C44323716D3E000C3560 /* Sources */,
-				8186C44423716D3E000C3560 /* Frameworks */,
-				8186C44523716D3E000C3560 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8186C44923716D3E000C3560 /* PBXTargetDependency */,
-			);
-			name = JsonPatchDemoUITests;
-			productName = JsonPatchDemoUITests;
-			productReference = 8186C44723716D3E000C3560 /* JsonPatchDemoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -361,10 +314,6 @@
 						CreatedOnToolsVersion = 10.2;
 					};
 					8186C43B23716D3E000C3560 = {
-						CreatedOnToolsVersion = 10.2;
-						TestTargetID = 8186C42323716D3D000C3560;
-					};
-					8186C44623716D3E000C3560 = {
 						CreatedOnToolsVersion = 10.2;
 						TestTargetID = 8186C42323716D3D000C3560;
 					};
@@ -385,7 +334,6 @@
 			targets = (
 				8186C42323716D3D000C3560 /* JsonPatchDemo */,
 				8186C43B23716D3E000C3560 /* JsonPatchDemoTests */,
-				8186C44623716D3E000C3560 /* JsonPatchDemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -410,13 +358,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				818A2A2923953D7300DB75D2 /* AspectConfigTestCommon.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8186C44523716D3E000C3560 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,14 +398,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8186C44323716D3E000C3560 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8186C44C23716D3E000C3560 /* JsonPatchDemoUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -472,11 +405,6 @@
 			isa = PBXTargetDependency;
 			target = 8186C42323716D3D000C3560 /* JsonPatchDemo */;
 			targetProxy = 8186C43D23716D3E000C3560 /* PBXContainerItemProxy */;
-		};
-		8186C44923716D3E000C3560 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8186C42323716D3D000C3560 /* JsonPatchDemo */;
-			targetProxy = 8186C44823716D3E000C3560 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -551,7 +479,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -604,7 +532,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -654,6 +582,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JsonPatchDemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -672,6 +601,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JsonPatchDemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -681,40 +611,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JsonPatchDemo.app/JsonPatchDemo";
-			};
-			name = Release;
-		};
-		8186C45723716D3E000C3560 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = JsonPatchDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = zzyong.JsonPatchDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = JsonPatchDemo;
-			};
-			name = Debug;
-		};
-		8186C45823716D3E000C3560 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = JsonPatchDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = zzyong.JsonPatchDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = JsonPatchDemo;
 			};
 			name = Release;
 		};
@@ -744,15 +640,6 @@
 			buildConfigurations = (
 				8186C45423716D3E000C3560 /* Debug */,
 				8186C45523716D3E000C3560 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8186C45623716D3E000C3560 /* Build configuration list for PBXNativeTarget "JsonPatchDemoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8186C45723716D3E000C3560 /* Debug */,
-				8186C45823716D3E000C3560 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

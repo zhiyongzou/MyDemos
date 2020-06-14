@@ -141,4 +141,13 @@
     XCTAssertTrue(isEqual);
 }
 
+- (void)testReturnFloat
+{
+    float result = [self.testD returnFloat];
+    XCTAssertEqual(result, (float)1.11);
+
+    result = [JPTestD returnFloat];
+    XCTAssertEqual(result, (float)2.11);
+}
+
 @end

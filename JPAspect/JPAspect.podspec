@@ -9,7 +9,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "JPAspect"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.3"
   spec.summary      = "JPAspect fix bugs dynamically by json."
   spec.homepage     = "https://github.com/zhiyongzou/JPAspect"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
