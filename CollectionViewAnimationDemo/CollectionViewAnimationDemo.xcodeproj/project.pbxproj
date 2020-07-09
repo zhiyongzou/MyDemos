@@ -18,7 +18,6 @@
 		816019EF249B60E70014AC2D /* CollectionViewAnimationDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 816019EE249B60E70014AC2D /* CollectionViewAnimationDemoUITests.m */; };
 		816019FE249B958B0014AC2D /* CVAnimationFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 816019FD249B958B0014AC2D /* CVAnimationFlowLayout.m */; };
 		81601A01249B965E0014AC2D /* CVLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81601A00249B965E0014AC2D /* CVLabelCell.m */; };
-		81A07BB224A23BC90018A740 /* CCRoomAwardListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A07BB124A23BC90018A740 /* CCRoomAwardListView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +60,6 @@
 		816019FD249B958B0014AC2D /* CVAnimationFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVAnimationFlowLayout.m; sourceTree = "<group>"; };
 		816019FF249B965E0014AC2D /* CVLabelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVLabelCell.h; sourceTree = "<group>"; };
 		81601A00249B965E0014AC2D /* CVLabelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVLabelCell.m; sourceTree = "<group>"; };
-		81A07BB024A23BC90018A740 /* CCRoomAwardListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRoomAwardListView.h; sourceTree = "<group>"; };
-		81A07BB124A23BC90018A740 /* CCRoomAwardListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRoomAwardListView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +110,6 @@
 		816019C6249B60E40014AC2D /* CollectionViewAnimationDemo */ = {
 			isa = PBXGroup;
 			children = (
-				81A07BB024A23BC90018A740 /* CCRoomAwardListView.h */,
-				81A07BB124A23BC90018A740 /* CCRoomAwardListView.m */,
 				816019FC249B958B0014AC2D /* CVAnimationFlowLayout.h */,
 				816019FD249B958B0014AC2D /* CVAnimationFlowLayout.m */,
 				816019C7249B60E40014AC2D /* AppDelegate.h */,
@@ -287,7 +282,6 @@
 				816019FE249B958B0014AC2D /* CVAnimationFlowLayout.m in Sources */,
 				816019C9249B60E40014AC2D /* AppDelegate.m in Sources */,
 				816019DA249B60E70014AC2D /* main.m in Sources */,
-				81A07BB224A23BC90018A740 /* CCRoomAwardListView.m in Sources */,
 				816019CC249B60E40014AC2D /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

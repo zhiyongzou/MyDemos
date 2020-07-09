@@ -10,6 +10,8 @@
 #import "CVLabelCell.h"
 #import "CVAnimationFlowLayout.h"
 
+static int idx = 0;
+
 @interface ViewController ()<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -29,7 +31,7 @@
 - (IBAction)insertCell:(UIBarButtonItem *)sender
 {
     self.itemCount ++;
-    
+    idx++;
     [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]];
 }
 
@@ -52,8 +54,10 @@
     collectionView.backgroundColor = [UIColor whiteColor];
     collectionView.dataSource = self;
     collectionView.delegate = self;
-    collectionView.pagingEnabled = YES;
+    collectionView.pagingEnabled = NO;
     collectionView.showsVerticalScrollIndicator = NO;
+    collectionView.layer.borderColor = [UIColor orangeColor].CGColor;
+    collectionView.layer.borderWidth = 1.0;
     
     [collectionView registerClass:[CVLabelCell class] forCellWithReuseIdentifier:@"CVLabelCell"];
     
@@ -71,7 +75,7 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CVLabelCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CVLabelCell" forIndexPath:indexPath];
-    cell.textLabel.text = @(indexPath.item).stringValue;
+    cell.textLabel.text = @(idx).stringValue;
     
     return cell;
 }

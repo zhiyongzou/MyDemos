@@ -412,8 +412,26 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
                                isClassMethod:(BOOL)isClassMethod
                                    arguments:(NSArray<JPAspectArgument *> *)arguments
 {
-    JPAspectInstance *instance = [[JPAspectInstance alloc] init];;
+    JPAspectInstance *instance = [[JPAspectInstance alloc] init];
     if (!selName) {
+        return instance;
+    }
+    
+    if ([selName isEqualToString:@"alloc"])  {
+        instance.value = [[target class] alloc];
+        
+    } else if ([selName isEqualToString:@"new"]) {
+        instance.value = [[target class] new];
+        
+    } else if ([selName isEqualToString:@"copy"]) {
+        instance.value = [target copy];
+        
+    } else if ([selName isEqualToString:@"mutableCopy"]) {
+        instance.value = [target mutableCopy];
+    }
+    
+    if (instance.value != nil) {
+        instance.type = JPArgumentTypeObject;
         return instance;
     }
     
@@ -449,27 +467,9 @@ static NSUInteger const JPAspectMethodDefaultArgumentsCount = 2;
     const char *methodReturnType = signature.methodReturnType;
     if (strcmp(methodReturnType, @encode(id)) == 0) {
         
-        if ([selName isEqualToString:@"alloc"])  {
-            
-            instance.value = [[target class] alloc];
-            
-        } else if ([selName isEqualToString:@"new"]) {
-            
-            instance.value = [[target class] new];
-            
-        } else if ([selName isEqualToString:@"copy"]) {
-            
-            instance.value = [target copy];
-            
-        } else if ([selName isEqualToString:@"mutableCopy"]) {
-            
-            instance.value = [target mutableCopy];
-            
-        } else {
-            void *result;
-            [invocation getReturnValue:&result];
-            instance.value = (__bridge id)result;
-        }
+        void *result;
+        [invocation getReturnValue:&result];
+        instance.value = (__bridge id)result;
         instance.type = JPArgumentTypeObject;
         
     } else if (strcmp(methodReturnType, @encode(BOOL)) == 0) {

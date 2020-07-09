@@ -97,9 +97,12 @@ breakLoop:
 
 int main(int argc, const char * argv[]) {
     
-    gotoFunc(3);
-    arrayTest();
-    memoryTest();
+//    gotoFunc(3);
+//    arrayTest();
+//    memoryTest();
+    
+    NSArray *arr = @[@0, @1, @2, @3];
+    NSLog(@"%@", [arr subarrayWithRange:NSMakeRange(2+1, arr.count - 2 - 1)]);
     
     return 0;
 }
