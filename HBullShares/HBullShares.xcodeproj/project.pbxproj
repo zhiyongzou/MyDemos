@@ -1,0 +1,752 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		81EAE08E24D3B3E600186010 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE08D24D3B3E600186010 /* AppDelegate.m */; };
+		81EAE09724D3B3E600186010 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EAE09524D3B3E600186010 /* Main.storyboard */; };
+		81EAE09924D3B3E900186010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EAE09824D3B3E900186010 /* Assets.xcassets */; };
+		81EAE09C24D3B3E900186010 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EAE09A24D3B3E900186010 /* LaunchScreen.storyboard */; };
+		81EAE09F24D3B3E900186010 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE09E24D3B3E900186010 /* main.m */; };
+		81EAE0A924D3B3E900186010 /* HBullSharesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE0A824D3B3E900186010 /* HBullSharesTests.m */; };
+		81EAE0B424D3B3E900186010 /* HBullSharesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE0B324D3B3E900186010 /* HBullSharesUITests.m */; };
+		81EAE0C624D3BD4000186010 /* HBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE0C524D3BD4000186010 /* HBNavigationController.m */; };
+		81EAE0C924D3BDBF00186010 /* HBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE0C824D3BDBF00186010 /* HBTabBarController.m */; };
+		81EAE0D024D3BF4700186010 /* HBNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE0CF24D3BF4700186010 /* HBNewsViewController.m */; };
+		81EAE0D324D3BF5700186010 /* HBSharesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE0D224D3BF5700186010 /* HBSharesViewController.m */; };
+		81EAE0D624D3BF6600186010 /* HBMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE0D524D3BF6600186010 /* HBMineViewController.m */; };
+		81EAE0DB24D3F2CD00186010 /* HBHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE0DA24D3F2CD00186010 /* HBHttpManager.m */; };
+		C246860EC04E892533AA53CC /* libPods-HBullShares.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29237DCB2783EA795EFC7785 /* libPods-HBullShares.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		81EAE0A524D3B3E900186010 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81EAE08124D3B3E600186010 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81EAE08824D3B3E600186010;
+			remoteInfo = HBullShares;
+		};
+		81EAE0B024D3B3E900186010 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81EAE08124D3B3E600186010 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81EAE08824D3B3E600186010;
+			remoteInfo = HBullShares;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		29237DCB2783EA795EFC7785 /* libPods-HBullShares.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HBullShares.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C679444A500315B0F52F921 /* Pods-HBullShares.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBullShares.release.xcconfig"; path = "Target Support Files/Pods-HBullShares/Pods-HBullShares.release.xcconfig"; sourceTree = "<group>"; };
+		81EAE08924D3B3E600186010 /* HBullShares.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBullShares.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		81EAE08C24D3B3E600186010 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		81EAE08D24D3B3E600186010 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		81EAE09624D3B3E600186010 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		81EAE09824D3B3E900186010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		81EAE09B24D3B3E900186010 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81EAE09D24D3B3E900186010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81EAE09E24D3B3E900186010 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		81EAE0A424D3B3E900186010 /* HBullSharesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HBullSharesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81EAE0A824D3B3E900186010 /* HBullSharesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBullSharesTests.m; sourceTree = "<group>"; };
+		81EAE0AA24D3B3E900186010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81EAE0AF24D3B3E900186010 /* HBullSharesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HBullSharesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81EAE0B324D3B3E900186010 /* HBullSharesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBullSharesUITests.m; sourceTree = "<group>"; };
+		81EAE0B524D3B3E900186010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81EAE0C424D3BD4000186010 /* HBNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBNavigationController.h; sourceTree = "<group>"; };
+		81EAE0C524D3BD4000186010 /* HBNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBNavigationController.m; sourceTree = "<group>"; };
+		81EAE0C724D3BDBF00186010 /* HBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBTabBarController.h; sourceTree = "<group>"; };
+		81EAE0C824D3BDBF00186010 /* HBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBTabBarController.m; sourceTree = "<group>"; };
+		81EAE0CE24D3BF4700186010 /* HBNewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBNewsViewController.h; sourceTree = "<group>"; };
+		81EAE0CF24D3BF4700186010 /* HBNewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBNewsViewController.m; sourceTree = "<group>"; };
+		81EAE0D124D3BF5700186010 /* HBSharesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBSharesViewController.h; sourceTree = "<group>"; };
+		81EAE0D224D3BF5700186010 /* HBSharesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBSharesViewController.m; sourceTree = "<group>"; };
+		81EAE0D424D3BF6600186010 /* HBMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBMineViewController.h; sourceTree = "<group>"; };
+		81EAE0D524D3BF6600186010 /* HBMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBMineViewController.m; sourceTree = "<group>"; };
+		81EAE0D924D3F2CD00186010 /* HBHttpManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBHttpManager.h; sourceTree = "<group>"; };
+		81EAE0DA24D3F2CD00186010 /* HBHttpManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBHttpManager.m; sourceTree = "<group>"; };
+		C3B5CAF147E978AFA3F82561 /* Pods-HBullShares.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBullShares.debug.xcconfig"; path = "Target Support Files/Pods-HBullShares/Pods-HBullShares.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		81EAE08624D3B3E600186010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C246860EC04E892533AA53CC /* libPods-HBullShares.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81EAE0A124D3B3E900186010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81EAE0AC24D3B3E900186010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		355BEA6AF97FBEFED6E5BE6F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29237DCB2783EA795EFC7785 /* libPods-HBullShares.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81EAE08024D3B3E600186010 = {
+			isa = PBXGroup;
+			children = (
+				81EAE08B24D3B3E600186010 /* HBullShares */,
+				81EAE0A724D3B3E900186010 /* HBullSharesTests */,
+				81EAE0B224D3B3E900186010 /* HBullSharesUITests */,
+				81EAE08A24D3B3E600186010 /* Products */,
+				D16B812364EFF20DA9025F48 /* Pods */,
+				355BEA6AF97FBEFED6E5BE6F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		81EAE08A24D3B3E600186010 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE08924D3B3E600186010 /* HBullShares.app */,
+				81EAE0A424D3B3E900186010 /* HBullSharesTests.xctest */,
+				81EAE0AF24D3B3E900186010 /* HBullSharesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		81EAE08B24D3B3E600186010 /* HBullShares */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE0C124D3BA4C00186010 /* App */,
+				81EAE0D724D3F28E00186010 /* Common */,
+				81EAE0C324D3BD1500186010 /* Main */,
+				81EAE0C224D3BA6E00186010 /* Resources */,
+				81EAE09D24D3B3E900186010 /* Info.plist */,
+			);
+			path = HBullShares;
+			sourceTree = "<group>";
+		};
+		81EAE0A724D3B3E900186010 /* HBullSharesTests */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE0A824D3B3E900186010 /* HBullSharesTests.m */,
+				81EAE0AA24D3B3E900186010 /* Info.plist */,
+			);
+			path = HBullSharesTests;
+			sourceTree = "<group>";
+		};
+		81EAE0B224D3B3E900186010 /* HBullSharesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE0B324D3B3E900186010 /* HBullSharesUITests.m */,
+				81EAE0B524D3B3E900186010 /* Info.plist */,
+			);
+			path = HBullSharesUITests;
+			sourceTree = "<group>";
+		};
+		81EAE0C124D3BA4C00186010 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE09E24D3B3E900186010 /* main.m */,
+				81EAE08C24D3B3E600186010 /* AppDelegate.h */,
+				81EAE08D24D3B3E600186010 /* AppDelegate.m */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		81EAE0C224D3BA6E00186010 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE09A24D3B3E900186010 /* LaunchScreen.storyboard */,
+				81EAE09524D3B3E600186010 /* Main.storyboard */,
+				81EAE09824D3B3E900186010 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		81EAE0C324D3BD1500186010 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE0CA24D3BDE000186010 /* Base */,
+				81EAE0CB24D3BDE900186010 /* News */,
+				81EAE0CD24D3BEC600186010 /* Shares */,
+				81EAE0CC24D3BE7B00186010 /* Mine */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		81EAE0CA24D3BDE000186010 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE0C424D3BD4000186010 /* HBNavigationController.h */,
+				81EAE0C524D3BD4000186010 /* HBNavigationController.m */,
+				81EAE0C724D3BDBF00186010 /* HBTabBarController.h */,
+				81EAE0C824D3BDBF00186010 /* HBTabBarController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		81EAE0CB24D3BDE900186010 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE0CE24D3BF4700186010 /* HBNewsViewController.h */,
+				81EAE0CF24D3BF4700186010 /* HBNewsViewController.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		81EAE0CC24D3BE7B00186010 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE0D424D3BF6600186010 /* HBMineViewController.h */,
+				81EAE0D524D3BF6600186010 /* HBMineViewController.m */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		81EAE0CD24D3BEC600186010 /* Shares */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE0D124D3BF5700186010 /* HBSharesViewController.h */,
+				81EAE0D224D3BF5700186010 /* HBSharesViewController.m */,
+			);
+			path = Shares;
+			sourceTree = "<group>";
+		};
+		81EAE0D724D3F28E00186010 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE0D824D3F2AA00186010 /* HBHttpManager */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		81EAE0D824D3F2AA00186010 /* HBHttpManager */ = {
+			isa = PBXGroup;
+			children = (
+				81EAE0D924D3F2CD00186010 /* HBHttpManager.h */,
+				81EAE0DA24D3F2CD00186010 /* HBHttpManager.m */,
+			);
+			path = HBHttpManager;
+			sourceTree = "<group>";
+		};
+		D16B812364EFF20DA9025F48 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C3B5CAF147E978AFA3F82561 /* Pods-HBullShares.debug.xcconfig */,
+				7C679444A500315B0F52F921 /* Pods-HBullShares.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		81EAE08824D3B3E600186010 /* HBullShares */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81EAE0B824D3B3E900186010 /* Build configuration list for PBXNativeTarget "HBullShares" */;
+			buildPhases = (
+				73D1E80F9B4726507D3009B4 /* [CP] Check Pods Manifest.lock */,
+				81EAE08524D3B3E600186010 /* Sources */,
+				81EAE08624D3B3E600186010 /* Frameworks */,
+				81EAE08724D3B3E600186010 /* Resources */,
+				E9BBBC6D8F0807A0C9122575 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HBullShares;
+			productName = HBullShares;
+			productReference = 81EAE08924D3B3E600186010 /* HBullShares.app */;
+			productType = "com.apple.product-type.application";
+		};
+		81EAE0A324D3B3E900186010 /* HBullSharesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81EAE0BB24D3B3E900186010 /* Build configuration list for PBXNativeTarget "HBullSharesTests" */;
+			buildPhases = (
+				81EAE0A024D3B3E900186010 /* Sources */,
+				81EAE0A124D3B3E900186010 /* Frameworks */,
+				81EAE0A224D3B3E900186010 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81EAE0A624D3B3E900186010 /* PBXTargetDependency */,
+			);
+			name = HBullSharesTests;
+			productName = HBullSharesTests;
+			productReference = 81EAE0A424D3B3E900186010 /* HBullSharesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		81EAE0AE24D3B3E900186010 /* HBullSharesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81EAE0BE24D3B3E900186010 /* Build configuration list for PBXNativeTarget "HBullSharesUITests" */;
+			buildPhases = (
+				81EAE0AB24D3B3E900186010 /* Sources */,
+				81EAE0AC24D3B3E900186010 /* Frameworks */,
+				81EAE0AD24D3B3E900186010 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81EAE0B124D3B3E900186010 /* PBXTargetDependency */,
+			);
+			name = HBullSharesUITests;
+			productName = HBullSharesUITests;
+			productReference = 81EAE0AF24D3B3E900186010 /* HBullSharesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		81EAE08124D3B3E600186010 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = zzyong;
+				TargetAttributes = {
+					81EAE08824D3B3E600186010 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					81EAE0A324D3B3E900186010 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 81EAE08824D3B3E600186010;
+					};
+					81EAE0AE24D3B3E900186010 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 81EAE08824D3B3E600186010;
+					};
+				};
+			};
+			buildConfigurationList = 81EAE08424D3B3E600186010 /* Build configuration list for PBXProject "HBullShares" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 81EAE08024D3B3E600186010;
+			productRefGroup = 81EAE08A24D3B3E600186010 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81EAE08824D3B3E600186010 /* HBullShares */,
+				81EAE0A324D3B3E900186010 /* HBullSharesTests */,
+				81EAE0AE24D3B3E900186010 /* HBullSharesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		81EAE08724D3B3E600186010 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81EAE09C24D3B3E900186010 /* LaunchScreen.storyboard in Resources */,
+				81EAE09924D3B3E900186010 /* Assets.xcassets in Resources */,
+				81EAE09724D3B3E600186010 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81EAE0A224D3B3E900186010 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81EAE0AD24D3B3E900186010 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		73D1E80F9B4726507D3009B4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HBullShares-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9BBBC6D8F0807A0C9122575 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HBullShares/Pods-HBullShares-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HBullShares/Pods-HBullShares-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HBullShares/Pods-HBullShares-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81EAE08524D3B3E600186010 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81EAE0D324D3BF5700186010 /* HBSharesViewController.m in Sources */,
+				81EAE0C624D3BD4000186010 /* HBNavigationController.m in Sources */,
+				81EAE08E24D3B3E600186010 /* AppDelegate.m in Sources */,
+				81EAE09F24D3B3E900186010 /* main.m in Sources */,
+				81EAE0C924D3BDBF00186010 /* HBTabBarController.m in Sources */,
+				81EAE0D024D3BF4700186010 /* HBNewsViewController.m in Sources */,
+				81EAE0D624D3BF6600186010 /* HBMineViewController.m in Sources */,
+				81EAE0DB24D3F2CD00186010 /* HBHttpManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81EAE0A024D3B3E900186010 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81EAE0A924D3B3E900186010 /* HBullSharesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81EAE0AB24D3B3E900186010 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81EAE0B424D3B3E900186010 /* HBullSharesUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		81EAE0A624D3B3E900186010 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81EAE08824D3B3E600186010 /* HBullShares */;
+			targetProxy = 81EAE0A524D3B3E900186010 /* PBXContainerItemProxy */;
+		};
+		81EAE0B124D3B3E900186010 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81EAE08824D3B3E600186010 /* HBullShares */;
+			targetProxy = 81EAE0B024D3B3E900186010 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		81EAE09524D3B3E600186010 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81EAE09624D3B3E600186010 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		81EAE09A24D3B3E900186010 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81EAE09B24D3B3E900186010 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		81EAE0B624D3B3E900186010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		81EAE0B724D3B3E900186010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		81EAE0B924D3B3E900186010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3B5CAF147E978AFA3F82561 /* Pods-HBullShares.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HBullShares/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.HBullShares;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		81EAE0BA24D3B3E900186010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C679444A500315B0F52F921 /* Pods-HBullShares.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HBullShares/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.HBullShares;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		81EAE0BC24D3B3E900186010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HBullSharesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.HBullSharesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HBullShares.app/HBullShares";
+			};
+			name = Debug;
+		};
+		81EAE0BD24D3B3E900186010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HBullSharesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.HBullSharesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HBullShares.app/HBullShares";
+			};
+			name = Release;
+		};
+		81EAE0BF24D3B3E900186010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HBullSharesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.HBullSharesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HBullShares;
+			};
+			name = Debug;
+		};
+		81EAE0C024D3B3E900186010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HBullSharesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.HBullSharesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HBullShares;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		81EAE08424D3B3E600186010 /* Build configuration list for PBXProject "HBullShares" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81EAE0B624D3B3E900186010 /* Debug */,
+				81EAE0B724D3B3E900186010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81EAE0B824D3B3E900186010 /* Build configuration list for PBXNativeTarget "HBullShares" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81EAE0B924D3B3E900186010 /* Debug */,
+				81EAE0BA24D3B3E900186010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81EAE0BB24D3B3E900186010 /* Build configuration list for PBXNativeTarget "HBullSharesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81EAE0BC24D3B3E900186010 /* Debug */,
+				81EAE0BD24D3B3E900186010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81EAE0BE24D3B3E900186010 /* Build configuration list for PBXNativeTarget "HBullSharesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81EAE0BF24D3B3E900186010 /* Debug */,
+				81EAE0C024D3B3E900186010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 81EAE08124D3B3E600186010 /* Project object */;
+}
