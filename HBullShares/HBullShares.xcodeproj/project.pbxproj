@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8110B18824D5757100EA11BF /* NSString+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = 8110B18724D5757100EA11BF /* NSString+Time.m */; };
+		8110B18B24D575F100EA11BF /* HBNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8110B18A24D575F100EA11BF /* HBNewsCell.m */; };
+		8110B19024D5764200EA11BF /* HBNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8110B18F24D5764200EA11BF /* HBNewsModel.m */; };
+		81BB0D3A24D6616A00A653F2 /* AppDelegate+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BB0D3924D6616A00A653F2 /* AppDelegate+Debug.m */; };
+		81BB0D3D24D6692000A653F2 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BB0D3C24D6692000A653F2 /* UIView+Extension.m */; };
+		81BB0D4324D681E300A653F2 /* NSDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BB0D4224D681E300A653F2 /* NSDictionary+Safe.m */; };
 		81EAE08E24D3B3E600186010 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EAE08D24D3B3E600186010 /* AppDelegate.m */; };
 		81EAE09724D3B3E600186010 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EAE09524D3B3E600186010 /* Main.storyboard */; };
 		81EAE09924D3B3E900186010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EAE09824D3B3E900186010 /* Assets.xcassets */; };
@@ -43,6 +49,18 @@
 /* Begin PBXFileReference section */
 		29237DCB2783EA795EFC7785 /* libPods-HBullShares.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HBullShares.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C679444A500315B0F52F921 /* Pods-HBullShares.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBullShares.release.xcconfig"; path = "Target Support Files/Pods-HBullShares/Pods-HBullShares.release.xcconfig"; sourceTree = "<group>"; };
+		8110B18624D5757100EA11BF /* NSString+Time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Time.h"; sourceTree = "<group>"; };
+		8110B18724D5757100EA11BF /* NSString+Time.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Time.m"; sourceTree = "<group>"; };
+		8110B18924D575F100EA11BF /* HBNewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBNewsCell.h; sourceTree = "<group>"; };
+		8110B18A24D575F100EA11BF /* HBNewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBNewsCell.m; sourceTree = "<group>"; };
+		8110B18E24D5764200EA11BF /* HBNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBNewsModel.h; sourceTree = "<group>"; };
+		8110B18F24D5764200EA11BF /* HBNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBNewsModel.m; sourceTree = "<group>"; };
+		81BB0D3824D6616A00A653F2 /* AppDelegate+Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Debug.h"; sourceTree = "<group>"; };
+		81BB0D3924D6616A00A653F2 /* AppDelegate+Debug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Debug.m"; sourceTree = "<group>"; };
+		81BB0D3B24D6692000A653F2 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		81BB0D3C24D6692000A653F2 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		81BB0D4124D681E300A653F2 /* NSDictionary+Safe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Safe.h"; sourceTree = "<group>"; };
+		81BB0D4224D681E300A653F2 /* NSDictionary+Safe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Safe.m"; sourceTree = "<group>"; };
 		81EAE08924D3B3E600186010 /* HBullShares.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBullShares.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EAE08C24D3B3E600186010 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		81EAE08D24D3B3E600186010 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -106,6 +124,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8110B18524D5754A00EA11BF /* Categoary */ = {
+			isa = PBXGroup;
+			children = (
+				81BB0D3B24D6692000A653F2 /* UIView+Extension.h */,
+				81BB0D3C24D6692000A653F2 /* UIView+Extension.m */,
+				8110B18624D5757100EA11BF /* NSString+Time.h */,
+				8110B18724D5757100EA11BF /* NSString+Time.m */,
+				81BB0D4124D681E300A653F2 /* NSDictionary+Safe.h */,
+				81BB0D4224D681E300A653F2 /* NSDictionary+Safe.m */,
+			);
+			path = Categoary;
+			sourceTree = "<group>";
+		};
+		8110B18C24D575F700EA11BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8110B18924D575F100EA11BF /* HBNewsCell.h */,
+				8110B18A24D575F100EA11BF /* HBNewsCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8110B18D24D5761600EA11BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8110B18E24D5764200EA11BF /* HBNewsModel.h */,
+				8110B18F24D5764200EA11BF /* HBNewsModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		81EAE08024D3B3E600186010 = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +213,8 @@
 				81EAE09E24D3B3E900186010 /* main.m */,
 				81EAE08C24D3B3E600186010 /* AppDelegate.h */,
 				81EAE08D24D3B3E600186010 /* AppDelegate.m */,
+				81BB0D3824D6616A00A653F2 /* AppDelegate+Debug.h */,
+				81BB0D3924D6616A00A653F2 /* AppDelegate+Debug.m */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -203,6 +254,8 @@
 		81EAE0CB24D3BDE900186010 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				8110B18D24D5761600EA11BF /* Model */,
+				8110B18C24D575F700EA11BF /* View */,
 				81EAE0CE24D3BF4700186010 /* HBNewsViewController.h */,
 				81EAE0CF24D3BF4700186010 /* HBNewsViewController.m */,
 			);
@@ -230,6 +283,7 @@
 		81EAE0D724D3F28E00186010 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8110B18524D5754A00EA11BF /* Categoary */,
 				81EAE0D824D3F2AA00186010 /* HBHttpManager */,
 			);
 			path = Common;
@@ -429,11 +483,17 @@
 			files = (
 				81EAE0D324D3BF5700186010 /* HBSharesViewController.m in Sources */,
 				81EAE0C624D3BD4000186010 /* HBNavigationController.m in Sources */,
+				81BB0D3D24D6692000A653F2 /* UIView+Extension.m in Sources */,
 				81EAE08E24D3B3E600186010 /* AppDelegate.m in Sources */,
 				81EAE09F24D3B3E900186010 /* main.m in Sources */,
+				81BB0D3A24D6616A00A653F2 /* AppDelegate+Debug.m in Sources */,
+				8110B18824D5757100EA11BF /* NSString+Time.m in Sources */,
 				81EAE0C924D3BDBF00186010 /* HBTabBarController.m in Sources */,
 				81EAE0D024D3BF4700186010 /* HBNewsViewController.m in Sources */,
 				81EAE0D624D3BF6600186010 /* HBMineViewController.m in Sources */,
+				8110B19024D5764200EA11BF /* HBNewsModel.m in Sources */,
+				81BB0D4324D681E300A653F2 /* NSDictionary+Safe.m in Sources */,
+				8110B18B24D575F100EA11BF /* HBNewsCell.m in Sources */,
 				81EAE0DB24D3F2CD00186010 /* HBHttpManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -611,7 +671,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zzyong.HBullShares;
+				PRODUCT_BUNDLE_IDENTIFIER = HB.HBullShares;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -629,7 +689,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zzyong.HBullShares;
+				PRODUCT_BUNDLE_IDENTIFIER = HB.HBullShares;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -14,6 +14,8 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - FLEX (4.1.1)
+  - HexColors (3.0.0)
   - Masonry (1.1.0)
   - MJRefresh (3.4.1)
   - SDWebImage (5.8.4):
@@ -23,6 +25,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - FLEX
+  - HexColors (= 3.0.0)
   - Masonry
   - MJRefresh
   - SDWebImage
@@ -31,6 +35,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - FLEX
+    - HexColors
     - Masonry
     - MJRefresh
     - SDWebImage
@@ -38,11 +44,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  FLEX: 81096107977a09836eb440173010ceeef01105d6
+  HexColors: 8b83e3fe90c0d466dae7b98c9d22da95799f99cb
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 3153c59a363159092c08b2177ec3a7d09f90bfaf
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: e895a992daf210719ac63e1ea5cd3640e837ef3b
+PODFILE CHECKSUM: 094f6bddeec0102df1cc4bd64952b1066f1567f1
 
 COCOAPODS: 1.9.1

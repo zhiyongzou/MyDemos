@@ -6,6 +6,10 @@
 //  Copyright © 2020 zzyong. All rights reserved.
 //
 
+#ifdef DEBUG
+    #import "AppDelegate+Debug.h"
+#endif
+
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -17,6 +21,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    #ifdef DEBUG
+        [self debugInit];
+    #endif
+    
     return YES;
 }
 
