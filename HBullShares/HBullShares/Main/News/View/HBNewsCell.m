@@ -88,31 +88,24 @@
     _newsModel = newsModel;
     
     self.titleLabel.text = newsModel.title;
-    
+    NSString *iconUrl = newsModel.thumbs.firstObject;
+    if (iconUrl.length == 0) {
+        self.iconView.hidden = YES;
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.equalTo(self.contentView).offset(HBNewsCommonSpacing);
+            make.right.equalTo(self.contentView).offset(-HBNewsCommonSpacing);
+        }];
+    } else {
+        self.iconView.hidden = NO;
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:iconUrl] placeholderImage:nil];
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.equalTo(self.contentView).offset(HBNewsCommonSpacing);
+            make.right.equalTo(self.iconView.mas_left).offset(-5);
+        }];
+    }
     NSString *sourceText = newsModel.author ?: @"";
     sourceText = [sourceText stringByAppendingFormat:@" %@", [NSString timeLineStringByDate:[NSDate dateWithTimeIntervalSince1970:newsModel.timestamp]]];
     self.sourceLabel.text = sourceText;
-    [self updateIconLayoutWithUrlString:newsModel.thumbs.firstObject];
-}
-
-- (void)updateIconLayoutWithUrlString:(NSString *)urlString
-{
-    if (urlString == nil) {
-        [self.iconView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(0);
-            make.height.mas_equalTo(0);
-            make.right.equalTo(self.contentView);
-            make.centerY.equalTo(self.contentView);
-        }];
-    } else {
-        [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(HBNewsIconWidth);
-            make.height.mas_equalTo(HBNewsIconHeight);
-            make.right.equalTo(self.contentView).offset(-HBNewsCommonSpacing);
-            make.centerY.equalTo(self.contentView);
-        }];
-        [self.iconView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:nil];
-    }
 }
 
 + (CGFloat)cellHeight

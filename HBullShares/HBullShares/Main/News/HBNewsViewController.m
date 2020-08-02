@@ -1,6 +1,8 @@
 //
 //  HBNewsViewController.m
 //  HBullShares
+//  Registered Name: https://zhile.io
+//  License Key: 48891cf209c6d32bf4
 //
 //  Created by zzyong on 2020/7/31.
 //  Copyright © 2020 zzyong. All rights reserved.
