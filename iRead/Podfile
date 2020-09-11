@@ -26,9 +26,7 @@ target 'iRead' do
   # debug pods
   debug_pods
   
-  pod 'DTCoreText', '~> 1.6.23'
-  pod 'JPAspect', '~> 1.0.3'
-  
+
 end
 
 target 'IRCommonLib' do

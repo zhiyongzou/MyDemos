@@ -1,54 +1,24 @@
 PODS:
   - AEXML (4.5.0)
-  - DTCoreText (1.6.23):
-    - DTCoreText/Core (= 1.6.23)
-    - DTFoundation/Core (~> 1.7.5)
-    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
-    - DTFoundation/DTHTMLParser (~> 1.7.5)
-    - DTFoundation/UIKit (~> 1.7.5)
-  - DTCoreText/Core (1.6.23):
-    - DTFoundation/Core (~> 1.7.5)
-    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
-    - DTFoundation/DTHTMLParser (~> 1.7.5)
-    - DTFoundation/UIKit (~> 1.7.5)
-  - DTFoundation/Core (1.7.14)
-  - DTFoundation/DTAnimatedGIF (1.7.14)
-  - DTFoundation/DTHTMLParser (1.7.14):
-    - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.14):
-    - DTFoundation/Core
   - FLEX (4.1.1)
-  - JPAspect (1.0.3):
-    - JPAspect/Base (= 1.0.3)
-    - JPAspect/Model (= 1.0.3)
-  - JPAspect/Base (1.0.3)
-  - JPAspect/Model (1.0.3)
   - SSZipArchive (2.2.3)
 
 DEPENDENCIES:
   - AEXML (~> 4.5.0)
-  - DTCoreText (~> 1.6.23)
   - FLEX
-  - JPAspect (~> 1.0.3)
   - SSZipArchive (~> 2.2.2)
 
 SPEC REPOS:
   trunk:
     - AEXML
-    - DTCoreText
-    - DTFoundation
     - FLEX
-    - JPAspect
     - SSZipArchive
 
 SPEC CHECKSUMS:
   AEXML: 0e8f1d874fa033ca6b3909452a8bc362faad46e6
-  DTCoreText: 67023bb51b26711d5f640c851f4845aea14c24c9
-  DTFoundation: 25aa19bb7c6e225b1dfae195604fb8cf1da0ab4c
   FLEX: 81096107977a09836eb440173010ceeef01105d6
-  JPAspect: 106ef9a94dd8fd9289cf863405fc17ede293644a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
 
-PODFILE CHECKSUM: 930e5b15505e148d3aa0baec399e721d88292da7
+PODFILE CHECKSUM: 5c4ddda0dc8cf641884ec09e1fb6905e3ffbd3d0
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

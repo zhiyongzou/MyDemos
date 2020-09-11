@@ -116,6 +116,7 @@
 		814171582461ADBE00694536 /* IRCommonLib */ = {
 			isa = PBXGroup;
 			children = (
+				81D7A748250B7E56004C6B6D /* UIColor */,
 				817A2BE4247E6914007C5EF7 /* FREpubCore */,
 			);
 			path = IRCommonLib;
@@ -138,6 +139,13 @@
 				817A2BF0247E6914007C5EF7 /* FRMetadata.swift */,
 			);
 			path = FREpubCore;
+			sourceTree = "<group>";
+		};
+		81D7A748250B7E56004C6B6D /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIColor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

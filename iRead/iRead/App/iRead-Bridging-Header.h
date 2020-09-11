@@ -6,5 +6,4 @@
     #import <FLEX.h>
 #endif
 
-// release
-#import <DTCoreText.h>
+//MARK: release
