@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		81D7A715250A2A58004C6B6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D7A714250A2A58004C6B6D /* AppDelegate.m */; };
+		81D7A71B250A2A58004C6B6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D7A71A250A2A58004C6B6D /* ViewController.m */; };
+		81D7A71E250A2A58004C6B6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D7A71C250A2A58004C6B6D /* Main.storyboard */; };
+		81D7A720250A2A5B004C6B6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D7A71F250A2A5B004C6B6D /* Assets.xcassets */; };
+		81D7A723250A2A5B004C6B6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D7A721250A2A5B004C6B6D /* LaunchScreen.storyboard */; };
+		81D7A726250A2A5B004C6B6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D7A725250A2A5B004C6B6D /* main.m */; };
+		81D7A730250A2A5B004C6B6D /* VisualEffectiOS10DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D7A72F250A2A5B004C6B6D /* VisualEffectiOS10DemoTests.m */; };
+		81D7A73B250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D7A73A250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		81D7A72C250A2A5B004C6B6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81D7A708250A2A58004C6B6D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81D7A70F250A2A58004C6B6D;
+			remoteInfo = VisualEffectiOS10Demo;
+		};
+		81D7A737250A2A5B004C6B6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81D7A708250A2A58004C6B6D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81D7A70F250A2A58004C6B6D;
+			remoteInfo = VisualEffectiOS10Demo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		81D7A710250A2A58004C6B6D /* VisualEffectiOS10Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisualEffectiOS10Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		81D7A713250A2A58004C6B6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		81D7A714250A2A58004C6B6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		81D7A719250A2A58004C6B6D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		81D7A71A250A2A58004C6B6D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		81D7A71D250A2A58004C6B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		81D7A71F250A2A5B004C6B6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		81D7A722250A2A5B004C6B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81D7A724250A2A5B004C6B6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81D7A725250A2A5B004C6B6D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		81D7A72B250A2A5B004C6B6D /* VisualEffectiOS10DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisualEffectiOS10DemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81D7A72F250A2A5B004C6B6D /* VisualEffectiOS10DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisualEffectiOS10DemoTests.m; sourceTree = "<group>"; };
+		81D7A731250A2A5B004C6B6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81D7A736250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisualEffectiOS10DemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81D7A73A250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisualEffectiOS10DemoUITests.m; sourceTree = "<group>"; };
+		81D7A73C250A2A5B004C6B6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		81D7A70D250A2A58004C6B6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81D7A728250A2A5B004C6B6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81D7A733250A2A5B004C6B6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		81D7A707250A2A58004C6B6D = {
+			isa = PBXGroup;
+			children = (
+				81D7A712250A2A58004C6B6D /* VisualEffectiOS10Demo */,
+				81D7A72E250A2A5B004C6B6D /* VisualEffectiOS10DemoTests */,
+				81D7A739250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests */,
+				81D7A711250A2A58004C6B6D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		81D7A711250A2A58004C6B6D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81D7A710250A2A58004C6B6D /* VisualEffectiOS10Demo.app */,
+				81D7A72B250A2A5B004C6B6D /* VisualEffectiOS10DemoTests.xctest */,
+				81D7A736250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		81D7A712250A2A58004C6B6D /* VisualEffectiOS10Demo */ = {
+			isa = PBXGroup;
+			children = (
+				81D7A713250A2A58004C6B6D /* AppDelegate.h */,
+				81D7A714250A2A58004C6B6D /* AppDelegate.m */,
+				81D7A719250A2A58004C6B6D /* ViewController.h */,
+				81D7A71A250A2A58004C6B6D /* ViewController.m */,
+				81D7A71C250A2A58004C6B6D /* Main.storyboard */,
+				81D7A71F250A2A5B004C6B6D /* Assets.xcassets */,
+				81D7A721250A2A5B004C6B6D /* LaunchScreen.storyboard */,
+				81D7A724250A2A5B004C6B6D /* Info.plist */,
+				81D7A725250A2A5B004C6B6D /* main.m */,
+			);
+			path = VisualEffectiOS10Demo;
+			sourceTree = "<group>";
+		};
+		81D7A72E250A2A5B004C6B6D /* VisualEffectiOS10DemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				81D7A72F250A2A5B004C6B6D /* VisualEffectiOS10DemoTests.m */,
+				81D7A731250A2A5B004C6B6D /* Info.plist */,
+			);
+			path = VisualEffectiOS10DemoTests;
+			sourceTree = "<group>";
+		};
+		81D7A739250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				81D7A73A250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests.m */,
+				81D7A73C250A2A5B004C6B6D /* Info.plist */,
+			);
+			path = VisualEffectiOS10DemoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		81D7A70F250A2A58004C6B6D /* VisualEffectiOS10Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81D7A73F250A2A5B004C6B6D /* Build configuration list for PBXNativeTarget "VisualEffectiOS10Demo" */;
+			buildPhases = (
+				81D7A70C250A2A58004C6B6D /* Sources */,
+				81D7A70D250A2A58004C6B6D /* Frameworks */,
+				81D7A70E250A2A58004C6B6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VisualEffectiOS10Demo;
+			productName = VisualEffectiOS10Demo;
+			productReference = 81D7A710250A2A58004C6B6D /* VisualEffectiOS10Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		81D7A72A250A2A5B004C6B6D /* VisualEffectiOS10DemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81D7A742250A2A5B004C6B6D /* Build configuration list for PBXNativeTarget "VisualEffectiOS10DemoTests" */;
+			buildPhases = (
+				81D7A727250A2A5B004C6B6D /* Sources */,
+				81D7A728250A2A5B004C6B6D /* Frameworks */,
+				81D7A729250A2A5B004C6B6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81D7A72D250A2A5B004C6B6D /* PBXTargetDependency */,
+			);
+			name = VisualEffectiOS10DemoTests;
+			productName = VisualEffectiOS10DemoTests;
+			productReference = 81D7A72B250A2A5B004C6B6D /* VisualEffectiOS10DemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		81D7A735250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81D7A745250A2A5B004C6B6D /* Build configuration list for PBXNativeTarget "VisualEffectiOS10DemoUITests" */;
+			buildPhases = (
+				81D7A732250A2A5B004C6B6D /* Sources */,
+				81D7A733250A2A5B004C6B6D /* Frameworks */,
+				81D7A734250A2A5B004C6B6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81D7A738250A2A5B004C6B6D /* PBXTargetDependency */,
+			);
+			name = VisualEffectiOS10DemoUITests;
+			productName = VisualEffectiOS10DemoUITests;
+			productReference = 81D7A736250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		81D7A708250A2A58004C6B6D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = zzyong;
+				TargetAttributes = {
+					81D7A70F250A2A58004C6B6D = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					81D7A72A250A2A5B004C6B6D = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 81D7A70F250A2A58004C6B6D;
+					};
+					81D7A735250A2A5B004C6B6D = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 81D7A70F250A2A58004C6B6D;
+					};
+				};
+			};
+			buildConfigurationList = 81D7A70B250A2A58004C6B6D /* Build configuration list for PBXProject "VisualEffectiOS10Demo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 81D7A707250A2A58004C6B6D;
+			productRefGroup = 81D7A711250A2A58004C6B6D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81D7A70F250A2A58004C6B6D /* VisualEffectiOS10Demo */,
+				81D7A72A250A2A5B004C6B6D /* VisualEffectiOS10DemoTests */,
+				81D7A735250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		81D7A70E250A2A58004C6B6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81D7A723250A2A5B004C6B6D /* LaunchScreen.storyboard in Resources */,
+				81D7A720250A2A5B004C6B6D /* Assets.xcassets in Resources */,
+				81D7A71E250A2A58004C6B6D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81D7A729250A2A5B004C6B6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81D7A734250A2A5B004C6B6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81D7A70C250A2A58004C6B6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81D7A71B250A2A58004C6B6D /* ViewController.m in Sources */,
+				81D7A715250A2A58004C6B6D /* AppDelegate.m in Sources */,
+				81D7A726250A2A5B004C6B6D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81D7A727250A2A5B004C6B6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81D7A730250A2A5B004C6B6D /* VisualEffectiOS10DemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81D7A732250A2A5B004C6B6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81D7A73B250A2A5B004C6B6D /* VisualEffectiOS10DemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		81D7A72D250A2A5B004C6B6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81D7A70F250A2A58004C6B6D /* VisualEffectiOS10Demo */;
+			targetProxy = 81D7A72C250A2A5B004C6B6D /* PBXContainerItemProxy */;
+		};
+		81D7A738250A2A5B004C6B6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81D7A70F250A2A58004C6B6D /* VisualEffectiOS10Demo */;
+			targetProxy = 81D7A737250A2A5B004C6B6D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		81D7A71C250A2A58004C6B6D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81D7A71D250A2A58004C6B6D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		81D7A721250A2A5B004C6B6D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81D7A722250A2A5B004C6B6D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		81D7A73D250A2A5B004C6B6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		81D7A73E250A2A5B004C6B6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		81D7A740250A2A5B004C6B6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VisualEffectiOS10Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.VisualEffectiOS10Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		81D7A741250A2A5B004C6B6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VisualEffectiOS10Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.VisualEffectiOS10Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		81D7A743250A2A5B004C6B6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VisualEffectiOS10DemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.VisualEffectiOS10DemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VisualEffectiOS10Demo.app/VisualEffectiOS10Demo";
+			};
+			name = Debug;
+		};
+		81D7A744250A2A5B004C6B6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VisualEffectiOS10DemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.VisualEffectiOS10DemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VisualEffectiOS10Demo.app/VisualEffectiOS10Demo";
+			};
+			name = Release;
+		};
+		81D7A746250A2A5B004C6B6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VisualEffectiOS10DemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.VisualEffectiOS10DemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VisualEffectiOS10Demo;
+			};
+			name = Debug;
+		};
+		81D7A747250A2A5B004C6B6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VisualEffectiOS10DemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = zzyong.VisualEffectiOS10DemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VisualEffectiOS10Demo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		81D7A70B250A2A58004C6B6D /* Build configuration list for PBXProject "VisualEffectiOS10Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81D7A73D250A2A5B004C6B6D /* Debug */,
+				81D7A73E250A2A5B004C6B6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81D7A73F250A2A5B004C6B6D /* Build configuration list for PBXNativeTarget "VisualEffectiOS10Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81D7A740250A2A5B004C6B6D /* Debug */,
+				81D7A741250A2A5B004C6B6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81D7A742250A2A5B004C6B6D /* Build configuration list for PBXNativeTarget "VisualEffectiOS10DemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81D7A743250A2A5B004C6B6D /* Debug */,
+				81D7A744250A2A5B004C6B6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81D7A745250A2A5B004C6B6D /* Build configuration list for PBXNativeTarget "VisualEffectiOS10DemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81D7A746250A2A5B004C6B6D /* Debug */,
+				81D7A747250A2A5B004C6B6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 81D7A708250A2A58004C6B6D /* Project object */;
+}
