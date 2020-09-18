@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.backgroundColor = UIColor.hexColor("aaff8f80")
+        self.view.backgroundColor = UIColor.hexColor("aaff8f89")
     }
 }
 

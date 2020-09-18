@@ -14,7 +14,6 @@
   public typealias IRColor = NSColor
 #endif
 
-
 public extension IRColor {
     
     private class func hexToUInt32(_ hexString: String) -> UInt32 {
@@ -31,11 +30,20 @@ public extension IRColor {
         return cache
     }()
     
-    class func hexColor(_ hexString: String) -> IRColor? {
+    class func updateCache(countLimit: Int) {
+        IRHexColorCache.countLimit = countLimit
+    }
+    
+    class func hexColor(_ hexString: String) -> IRColor {
         return self.hexColor(hexString: hexString, alpha: 1.0)
     }
     
-    class func hexColor(hexString: String, alpha: CGFloat?) -> IRColor? {
+    /// Creat real color by hex string
+    /// - Parameters:
+    ///   - hexString: Hex string like "FFFFFF". Support RGB and ARGB hex string
+    ///   - alpha: The opacity value of the color object, specified as a value from 0.0 to 1.0.
+    /// - Returns: IRColor. (Return clear color when hex format is error)
+    class func hexColor(hexString: String, alpha: CGFloat) -> IRColor {
         
         var resultHex = hexString
         
@@ -43,14 +51,17 @@ public extension IRColor {
             resultHex.removeFirst(1)
         }
         
-        var resultAlpha: CGFloat = alpha ?? 1.0
+        var resultAlpha: CGFloat = alpha
         if resultHex.count == 8 {
             resultAlpha = CGFloat(self.hexToUInt32("0x\(resultHex.prefix(2))")) / 255.0
             resultHex.removeFirst(2)
         }
         
         if resultHex.count != 6 {
-            return nil
+#if DEBUG
+            assert(false, "Hex: [\(hexString)] format is error!")
+#endif
+            return self.clear
         }
         
         // hex color from cache
@@ -84,10 +95,6 @@ public extension IRColor {
 #endif
         
         return resultColor
-    }
-    
-    class func updateCache(countLimit: Int) {
-        IRHexColorCache.countLimit = countLimit
     }
 }
 
