@@ -23,7 +23,6 @@
 		817A2C02247E6EC9007C5EF7 /* FRTocReference.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = 817A2BE7247E6914007C5EF7 /* FRTocReference.swift */; };
 		817A2C03247E6EC9007C5EF7 /* FRResources.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = 817A2BEC247E6914007C5EF7 /* FRResources.swift */; };
 		817A2C04247E6EC9007C5EF7 /* FRResource.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = 817A2BED247E6914007C5EF7 /* FRResource.swift */; };
-		81F30535251305C100BF08C1 /* IRHexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F30534251305C100BF08C1 /* IRHexColor.swift */; };
 		FBE70650D5F2AE09ED30DD8E /* libPods-IRCommonLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072262DF21BB150A2B7FB129 /* libPods-IRCommonLib.a */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +60,6 @@
 		817A2BEE247E6914007C5EF7 /* FRMediaType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRMediaType.swift; sourceTree = "<group>"; };
 		817A2BEF247E6914007C5EF7 /* FRSmilElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRSmilElement.swift; sourceTree = "<group>"; };
 		817A2BF0247E6914007C5EF7 /* FRMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRMetadata.swift; sourceTree = "<group>"; };
-		81F30534251305C100BF08C1 /* IRHexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRHexColor.swift; sourceTree = "<group>"; };
 		CC337FB72E99D1FB08BB4EAF /* Pods-IRCommonLib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IRCommonLib.release.xcconfig"; path = "Target Support Files/Pods-IRCommonLib/Pods-IRCommonLib.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,7 +116,6 @@
 		814171582461ADBE00694536 /* IRCommonLib */ = {
 			isa = PBXGroup;
 			children = (
-				81D7A748250B7E56004C6B6D /* UIColor */,
 				817A2BE4247E6914007C5EF7 /* FREpubCore */,
 			);
 			path = IRCommonLib;
@@ -141,14 +138,6 @@
 				817A2BF0247E6914007C5EF7 /* FRMetadata.swift */,
 			);
 			path = FREpubCore;
-			sourceTree = "<group>";
-		};
-		81D7A748250B7E56004C6B6D /* UIColor */ = {
-			isa = PBXGroup;
-			children = (
-				81F30534251305C100BF08C1 /* IRHexColor.swift */,
-			);
-			path = UIColor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,7 +236,6 @@
 				817A2BF3247E6914007C5EF7 /* FRTocReference.swift in Sources */,
 				817A2BFA247E6914007C5EF7 /* FRMediaType.swift in Sources */,
 				817A2BF8247E6914007C5EF7 /* FRResources.swift in Sources */,
-				81F30535251305C100BF08C1 /* IRHexColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

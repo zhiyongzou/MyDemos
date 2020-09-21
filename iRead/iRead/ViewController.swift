@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import IRCommonLib
+import IRHexColor
 
 class ViewController: UIViewController {
 

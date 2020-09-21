@@ -12,6 +12,7 @@ end
 
 # common_pods
 def common_pods
+  pod 'IRHexColor', '~> 0.0.1'
   pod 'AEXML', '~> 4.5.0'
   pod 'SSZipArchive', '~> 2.2.2'
 end

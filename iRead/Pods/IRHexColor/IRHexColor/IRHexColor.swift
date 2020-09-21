@@ -16,10 +16,10 @@
 
 public extension IRColor {
     
-    private class func hexToUInt32(_ hexString: String) -> UInt32 {
-        var result: UInt32 = 0
-        guard Scanner(string: hexString).scanHexInt32(&result) else {
-            return 0
+    private class func hexToUInt64(_ hexString: String) -> UInt64 {
+        var result: UInt64 = 0
+        guard Scanner(string: hexString).scanHexInt64(&result) else {
+            return 1
         }
         return result
     }
@@ -53,7 +53,7 @@ public extension IRColor {
         
         var resultAlpha: CGFloat = alpha
         if resultHex.count == 8 {
-            resultAlpha = CGFloat(self.hexToUInt32("0x\(resultHex.prefix(2))")) / 255.0
+            resultAlpha = CGFloat(self.hexToUInt64("0x\(resultHex.prefix(2))")) / 255.0
             resultHex.removeFirst(2)
         }
         
@@ -67,7 +67,7 @@ public extension IRColor {
         // hex color from cache
         if let cacheColor = self.IRHexColorCache.object(forKey: hexString as NSString) {
 #if DEBUG
-            print("Cache Color: " ,cacheColor.withAlphaComponent(resultAlpha))
+            print("[IRHexColor] Cache Color: " ,cacheColor.withAlphaComponent(resultAlpha))
 #endif
             return cacheColor.withAlphaComponent(resultAlpha)
         }
@@ -76,9 +76,9 @@ public extension IRColor {
         let greenBegin = resultHex.index(resultHex.startIndex, offsetBy: 2)
         let greenEnd = resultHex.index(resultHex.startIndex, offsetBy: 3)
         
-        let red = CGFloat(self.hexToUInt32("0x\(resultHex.prefix(2))")) / 255.0
-        let green = CGFloat(self.hexToUInt32("0x\(resultHex[greenBegin...greenEnd])")) / 255.0
-        let blue = CGFloat(self.hexToUInt32("0x\(resultHex.suffix(2))")) / 255.0
+        let red = CGFloat(self.hexToUInt64("0x\(resultHex.prefix(2))")) / 255.0
+        let green = CGFloat(self.hexToUInt64("0x\(resultHex[greenBegin...greenEnd])")) / 255.0
+        let blue = CGFloat(self.hexToUInt64("0x\(resultHex.suffix(2))")) / 255.0
         
         var resultColor: IRColor
         
@@ -91,7 +91,7 @@ public extension IRColor {
         self.IRHexColorCache.setObject(resultColor, forKey: hexString as NSString)
         
 #if DEBUG
-        print("Color: \(resultColor) Hex string: \(resultHex) alpha: \(resultAlpha)")
+        print("[IRHexColor] Color: \(resultColor) Hex string: \(resultHex) alpha: \(resultAlpha)")
 #endif
         
         return resultColor
