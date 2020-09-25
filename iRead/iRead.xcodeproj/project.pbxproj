@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,11 @@
 		816DFBD32404D3A00030E55B /* iReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816DFBD22404D3A00030E55B /* iReadUITests.swift */; };
 		816DFBE52404D8010030E55B /* IRNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816DFBE42404D8010030E55B /* IRNavigationController.swift */; };
 		817A2C262480BBC4007C5EF7 /* libIRCommonLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 817A2C252480BBC4007C5EF7 /* libIRCommonLib.a */; };
+		81B7E1D5251C9D0E00E84A37 /* 支付战争.epub in Resources */ = {isa = PBXBuildFile; fileRef = 81B7E1D4251C9D0E00E84A37 /* 支付战争.epub */; };
+		81B7E1DA251CBF2C00E84A37 /* IRMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7E1D9251CBF2C00E84A37 /* IRMainViewController.swift */; };
+		81B7E1E2251DE0C300E84A37 /* IRHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7E1E1251DE0C300E84A37 /* IRHomeViewController.swift */; };
+		81B7E1E4251DE1CB00E84A37 /* IRMineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7E1E3251DE1CB00E84A37 /* IRMineViewController.swift */; };
+		81B7E1E6251DE32600E84A37 /* IRBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7E1E5251DE32600E84A37 /* IRBookCell.swift */; };
 		DB303FBF06BE075570EFDA68 /* libPods-iRead.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA102CBABD9ED364C525C64 /* libPods-iRead.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +61,11 @@
 		816DFBD42404D3A00030E55B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		816DFBE42404D8010030E55B /* IRNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRNavigationController.swift; sourceTree = "<group>"; };
 		817A2C252480BBC4007C5EF7 /* libIRCommonLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIRCommonLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		81B7E1D4251C9D0E00E84A37 /* 支付战争.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "支付战争.epub"; sourceTree = "<group>"; };
+		81B7E1D9251CBF2C00E84A37 /* IRMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRMainViewController.swift; sourceTree = "<group>"; };
+		81B7E1E1251DE0C300E84A37 /* IRHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRHomeViewController.swift; sourceTree = "<group>"; };
+		81B7E1E3251DE1CB00E84A37 /* IRMineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRMineViewController.swift; sourceTree = "<group>"; };
+		81B7E1E5251DE32600E84A37 /* IRBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRBookCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +170,7 @@
 		816DFBE22404D77D0030E55B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				81B7E1D3251C9D0100E84A37 /* Books */,
 				816DFBB92404D3A00030E55B /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -168,9 +179,45 @@
 		816DFBE32404D7A10030E55B /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				816DFBE42404D8010030E55B /* IRNavigationController.swift */,
+				81B7E1E0251DE0A400E84A37 /* Mine */,
+				81B7E1DF251DE09E00E84A37 /* Home */,
+				81B7E1DE251DE09500E84A37 /* Main */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		81B7E1D3251C9D0100E84A37 /* Books */ = {
+			isa = PBXGroup;
+			children = (
+				81B7E1D4251C9D0E00E84A37 /* 支付战争.epub */,
+			);
+			path = Books;
+			sourceTree = "<group>";
+		};
+		81B7E1DE251DE09500E84A37 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				816DFBE42404D8010030E55B /* IRNavigationController.swift */,
+				81B7E1D9251CBF2C00E84A37 /* IRMainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		81B7E1DF251DE09E00E84A37 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				81B7E1E1251DE0C300E84A37 /* IRHomeViewController.swift */,
+				81B7E1E5251DE32600E84A37 /* IRBookCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		81B7E1E0251DE0A400E84A37 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				81B7E1E3251DE1CB00E84A37 /* IRMineViewController.swift */,
+			);
+			path = Mine;
 			sourceTree = "<group>";
 		};
 		CEADD0ABB21439E30F462373 /* Pods */ = {
@@ -291,6 +338,7 @@
 				816DFBBD2404D3A00030E55B /* LaunchScreen.storyboard in Resources */,
 				816DFBBA2404D3A00030E55B /* Assets.xcassets in Resources */,
 				816DFBB82404D39B0030E55B /* Main.storyboard in Resources */,
+				81B7E1D5251C9D0E00E84A37 /* 支付战争.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,8 +388,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81B7E1E4251DE1CB00E84A37 /* IRMineViewController.swift in Sources */,
+				81B7E1DA251CBF2C00E84A37 /* IRMainViewController.swift in Sources */,
+				81B7E1E2251DE0C300E84A37 /* IRHomeViewController.swift in Sources */,
 				816DFBB52404D39B0030E55B /* ViewController.swift in Sources */,
 				816DFBE52404D8010030E55B /* IRNavigationController.swift in Sources */,
+				81B7E1E6251DE32600E84A37 /* IRBookCell.swift in Sources */,
 				816DFBB12404D39B0030E55B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

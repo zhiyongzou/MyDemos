@@ -1,14 +1,14 @@
 //
-//  IRNavigationController.swift
+//  IRMineViewController.swift
 //  iRead
 //
-//  Created by zzyong on 2020/2/25.
+//  Created by zzyong on 2020/9/25.
 //  Copyright © 2020 zzyong. All rights reserved.
 //
 
-import UIKit
+import IRCommonLib
 
-class IRNavigationController: UINavigationController {
+class IRMineViewController: IRBaseViewcontroller {
 
     override func viewDidLoad() {
         super.viewDidLoad()
