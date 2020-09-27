@@ -12,9 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 #if DEBUG
-    lazy var flexWindow: UIWindow = {
-        return UIWindow()
-    }()
+    lazy var flexWindow: UIWindow = UIWindow()
 #endif
     
     var window: UIWindow?
@@ -31,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupMainViewController() {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
-        let mainVC = IRMainViewController.init()
+        let mainVC = IRMainViewController()
         let rootVC = IRNavigationController.init(rootViewController: mainVC)
         self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()

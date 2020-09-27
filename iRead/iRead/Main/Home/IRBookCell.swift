@@ -7,9 +7,12 @@
 //
 
 import IRCommonLib
+import IRHexColor
 
 /// 书封面比例(width/height)
-let bookCoverScale = 0.67
+let bookCoverScale: CGFloat = 0.72
+/// 底部容器高度
+private let bookCellBottomHeight: CGFloat = 40
 
 class IRBookCell: UICollectionViewCell {
     
@@ -17,6 +20,7 @@ class IRBookCell: UICollectionViewCell {
     var progressLabel: UILabel!
     var optionButton: UIButton!
     
+    // MARK: - Override
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,25 +31,36 @@ class IRBookCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bookCoverView.image = nil
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.bookCoverView.frame = CGRect.init(x: 0, y: 0, width: self.width, height: self.width / 0.67)
+        self.bookCoverView.frame = CGRect.init(x: 0, y: 0, width: self.width, height: self.width / bookCoverScale)
         
         let progressY = self.bookCoverView.frame.maxY
-        
-        self.progressLabel.frame = CGRect.init(x: 0, y: progressY, width: 60, height: 40)
+        self.progressLabel.frame = CGRect.init(x: 0, y: progressY, width: 60, height: bookCellBottomHeight)
     }
     
     // MARK: - Private
     
-    func setupSubviews() {
-        bookCoverView = UIImageView.init()
+    private func setupSubviews() {
+        
+        self.contentView.backgroundColor = UIColor.white
+        
+        bookCoverView = UIImageView()
         bookCoverView.contentMode = .scaleAspectFit
+#if DEBUG
+        bookCoverView.layer.borderWidth = 1
+        bookCoverView.layer.borderColor = UIColor.randomColor().cgColor
+#endif
         self.contentView.addSubview(bookCoverView)
         
-        progressLabel = UILabel.init()
-        progressLabel.text = "10%"
+        progressLabel = UILabel()
+        progressLabel.text = "\(arc4random()%99)%"
         progressLabel.textColor = UIColor.hexColor("666666")
         progressLabel.font = UIFont.systemFont(ofSize: 13)
         progressLabel.textAlignment = .left
@@ -53,4 +68,16 @@ class IRBookCell: UICollectionViewCell {
     }
     
     // MARK: - Public
+    
+    public class func cellHeightWithWidth(_ width: CGFloat) -> CGFloat {
+        return width / bookCoverScale + bookCellBottomHeight
+    }
+    
+    public var bookModel: FRBook? {
+        willSet {
+            if let coverUrl = newValue?.coverImage?.fullHref {
+                bookCoverView.image = UIImage.init(contentsOfFile: coverUrl)
+            }
+        }
+    }
 }

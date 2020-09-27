@@ -67,11 +67,11 @@ class IRMainViewController: UITabBarController, UITabBarControllerDelegate {
         var vc: UIViewController
         switch index {
         case IRTabIndex.home.rawValue:
-            vc = IRHomeViewController.init()
+            vc = IRHomeViewController()
         case IRTabIndex.mine.rawValue:
-            vc = IRMineViewController.init()
+            vc = IRMineViewController()
         default:
-            vc = UIViewController.init()
+            vc = UIViewController()
         }
         return vc
     }

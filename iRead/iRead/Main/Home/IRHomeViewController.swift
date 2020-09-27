@@ -11,10 +11,21 @@ import IRCommonLib
 class IRHomeViewController: IRBaseViewcontroller, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     var collectionView: UICollectionView!
+    let sectionEdgeInsetsLR: CGFloat = 40
+    let minimumInteritemSpacing: CGFloat = 20
+    var bookList = [FRBook]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupCollectionView()
+        
+    #if DEBUG
+        let epubParser: FREpubParser = FREpubParser()
+        guard let bookPath = Bundle.main.path(forResource: "支付战争", ofType: "epub") else { return}
+        guard let book: FRBook = try? epubParser.readEpub(epubPath: bookPath) else { return }
+        bookList.append(book)
+    #endif
     }
     
     override func viewDidLayoutSubviews() {
@@ -24,10 +35,10 @@ class IRHomeViewController: IRBaseViewcontroller, UICollectionViewDelegateFlowLa
     
     // MARK: - Private
     
-    func setupCollectionView() {
-        let flowLayout = UICollectionViewFlowLayout.init()
-        flowLayout.minimumLineSpacing = 10
-        flowLayout.minimumInteritemSpacing = 10
+    private func setupCollectionView() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 20
+        flowLayout.minimumInteritemSpacing = minimumInteritemSpacing
         collectionView = UICollectionView.init(frame: self.view.bounds, collectionViewLayout: flowLayout)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -40,16 +51,21 @@ class IRHomeViewController: IRBaseViewcontroller, UICollectionViewDelegateFlowLa
     // MARK: - UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return bookList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let bookCell = collectionView.dequeueReusableCell(withReuseIdentifier: "IRBookCell", for: indexPath)
-        bookCell.backgroundColor = UIColor.randomColor()
+        let bookCell: IRBookCell = collectionView.dequeueReusableCell(withReuseIdentifier: "IRBookCell", for: indexPath) as! IRBookCell
+        bookCell.bookModel = bookList[indexPath.item]
         return bookCell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: 160, height: 90)
+        let width = (collectionView.width - minimumInteritemSpacing - sectionEdgeInsetsLR * 2) * 0.5
+        return CGSize.init(width: width, height: IRBookCell.cellHeightWithWidth(width))
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 10, left: sectionEdgeInsetsLR, bottom: 10, right: sectionEdgeInsetsLR)
     }
 }
