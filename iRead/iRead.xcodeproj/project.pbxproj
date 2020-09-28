@@ -14,6 +14,10 @@
 		816DFBD32404D3A00030E55B /* iReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816DFBD22404D3A00030E55B /* iReadUITests.swift */; };
 		816DFBE52404D8010030E55B /* IRNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816DFBE42404D8010030E55B /* IRNavigationController.swift */; };
 		817A2C262480BBC4007C5EF7 /* libIRCommonLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 817A2C252480BBC4007C5EF7 /* libIRCommonLib.a */; };
+		818040A12521951400F31442 /* IRReaderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818040A02521951400F31442 /* IRReaderConfig.swift */; };
+		818040A3252195CD00F31442 /* IRReaderCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818040A2252195CD00F31442 /* IRReaderCenterViewController.swift */; };
+		818040A52521967800F31442 /* IRBookChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818040A42521967800F31442 /* IRBookChapter.swift */; };
+		818040A72521969000F31442 /* IRBookPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818040A62521969000F31442 /* IRBookPage.swift */; };
 		81B7E1D5251C9D0E00E84A37 /* 支付战争.epub in Resources */ = {isa = PBXBuildFile; fileRef = 81B7E1D4251C9D0E00E84A37 /* 支付战争.epub */; };
 		81B7E1DA251CBF2C00E84A37 /* IRMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7E1D9251CBF2C00E84A37 /* IRMainViewController.swift */; };
 		81B7E1E2251DE0C300E84A37 /* IRHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7E1E1251DE0C300E84A37 /* IRHomeViewController.swift */; };
@@ -57,6 +61,10 @@
 		816DFBD42404D3A00030E55B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		816DFBE42404D8010030E55B /* IRNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRNavigationController.swift; sourceTree = "<group>"; };
 		817A2C252480BBC4007C5EF7 /* libIRCommonLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIRCommonLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		818040A02521951400F31442 /* IRReaderConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRReaderConfig.swift; sourceTree = "<group>"; };
+		818040A2252195CD00F31442 /* IRReaderCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRReaderCenterViewController.swift; sourceTree = "<group>"; };
+		818040A42521967800F31442 /* IRBookChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRBookChapter.swift; sourceTree = "<group>"; };
+		818040A62521969000F31442 /* IRBookPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRBookPage.swift; sourceTree = "<group>"; };
 		81B7E1D4251C9D0E00E84A37 /* 支付战争.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "支付战争.epub"; sourceTree = "<group>"; };
 		81B7E1D9251CBF2C00E84A37 /* IRMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRMainViewController.swift; sourceTree = "<group>"; };
 		81B7E1E1251DE0C300E84A37 /* IRHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRHomeViewController.swift; sourceTree = "<group>"; };
@@ -125,9 +133,9 @@
 		816DFBAF2404D39B0030E55B /* iRead */ = {
 			isa = PBXGroup;
 			children = (
-				8180406325206A5C00F31442 /* ReadCenter */,
 				816DFBE02404D71C0030E55B /* App */,
 				816DFBE32404D7A10030E55B /* Main */,
+				8180406325206A5C00F31442 /* ReaderCenter */,
 				816DFBE22404D77D0030E55B /* Resources */,
 				816DFBBE2404D3A00030E55B /* Info.plist */,
 			);
@@ -181,11 +189,15 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		8180406325206A5C00F31442 /* ReadCenter */ = {
+		8180406325206A5C00F31442 /* ReaderCenter */ = {
 			isa = PBXGroup;
 			children = (
+				818040A02521951400F31442 /* IRReaderConfig.swift */,
+				818040A2252195CD00F31442 /* IRReaderCenterViewController.swift */,
+				818040A42521967800F31442 /* IRBookChapter.swift */,
+				818040A62521969000F31442 /* IRBookPage.swift */,
 			);
-			path = ReadCenter;
+			path = ReaderCenter;
 			sourceTree = "<group>";
 		};
 		81B7E1D3251C9D0100E84A37 /* Books */ = {
@@ -390,11 +402,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				81B7E1E4251DE1CB00E84A37 /* IRMineViewController.swift in Sources */,
+				818040A52521967800F31442 /* IRBookChapter.swift in Sources */,
+				818040A72521969000F31442 /* IRBookPage.swift in Sources */,
 				81B7E1DA251CBF2C00E84A37 /* IRMainViewController.swift in Sources */,
 				81B7E1E2251DE0C300E84A37 /* IRHomeViewController.swift in Sources */,
 				816DFBE52404D8010030E55B /* IRNavigationController.swift in Sources */,
 				81B7E1E6251DE32600E84A37 /* IRBookCell.swift in Sources */,
+				818040A12521951400F31442 /* IRReaderConfig.swift in Sources */,
 				816DFBB12404D39B0030E55B /* AppDelegate.swift in Sources */,
+				818040A3252195CD00F31442 /* IRReaderCenterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
