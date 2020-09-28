@@ -25,6 +25,11 @@ class IRHomeViewController: IRBaseViewcontroller, UICollectionViewDelegateFlowLa
         guard let bookPath = Bundle.main.path(forResource: "支付战争", ofType: "epub") else { return}
         guard let book: FRBook = try? epubParser.readEpub(epubPath: bookPath) else { return }
         bookList.append(book)
+        
+        let epubParser1: FREpubParser = FREpubParser()
+        guard let bookPath12 = Bundle.main.path(forResource: "细说明朝", ofType: "epub") else { return}
+        guard let book12: FRBook = try? epubParser1.readEpub(epubPath: bookPath12) else { return }
+        bookList.append(book12)
     #endif
     }
     
@@ -67,5 +72,10 @@ class IRHomeViewController: IRBaseViewcontroller, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.init(top: 10, left: sectionEdgeInsetsLR, bottom: 10, right: sectionEdgeInsetsLR)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let book = bookList[indexPath.item]
+        IRBookChapter.init(withTocRefrence: book.tableOfContents.first!)
     }
 }

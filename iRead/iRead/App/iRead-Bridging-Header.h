@@ -7,3 +7,7 @@
 #endif
 
 //MARK: release
+#import "DTAttributedLabel.h"
+#import "DTCoreTextConstants.h"
+#import "DTCoreTextLayouter.h"
+#import "NSAttributedString+HTML.h"

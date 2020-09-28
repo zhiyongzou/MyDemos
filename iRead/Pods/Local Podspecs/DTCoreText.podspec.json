@@ -1,0 +1,29 @@
+{
+  "name": "DTCoreText",
+  "version": "1.0.0",
+  "summary": "A short description of DTCoreText.",
+  "authors": {
+    "zzyong": "zouzhiyong@corp.netease.com"
+  },
+  "homepage": "https://github.com/zhiyongzou",
+  "source": {
+    "git": "https://github.com/zhiyongzou",
+    "tag": "1.0.0"
+  },
+  "source_files": "DTCoreText/*.{h,m}",
+  "dependencies": {
+    "DTFoundation": [
+
+    ]
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "subspecs": [
+    {
+      "name": "NSAttributedString",
+      "source_files": "DTCoreText/NSAttributedString/*.{h,m}"
+    }
+  ]
+}

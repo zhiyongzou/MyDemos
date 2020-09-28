@@ -18,10 +18,27 @@ class IRBookChapter: NSObject {
     var chapterIndex = 1
     
     public convenience init(withTocRefrence refrence: FRTocReference, chapterIndex: Int = 1) {
+        
         self.init()
+        self.title = refrence.title
+        self.chapterIndex = chapterIndex
         
         guard let fullHref = refrence.resource?.fullHref else { return }
-        guard let htmlData = NSData.init(contentsOf: URL.init(fileURLWithPath: fullHref)) else { return }
-        print(htmlData)
+        let baseUrl = URL.init(fileURLWithPath: fullHref)
+        guard let htmlData = try? Data.init(contentsOf: baseUrl) else { return }
+        let options = [NSBaseURLDocumentOption: baseUrl,
+                       NSTextSizeMultiplierDocumentOption: IRReaderConfig.textSize,
+                       DTDefaultLinkColor: "purple",
+                       DTDefaultTextColor: IRReaderConfig.textColor] as [String : Any]
+        // as 用法 https://developer.apple.com/swift/blog/?id=23
+        let htmlString = NSAttributedString.init(htmlData: htmlData, options: options, documentAttributes: nil).mutableCopy() as! NSMutableAttributedString
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        paragraphStyle.paragraphSpacing = 10
+        paragraphStyle.lineHeightMultiple = 2
+        htmlString.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphStyle], range: NSRange.init(location: 0, length: htmlString.length))
+        
+        print(htmlString.string)
     }
 }

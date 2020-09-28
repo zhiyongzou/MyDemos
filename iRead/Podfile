@@ -26,7 +26,8 @@ target 'iRead' do
 
   # debug pods
   debug_pods
-  
+  pod 'DTCoreText', :path => '../iRead/DTCoreText'
+  pod 'DTFoundation', :path => '../iRead/DTFoundation'
 
 end
 

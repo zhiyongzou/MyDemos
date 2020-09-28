@@ -24,12 +24,12 @@
 
 @implementation NSAttributedString (HTML)
 
-- (id)initWithHTMLData:(NSData *)data documentAttributes:(NSDictionary * __autoreleasing*)docAttributes
+- (instancetype)initWithHTMLData:(NSData *)data documentAttributes:(NSDictionary * __autoreleasing*)docAttributes
 {
 	return [self initWithHTMLData:data options:nil documentAttributes:docAttributes];
 }
 
-- (id)initWithHTMLData:(NSData *)data baseURL:(NSURL *)base documentAttributes:(NSDictionary * __autoreleasing*)docAttributes
+- (instancetype)initWithHTMLData:(NSData *)data baseURL:(NSURL *)base documentAttributes:(NSDictionary * __autoreleasing*)docAttributes
 {
 	NSDictionary *optionsDict = nil;
 	
@@ -41,12 +41,12 @@
 	return [self initWithHTMLData:data options:optionsDict documentAttributes:docAttributes];
 }
 
-- (id)initWithHTMLData:(NSData *)data options:(NSDictionary *)options documentAttributes:(NSDictionary * __autoreleasing*)docAttributes
+- (instancetype)initWithHTMLData:(NSData *)data options:(NSDictionary *)options documentAttributes:(NSDictionary * __autoreleasing*)docAttributes
 {
 	// only with valid data
 	if (![data length])
 	{
-		return nil;
+        return [[NSAttributedString alloc] initWithString:@""];
 	}
 	
 	DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:data options:options documentAttributes:docAttributes];
@@ -60,7 +60,7 @@
 	
 	// This needs to be on a separate line so that ARC can handle releasing the object properly
 	// return [stringBuilder generatedAttributedString]; shows leak in instruments
-	id string = [stringBuilder generatedAttributedString];
+	NSAttributedString *string = [stringBuilder generatedAttributedString];
 	
 	return string;
 }

@@ -1,0 +1,1 @@
+../../../../DTFoundation/DTFoundation/DTAnimatedGIF.h

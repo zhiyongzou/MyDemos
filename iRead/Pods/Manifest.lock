@@ -1,11 +1,21 @@
 PODS:
   - AEXML (4.5.0)
+  - DTCoreText (1.0.0):
+    - DTCoreText/NSAttributedString (= 1.0.0)
+    - DTFoundation
+  - DTCoreText/NSAttributedString (1.0.0):
+    - DTFoundation
+  - DTFoundation (1.0.0):
+    - DTFoundation/DTHTMLParser (= 1.0.0)
+  - DTFoundation/DTHTMLParser (1.0.0)
   - FLEX (4.1.1)
   - IRHexColor (0.0.1)
   - SSZipArchive (2.2.3)
 
 DEPENDENCIES:
   - AEXML (~> 4.5.0)
+  - DTCoreText (from `../iRead/DTCoreText`)
+  - DTFoundation (from `../iRead/DTFoundation`)
   - FLEX
   - IRHexColor (~> 0.0.1)
   - SSZipArchive (~> 2.2.2)
@@ -17,12 +27,20 @@ SPEC REPOS:
     - IRHexColor
     - SSZipArchive
 
+EXTERNAL SOURCES:
+  DTCoreText:
+    :path: "../iRead/DTCoreText"
+  DTFoundation:
+    :path: "../iRead/DTFoundation"
+
 SPEC CHECKSUMS:
   AEXML: 0e8f1d874fa033ca6b3909452a8bc362faad46e6
+  DTCoreText: b9dee026999e7745e4e6e7e658de4d3b3e6e5ecd
+  DTFoundation: 2cd4cbe869518fc73b6d6a5d4a8e0daaa7392931
   FLEX: 81096107977a09836eb440173010ceeef01105d6
   IRHexColor: 259fc1291f253f026aec0505112e95623ac57e0e
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
 
-PODFILE CHECKSUM: c8cba618e523bc2be17df0efb0558cfe1b02c9ee
+PODFILE CHECKSUM: 770791b86e5196ee6be9311dbfb35adc8f5c810e
 
 COCOAPODS: 1.9.3

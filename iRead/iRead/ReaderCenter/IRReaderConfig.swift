@@ -11,4 +11,6 @@ import UIKit
 class IRReaderConfig: NSObject {
     /// 文字颜色，默认黑色
     static var textColor = UIColor.black
+    /// 字体大小
+    static var textSize = NSNumber.init(value: 15)
 }
