@@ -75,11 +75,11 @@ typedef void(^DTHTMLAttributedStringBuilderParseErrorCallback)(NSAttributedStrin
 /**
  This block is called before the element is written to the output attributed string
  */
-@property (nonatomic, copy) DTHTMLAttributedStringBuilderWillFlushCallback willFlushCallback;
+@property (nonatomic, strong) DTHTMLAttributedStringBuilderWillFlushCallback willFlushCallback;
 /**
  The block that gets executed whenever html tag parsing error
  */
-@property (nonatomic, copy) DTHTMLAttributedStringBuilderParseErrorCallback parseErrorCallback;
+@property (nonatomic, strong) DTHTMLAttributedStringBuilderParseErrorCallback parseErrorCallback;
 
 /**
  Setting this property to `YES` causes the tree of parse nodes to be preserved until the end of the generation process. This allows to output the HTML structure of the document for debugging.

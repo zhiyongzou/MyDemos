@@ -6,86 +6,77 @@
 //  Copyright (c) 2012 Drobnik.com. All rights reserved.
 //
 
+#if DEBUG_LOG_METRICS
+    #import "NSString+DTFormatNumbers.h"
+#endif
 #import "DTLog.h"
 #import "DTHTMLParser.h"
 #import "NSString+DTURLEncoding.h"
-
 #import "DTHTMLAttributedStringBuilder.h"
-
 #import "DTTextHTMLElement.h"
 #import "DTBreakHTMLElement.h"
 #import "DTStylesheetHTMLElement.h"
 #import "DTCSSStylesheet.h"
 #import "DTCoreTextFontDescriptor.h"
 #import "DTHTMLParserTextNode.h"
-
 #import "DTTextAttachmentHTMLElement.h"
 #import "DTColorFunctions.h"
 #import "DTCoreTextParagraphStyle.h"
 #import "DTObjectTextAttachment.h"
 #import "DTVideoTextAttachment.h"
-
 #import "NSString+HTML.h"
 #import "NSCharacterSet+HTML.h"
 #import "NSMutableAttributedString+HTML.h"
 
-#if DEBUG_LOG_METRICS
-#import "NSString+DTFormatNumbers.h"
-#endif
-
 @interface DTHTMLAttributedStringBuilder ()
 
+@property (nonatomic, strong) NSData *data;
+@property (nonatomic, strong) NSDictionary *options;
+
+// settings for parsing
+@property (nonatomic, assign) CGFloat textScale;
+@property (nonatomic, strong) DTColor *defaultLinkColor;
+@property (nonatomic, strong) DTCSSStylesheet *globalStyleSheet;
+@property (nonatomic, strong) NSURL *baseURL;
+@property (nonatomic, strong) DTCoreTextFontDescriptor *defaultFontDescriptor;
+@property (nonatomic, strong) DTCoreTextParagraphStyle *defaultParagraphStyle;
+
+// root node inherits these defaults
+@property (nonatomic, strong) DTHTMLElement *defaultTag;
+
+// parsing state, accessed from inside blocks
+@property (nonatomic, strong) NSMutableAttributedString *tmpString;
+
+// GCD
+@property (nonatomic, strong) dispatch_queue_t stringAssemblyQueue;
+@property (nonatomic, strong) dispatch_group_t stringAssemblyGroup;
+@property (nonatomic, strong) dispatch_queue_t dataParsingQueue;
+@property (nonatomic, strong) dispatch_group_t dataParsingGroup;
+@property (nonatomic, strong) dispatch_queue_t treeBuildingQueue;
+@property (nonatomic, strong) dispatch_group_t treeBuildingGroup;
+
+// lookup table for blocks that deal with begin and end tags
+@property (nonatomic, strong) NSMutableDictionary *tagStartHandlers;
+@property (nonatomic, strong) NSMutableDictionary *tagEndHandlers;
+
+@property (nonatomic, assign) BOOL shouldProcessCustomHTMLAttributes;
+
+// new parsing
 @property (nonatomic, strong) DTHTMLElement *currentTag;
 @property (nonatomic, strong) DTHTMLElement *rootNode;
 @property (nonatomic, strong) DTHTMLElement *bodyElement;
+@property (nonatomic, strong) DTHTMLParser  *parser;
+// ignores events from parser after first HTML tag was finished
+@property (nonatomic, assign) BOOL ignoreParseEvents;
+// ignores style blocks attached on elements
+@property (nonatomic, assign) BOOL ignoreInlineStyles;
+// don't remove spaces at end of document
+@property (nonatomic, assign) BOOL preserverDocumentTrailingSpaces;
 
 @end
 
 
 @implementation DTHTMLAttributedStringBuilder
-{
-	NSData *_data;
-	NSDictionary *_options;
-	BOOL _shouldKeepDocumentNodeTree;
-	
-	// settings for parsing
-	CGFloat _textScale;
-	DTColor *_defaultLinkColor;
-	DTCSSStylesheet *_globalStyleSheet;
-	NSURL *_baseURL;
-	DTCoreTextFontDescriptor *_defaultFontDescriptor;
-	DTCoreTextParagraphStyle *_defaultParagraphStyle;
-	
-	// root node inherits these defaults
-	DTHTMLElement *_defaultTag;
-	
-	// parsing state, accessed from inside blocks
-	NSMutableAttributedString *_tmpString;
-	
-	// GCD
-	dispatch_queue_t _stringAssemblyQueue;
-	dispatch_group_t _stringAssemblyGroup;
-	dispatch_queue_t _dataParsingQueue;
-	dispatch_group_t _dataParsingGroup;
-	dispatch_queue_t _treeBuildingQueue;
-	dispatch_group_t _treeBuildingGroup;
-	
-	// lookup table for blocks that deal with begin and end tags
-	NSMutableDictionary *_tagStartHandlers;
-	NSMutableDictionary *_tagEndHandlers;
-	
-	DTHTMLAttributedStringBuilderWillFlushCallback _willFlushCallback;
-	DTHTMLAttributedStringBuilderParseErrorCallback _parseErrorCallback;
-
-	BOOL _shouldProcessCustomHTMLAttributes;
-	
-	// new parsing
-	BOOL _ignoreParseEvents; // ignores events from parser after first HTML tag was finished
-	BOOL _ignoreInlineStyles; // ignores style blocks attached on elements
-	BOOL _preserverDocumentTrailingSpaces; // don't remove spaces at end of document
-	
-	DTHTMLParser  *_parser;
-}
 
 - (id)initWithHTML:(NSData *)data options:(NSDictionary *)options documentAttributes:(NSDictionary * __autoreleasing*)docAttributes
 {
@@ -348,7 +339,7 @@
 	
 	DT_WEAK_VARIABLE typeof(self) weakSelf = self;
 	__block BOOL result;
-	dispatch_group_async(_dataParsingGroup, _dataParsingQueue, ^{ result = [weakSelf.self->_parser parse]; });
+	dispatch_group_async(_dataParsingGroup, _dataParsingQueue, ^{ result = [weakSelf.self.parser parse]; });
 	
 	// wait until all string assembly is complete
 	dispatch_group_wait(_dataParsingGroup, DISPATCH_TIME_FOREVER);
@@ -393,9 +384,9 @@
 	
 	void (^blockquoteBlock)(void) = ^
 	{
-		self.currentTag.paragraphStyle.headIndent += (CGFloat)25.0 * self->_textScale;
+		self.currentTag.paragraphStyle.headIndent += (CGFloat)25.0 * self.textScale;
 		self.currentTag.paragraphStyle.firstLineHeadIndent = self.currentTag.paragraphStyle.headIndent;
-		self.currentTag.paragraphStyle.paragraphSpacing = self->_defaultFontDescriptor.pointSize;
+		self.currentTag.paragraphStyle.paragraphSpacing = self.defaultFontDescriptor.pointSize;
 	};
 	
 	[_tagStartHandlers setObject:[blockquoteBlock copy] forKey:@"blockquote"];
@@ -405,7 +396,7 @@
 	{
 		if (self.currentTag.isColorInherited || !self.currentTag.textColor)
 		{
-			self.currentTag.textColor = self->_defaultLinkColor;
+			self.currentTag.textColor = self.defaultLinkColor;
 			self.currentTag.isColorInherited = NO;
 		}
 		
@@ -435,19 +426,19 @@
 		{
 			if ([cleanString length])
 			{
-				link = [NSURL URLWithString:cleanString relativeToURL:self->_baseURL];
+				link = [NSURL URLWithString:cleanString relativeToURL:self.baseURL];
 				
 				if (!link)
 				{
 					// NSURL did not like the link, so let's encode it
 					cleanString = [cleanString stringByAddingHTMLEntities];
 					
-					link = [NSURL URLWithString:cleanString relativeToURL:self->_baseURL];
+					link = [NSURL URLWithString:cleanString relativeToURL:self.baseURL];
 				}
 			}
 			else
 			{
-				link = self->_baseURL;
+				link = self.baseURL;
 			}
 		}
 		
@@ -533,28 +524,28 @@
 			switch (sizeValue)
 			{
 				case 1:
-					pointSize = self->_textScale * 10.0f;
+					pointSize = self.textScale * 10.0f;
 					break;
 				case 2:
-					pointSize = self->_textScale * 13.0f;
+					pointSize = self.textScale * 13.0f;
 					break;
 				case 3:
-					pointSize = self->_textScale * 16.0f;
+					pointSize = self.textScale * 16.0f;
 					break;
 				case 4:
-					pointSize = self->_textScale * 18.0f;
+					pointSize = self.textScale * 18.0f;
 					break;
 				case 5:
-					pointSize = self->_textScale * 24.0f;
+					pointSize = self.textScale * 24.0f;
 					break;
 				case 6:
-					pointSize = self->_textScale * 32.0f;
+					pointSize = self.textScale * 32.0f;
 					break;
 				case 7:
-					pointSize = self->_textScale * 48.0f;
+					pointSize = self.textScale * 48.0f;
 					break;
 				default:
-					pointSize = self->_defaultFontDescriptor.pointSize;
+					pointSize = self.defaultFontDescriptor.pointSize;
 					break;
 			}
 		}
@@ -595,10 +586,10 @@
 	void (^pBlock)(void) = ^
 	{
 		// if have the custom headIndent
-		if (self->_defaultParagraphStyle.firstLineHeadIndent > 0)
+		if (self.defaultParagraphStyle.firstLineHeadIndent > 0)
 		{
 			self.currentTag.paragraphStyle.firstLineHeadIndent = self.currentTag.paragraphStyle.headIndent +
-																		 self->_defaultParagraphStyle.firstLineHeadIndent;
+																		 self.defaultParagraphStyle.firstLineHeadIndent;
 		}
 		else
 		{
@@ -654,7 +645,7 @@
 							NSString *src = [child attributeForKey:@"src"];
 							
 							// content URL
-							videoAttachment.contentURL = [NSURL URLWithString:src relativeToURL:self->_baseURL];
+							videoAttachment.contentURL = [NSURL URLWithString:src relativeToURL:self.baseURL];
 							
 							break;
 						}
@@ -669,7 +660,7 @@
 	void (^styleBlock)(void) = ^
 	{
 		DTCSSStylesheet *localSheet = [(DTStylesheetHTMLElement *)self.currentTag stylesheet];
-		[self->_globalStyleSheet mergeStylesheet:localSheet];
+		[self.globalStyleSheet mergeStylesheet:localSheet];
 	};
 	
 	[_tagEndHandlers setObject:[styleBlock copy] forKey:@"style"];
@@ -682,14 +673,14 @@
 		
 		if ([type isEqualToString:@"text/css"])
 		{
-			NSURL *stylesheetURL = [NSURL URLWithString:href relativeToURL:self->_baseURL];
+			NSURL *stylesheetURL = [NSURL URLWithString:href relativeToURL:self.baseURL];
 			if ([stylesheetURL isFileURL])
 			{
 				NSString *stylesheetContent = [NSString stringWithContentsOfURL:stylesheetURL encoding:NSUTF8StringEncoding error:nil];
 				if (stylesheetContent)
 				{
 					DTCSSStylesheet *localSheet = [[DTCSSStylesheet alloc] initWithStyleBlock:stylesheetContent];
-					[self->_globalStyleSheet mergeStylesheet:localSheet];
+					[self.globalStyleSheet mergeStylesheet:localSheet];
 				}
 			}
 			else
@@ -712,12 +703,12 @@
 	dispatch_group_async(_treeBuildingGroup, _treeBuildingQueue, ^{
 		DTHTMLAttributedStringBuilder *strongSelf = weakSelf;
 
-		if (strongSelf->_ignoreParseEvents)
+		if (strongSelf.ignoreParseEvents)
 		{
 			return;
 		}
 
-		DTHTMLElement *newNode = [DTHTMLElement elementWithName:elementName attributes:attributeDict options:strongSelf->_options];
+		DTHTMLElement *newNode = [DTHTMLElement elementWithName:elementName attributes:attributeDict options:strongSelf.options];
 		DTHTMLElement *previousLastChild = nil;
 		
 		if (strongSelf.currentTag)
@@ -737,9 +728,9 @@
 				strongSelf.bodyElement = newNode;
 			}
 			
-			if (strongSelf->_shouldProcessCustomHTMLAttributes)
+			if (strongSelf.shouldProcessCustomHTMLAttributes)
 			{
-				newNode.shouldProcessCustomHTMLAttributes = strongSelf->_shouldProcessCustomHTMLAttributes;
+				newNode.shouldProcessCustomHTMLAttributes = strongSelf.shouldProcessCustomHTMLAttributes;
 			}
 		}
 		else
@@ -751,14 +742,14 @@
 			{
 				strongSelf.rootNode = newNode;
 				
-				[strongSelf.rootNode inheritAttributesFromElement:strongSelf->_defaultTag];
+				[strongSelf.rootNode inheritAttributesFromElement:strongSelf.defaultTag];
 				[strongSelf.rootNode interpretAttributes];
 			}
 		}
 		
 		// apply style from merged style sheet
 		NSSet *matchedSelectors;
-		NSDictionary *mergedStyles = [strongSelf->_globalStyleSheet mergedStyleDictionaryForElement:newNode matchedSelectors:&matchedSelectors ignoreInlineStyle:strongSelf->_ignoreInlineStyles];
+		NSDictionary *mergedStyles = [strongSelf.globalStyleSheet mergedStyleDictionaryForElement:newNode matchedSelectors:&matchedSelectors ignoreInlineStyle:strongSelf.ignoreInlineStyles];
 		
 		if (mergedStyles)
 		{
@@ -808,7 +799,7 @@
 		strongSelf.currentTag = newNode;
 		
 		// find block to execute for this tag if any
-		void (^tagBlock)(void) = [strongSelf->_tagStartHandlers objectForKey:elementName];
+		void (^tagBlock)(void) = [strongSelf.tagStartHandlers objectForKey:elementName];
 		
 		if (tagBlock)
 		{
@@ -824,7 +815,7 @@
 	dispatch_group_async(_treeBuildingGroup, _treeBuildingQueue, ^{
 		@autoreleasepool {
 			DTHTMLAttributedStringBuilder *strongSelf = weakSelf;
-			if (strongSelf->_ignoreParseEvents)
+			if (strongSelf.ignoreParseEvents)
 			{
 				return;
 			}
@@ -832,7 +823,7 @@
 			// output the element if it is direct descendant of body tag, or close of body in case there are direct text nodes
 			
 			// find block to execute for this tag if any
-			void (^tagBlock)(void) = [strongSelf->_tagEndHandlers objectForKey:elementName];
+			void (^tagBlock)(void) = [strongSelf.tagEndHandlers objectForKey:elementName];
 			
 			if (tagBlock)
 			{
@@ -845,14 +836,14 @@
 				{
 					DTHTMLElement *theTag = strongSelf.currentTag;
 					
-					dispatch_group_async(strongSelf->_stringAssemblyGroup, strongSelf->_stringAssemblyQueue, ^{
+					dispatch_group_async(strongSelf.stringAssemblyGroup, strongSelf.stringAssemblyQueue, ^{
 						// has children that have not been output yet
 						if ([theTag needsOutput])
 						{
 							// caller gets opportunity to modify tag before it is written
-							if (strongSelf->_willFlushCallback)
+							if (strongSelf.willFlushCallback)
 							{
-								strongSelf->_willFlushCallback(theTag);
+								strongSelf.willFlushCallback(theTag);
 							}
 							
 							NSAttributedString *nodeString = [theTag attributedString];
@@ -862,22 +853,22 @@
 								// if this is a block element then we need a paragraph break before it
 								if (theTag.displayStyle != DTHTMLElementDisplayStyleInline)
 								{
-									if ([strongSelf->_tmpString length] && ![[strongSelf->_tmpString string] hasSuffix:@"\n"])
+									if ([strongSelf.tmpString length] && ![[strongSelf.tmpString string] hasSuffix:@"\n"])
 									{
 										// trim off whitespace
-										while ([[strongSelf->_tmpString string] hasSuffixCharacterFromSet:[NSCharacterSet ignorableWhitespaceCharacterSet]])
+										while ([[strongSelf.tmpString string] hasSuffixCharacterFromSet:[NSCharacterSet ignorableWhitespaceCharacterSet]])
 										{
-											[strongSelf->_tmpString deleteCharactersInRange:NSMakeRange([strongSelf->_tmpString length]-1, 1)];
+											[strongSelf.tmpString deleteCharactersInRange:NSMakeRange([strongSelf.tmpString length]-1, 1)];
 										}
 										
-										[strongSelf->_tmpString appendString:@"\n"];
+										[strongSelf.tmpString appendString:@"\n"];
 									}
 								}
 								
-								[strongSelf->_tmpString appendAttributedString:nodeString];
+								[strongSelf.tmpString appendAttributedString:nodeString];
 								theTag.didOutput = YES;
 								
-								if (!strongSelf->_shouldKeepDocumentNodeTree)
+								if (!strongSelf.shouldKeepDocumentNodeTree)
 								{
 									// we don't need the children any more
 									[theTag removeAllChildNodes];
@@ -899,7 +890,7 @@
 			// closing the root node, ignore everything afterwards
 			if (strongSelf.currentTag == strongSelf.rootNode)
 			{
-				strongSelf->_ignoreParseEvents = YES;
+				strongSelf.ignoreParseEvents = YES;
 			}
 			
 			// go back up a level
@@ -914,7 +905,7 @@
 	DT_WEAK_VARIABLE typeof(self) weakSelf = self;
 	dispatch_group_async(_treeBuildingGroup, _treeBuildingQueue, ^{
 		DTHTMLAttributedStringBuilder *strongSelf = weakSelf;
-		if (strongSelf->_ignoreParseEvents)
+		if (strongSelf.ignoreParseEvents)
 		{
 			return;
 		}
@@ -959,13 +950,13 @@
 		// text directly contained in body needs to be output right away
 		if (theTag == strongSelf.bodyElement)
 		{
-			dispatch_group_async(strongSelf->_stringAssemblyGroup, strongSelf->_stringAssemblyQueue, ^{
-				[strongSelf->_tmpString appendAttributedString:[textNode attributedString]];
+			dispatch_group_async(strongSelf.stringAssemblyGroup, strongSelf.stringAssemblyQueue, ^{
+				[strongSelf.tmpString appendAttributedString:[textNode attributedString]];
 				theTag.didOutput = YES;
 			});
 			
 			// only add it to current tag if we need it
-			if (strongSelf->_shouldKeepDocumentNodeTree)
+			if (strongSelf.shouldKeepDocumentNodeTree)
 			{
 				[theTag addChildNode:textNode];
 			}
@@ -982,7 +973,7 @@
 	dispatch_group_async(_treeBuildingGroup, _treeBuildingQueue, ^{
 		DTHTMLAttributedStringBuilder *strongSelf = weakSelf;
 		
-		if (strongSelf->_ignoreParseEvents)
+		if (strongSelf.ignoreParseEvents)
 		{
 			return;
 		}
@@ -1006,12 +997,12 @@
 		
 		NSAssert(!strongSelf.currentTag, @"Something went wrong, at end of document there is still an open node");
 
-		if (!strongSelf->_preserverDocumentTrailingSpaces) {
-			dispatch_group_async(strongSelf->_stringAssemblyGroup, strongSelf->_stringAssemblyQueue, ^{
+		if (!strongSelf.preserverDocumentTrailingSpaces) {
+			dispatch_group_async(strongSelf.stringAssemblyGroup, strongSelf.stringAssemblyQueue, ^{
 				// trim off white space at end
-				while ([[strongSelf->_tmpString string] hasSuffixCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]])
+				while ([[strongSelf.tmpString string] hasSuffixCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]])
 				{
-					[strongSelf->_tmpString deleteCharactersInRange:NSMakeRange([strongSelf->_tmpString length]-1, 1)];
+					[strongSelf.tmpString deleteCharactersInRange:NSMakeRange([strongSelf.tmpString length]-1, 1)];
 				}
 			});
 		}
@@ -1030,10 +1021,5 @@
 {
 	[_parser abortParsing];
 }
-#pragma mark Properties
-
-@synthesize willFlushCallback = _willFlushCallback;
-@synthesize shouldKeepDocumentNodeTree = _shouldKeepDocumentNodeTree;
-@synthesize parseErrorCallback = _parseErrorCallback;
 
 @end
