@@ -16,6 +16,9 @@ class IRBookChapter: NSObject {
     var title: String?
     /// 章节索引
     var chapterIndex = 1
+    /// 内容
+    var content: NSAttributedString?
+    
     
     public convenience init(withTocRefrence refrence: FRTocReference, chapterIndex: Int = 1) {
         
@@ -26,19 +29,20 @@ class IRBookChapter: NSObject {
         guard let fullHref = refrence.resource?.fullHref else { return }
         let baseUrl = URL.init(fileURLWithPath: fullHref)
         guard let htmlData = try? Data.init(contentsOf: baseUrl) else { return }
-        let options = [NSBaseURLDocumentOption: baseUrl,
-                       NSTextSizeMultiplierDocumentOption: IRReaderConfig.textSize,
+        let options: [String : Any] = [NSBaseURLDocumentOption: baseUrl,
+                       NSTextSizeMultiplierDocumentOption: IRReaderConfig.textSizeMultiplier,
                        DTDefaultLinkColor: "purple",
-                       DTDefaultTextColor: IRReaderConfig.textColor] as [String : Any]
+                       DTDefaultTextColor: IRReaderConfig.textColor,
+                       DTDefaultFontSize: IRReaderConfig.textSize]
         // as 用法 https://developer.apple.com/swift/blog/?id=23
         let htmlString = NSAttributedString.init(htmlData: htmlData, options: options, documentAttributes: nil).mutableCopy() as! NSMutableAttributedString
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-        paragraphStyle.paragraphSpacing = 10
-        paragraphStyle.lineHeightMultiple = 2
+        paragraphStyle.lineSpacing = IRReaderConfig.lineSpacing
+        paragraphStyle.paragraphSpacing = IRReaderConfig.paragraphSpacing
+        paragraphStyle.lineHeightMultiple = IRReaderConfig.lineHeightMultiple
         htmlString.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphStyle], range: NSRange.init(location: 0, length: htmlString.length))
         
-        print(htmlString.string)
+        content = htmlString
     }
 }

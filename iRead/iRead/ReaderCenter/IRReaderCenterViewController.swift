@@ -10,21 +10,44 @@ import IRCommonLib
 
 class IRReaderCenterViewController: IRBaseViewcontroller {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    var shouldHideStatusBar = true
+    var book: FRBook!
+    private var pageLabel: DTAttributedLabel!
+    
+    //MARK: - Init
+    
+    convenience init(withBook book:FRBook) {
+        self.init()
+        self.book = book
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - Override
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        pageLabel = DTAttributedLabel()
+        self.view.addSubview(pageLabel)
+        
+        if let firstCahpter = book.tableOfContents.first {
+            let chapter = IRBookChapter.init(withTocRefrence: firstCahpter)
+            pageLabel.attributedString = chapter.content
+        }
     }
-    */
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
 
+    override var prefersStatusBarHidden: Bool {
+        return shouldHideStatusBar
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        pageLabel.frame = self.view.bounds
+    }
+    
+    //MARK: - Private
 }

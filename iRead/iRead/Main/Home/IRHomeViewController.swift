@@ -76,6 +76,7 @@ class IRHomeViewController: IRBaseViewcontroller, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let book = bookList[indexPath.item]
-        IRBookChapter.init(withTocRefrence: book.tableOfContents.first!)
+        let readerCenter = IRReaderCenterViewController.init(withBook: book)
+        self.navigationController?.pushViewController(readerCenter, animated: true)
     }
 }

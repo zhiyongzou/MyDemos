@@ -35,8 +35,9 @@
 
 @interface DTHTMLAttributedStringBuilder ()
 
-- (void)_registerTagStartHandlers;
-- (void)_registerTagEndHandlers;
+@property (nonatomic, strong) DTHTMLElement *currentTag;
+@property (nonatomic, strong) DTHTMLElement *rootNode;
+@property (nonatomic, strong) DTHTMLElement *bodyElement;
 
 @end
 
@@ -79,9 +80,6 @@
 	BOOL _shouldProcessCustomHTMLAttributes;
 	
 	// new parsing
-	DTHTMLElement *_rootNode;
-	DTHTMLElement *_bodyElement;
-	DTHTMLElement *_currentTag;
 	BOOL _ignoreParseEvents; // ignores events from parser after first HTML tag was finished
 	BOOL _ignoreInlineStyles; // ignores style blocks attached on elements
 	BOOL _preserverDocumentTrailingSpaces; // don't remove spaces at end of document
@@ -148,8 +146,8 @@
 	}
 	
 	// register default handlers
-	[self _registerTagStartHandlers];
-	[self _registerTagEndHandlers];
+	[self registerTagStartHandlers];
+	[self registerTagEndHandlers];
 	
 #if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
 	
@@ -384,7 +382,7 @@
 
 #pragma mark GCD
 
-- (void)_registerTagStartHandlers
+- (void)registerTagStartHandlers
 {
 	if (_tagStartHandlers)
 	{
@@ -395,9 +393,9 @@
 	
 	void (^blockquoteBlock)(void) = ^
 	{
-		self->_currentTag.paragraphStyle.headIndent += (CGFloat)25.0 * self->_textScale;
-		self->_currentTag.paragraphStyle.firstLineHeadIndent = self->_currentTag.paragraphStyle.headIndent;
-		self->_currentTag.paragraphStyle.paragraphSpacing = self->_defaultFontDescriptor.pointSize;
+		self.currentTag.paragraphStyle.headIndent += (CGFloat)25.0 * self->_textScale;
+		self.currentTag.paragraphStyle.firstLineHeadIndent = self.currentTag.paragraphStyle.headIndent;
+		self.currentTag.paragraphStyle.paragraphSpacing = self->_defaultFontDescriptor.pointSize;
 	};
 	
 	[_tagStartHandlers setObject:[blockquoteBlock copy] forKey:@"blockquote"];
@@ -405,17 +403,17 @@
 	
 	void (^aBlock)(void) = ^
 	{
-		if (self->_currentTag.isColorInherited || !self->_currentTag.textColor)
+		if (self.currentTag.isColorInherited || !self.currentTag.textColor)
 		{
-			self->_currentTag.textColor = self->_defaultLinkColor;
-			self->_currentTag.isColorInherited = NO;
+			self.currentTag.textColor = self->_defaultLinkColor;
+			self.currentTag.isColorInherited = NO;
 		}
 		
 		// the name attribute of A becomes an anchor
-		self->_currentTag.anchorName = [self->_currentTag attributeForKey:@"name"];
+		self.currentTag.anchorName = [self.currentTag attributeForKey:@"name"];
 
 		// remove line breaks and whitespace in links
-		NSString *cleanString = [[self->_currentTag attributeForKey:@"href"] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+		NSString *cleanString = [[self.currentTag attributeForKey:@"href"] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 		cleanString = [cleanString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 		
 		if (![cleanString length])
@@ -453,20 +451,20 @@
 			}
 		}
 		
-		self->_currentTag.link = link;
+		self.currentTag.link = link;
 	};
 	
 	[_tagStartHandlers setObject:[aBlock copy] forKey:@"a"];
 	
 	void (^listBlock)(void) = ^
 	{
-		self->_currentTag.paragraphStyle.firstLineHeadIndent = self->_currentTag.paragraphStyle.headIndent;
+		self.currentTag.paragraphStyle.firstLineHeadIndent = self.currentTag.paragraphStyle.headIndent;
 		
 		// create the appropriate list style from CSS
-		DTCSSListStyle *newListStyle = [self->_currentTag listStyle];
+		DTCSSListStyle *newListStyle = [self.currentTag listStyle];
 		
 		// append this list style to the current paragraph style text lists
-		NSMutableArray *textLists = [self->_currentTag.paragraphStyle.textLists mutableCopy];
+		NSMutableArray *textLists = [self.currentTag.paragraphStyle.textLists mutableCopy];
 		
 		if (!textLists)
 		{
@@ -475,7 +473,7 @@
 		
 		[textLists addObject:newListStyle];
 		
-		self->_currentTag.paragraphStyle.textLists = textLists;
+		self.currentTag.paragraphStyle.textLists = textLists;
 	};
 	
 	[_tagStartHandlers setObject:[listBlock copy] forKey:@"ul"];
@@ -483,41 +481,41 @@
 	
 	void (^h1Block)(void) = ^
 	{
-		self->_currentTag.headerLevel = 1;
+		self.currentTag.headerLevel = 1;
 	};
 	[_tagStartHandlers setObject:[h1Block copy] forKey:@"h1"];
 	
 	void (^h2Block)(void) = ^
 	{
-		self->_currentTag.headerLevel = 2;
+		self.currentTag.headerLevel = 2;
 	};
 	[_tagStartHandlers setObject:[h2Block copy] forKey:@"h2"];
 	
 	
 	void (^h3Block)(void) = ^
 	{
-		self->_currentTag.headerLevel = 3;
+		self.currentTag.headerLevel = 3;
 	};
 	[_tagStartHandlers setObject:[h3Block copy] forKey:@"h3"];
 	
 	
 	void (^h4Block)(void) = ^
 	{
-		self->_currentTag.headerLevel = 4;
+		self.currentTag.headerLevel = 4;
 	};
 	[_tagStartHandlers setObject:[h4Block copy] forKey:@"h4"];
 	
 	
 	void (^h5Block)(void) = ^
 	{
-		self->_currentTag.headerLevel = 5;
+		self.currentTag.headerLevel = 5;
 	};
 	[_tagStartHandlers setObject:[h5Block copy] forKey:@"h5"];
 	
 	
 	void (^h6Block)(void) = ^
 	{
-		self->_currentTag.headerLevel = 6;
+		self.currentTag.headerLevel = 6;
 	};
 	[_tagStartHandlers setObject:[h6Block copy] forKey:@"h6"];
 	
@@ -526,7 +524,7 @@
 	{
 		CGFloat pointSize;
 		
-		NSString *sizeAttribute = [self->_currentTag attributeForKey:@"size"];
+		NSString *sizeAttribute = [self.currentTag attributeForKey:@"size"];
 		
 		if (sizeAttribute)
 		{
@@ -563,31 +561,31 @@
 		else
 		{
 			// size is inherited
-			pointSize = self->_currentTag.fontDescriptor.pointSize;
+			pointSize = self.currentTag.fontDescriptor.pointSize;
 		}
 		
-		NSString *face = [self->_currentTag attributeForKey:@"face"];
+		NSString *face = [self.currentTag attributeForKey:@"face"];
 		
 		if (face)
 		{
 			// create a temp font with this face
 			CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)face, pointSize, NULL);
 			
-			self->_currentTag.fontDescriptor = [DTCoreTextFontDescriptor fontDescriptorForCTFont:font];
+			self.currentTag.fontDescriptor = [DTCoreTextFontDescriptor fontDescriptorForCTFont:font];
 			
 			CFRelease(font);
 		}
 		else
 		{
 			// modify inherited descriptor
-			self->_currentTag.fontDescriptor.pointSize = pointSize;
+			self.currentTag.fontDescriptor.pointSize = pointSize;
 		}
 		
-		NSString *color = [self->_currentTag attributeForKey:@"color"];
+		NSString *color = [self.currentTag attributeForKey:@"color"];
 		
 		if (color)
 		{
-			self->_currentTag.textColor = DTColorCreateWithHTMLName(color);
+			self.currentTag.textColor = DTColorCreateWithHTMLName(color);
 		}
 	};
 	
@@ -599,19 +597,19 @@
 		// if have the custom headIndent
 		if (self->_defaultParagraphStyle.firstLineHeadIndent > 0)
 		{
-			self->_currentTag.paragraphStyle.firstLineHeadIndent = self->_currentTag.paragraphStyle.headIndent +
+			self.currentTag.paragraphStyle.firstLineHeadIndent = self.currentTag.paragraphStyle.headIndent +
 																		 self->_defaultParagraphStyle.firstLineHeadIndent;
 		}
 		else
 		{
-			self->_currentTag.paragraphStyle.firstLineHeadIndent = self->_currentTag.paragraphStyle.headIndent + self->_currentTag.pTextIndent;
+			self.currentTag.paragraphStyle.firstLineHeadIndent = self.currentTag.paragraphStyle.headIndent + self.currentTag.pTextIndent;
 		}
 	};
 	
 	[_tagStartHandlers setObject:[pBlock copy] forKey:@"p"];
 }
 
-- (void)_registerTagEndHandlers
+- (void)registerTagEndHandlers
 {
 	if (_tagEndHandlers)
 	{
@@ -622,14 +620,14 @@
 		
 	void (^objectBlock)(void) = ^
 	{
-		if ([self->_currentTag isKindOfClass:[DTTextAttachmentHTMLElement class]])
+		if ([self.currentTag isKindOfClass:[DTTextAttachmentHTMLElement class]])
 		{
-			if ([self->_currentTag.textAttachment isKindOfClass:[DTObjectTextAttachment class]])
+			if ([self.currentTag.textAttachment isKindOfClass:[DTObjectTextAttachment class]])
 			{
-				DTObjectTextAttachment *objectAttachment = (DTObjectTextAttachment *)self->_currentTag.textAttachment;
+				DTObjectTextAttachment *objectAttachment = (DTObjectTextAttachment *)self.currentTag.textAttachment;
 				
 				// transfer the child nodes to the attachment
-				objectAttachment.childNodes = [self->_currentTag.childNodes copy];
+				objectAttachment.childNodes = [self.currentTag.childNodes copy];
 			}
 		}
 	};
@@ -638,9 +636,9 @@
 
 	void (^videoBlock)(void) = ^
 	{
-		if ([self->_currentTag isKindOfClass:[DTTextAttachmentHTMLElement class]])
+		if ([self.currentTag isKindOfClass:[DTTextAttachmentHTMLElement class]])
 		{
-			DTTextAttachmentHTMLElement *attachmentElement = (DTTextAttachmentHTMLElement *)self->_currentTag;
+			DTTextAttachmentHTMLElement *attachmentElement = (DTTextAttachmentHTMLElement *)self.currentTag;
 			
 			if ([attachmentElement.textAttachment isKindOfClass:[DTVideoTextAttachment class]])
 			{
@@ -670,7 +668,7 @@
 	
 	void (^styleBlock)(void) = ^
 	{
-		DTCSSStylesheet *localSheet = [(DTStylesheetHTMLElement *)self->_currentTag stylesheet];
+		DTCSSStylesheet *localSheet = [(DTStylesheetHTMLElement *)self.currentTag stylesheet];
 		[self->_globalStyleSheet mergeStylesheet:localSheet];
 	};
 	
@@ -679,8 +677,8 @@
 	
 	void (^linkBlock)(void) = ^
 	{
-		NSString *href = [self->_currentTag attributeForKey:@"href"];
-		NSString *type = [[self->_currentTag attributeForKey:@"type"] lowercaseString];
+		NSString *href = [self.currentTag attributeForKey:@"href"];
+		NSString *type = [[self.currentTag attributeForKey:@"type"] lowercaseString];
 		
 		if ([type isEqualToString:@"text/css"])
 		{
@@ -708,6 +706,8 @@
 
 - (void)parser:(DTHTMLParser *)parser didStartElement:(NSString *)elementName attributes:(NSDictionary *)attributeDict
 {
+    DTLogDebug(@"%@, %@", elementName, attributeDict);
+    
 	DT_WEAK_VARIABLE typeof(self) weakSelf = self;
 	dispatch_group_async(_treeBuildingGroup, _treeBuildingQueue, ^{
 		DTHTMLAttributedStringBuilder *strongSelf = weakSelf;
@@ -720,21 +720,21 @@
 		DTHTMLElement *newNode = [DTHTMLElement elementWithName:elementName attributes:attributeDict options:strongSelf->_options];
 		DTHTMLElement *previousLastChild = nil;
 		
-		if (strongSelf->_currentTag)
+		if (strongSelf.currentTag)
 		{
 			// inherit stuff
-			[newNode inheritAttributesFromElement:strongSelf->_currentTag];
+			[newNode inheritAttributesFromElement:strongSelf.currentTag];
 			[newNode interpretAttributes];
 			
-			previousLastChild = [strongSelf->_currentTag.childNodes lastObject];
+			previousLastChild = [strongSelf.currentTag.childNodes lastObject];
 			
 			// add as new child of current node
-			[strongSelf->_currentTag addChildNode:newNode];
+			[strongSelf.currentTag addChildNode:newNode];
 			
 			// remember body node
-			if (!strongSelf->_bodyElement && [newNode.name isEqualToString:@"body"])
+			if (!strongSelf.bodyElement && [newNode.name isEqualToString:@"body"])
 			{
-				strongSelf->_bodyElement = newNode;
+				strongSelf.bodyElement = newNode;
 			}
 			
 			if (strongSelf->_shouldProcessCustomHTMLAttributes)
@@ -744,15 +744,15 @@
 		}
 		else
 		{
-			NSAssert(!strongSelf->_rootNode, @"Something went wrong, second root node found in document and not ignored.");
+			NSAssert(!strongSelf.rootNode, @"Something went wrong, second root node found in document and not ignored.");
 			
 			// might be first node ever
-			if (!strongSelf->_rootNode)
+			if (!strongSelf.rootNode)
 			{
-				strongSelf->_rootNode = newNode;
+				strongSelf.rootNode = newNode;
 				
-				[strongSelf->_rootNode inheritAttributesFromElement:strongSelf->_defaultTag];
-				[strongSelf->_rootNode interpretAttributes];
+				[strongSelf.rootNode inheritAttributesFromElement:strongSelf->_defaultTag];
+				[strongSelf.rootNode interpretAttributes];
 			}
 		}
 		
@@ -800,12 +800,12 @@
 				
 				if ([[textElement text] isIgnorableWhitespace])
 				{
-					[strongSelf->_currentTag removeChildNode:textElement];
+					[strongSelf.currentTag removeChildNode:textElement];
 				}
 			}
 		}
 		
-		strongSelf->_currentTag = newNode;
+		strongSelf.currentTag = newNode;
 		
 		// find block to execute for this tag if any
 		void (^tagBlock)(void) = [strongSelf->_tagStartHandlers objectForKey:elementName];
@@ -819,7 +819,7 @@
 
 - (void)parser:(DTHTMLParser *)parser didEndElement:(NSString *)elementName
 {
-
+    DTLogDebug(@"%@", elementName);
 	DT_WEAK_VARIABLE typeof(self) weakSelf = self;
 	dispatch_group_async(_treeBuildingGroup, _treeBuildingQueue, ^{
 		@autoreleasepool {
@@ -839,11 +839,11 @@
 				tagBlock();
 			}
 			
-			if (strongSelf->_currentTag.displayStyle != DTHTMLElementDisplayStyleNone)
+			if (strongSelf.currentTag.displayStyle != DTHTMLElementDisplayStyleNone)
 			{
-				if (strongSelf->_currentTag == strongSelf->_bodyElement || strongSelf->_currentTag.parentElement == strongSelf->_bodyElement)
+				if (strongSelf.currentTag == strongSelf.bodyElement || strongSelf.currentTag.parentElement == strongSelf.bodyElement)
 				{
-					DTHTMLElement *theTag = strongSelf->_currentTag;
+					DTHTMLElement *theTag = strongSelf.currentTag;
 					
 					dispatch_group_async(strongSelf->_stringAssemblyGroup, strongSelf->_stringAssemblyQueue, ^{
 						// has children that have not been output yet
@@ -890,26 +890,27 @@
 				
 			}
 			
-			while (![strongSelf->_currentTag.name isEqualToString:elementName])
+			while (![strongSelf.currentTag.name isEqualToString:elementName])
 			{
 				// missing end of element, attempt to recover
-				strongSelf->_currentTag = [strongSelf->_currentTag parentElement];
+				strongSelf.currentTag = [strongSelf.currentTag parentElement];
 			}
 			
 			// closing the root node, ignore everything afterwards
-			if (strongSelf->_currentTag == strongSelf->_rootNode)
+			if (strongSelf.currentTag == strongSelf.rootNode)
 			{
 				strongSelf->_ignoreParseEvents = YES;
 			}
 			
 			// go back up a level
-			strongSelf->_currentTag = [strongSelf->_currentTag parentElement];
+			strongSelf.currentTag = [strongSelf.currentTag parentElement];
 		}
 	});
 }
 
 - (void)parser:(DTHTMLParser *)parser foundCharacters:(NSString *)string
 {
+    DTLogDebug(@"%@", string);
 	DT_WEAK_VARIABLE typeof(self) weakSelf = self;
 	dispatch_group_async(_treeBuildingGroup, _treeBuildingQueue, ^{
 		DTHTMLAttributedStringBuilder *strongSelf = weakSelf;
@@ -918,18 +919,18 @@
 			return;
 		}
 		
-		NSAssert(strongSelf->_currentTag, @"Cannot add text node without a current node");
+		NSAssert(strongSelf.currentTag, @"Cannot add text node without a current node");
 		
-		if (!strongSelf->_currentTag.preserveNewlines && [string isIgnorableWhitespace])
+		if (!strongSelf.currentTag.preserveNewlines && [string isIgnorableWhitespace])
 		{
 			// ignore whitespace as first element of block element
-			if (strongSelf->_currentTag.displayStyle!=DTHTMLElementDisplayStyleInline && ![strongSelf->_currentTag.childNodes count])
+			if (strongSelf.currentTag.displayStyle!=DTHTMLElementDisplayStyleInline && ![strongSelf.currentTag.childNodes count])
 			{
 				return;
 			}
 			
 			// ignore whitespace following a block element
-			DTHTMLElement *previousTag = [strongSelf->_currentTag.childNodes lastObject];
+			DTHTMLElement *previousTag = [strongSelf.currentTag.childNodes lastObject];
 			
 			if (previousTag.displayStyle != DTHTMLElementDisplayStyleInline)
 			{
@@ -947,16 +948,16 @@
 		DTTextHTMLElement *textNode = [[DTTextHTMLElement alloc] init];
 		textNode.text = string;
 		
-		[textNode inheritAttributesFromElement:strongSelf->_currentTag];
+		[textNode inheritAttributesFromElement:strongSelf.currentTag];
 		[textNode interpretAttributes];
 		
 		// save it for later output
-		[strongSelf->_currentTag addChildNode:textNode];
+		[strongSelf.currentTag addChildNode:textNode];
 		
-		DTHTMLElement *theTag = strongSelf->_currentTag;
+		DTHTMLElement *theTag = strongSelf.currentTag;
 		
 		// text directly contained in body needs to be output right away
-		if (theTag == strongSelf->_bodyElement)
+		if (theTag == strongSelf.bodyElement)
 		{
 			dispatch_group_async(strongSelf->_stringAssemblyGroup, strongSelf->_stringAssemblyQueue, ^{
 				[strongSelf->_tmpString appendAttributedString:[textNode attributedString]];
@@ -986,14 +987,14 @@
 			return;
 		}
 		
-		NSAssert(strongSelf->_currentTag, @"Cannot add text node without a current node");
+		NSAssert(strongSelf.currentTag, @"Cannot add text node without a current node");
 		
 		NSString *styleBlock = [[NSString alloc] initWithData:CDATABlock encoding:NSUTF8StringEncoding];
 		
 		// adds a text node to the current node
 		DTHTMLParserTextNode *textNode = [[DTHTMLParserTextNode alloc] initWithCharacters:styleBlock];
 		
-		[strongSelf->_currentTag addChildNode:textNode];
+		[strongSelf.currentTag addChildNode:textNode];
 	});
 }
 
@@ -1003,7 +1004,7 @@
 	dispatch_group_async(_treeBuildingGroup, _treeBuildingQueue, ^{
 		DTHTMLAttributedStringBuilder *strongSelf = weakSelf;
 		
-		NSAssert(!strongSelf->_currentTag, @"Something went wrong, at end of document there is still an open node");
+		NSAssert(!strongSelf.currentTag, @"Something went wrong, at end of document there is still an open node");
 
 		if (!strongSelf->_preserverDocumentTrailingSpaces) {
 			dispatch_group_async(strongSelf->_stringAssemblyGroup, strongSelf->_stringAssemblyQueue, ^{
