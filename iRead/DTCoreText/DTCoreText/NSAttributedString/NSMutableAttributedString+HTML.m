@@ -66,18 +66,8 @@
 		
 		if (paragraphStyle)
 		{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-			if (___useiOS6Attributes)
-			{
-				NSParagraphStyle *style = [paragraphStyle NSParagraphStyle];
-				[attributes setObject:style forKey:NSParagraphStyleAttributeName];
-			}
-			else
-#endif
-			{
-				CTParagraphStyleRef newParagraphStyle = [paragraphStyle createCTParagraphStyle];
-				[attributes setObject:CFBridgingRelease(newParagraphStyle) forKey:(id)kCTParagraphStyleAttributeName];
-			}
+            NSParagraphStyle *style = [paragraphStyle NSParagraphStyle];
+            [attributes setObject:style forKey:NSParagraphStyleAttributeName];
 		}
 		
 		if (fontDescriptor)
@@ -86,20 +76,11 @@
 			
 			if (newFont)
 			{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES && TARGET_OS_IPHONE
-				if (___useiOS6Attributes)
-				{
-					// convert to UIFont
-					UIFont *uiFont = [UIFont fontWithCTFont:newFont];
-					[attributes setObject:uiFont forKey:NSFontAttributeName];
-					
-					CFRelease(newFont);
-				}
-				else
-#endif
-				{
-					[attributes setObject:CFBridgingRelease(newFont) forKey:(id)kCTFontAttributeName];
-				}
+                // convert to UIFont
+                UIFont *uiFont = [UIFont fontWithCTFont:newFont];
+                [attributes setObject:uiFont forKey:NSFontAttributeName];
+                
+                CFRelease(newFont);
 			}
 		}
 		
@@ -126,42 +107,20 @@
 	NSMutableDictionary *appendAttributes = [NSMutableDictionary dictionary];
 
 	
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-	if (___useiOS6Attributes)
-	{
-		id font = [attributes objectForKey:NSFontAttributeName];
-		
-		if (font)
-		{
-			[appendAttributes setObject:font forKey:NSFontAttributeName];
-		}
-		
-		id paragraphStyle = [attributes objectForKey:NSParagraphStyleAttributeName];
-		
-		if (paragraphStyle)
-		{
-			[appendAttributes setObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
-		}
-		
-	}
-	else
-#endif
-	{
-		CTFontRef font = (__bridge CTFontRef)[attributes objectForKey:(id)kCTFontAttributeName];
-		
-		if (font)
-		{
-			[appendAttributes setObject:(__bridge id)(font) forKey:(id)kCTFontAttributeName];
-		}
-		
-		CTParagraphStyleRef paragraphStyle = (__bridge CTParagraphStyleRef)[attributes objectForKey:(id)kCTParagraphStyleAttributeName];
-		
-		if (paragraphStyle)
-		{
-			[appendAttributes setObject:(__bridge id)(paragraphStyle) forKey:(id)kCTParagraphStyleAttributeName];
-		}
-	}
-	
+    id font = [attributes objectForKey:NSFontAttributeName];
+    
+    if (font)
+    {
+        [appendAttributes setObject:font forKey:NSFontAttributeName];
+    }
+    
+    id paragraphStyle = [attributes objectForKey:NSParagraphStyleAttributeName];
+    
+    if (paragraphStyle)
+    {
+        [appendAttributes setObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
+    }
+
 	// transfer blocks
 	NSArray *blocks = [attributes objectForKey:DTTextBlocksAttribute];
 	
@@ -179,35 +138,12 @@
 	}
 
 	// transfer foreground color
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-	if (___useiOS6Attributes)
-	{
-		id foregroundColor = [attributes objectForKey:NSForegroundColorAttributeName];
-		
-		if (foregroundColor)
-		{
-			[appendAttributes setObject:foregroundColor forKey:NSForegroundColorAttributeName];
-		}
-	}
-	else
-#endif
-	{
-		id foregroundColor = [attributes objectForKey:(id)kCTForegroundColorAttributeName];
-		
-		if (foregroundColor)
-		{
-#if TARGET_OS_IPHONE
-			if ([foregroundColor isKindOfClass:[UIColor class]])
-			{
-				[appendAttributes setObject:(id)[foregroundColor CGColor] forKey:(id)kCTForegroundColorAttributeName];
-			}
-			else
-#endif
-			{
-				[appendAttributes setObject:foregroundColor forKey:(id)kCTForegroundColorAttributeName];
-			}
-		}
-	}
+    id foregroundColor = [attributes objectForKey:NSForegroundColorAttributeName];
+    
+    if (foregroundColor)
+    {
+        [appendAttributes setObject:foregroundColor forKey:NSForegroundColorAttributeName];
+    }
 
 	NSAttributedString *newlineString = [[NSAttributedString alloc] initWithString:@"\n" attributes:appendAttributes];
 	[self appendAttributedString:newlineString];

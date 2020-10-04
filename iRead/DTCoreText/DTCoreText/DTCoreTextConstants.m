@@ -28,7 +28,6 @@ NSString * const DTDefaultLineHeightMultiplier = @"DTDefaultLineHeightMultiplier
 NSString * const DTDefaultFirstLineHeadIndent = @"DTDefaultFirstLineHeadIndent";
 NSString * const DTDefaultHeadIndent = @"DTDefaultHeadIndent";
 NSString * const DTDefaultStyleSheet = @"DTDefaultStyleSheet";
-NSString * const DTUseiOS6Attributes = @"DTUseiOS6Attributes";
 NSString * const DTWillFlushBlockCallBack = @"DTWillFlushBlockCallBack";
 NSString * const DTProcessCustomHTMLAttributes = @"DTProcessCustomHTMLAttributes";
 NSString * const DTIgnoreInlineStylesOption = @"DTIgnoreInlineStyles";
@@ -58,11 +57,6 @@ NSString * const DTArchivingAttribute = @"DTArchivingAttribute";
 
 // field constants
 NSString * const DTListPrefixField = @"{listprefix}";
-
-// iOS 6 compatibility
-
-BOOL ___useiOS6Attributes = NO; // this gets set globally by DTHTMLAttributedStringBuilder
-
 
 // exceptions
 

@@ -139,31 +139,7 @@
 	// register default handlers
 	[self registerTagStartHandlers];
 	[self registerTagEndHandlers];
-	
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-	
-	// custom option to use iOS 6 attributes if running on iOS 6
-	if ([[_options objectForKey:DTUseiOS6Attributes] boolValue])
-	{
-#if TARGET_OS_IPHONE
-		// NS-attributes only supported running on iOS 6.0 or greater
-		if (floor(NSFoundationVersionNumber) >= DTNSFoundationVersionNumber_iOS_6_0)
-		{
-			___useiOS6Attributes = YES;
-		}
-		else
-		{
-			___useiOS6Attributes = NO;
-		}
-#else
-		// Mac generally supports it
-		___useiOS6Attributes = YES;
-#endif
-	}
-	
-#endif
 
-	
 	// custom option to scale text
 	_textScale = [[_options objectForKey:NSTextSizeMultiplierDocumentOption] floatValue];
 	if (_textScale==0)

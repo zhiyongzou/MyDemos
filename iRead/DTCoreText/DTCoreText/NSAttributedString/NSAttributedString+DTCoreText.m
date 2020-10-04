@@ -408,19 +408,10 @@
 		
 		if (font)
 		{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES && __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_5_1
-			if (___useiOS6Attributes)
-			{
-				UIFont *uiFont = [UIFont fontWithCTFont:font];
-				[newAttributes setObject:uiFont forKey:NSFontAttributeName];
-				
-				CFRelease(font);
-			}
-			else
-#endif
-			{
-				[newAttributes setObject:CFBridgingRelease(font) forKey:(id)kCTFontAttributeName];
-			}
+            UIFont *uiFont = [UIFont fontWithCTFont:font];
+            [newAttributes setObject:uiFont forKey:NSFontAttributeName];
+            
+            CFRelease(font);
 		}
 	}
 	
@@ -430,8 +421,7 @@
 	{
 		[newAttributes setObject:(__bridge id)textColor forKey:(id)kCTForegroundColorAttributeName];
 	}
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-	else if (___useiOS6Attributes)
+	else
 	{
 		DTColor *uiColor = [attributes foregroundColor];
 		
@@ -440,23 +430,12 @@
 			[newAttributes setObject:uiColor forKey:NSForegroundColorAttributeName];
 		}
 	}
-#endif
 	
 	// add paragraph style (this has the tabs)
 	if (paragraphStyle)
 	{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-		if (___useiOS6Attributes)
-		{
-			NSParagraphStyle *style = [paragraphStyle NSParagraphStyle];
-			[newAttributes setObject:style forKey:NSParagraphStyleAttributeName];
-		}
-		else
-#endif
-		{
-			CTParagraphStyleRef newParagraphStyle = [paragraphStyle createCTParagraphStyle];
-			[newAttributes setObject:CFBridgingRelease(newParagraphStyle) forKey:(id)kCTParagraphStyleAttributeName];
-		}
+        NSParagraphStyle *style = [paragraphStyle NSParagraphStyle];
+        [newAttributes setObject:style forKey:NSParagraphStyleAttributeName];
 	}
 	
 	// add textBlock if there's one (this has padding and background color)

@@ -89,19 +89,10 @@
 
 				if (smallerFont)
 				{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES && TARGET_OS_IPHONE
-					if (___useiOS6Attributes)
-					{
-						UIFont *font = [UIFont fontWithCTFont:smallerFont];
-						
-						[smallAttributes setObject:font forKey:NSFontAttributeName];
-						CFRelease(smallerFont);
-					}
-					else
-#endif
-					{
-						[smallAttributes setObject:CFBridgingRelease(smallerFont) forKey:(id)kCTFontAttributeName];
-					}
+                    UIFont *font = [UIFont fontWithCTFont:smallerFont];
+                    
+                    [smallAttributes setObject:font forKey:NSFontAttributeName];
+                    CFRelease(smallerFont);
 				}
 				
 				return [[NSAttributedString alloc] initWithString:_text attributes:smallAttributes];
