@@ -142,20 +142,9 @@ NSDictionary *_classesForNames = nil;
 	
 	if (font)
 	{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES && __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_5_1
-		if (___useiOS6Attributes)
-		{
-			UIFont *uiFont = [UIFont fontWithCTFont:font];
-			[tmpDict setObject:uiFont forKey:NSFontAttributeName];
-		}
-		else
-#endif
-		{
-			// __bridge since its already retained elsewhere
-			[tmpDict setObject:(__bridge id)(font) forKey:(id)kCTFontAttributeName];
-		}
-		
-		
+        UIFont *uiFont = [UIFont fontWithCTFont:font];
+        [tmpDict setObject:uiFont forKey:NSFontAttributeName];
+
 		// use this font to adjust the values needed for the run delegate during layout time
 		[_textAttachment adjustVerticalAlignmentForFont:font];
 		
@@ -180,62 +169,25 @@ NSDictionary *_classesForNames = nil;
 	// add strikeout if applicable
 	if (_strikeOut)
 	{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-		if (___useiOS6Attributes)
-		{
-			[tmpDict setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle] forKey:NSStrikethroughStyleAttributeName];
-		}
-		else
-#endif
-		{
-			[tmpDict setObject:[NSNumber numberWithBool:YES] forKey:DTStrikeOutAttribute];
-		}
+        [tmpDict setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle] forKey:NSStrikethroughStyleAttributeName];
 	}
 	
 	// set underline style
 	if (_underlineStyle)
 	{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-		if (___useiOS6Attributes)
-		{
-			[tmpDict setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle] forKey:NSUnderlineStyleAttributeName];
-		}
-		else
-#endif
-		{
-			[tmpDict setObject:[NSNumber numberWithInteger:_underlineStyle] forKey:(id)kCTUnderlineStyleAttributeName];
-		}
-		
+        [tmpDict setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle] forKey:NSUnderlineStyleAttributeName];
 		// we could set an underline color as well if we wanted, but not supported by HTML
 		//      [attributes setObject:(id)[DTImage redColor].CGColor forKey:(id)kCTUnderlineColorAttributeName];
 	}
 	
 	if (_textColor)
 	{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-		if (___useiOS6Attributes)
-		{
-			[tmpDict setObject:_textColor forKey:NSForegroundColorAttributeName];
-		}
-		else
-#endif
-		{
-			[tmpDict setObject:(id)[_textColor CGColor] forKey:(id)kCTForegroundColorAttributeName];
-		}
+        [tmpDict setObject:_textColor forKey:NSForegroundColorAttributeName];
 	}
 	
 	if (_backgroundColor)
 	{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-		if (___useiOS6Attributes)
-		{
-			[tmpDict setObject:_backgroundColor forKey:NSBackgroundColorAttributeName];
-		}
-		else
-#endif
-		{
-			[tmpDict setObject:(id)[_backgroundColor CGColor] forKey:DTBackgroundColorAttribute];
-		}
+        [tmpDict setObject:_backgroundColor forKey:NSBackgroundColorAttributeName];
 	}
 	
 	if (_superscriptStyle)
@@ -246,56 +198,27 @@ NSDictionary *_classesForNames = nil;
 	// add paragraph style
 	if (_paragraphStyle)
 	{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-		if (___useiOS6Attributes)
-		{
-			NSParagraphStyle *style = [self.paragraphStyle NSParagraphStyle];
-			[tmpDict setObject:style forKey:NSParagraphStyleAttributeName];
-		}
-		else
-#endif
-		{
-			CTParagraphStyleRef newParagraphStyle = [self.paragraphStyle createCTParagraphStyle];
-			[tmpDict setObject:CFBridgingRelease(newParagraphStyle) forKey:(id)kCTParagraphStyleAttributeName];
-		}
+        NSParagraphStyle *style = [self.paragraphStyle NSParagraphStyle];
+        [tmpDict setObject:style forKey:NSParagraphStyleAttributeName];
 	}
 	
 	// add shadow array if applicable
 	if (_shadows)
 	{
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-		if (___useiOS6Attributes)
-		{
-			// only a single shadow supported
-			NSDictionary *firstShadow = [_shadows objectAtIndex:0];
+        // only a single shadow supported
+        NSDictionary *firstShadow = [_shadows objectAtIndex:0];
 			
-			NSShadow *shadow = [[NSShadow alloc] init];
-			shadow.shadowOffset = [[firstShadow objectForKey:@"Offset"] CGSizeValue];
-			shadow.shadowColor = [firstShadow objectForKey:@"Color"];
-			shadow.shadowBlurRadius = [[firstShadow objectForKey:@"Blur"] floatValue];
-			[tmpDict setObject:shadow forKey:NSShadowAttributeName];
-		}
-		else
-#endif
-		{
-			[tmpDict setObject:_shadows forKey:DTShadowsAttribute];
-		}
+        NSShadow *shadow = [[NSShadow alloc] init];
+        shadow.shadowOffset = [[firstShadow objectForKey:@"Offset"] CGSizeValue];
+        shadow.shadowColor = [firstShadow objectForKey:@"Color"];
+        shadow.shadowBlurRadius = [[firstShadow objectForKey:@"Blur"] floatValue];
+        [tmpDict setObject:shadow forKey:NSShadowAttributeName];
 	}
 	
 	if (_letterSpacing != 0)
 	{
 		NSNumber *letterSpacingNum = DTNSNumberFromCGFloat(_letterSpacing);
-		
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-		if (___useiOS6Attributes)
-		{
-			[tmpDict setObject:letterSpacingNum forKey:NSKernAttributeName];
-		}
-		else
-#endif
-		{
-			[tmpDict setObject:letterSpacingNum forKey:(id)kCTKernAttributeName];
-		}
+        [tmpDict setObject:letterSpacingNum forKey:NSKernAttributeName];
 	}
 
 	if (_headerLevel)
@@ -565,59 +488,19 @@ NSDictionary *_classesForNames = nil;
 			if ([self _isNotChildOfList])
 			{
 				NSRange paragraphRange = [[tmpString string] rangeOfParagraphAtIndex:[tmpString length]-1];
-				
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-				if (___useiOS6Attributes)
-				{
-					NSParagraphStyle *paraStyle = [tmpString attribute:NSParagraphStyleAttributeName atIndex:paragraphRange.location effectiveRange:NULL];
-					
-					DTCoreTextParagraphStyle *paragraphStyle = [DTCoreTextParagraphStyle paragraphStyleWithNSParagraphStyle:paraStyle];
-					
-					if (paragraphStyle.paragraphSpacing < self.paragraphStyle.paragraphSpacing)
-					{
-						paragraphStyle.paragraphSpacing = self.paragraphStyle.paragraphSpacing;
-						
-						// make new paragraph style
-						NSParagraphStyle *newParaStyle = [paragraphStyle NSParagraphStyle];
-						
-#if DTCORETEXT_NEEDS_ATTRIBUTE_REPLACEMENT_LEAK_FIX
-						if (NSFoundationVersionNumber <=  NSFoundationVersionNumber10_6_8)  // less than OS X 10.7 and less than iOS 5
-						{
-							// remove old (works around iOS 4.3 leak)
-							[tmpString removeAttribute:NSParagraphStyleAttributeName range:paragraphRange];
-						}
-#endif
-						
-						// set new
-						[tmpString addAttribute:NSParagraphStyleAttributeName value:newParaStyle range:paragraphRange];
-					}
-				}
-				else
-#endif
-				{
-					CTParagraphStyleRef paraStyle = (__bridge CTParagraphStyleRef)[tmpString attribute:(id)kCTParagraphStyleAttributeName atIndex:paragraphRange.location effectiveRange:NULL];
-					
-					DTCoreTextParagraphStyle *paragraphStyle = [DTCoreTextParagraphStyle paragraphStyleWithCTParagraphStyle:paraStyle];
-					
-					if (paragraphStyle.paragraphSpacing < self.paragraphStyle.paragraphSpacing)
-					{
-						paragraphStyle.paragraphSpacing = self.paragraphStyle.paragraphSpacing;
-						
-						// make new paragraph style
-						CTParagraphStyleRef newParaStyle = [paragraphStyle createCTParagraphStyle];
-
-#if DTCORETEXT_NEEDS_ATTRIBUTE_REPLACEMENT_LEAK_FIX
-						if (NSFoundationVersionNumber <=  NSFoundationVersionNumber10_6_8)  // less than OS X 10.7 and less than iOS 5
-						{
-							// remove old (works around iOS 4.3 leak)
-							[tmpString removeAttribute:(id)kCTParagraphStyleAttributeName range:paragraphRange];
-						}
-#endif
-						
-						// set new
-						[tmpString addAttribute:(id)kCTParagraphStyleAttributeName value:(__bridge_transfer id)newParaStyle range:paragraphRange];
-					}
-				}
+                NSParagraphStyle *paraStyle = [tmpString attribute:NSParagraphStyleAttributeName atIndex:paragraphRange.location effectiveRange:NULL];
+                DTCoreTextParagraphStyle *paragraphStyle = [DTCoreTextParagraphStyle paragraphStyleWithNSParagraphStyle:paraStyle];
+                
+                if (paragraphStyle.paragraphSpacing < self.paragraphStyle.paragraphSpacing)
+                {
+                    paragraphStyle.paragraphSpacing = self.paragraphStyle.paragraphSpacing;
+                    
+                    // make new paragraph style
+                    NSParagraphStyle *newParaStyle = [paragraphStyle NSParagraphStyle];
+                    
+                    // set new
+                    [tmpString addAttribute:NSParagraphStyleAttributeName value:newParaStyle range:paragraphRange];
+                }
 			}
 		}
 		

@@ -90,9 +90,6 @@ extern NSString * const DTArchivingAttribute;
 
 extern NSString * const DTListPrefixField;
 
-// iOS 6 compatibility
-extern BOOL ___useiOS6Attributes;
-
 // exceptions
 extern NSString * const DTCoreTextFontDescriptorException;
 

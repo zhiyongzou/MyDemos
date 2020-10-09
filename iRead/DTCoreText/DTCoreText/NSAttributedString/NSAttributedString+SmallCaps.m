@@ -38,21 +38,11 @@
 	}
 	
 	NSMutableDictionary *smallAttributes = [attributes mutableCopy];
-
-#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES && TARGET_OS_IPHONE
-	if (___useiOS6Attributes)
-	{
-		UIFont *uiFont = [UIFont fontWithCTFont:smallerFont];
-		
-		[smallAttributes setObject:uiFont forKey:NSFontAttributeName];
-		
-		CFRelease(smallerFont);
-	}
-	else
-#endif
-	{
-		[smallAttributes setObject:CFBridgingRelease(smallerFont) forKey:(id)kCTFontAttributeName];
-	}
+    UIFont *uiFont = [UIFont fontWithCTFont:smallerFont];
+    
+    [smallAttributes setObject:uiFont forKey:NSFontAttributeName];
+    
+    CFRelease(smallerFont);
 	
 	NSMutableAttributedString *tmpString = [[NSMutableAttributedString alloc] init];
 	NSScanner *scanner = [NSScanner scannerWithString:text];

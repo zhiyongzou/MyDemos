@@ -1,3 +1,6 @@
+# cocoapods update
+# sudo gem install cocoapods -version
+
 platform :ios, '10.0'
 
 inhibit_all_warnings!
@@ -18,9 +21,11 @@ def common_pods
 end
 
 # local_pods
+# " ./ " 表示当前文件所在目录下
+# " ../ " 表示当前文件所在目录下的上一级目录
 def local_pods
-  pod 'DTCoreText', :path => '../iRead/DTCoreText'
-  pod 'DTFoundation', :path => '../iRead/DTFoundation'
+  pod 'DTCoreText', :path => './DTCoreText'
+  pod 'DTFoundation', :path => './DTFoundation'
 end
 
 # common_pods
